@@ -1,0 +1,1373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0310DED2667A39F00E119CA /* Assets.xcassets */; };
+		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
+		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
+		A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */; };
+		A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
+		A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
+		A05C53A9266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
+		A05C53AA266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
+		A05C53DF266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
+		A05C53E0266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
+		A05C53E1266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
+		A05C53E2266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
+		A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
+		A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
+		A05C53E5266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
+		A05C53E6266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
+		A05C53EB266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
+		A05C53EC266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
+		A05C53ED266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
+		A05C53EE266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
+		A05C53EF266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
+		A05C53F0266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
+		A05C53F1266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
+		A05C53F2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
+		A05C53F3266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
+		A05C53F4266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
+		A05C53F5266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
+		A05C53F6266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
+		A05C53F7266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
+		A05C53F8266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
+		A05C53F9266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
+		A05C53FA266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
+		A05C53FB266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
+		A05C53FC266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
+		A05C53FD266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
+		A05C53FE266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
+		A05C53FF266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
+		A05C5400266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
+		A05C5401266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
+		A05C5402266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
+		A05C5403266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
+		A05C5404266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
+		A05C5405266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
+		A05C5406266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
+		A05C5407266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
+		A05C5408266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
+		A05C5409266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
+		A05C540A266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
+		A05C540B266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
+		A05C540C266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
+		A05C540D266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
+		A05C540E266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
+		A05C540F266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
+		A05C5410266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
+		A05C5411266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
+		A05C5412266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
+		A05C5413266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
+		A05C5414266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
+		A05C5415266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
+		A05C5416266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
+		A05C5417266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
+		A05C5418266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
+		A05C5419266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
+		A05C541A266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
+		A05C541B266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
+		A05C541C266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
+		A05C541D266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
+		A05C541E266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
+		A05C541F266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
+		A05C5420266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
+		A05C5421266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
+		A05C5422266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
+		A05C5423266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
+		A05C5424266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
+		A05C5425266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
+		A05C5426266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
+		A05C5427266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
+		A05C5428266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
+		A05C5429266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
+		A05C542A266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
+		A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
+		A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
+		A05C5431266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
+		A05C5432266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
+		A05C5433266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
+		A05C5434266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
+		A05C5435266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
+		A05C5436266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
+		A05C543B266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
+		A05C543C266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
+		A05C543D266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
+		A05C543E266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
+		A05C543F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
+		A05C5440266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
+		A05C5441266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
+		A05C5442266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
+		A05C5443266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
+		A05C5444266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
+		A05C5445266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
+		A05C5446266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
+		A05C5447266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
+		A05C5448266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
+		A05C5449266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
+		A05C544A266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
+		A05C544B266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
+		A05C544C266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
+		A05C544D266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
+		A05C544E266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
+		A05C544F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
+		A05C5450266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
+		A05C5451266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
+		A05C5452266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
+		A05C5453266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
+		A05C5454266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
+		A05C5455266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
+		A05C5456266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
+		A05C5457266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
+		A05C5458266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
+		A05C5459266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
+		A05C545A266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
+		A05C545B266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
+		A05C545C266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
+		A05C545D266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
+		A05C545E266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
+		A05C545F266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
+		A05C5460266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
+		A05C5461266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
+		A05C5462266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
+		A05C5463266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
+		A05C5464266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
+		A05C5465266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
+		A05C5466266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
+		A05C5467266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
+		A05C5468266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
+		A05C5469266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
+		A05C546A266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
+		A05C546B266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
+		A05C546C266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
+		A05C546D266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
+		A05C546E266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
+		A05C546F266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
+		A05C5470266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
+		A05C5471266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
+		A05C5472266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
+		A05C5473266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
+		A05C5474266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
+		A05C5475266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
+		A05C5476266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
+		A05C5477266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
+		A05C5478266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
+		A05C5479266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
+		A05C547A266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
+		A05C547C266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
+		A05C547D266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
+		A05C547E266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
+		A05C547F266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
+		A05C5481266BB13B00CD45BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C5480266BB13B00CD45BB /* Color.swift */; };
+		A05C5482266BB13B00CD45BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C5480266BB13B00CD45BB /* Color.swift */; };
+		A0A7464526072E0200155F4D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = A0A7462E26072E0200155F4D /* LICENSE.md */; };
+		A0A7464626072E0200155F4D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = A0A7462E26072E0200155F4D /* LICENSE.md */; };
+		A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
+		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
+		A0A7464926072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */; };
+		A0A7464A26072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */; };
+		A0A7464D26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */; };
+		A0A7464E26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */; };
+		A0A7464F26072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */; };
+		A0A7465026072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */; };
+		A0A7465126072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */; };
+		A0A7465226072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */; };
+		A0A7465326072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */; };
+		A0A7465426072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */; };
+		A0A7465526072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */; };
+		A0A7465626072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */; };
+		A0A7465726072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */; };
+		A0A7465826072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */; };
+		A0A7465926072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */; };
+		A0A7465A26072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */; };
+		A0A7465B26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */; };
+		A0A7465C26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */; };
+		A0A7465D26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */; };
+		A0A7465E26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */; };
+		A0A7465F26072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */; };
+		A0A7466026072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */; };
+		A0A7466126072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */; };
+		A0A7466226072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */; };
+		A0A7466326072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */; };
+		A0A7466426072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */; };
+		A0A7466526072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */; };
+		A0A7466626072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */; };
+		A0A7466726072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */; };
+		A0A7466826072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */; };
+		A0A7466926072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */; };
+		A0A7466A26072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */; };
+		A0A7466B26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */; };
+		A0A7466C26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */; };
+		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
+		A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
+		A0EE19F526044F2200586065 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19F426044F2200586065 /* Tests_iOS.swift */; };
+		A0EE1A0026044F2200586065 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19FF26044F2200586065 /* Tests_macOS.swift */; };
+		A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19D926044F2100586065 /* PagiApp.swift */; };
+		A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19D926044F2100586065 /* PagiApp.swift */; };
+		A0EE1A0426044F2200586065 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19DA26044F2100586065 /* ContentView.swift */; };
+		A0EE1A0526044F2200586065 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19DA26044F2100586065 /* ContentView.swift */; };
+		A0EE1A0626044F2200586065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0EE19DB26044F2200586065 /* Assets.xcassets */; };
+		A0EE1A0726044F2200586065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0EE19DB26044F2200586065 /* Assets.xcassets */; };
+		A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A1A26044F4200586065 /* ProgressBar.swift */; };
+		A0EE1A1C26044F4200586065 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A1A26044F4200586065 /* ProgressBar.swift */; };
+		A0EE1A2226044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
+		A0EE1A2326044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0EE19F126044F2200586065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0EE19D426044F2000586065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0EE19DF26044F2200586065;
+			remoteInfo = "Morning Pages (iOS)";
+		};
+		A0EE19FC26044F2200586065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0EE19D426044F2000586065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0EE19E726044F2200586065;
+			remoteInfo = "Morning Pages (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A0310DED2667A39F00E119CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
+		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		A05C53A6266B97DC00CD45BB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A05C53AC266BA14C00CD45BB /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoV-Italic.ttf"; sourceTree = "<group>"; };
+		A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iAWriterDuoV.ttf; sourceTree = "<group>"; };
+		A05C53B0266BA14C00CD45BB /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Regular.woff"; sourceTree = "<group>"; };
+		A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-BoldItalic.woff2"; sourceTree = "<group>"; };
+		A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Bold.eot"; sourceTree = "<group>"; };
+		A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Regular.woff2"; sourceTree = "<group>"; };
+		A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Italic.eot"; sourceTree = "<group>"; };
+		A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Bold.woff"; sourceTree = "<group>"; };
+		A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-BoldItalic.eot"; sourceTree = "<group>"; };
+		A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Bold.woff2"; sourceTree = "<group>"; };
+		A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Italic.woff2"; sourceTree = "<group>"; };
+		A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Regular.eot"; sourceTree = "<group>"; };
+		A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-BoldItalic.woff"; sourceTree = "<group>"; };
+		A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Italic.woff"; sourceTree = "<group>"; };
+		A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Italic.ttf"; sourceTree = "<group>"; };
+		A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Bold.ttf"; sourceTree = "<group>"; };
+		A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-Regular.ttf"; sourceTree = "<group>"; };
+		A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterDuoS-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A05C53C4266BA14D00CD45BB /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iAWriterQuattroV.ttf; sourceTree = "<group>"; };
+		A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroV-Italic.ttf"; sourceTree = "<group>"; };
+		A05C53C8266BA14D00CD45BB /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Regular.woff"; sourceTree = "<group>"; };
+		A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-BoldItalic.woff2"; sourceTree = "<group>"; };
+		A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Bold.woff2"; sourceTree = "<group>"; };
+		A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Bold.eot"; sourceTree = "<group>"; };
+		A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Bold.woff"; sourceTree = "<group>"; };
+		A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-BoldItalic.woff"; sourceTree = "<group>"; };
+		A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Italic.woff"; sourceTree = "<group>"; };
+		A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Italic.eot"; sourceTree = "<group>"; };
+		A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Regular.eot"; sourceTree = "<group>"; };
+		A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Regular.woff2"; sourceTree = "<group>"; };
+		A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Italic.woff2"; sourceTree = "<group>"; };
+		A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-BoldItalic.eot"; sourceTree = "<group>"; };
+		A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Bold.ttf"; sourceTree = "<group>"; };
+		A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Italic.ttf"; sourceTree = "<group>"; };
+		A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterQuattroS-Regular.ttf"; sourceTree = "<group>"; };
+		A05C547B266BA22500CD45BB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		A05C5480266BB13B00CD45BB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		A0A7462E26072E0200155F4D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iAWriterMonoV.ttf; sourceTree = "<group>"; };
+		A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoV-Italic.ttf"; sourceTree = "<group>"; };
+		A0A7463226072E0200155F4D /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Regular.eot"; sourceTree = "<group>"; };
+		A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.woff"; sourceTree = "<group>"; };
+		A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Regular.woff"; sourceTree = "<group>"; };
+		A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.woff2"; sourceTree = "<group>"; };
+		A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Bold.woff2"; sourceTree = "<group>"; };
+		A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Bold.woff"; sourceTree = "<group>"; };
+		A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.eot"; sourceTree = "<group>"; };
+		A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Bold.eot"; sourceTree = "<group>"; };
+		A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.eot"; sourceTree = "<group>"; };
+		A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Regular.woff2"; sourceTree = "<group>"; };
+		A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.woff"; sourceTree = "<group>"; };
+		A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.woff2"; sourceTree = "<group>"; };
+		A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Regular.ttf"; sourceTree = "<group>"; };
+		A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Bold.ttf"; sourceTree = "<group>"; };
+		A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.ttf"; sourceTree = "<group>"; };
+		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
+		A0EE19D926044F2100586065 /* PagiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiApp.swift; sourceTree = "<group>"; };
+		A0EE19DA26044F2100586065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A0EE19DB26044F2200586065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0EE19E026044F2200586065 /* Pagi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EE19E326044F2200586065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EE19E826044F2200586065 /* Pagi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EE19EA26044F2200586065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EE19EB26044F2200586065 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		A0EE19F026044F2200586065 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EE19F426044F2200586065 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		A0EE19F626044F2200586065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EE19FB26044F2200586065 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0EE19FF26044F2200586065 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		A0EE1A0126044F2200586065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0EE1A1A26044F4200586065 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		A0EE1A2126044F8000586065 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0EE19DD26044F2200586065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19E526044F2200586065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19ED26044F2200586065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19F826044F2200586065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A0226A912658A742001C2DC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A05C53AB266BA14C00CD45BB /* iA Writer Duo */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53AC266BA14C00CD45BB /* LICENSE.md */,
+				A05C53AD266BA14C00CD45BB /* Variable */,
+				A05C53B0266BA14C00CD45BB /* Readme.md */,
+				A05C53B1266BA14C00CD45BB /* Webfonts */,
+				A05C53BE266BA14C00CD45BB /* Static */,
+			);
+			path = "iA Writer Duo";
+			sourceTree = "<group>";
+		};
+		A05C53AD266BA14C00CD45BB /* Variable */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */,
+				A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */,
+			);
+			path = Variable;
+			sourceTree = "<group>";
+		};
+		A05C53B1266BA14C00CD45BB /* Webfonts */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */,
+				A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */,
+				A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */,
+				A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */,
+				A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */,
+				A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */,
+				A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */,
+				A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */,
+				A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */,
+				A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */,
+				A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */,
+				A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */,
+			);
+			path = Webfonts;
+			sourceTree = "<group>";
+		};
+		A05C53BE266BA14C00CD45BB /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */,
+				A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */,
+				A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */,
+				A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */,
+			);
+			path = Static;
+			sourceTree = "<group>";
+		};
+		A05C53C3266BA14D00CD45BB /* iA Writer Quattro */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53C4266BA14D00CD45BB /* LICENSE.md */,
+				A05C53C5266BA14D00CD45BB /* Variable */,
+				A05C53C8266BA14D00CD45BB /* Readme.md */,
+				A05C53C9266BA14D00CD45BB /* Webfonts */,
+				A05C53D6266BA14D00CD45BB /* Static */,
+			);
+			path = "iA Writer Quattro";
+			sourceTree = "<group>";
+		};
+		A05C53C5266BA14D00CD45BB /* Variable */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */,
+				A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */,
+			);
+			path = Variable;
+			sourceTree = "<group>";
+		};
+		A05C53C9266BA14D00CD45BB /* Webfonts */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */,
+				A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */,
+				A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */,
+				A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */,
+				A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */,
+				A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */,
+				A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */,
+				A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */,
+				A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */,
+				A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */,
+				A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */,
+				A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */,
+			);
+			path = Webfonts;
+			sourceTree = "<group>";
+		};
+		A05C53D6266BA14D00CD45BB /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */,
+				A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */,
+				A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */,
+				A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */,
+			);
+			path = Static;
+			sourceTree = "<group>";
+		};
+		A0A7462C26072DF200155F4D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A05C53AB266BA14C00CD45BB /* iA Writer Duo */,
+				A0A7462D26072E0200155F4D /* iA Writer Mono */,
+				A05C53C3266BA14D00CD45BB /* iA Writer Quattro */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A0A7462D26072E0200155F4D /* iA Writer Mono */ = {
+			isa = PBXGroup;
+			children = (
+				A0A7462E26072E0200155F4D /* LICENSE.md */,
+				A0A7462F26072E0200155F4D /* Variable */,
+				A0A7463226072E0200155F4D /* Readme.md */,
+				A0A7463326072E0200155F4D /* Webfonts */,
+				A0A7464026072E0200155F4D /* Static */,
+			);
+			path = "iA Writer Mono";
+			sourceTree = "<group>";
+		};
+		A0A7462F26072E0200155F4D /* Variable */ = {
+			isa = PBXGroup;
+			children = (
+				A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */,
+				A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */,
+			);
+			path = Variable;
+			sourceTree = "<group>";
+		};
+		A0A7463326072E0200155F4D /* Webfonts */ = {
+			isa = PBXGroup;
+			children = (
+				A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */,
+				A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */,
+				A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */,
+				A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */,
+				A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */,
+				A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */,
+				A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */,
+				A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */,
+				A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */,
+				A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */,
+				A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */,
+				A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */,
+			);
+			path = Webfonts;
+			sourceTree = "<group>";
+		};
+		A0A7464026072E0200155F4D /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */,
+				A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */,
+				A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */,
+				A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */,
+			);
+			path = Static;
+			sourceTree = "<group>";
+		};
+		A0A7C7952605CDB7001708EE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE1A2126044F8000586065 /* Editor.swift */,
+				A0EE1A1A26044F4200586065 /* ProgressBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A0EE19D326044F2000586065 = {
+			isa = PBXGroup;
+			children = (
+				A0EE19D826044F2100586065 /* Shared */,
+				A0EE19E226044F2200586065 /* iOS */,
+				A0EE19E926044F2200586065 /* macOS */,
+				A0EE19F326044F2200586065 /* Tests iOS */,
+				A0EE19FE26044F2200586065 /* Tests macOS */,
+				A0EE19E126044F2200586065 /* Products */,
+				A0226A912658A742001C2DC5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A0EE19D826044F2100586065 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A0A7462C26072DF200155F4D /* Fonts */,
+				A0EE19D926044F2100586065 /* PagiApp.swift */,
+				A0EE19DA26044F2100586065 /* ContentView.swift */,
+				A0A7C7952605CDB7001708EE /* Views */,
+				A0EE19DB26044F2200586065 /* Assets.xcassets */,
+				A0A7C78A2605CBE5001708EE /* PagiDocument.swift */,
+				A05C53A6266B97DC00CD45BB /* Theme.swift */,
+				A05C547B266BA22500CD45BB /* Font.swift */,
+				A05C5480266BB13B00CD45BB /* Color.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A0EE19E126044F2200586065 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE19E026044F2200586065 /* Pagi.app */,
+				A0EE19E826044F2200586065 /* Pagi.app */,
+				A0EE19F026044F2200586065 /* Tests iOS.xctest */,
+				A0EE19FB26044F2200586065 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0EE19E226044F2200586065 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE19E326044F2200586065 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		A0EE19E926044F2200586065 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE19EA26044F2200586065 /* Info.plist */,
+				A0EE19EB26044F2200586065 /* macOS.entitlements */,
+				A0310DED2667A39F00E119CA /* Assets.xcassets */,
+				A05C539E266B68D000CD45BB /* TextEditorView.swift */,
+				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
+				A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		A0EE19F326044F2200586065 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE19F426044F2200586065 /* Tests_iOS.swift */,
+				A0EE19F626044F2200586065 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		A0EE19FE26044F2200586065 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				A0EE19FF26044F2200586065 /* Tests_macOS.swift */,
+				A0EE1A0126044F2200586065 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0EE19DF26044F2200586065 /* Pagi (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EE1A0A26044F2200586065 /* Build configuration list for PBXNativeTarget "Pagi (iOS)" */;
+			buildPhases = (
+				A0EE19DC26044F2200586065 /* Sources */,
+				A0EE19DD26044F2200586065 /* Frameworks */,
+				A0EE19DE26044F2200586065 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pagi (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "Morning Pages (iOS)";
+			productReference = A0EE19E026044F2200586065 /* Pagi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0EE19E726044F2200586065 /* Pagi (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EE1A0D26044F2200586065 /* Build configuration list for PBXNativeTarget "Pagi (macOS)" */;
+			buildPhases = (
+				A0EE19E426044F2200586065 /* Sources */,
+				A0EE19E526044F2200586065 /* Frameworks */,
+				A0EE19E626044F2200586065 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pagi (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "Morning Pages (macOS)";
+			productReference = A0EE19E826044F2200586065 /* Pagi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0EE19EF26044F2200586065 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EE1A1026044F2200586065 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				A0EE19EC26044F2200586065 /* Sources */,
+				A0EE19ED26044F2200586065 /* Frameworks */,
+				A0EE19EE26044F2200586065 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0EE19F226044F2200586065 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = A0EE19F026044F2200586065 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A0EE19FA26044F2200586065 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0EE1A1326044F2200586065 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				A0EE19F726044F2200586065 /* Sources */,
+				A0EE19F826044F2200586065 /* Frameworks */,
+				A0EE19F926044F2200586065 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0EE19FD26044F2200586065 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = A0EE19FB26044F2200586065 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0EE19D426044F2000586065 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					A0EE19DF26044F2200586065 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					A0EE19E726044F2200586065 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					A0EE19EF26044F2200586065 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = A0EE19DF26044F2200586065;
+					};
+					A0EE19FA26044F2200586065 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = A0EE19E726044F2200586065;
+					};
+				};
+			};
+			buildConfigurationList = A0EE19D726044F2000586065 /* Build configuration list for PBXProject "Pagi" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A0EE19D326044F2000586065;
+			packageReferences = (
+			);
+			productRefGroup = A0EE19E126044F2200586065 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0EE19DF26044F2200586065 /* Pagi (iOS) */,
+				A0EE19E726044F2200586065 /* Pagi (macOS) */,
+				A0EE19EF26044F2200586065 /* Tests iOS */,
+				A0EE19FA26044F2200586065 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0EE19DE26044F2200586065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A05C544B266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
+				A0A7465F26072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */,
+				A0A7465B26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */,
+				A05C5417266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
+				A05C5413266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
+				A05C5427266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
+				A05C53FF266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
+				A0A7465D26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */,
+				A0A7466126072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */,
+				A0A7465326072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */,
+				A0A7464526072E0200155F4D /* LICENSE.md in Resources */,
+				A05C5433266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
+				A05C543B266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
+				A05C543F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
+				A05C544F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
+				A05C53DF266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
+				A0A7464926072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */,
+				A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C546B266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
+				A05C545B266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
+				A05C5463266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
+				A05C5467266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
+				A05C5407266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
+				A0A7466326072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */,
+				A0A7466526072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */,
+				A05C541B266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
+				A05C5473266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
+				A05C540F266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
+				A05C53F7266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
+				A05C545F266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
+				A05C540B266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
+				A05C541F266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
+				A0A7466726072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */,
+				A0A7466926072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */,
+				A05C53EF266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
+				A0A7465926072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */,
+				A05C53FB266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
+				A05C5447266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
+				A0A7464D26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */,
+				A0A7465726072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */,
+				A05C53F3266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
+				A05C5403266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
+				A05C546F266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
+				A0A7465526072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */,
+				A0A7465126072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */,
+				A05C5443266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
+				A05C5477266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
+				A0A7466B26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */,
+				A05C5453266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
+				A0A7464F26072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */,
+				A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
+				A05C5457266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
+				A0EE1A0626044F2200586065 /* Assets.xcassets in Resources */,
+				A05C5423266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
+				A05C53EB266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
+				A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19E626044F2200586065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A7466026072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */,
+				A05C5464266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
+				A05C53F8266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
+				A0A7465C26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */,
+				A05C5440266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
+				A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */,
+				A0A7465E26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */,
+				A05C5408266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
+				A05C5424266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
+				A05C5448266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
+				A05C5458266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
+				A05C5474266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
+				A05C5410266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
+				A05C5404266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
+				A05C5444266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
+				A05C5400266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
+				A05C545C266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
+				A05C544C266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
+				A05C5460266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
+				A05C53F0266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
+				A0A7466226072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */,
+				A05C5468266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
+				A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C53FC266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
+				A0A7465426072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */,
+				A05C541C266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
+				A0A7464626072E0200155F4D /* LICENSE.md in Resources */,
+				A0A7464A26072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */,
+				A0A7466426072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */,
+				A0A7466626072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */,
+				A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
+				A05C53F4266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
+				A0A7466826072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */,
+				A05C53EC266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
+				A0A7466A26072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */,
+				A0A7465A26072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */,
+				A05C5428266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
+				A05C543C266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
+				A0A7464E26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */,
+				A05C5414266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
+				A05C5418266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
+				A0A7465826072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */,
+				A05C5434266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
+				A05C540C266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
+				A0A7465626072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */,
+				A0A7465226072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */,
+				A05C5420266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
+				A05C5450266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
+				A05C546C266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
+				A05C5454266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
+				A05C53E0266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
+				A0A7466C26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */,
+				A0A7465026072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */,
+				A05C5470266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
+				A05C5478266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
+				A0EE1A0726044F2200586065 /* Assets.xcassets in Resources */,
+				A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19EE26044F2200586065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A05C5401266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
+				A05C5429266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
+				A05C5411266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
+				A05C5449266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
+				A05C545D266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
+				A05C53E5266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C5465266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
+				A05C53ED266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
+				A05C5415266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
+				A05C53F1266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
+				A05C546D266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
+				A05C5409266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
+				A05C5421266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
+				A05C5405266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
+				A05C5469266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
+				A05C5479266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
+				A05C53F9266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
+				A05C5455266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
+				A05C544D266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
+				A05C5425266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
+				A05C5451266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
+				A05C5461266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
+				A05C53FD266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
+				A05C540D266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
+				A05C5419266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
+				A05C5475266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
+				A05C543D266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
+				A05C53F5266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
+				A05C5435266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
+				A05C5445266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
+				A05C53E1266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
+				A05C541D266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
+				A05C5431266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
+				A05C5459266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
+				A05C5441266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
+				A05C5471266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19F926044F2200586065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A05C5402266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
+				A05C542A266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
+				A05C5412266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
+				A05C544A266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
+				A05C545E266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
+				A05C53E6266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C5466266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
+				A05C53EE266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
+				A05C5416266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
+				A05C53F2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
+				A05C546E266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
+				A05C540A266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
+				A05C5422266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
+				A05C5406266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
+				A05C546A266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
+				A05C547A266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
+				A05C53FA266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
+				A05C5456266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
+				A05C544E266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
+				A05C5426266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
+				A05C5452266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
+				A05C5462266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
+				A05C53FE266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
+				A05C540E266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
+				A05C541A266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
+				A05C5476266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
+				A05C543E266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
+				A05C53F6266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
+				A05C5436266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
+				A05C5446266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
+				A05C53E2266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
+				A05C541E266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
+				A05C5432266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
+				A05C545A266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
+				A05C5442266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
+				A05C5472266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0EE19DC26044F2200586065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0EE1A0426044F2200586065 /* ContentView.swift in Sources */,
+				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
+				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
+				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
+				A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */,
+				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
+				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
+				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19E426044F2200586065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
+				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
+				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,
+				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
+				A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */,
+				A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */,
+				A0EE1A0526044F2200586065 /* ContentView.swift in Sources */,
+				A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */,
+				A0EE1A1C26044F4200586065 /* ProgressBar.swift in Sources */,
+				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
+				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19EC26044F2200586065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0EE19F526044F2200586065 /* Tests_iOS.swift in Sources */,
+				A05C53A9266B97DC00CD45BB /* Theme.swift in Sources */,
+				A05C547E266BA22500CD45BB /* Font.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0EE19F726044F2200586065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0EE1A0026044F2200586065 /* Tests_macOS.swift in Sources */,
+				A05C53AA266B97DC00CD45BB /* Theme.swift in Sources */,
+				A05C547F266BA22500CD45BB /* Font.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0EE19F226044F2200586065 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0EE19DF26044F2200586065 /* Pagi (iOS) */;
+			targetProxy = A0EE19F126044F2200586065 /* PBXContainerItemProxy */;
+		};
+		A0EE19FD26044F2200586065 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0EE19E726044F2200586065 /* Pagi (macOS) */;
+			targetProxy = A0EE19FC26044F2200586065 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A0EE1A0826044F2200586065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A0EE1A0926044F2200586065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A0EE1A0B26044F2200586065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Morning-Pages";
+				PRODUCT_NAME = Pagi;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A0EE1A0C26044F2200586065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Morning-Pages";
+				PRODUCT_NAME = Pagi;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0EE1A0E26044F2200586065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Pagi";
+				PRODUCT_NAME = Pagi;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A0EE1A0F26044F2200586065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Pagi";
+				PRODUCT_NAME = Pagi;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A0EE1A1126044F2200586065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Morning Pages (iOS)";
+			};
+			name = Debug;
+		};
+		A0EE1A1226044F2200586065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Morning Pages (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0EE1A1426044F2200586065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Morning Pages (macOS)";
+			};
+			name = Debug;
+		};
+		A0EE1A1526044F2200586065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VSPR9WC4TQ;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Morning Pages (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0EE19D726044F2000586065 /* Build configuration list for PBXProject "Pagi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EE1A0826044F2200586065 /* Debug */,
+				A0EE1A0926044F2200586065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EE1A0A26044F2200586065 /* Build configuration list for PBXNativeTarget "Pagi (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EE1A0B26044F2200586065 /* Debug */,
+				A0EE1A0C26044F2200586065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EE1A0D26044F2200586065 /* Build configuration list for PBXNativeTarget "Pagi (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EE1A0E26044F2200586065 /* Debug */,
+				A0EE1A0F26044F2200586065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EE1A1026044F2200586065 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EE1A1126044F2200586065 /* Debug */,
+				A0EE1A1226044F2200586065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0EE1A1326044F2200586065 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0EE1A1426044F2200586065 /* Debug */,
+				A0EE1A1526044F2200586065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0EE19D426044F2000586065 /* Project object */;
+}

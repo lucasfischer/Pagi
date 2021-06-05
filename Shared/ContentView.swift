@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var document: PagiDocument
+    @AppStorage("theme") private var theme = Theme.system
+    @Environment(\.colorScheme) var colorScheme
+    
+    var userColorScheme: ColorScheme {
+        switch theme {
+        case .system:
+            return colorScheme
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Editor(text: $document.text)
+            .environment(\.colorScheme, userColorScheme)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(document: .constant(PagiDocument()))
     }
 }
