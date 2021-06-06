@@ -71,7 +71,6 @@ struct GeneralSettingsView: View {
             }
         }
         .padding()
-        .environment(\.colorScheme, .dark)
     }
 }
 
