@@ -21,8 +21,16 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://lucas-fischer.com/pagi/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>Jhztjm7eXfo62zgyDZe6BpZ/Zf2ylnCfG2jsSbbBl2U=</string>
 </dict>
 </plist>

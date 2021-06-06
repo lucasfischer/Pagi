@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct PagiApp: App {
+    #if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
+    
     var body: some Scene {
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)

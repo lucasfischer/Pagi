@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Sparkle
 
 struct GeneralSettingsView: View {
     @AppStorage("wordTarget") private var wordTarget = 1500
@@ -18,6 +19,14 @@ struct GeneralSettingsView: View {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    
+    private func checkForUpdates() {
+        guard let updater = SUUpdater.shared() else { return }
+        updater.checkForUpdates(self)
+    }
+    
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    let appBundle = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -68,6 +77,16 @@ struct GeneralSettingsView: View {
                 .offset(x: -10)
                 .pickerStyle(SegmentedPickerStyle())
                 .frame(width: 160)
+            }
+            
+            HStack {
+                // MARK: App Version
+                if let appVersion = appVersion, let appBundle = appBundle {
+                    Text("Version: \(appVersion) (\(appBundle))")
+                        .frame(width: 128, alignment: .trailing)
+                }
+                
+                Button("Check For Updates", action: checkForUpdates)
             }
         }
         .padding()

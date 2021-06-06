@@ -15,7 +15,7 @@ struct SettingsView: View {
     var body: some View {
         GeneralSettingsView()
             .padding()
-            .frame(width: 360, height: 184)
+            .frame(width: 360, height: 216)
     }
 }
 
