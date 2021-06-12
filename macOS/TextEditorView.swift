@@ -118,6 +118,9 @@ fileprivate final class TextEditorController: NSViewController {
         if horizontalPadding > 0 {
             textView.textContainerInset = NSSize(width: horizontalPadding, height: 32)
         }
+        else {
+            textView.textContainerInset = NSSize(width: 16, height: 16)
+        }
     }
     
     override func viewDidAppear() {
