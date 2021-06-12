@@ -37,7 +37,7 @@ struct GeneralSettingsView: View {
                 Text("Word Target:")
                     .frame(width: 128, alignment: .trailing)
                 
-                TextField("Word Target", value: $wordTarget, formatter: formatter)
+                TextField("Word Target", value: $wordTarget.animation(.spring()), formatter: formatter)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 80)
             }
@@ -47,7 +47,7 @@ struct GeneralSettingsView: View {
                 Text("Show Word Count:")
                     .frame(width: 128, alignment: .trailing)
                 
-                Toggle("", isOn: $wordCount)
+                Toggle("", isOn: $wordCount.animation(.spring()))
             }
             
             // Progress Bar
@@ -55,7 +55,7 @@ struct GeneralSettingsView: View {
                 Text("Show Progress Bar:")
                     .frame(width: 128, alignment: .trailing)
                 
-                Toggle("", isOn: $progressBar)
+                Toggle("", isOn: $progressBar.animation(.spring()))
             }
             
             // Font

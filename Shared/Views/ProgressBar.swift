@@ -26,7 +26,6 @@ public struct ProgressBar: View {
         GeometryReader { geometry in
             Line(start: CGPoint(x: 0, y: height / 2), end: CGPoint(x: getX(geometry), y: height / 2))
                 .stroke(color, lineWidth: height)
-                .animation(.spring())
         }
         .frame(height: height)
     }

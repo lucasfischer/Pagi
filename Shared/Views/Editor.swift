@@ -9,20 +9,15 @@ import SwiftUI
 
 struct Editor: View {
     @Binding var text: String
+    @State var words = 0
+    
     @AppStorage("wordTarget") private var wordTarget = 1500
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("font") private var font = iAFont.duo
     @AppStorage("fontSize") private var fontSize = 18
-    @Environment(\.colorScheme) var colorScheme
     
-    var words: Int {
-        let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
-        let components = text.components(separatedBy: chararacterSet)
-        let words = components.filter { !$0.isEmpty }
-        
-        return words.count
-    }
+    @Environment(\.colorScheme) var colorScheme
     
     var targetReached: Bool {
         words >= wordTarget
@@ -44,6 +39,16 @@ struct Editor: View {
             return "iAWriterDuoV-Text"
         case .quattro:
             return "iAWriterQuattroV-Text"
+        }
+    }
+    
+    func calculateWordCount() {
+        let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
+        let components = text.components(separatedBy: chararacterSet)
+        let words = components.filter { !$0.isEmpty }
+        
+        withAnimation {
+            self.words = words.count
         }
     }
     
@@ -74,27 +79,31 @@ struct Editor: View {
                     }
                     .padding(.bottom, progressBarVisible ? 0 : 5)
                     .padding(.trailing, 10)
-                    .transition(AnyTransition.move(edge: .trailing).animation(.spring()))
-                    .animation(.spring())
+                    .transition(.move(edge: .trailing))
                 }
                 
                 if progressBarVisible {
                     ProgressBar(percent: percent, color: Color.accentColor, height: targetReached ? 24 : 5)
-                        .transition(AnyTransition.move(edge: .bottom).animation(.spring()))
+                        .transition(.move(edge: .bottom))
                         .overlay (
                             VStack {
                                 if words >= wordTarget {
                                     Label("Word Target Reached", systemImage: "checkmark")
                                         .font(.custom(fontFile, size: 12))
                                         .foregroundColor(.background)
-                                        .transition(AnyTransition.offset(x: 0, y: 24).animation(.spring()))
-                                        .animation(.spring())
+                                        .transition(.offset(x: 0, y: 24))
                                 }
                             }
                         )
                 }
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
+            .onAppear {
+                calculateWordCount()
+            }
+            .onChange(of: text, perform: { value in
+                calculateWordCount()
+            })
         )
     }
 }
