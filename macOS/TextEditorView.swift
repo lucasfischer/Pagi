@@ -86,7 +86,7 @@ extension TextEditorView {
 
 // MARK: - Controller
 fileprivate final class TextEditorController: NSViewController {
-    var textView = NSTextView()
+    var textView = CustomTextView()
     
     override func loadView() {
         let scrollView = NSScrollView()
@@ -103,6 +103,7 @@ fileprivate final class TextEditorController: NSViewController {
         textView.allowsUndo = true
         textView.textColor = NSColor(.foreground)
         textView.isRichText = false
+        textView.insertionPointColor = .controlAccentColor
         
         self.view = scrollView
     }
@@ -122,4 +123,21 @@ fileprivate final class TextEditorController: NSViewController {
     override func viewDidAppear() {
         self.view.window?.makeFirstResponder(self.view)
     }
+    
+    class CustomTextView: NSTextView {
+        var caretSize: CGFloat = 3
+        
+        open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+            var rect = rect
+            rect.size.width = caretSize
+            super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
+        }
+        
+        open override func setNeedsDisplay(_ rect: NSRect, avoidAdditionalLayout flag: Bool) {
+            var rect = rect
+            rect.size.width += caretSize - 1
+            super.setNeedsDisplay(rect, avoidAdditionalLayout: flag)
+        }
+    }
+    
 }
