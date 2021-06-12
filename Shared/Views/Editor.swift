@@ -13,6 +13,7 @@ struct Editor: View {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("font") private var font = iAFont.duo
+    @AppStorage("fontSize") private var fontSize = 18
     @Environment(\.colorScheme) var colorScheme
     
     var words: Int {
@@ -41,11 +42,11 @@ struct Editor: View {
     var body: some View {
         VStack(spacing: 0) {
             #if os(macOS)
-            TextEditorView(text: $text, font: fontFile)
-                .id(fontFile)
+            TextEditorView(text: $text, font: fontFile, size: CGFloat(fontSize))
+                .id("\(fontFile)\(fontSize)")
             #else
             TextEditor(text: $text)
-                .font(.custom(fontFile, size: 18))
+                .font(.custom(fontFile, size: fontSize))
                 .frame(maxWidth: 650)
                 .lineSpacing(8)
                 .padding(.vertical, 32)

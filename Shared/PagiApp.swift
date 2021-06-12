@@ -17,6 +17,10 @@ struct PagiApp: App {
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
         }
+        .commands {
+            FontCommands()
+        }
+        
         #if os(macOS)
         Settings {
             SettingsView()

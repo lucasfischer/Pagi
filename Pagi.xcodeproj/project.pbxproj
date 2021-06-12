@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A002A433267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
+		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
 		A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0310DED2667A39F00E119CA /* Assets.xcassets */; };
 		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
 		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
@@ -239,6 +241,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
 		A0310DED2667A39F00E119CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -359,6 +362,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A002A431267470A000FFB271 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				A002A432267470CC00FFB271 /* FontCommands.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
 		A0226A912658A742001C2DC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +569,7 @@
 				A0EE19D926044F2100586065 /* PagiApp.swift */,
 				A0EE19DA26044F2100586065 /* ContentView.swift */,
 				A0A7C7952605CDB7001708EE /* Views */,
+				A002A431267470A000FFB271 /* Commands */,
 				A0EE19DB26044F2200586065 /* Assets.xcassets */,
 				A0A7C78A2605CBE5001708EE /* PagiDocument.swift */,
 				A05C53A6266B97DC00CD45BB /* Theme.swift */,
@@ -971,6 +983,7 @@
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
 				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
 				A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */,
+				A002A433267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
@@ -992,6 +1005,7 @@
 				A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */,
 				A0EE1A1C26044F4200586065 /* ProgressBar.swift in Sources */,
 				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
+				A002A434267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@ import SwiftUI
 struct TextEditorView: NSViewControllerRepresentable {
     @Binding var text: String
     var font: String
+    var size: CGFloat
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -30,12 +31,13 @@ struct TextEditorView: NSViewControllerRepresentable {
 // MARK: - Coordinator
 extension TextEditorView {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self, font: font)
+        return Coordinator(self, font: font, size: size)
     }
     
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
         var font: String
+        var size: CGFloat
         var selectedRanges: [NSValue] = []
         
         var attributes: [NSAttributedString.Key : Any] {
@@ -45,14 +47,15 @@ extension TextEditorView {
             
             return  [
                 NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font : NSFont(name: font, size: 20)!,
+                NSAttributedString.Key.font : NSFont(name: font, size: size)!,
                 NSAttributedString.Key.foregroundColor: NSColor(.foreground)
             ]
         }
         
-        init(_ parent: TextEditorView, font: String) {
+        init(_ parent: TextEditorView, font: String, size: CGFloat) {
             self.parent = parent
             self.font = font
+            self.size = size
         }
         
         func textDidBeginEditing(_ notification: Notification) {
