@@ -11,6 +11,7 @@ struct Editor: View {
     @Binding var text: String
     @AppStorage("wordTarget") private var wordTarget = 1500
     @AppStorage("wordCount") private var wordCount = true
+    @AppStorage("progressBar") private var progressBar = true
     @AppStorage("font") private var font = iAFont.duo
     @Environment(\.colorScheme) var colorScheme
     
@@ -62,11 +63,16 @@ struct Editor: View {
                             .font(.custom(fontFile, size: 12))
                             .foregroundColor(.foregroundLight)
                     }
-                    .padding(.bottom, 5)
+                    .padding(.bottom, progressBar ? 0 : 5)
                     .padding(.trailing, 10)
+                    .transition(AnyTransition.move(edge: .trailing).animation(.spring()))
+                    .animation(.spring())
                 }
                 
-                ProgressBar(percent: percent, color: Color.accentColor)
+                if progressBar {
+                    ProgressBar(percent: percent, color: Color.accentColor)
+                        .transition(AnyTransition.move(edge: .bottom).animation(.spring()))
+                }
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
         )

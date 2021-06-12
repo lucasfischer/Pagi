@@ -13,6 +13,7 @@ struct GeneralSettingsView: View {
     @AppStorage("theme") private var theme = Theme.system
     @AppStorage("font") private var font = iAFont.duo
     @AppStorage("wordCount") private var wordCount = true
+    @AppStorage("progressBar") private var progressBar = true
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -47,6 +48,14 @@ struct GeneralSettingsView: View {
                     .frame(width: 128, alignment: .trailing)
                 
                 Toggle("", isOn: $wordCount)
+            }
+            
+            // Progress Bar
+            HStack {
+                Text("Show Progress Bar:")
+                    .frame(width: 128, alignment: .trailing)
+                
+                Toggle("", isOn: $progressBar)
             }
             
             // Font
