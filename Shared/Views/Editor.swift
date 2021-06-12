@@ -24,6 +24,14 @@ struct Editor: View {
         return words.count
     }
     
+    var targetReached: Bool {
+        words >= wordTarget
+    }
+    
+    var progressBarVisible: Bool {
+        progressBar || targetReached
+    }
+    
     var percent: Float {
         Float(self.words) / Float(wordTarget)
     }
@@ -64,15 +72,26 @@ struct Editor: View {
                             .font(.custom(fontFile, size: 12))
                             .foregroundColor(.foregroundLight)
                     }
-                    .padding(.bottom, progressBar ? 0 : 5)
+                    .padding(.bottom, progressBarVisible ? 0 : 5)
                     .padding(.trailing, 10)
                     .transition(AnyTransition.move(edge: .trailing).animation(.spring()))
                     .animation(.spring())
                 }
                 
-                if progressBar {
-                    ProgressBar(percent: percent, color: Color.accentColor)
+                if progressBarVisible {
+                    ProgressBar(percent: percent, color: Color.accentColor, height: targetReached ? 24 : 5)
                         .transition(AnyTransition.move(edge: .bottom).animation(.spring()))
+                        .overlay (
+                            VStack {
+                                if words >= wordTarget {
+                                    Label("Word Target Reached", systemImage: "checkmark")
+                                        .font(.custom(fontFile, size: 12))
+                                        .foregroundColor(.background)
+                                        .transition(AnyTransition.offset(x: 0, y: 24).animation(.spring()))
+                                        .animation(.spring())
+                                }
+                            }
+                        )
                 }
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
