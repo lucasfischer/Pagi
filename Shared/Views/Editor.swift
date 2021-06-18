@@ -9,57 +9,17 @@ import SwiftUI
 
 struct Editor: View {
     @Binding var text: String
-    @State var words = 0
     
-    @AppStorage("wordTarget") private var wordTarget = 1500
-    @AppStorage("wordCount") private var wordCount = true
-    @AppStorage("progressBar") private var progressBar = true
-    @AppStorage("font") private var font = iAFont.duo
-    @AppStorage("fontSize") private var fontSize = 18
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    var targetReached: Bool {
-        words >= wordTarget
-    }
-    
-    var progressBarVisible: Bool {
-        progressBar || targetReached
-    }
-    
-    var percent: Float {
-        Float(self.words) / Float(wordTarget)
-    }
-    
-    var fontFile: String {
-        switch font {
-        case .mono:
-            return "iAWriterMonoV-Text"
-        case .duo:
-            return "iAWriterDuoV-Text"
-        case .quattro:
-            return "iAWriterQuattroV-Text"
-        }
-    }
-    
-    func calculateWordCount() {
-        let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
-        let components = text.components(separatedBy: chararacterSet)
-        let words = components.filter { !$0.isEmpty }
-        
-        withAnimation {
-            self.words = words.count
-        }
-    }
+    @StateObject var viewModel = EditorViewModel()
     
     var body: some View {
         VStack(spacing: 0) {
             #if os(macOS)
-            TextEditorView(text: $text, font: fontFile, size: CGFloat(fontSize))
-                .id("\(fontFile)\(fontSize)")
+            TextEditorView(text: $text, font: viewModel.fontFile, size: CGFloat(viewModel.fontSize))
+                .id("\(viewModel.fontFile)\(viewModel.fontSize)")
             #else
-            TextEditor(text: $text)
-                .font(.custom(fontFile, size: fontSize))
+            TextEditor(text: $viewModel.text)
+                .font(.custom(viewModel.fontFile, size: viewModel.fontSize))
                 .frame(maxWidth: 650)
                 .lineSpacing(8)
                 .padding(.vertical, 32)
@@ -70,26 +30,26 @@ struct Editor: View {
         .background(Color.background)
         .overlay(
             VStack {
-                if wordCount {
+                if viewModel.wordCount {
                     HStack {
                         Spacer()
-                        Text("\(words)W")
-                            .font(.custom(fontFile, size: 12))
+                        Text("\(viewModel.words)W")
+                            .font(.custom(viewModel.fontFile, size: 12))
                             .foregroundColor(.foregroundLight)
                     }
-                    .padding(.bottom, progressBarVisible ? 0 : 5)
+                    .padding(.bottom, viewModel.progressBarVisible ? 0 : 5)
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                 }
                 
-                if progressBarVisible {
-                    ProgressBar(percent: percent, color: Color.accentColor, height: targetReached ? 24 : 5)
+                if viewModel.progressBarVisible {
+                    ProgressBar(percent: viewModel.percent, color: Color.accentColor, height: viewModel.targetReached ? 24 : 5)
                         .transition(.move(edge: .bottom))
                         .overlay (
                             VStack {
-                                if words >= wordTarget {
+                                if viewModel.words >= viewModel.wordTarget {
                                     Label("Word Target Reached", systemImage: "checkmark")
-                                        .font(.custom(fontFile, size: 12))
+                                        .font(.custom(viewModel.fontFile, size: 12))
                                         .foregroundColor(.background)
                                         .transition(.offset(x: 0, y: 24))
                                 }
@@ -99,10 +59,10 @@ struct Editor: View {
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
             .onAppear {
-                calculateWordCount()
+                viewModel.calculateWordCount(text)
             }
             .onChange(of: text, perform: { value in
-                calculateWordCount()
+                viewModel.calculateWordCount(text)
             })
         )
     }
