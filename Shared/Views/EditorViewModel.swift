@@ -9,6 +9,7 @@ import SwiftUI
 
 class EditorViewModel: ObservableObject {
     @Published var words = 0
+    @Published var overlayHover = false
     
     @AppStorage("wordTarget") var wordTarget = 1500
     @AppStorage("wordCount")  var wordCount = true
@@ -18,8 +19,14 @@ class EditorViewModel: ObservableObject {
     
     @Environment(\.colorScheme) var colorScheme
     
+    let timer = Timer()
+    
     var targetReached: Bool {
         words >= wordTarget
+    }
+    
+    var isProgressBarExpanded: Bool {
+        targetReached && (words <= (wordTarget + 10) || overlayHover)
     }
     
     var progressBarVisible: Bool {
@@ -41,7 +48,15 @@ class EditorViewModel: ObservableObject {
         }
     }
     
-    func calculateWordCount(_ text: String) {
+    var successText: String {
+        if let endDuration = timer.endDuration {
+            return "\(words) words in \(endDuration)"
+        } else {
+            return "Word Target Reached"
+        }
+    }
+    
+    func calculateWordCount(_ text: String, typing: Bool = false) {
         let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         let components = text.components(separatedBy: chararacterSet)
         let words = components.filter { !$0.isEmpty }
@@ -49,5 +64,13 @@ class EditorViewModel: ObservableObject {
         withAnimation {
             self.words = words.count
         }
+        
+        if typing && !timer.isRunning && !timer.isEnded {
+            timer.start()
+        }
+        else if typing && timer.isRunning && targetReached {
+            timer.stop()
+        }
+        timer.typing()
     }
 }

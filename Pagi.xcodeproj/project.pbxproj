@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A002A433267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
 		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
+		A01255FF2686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
+		A01256002686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0310DED2667A39F00E119CA /* Assets.xcassets */; };
 		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
 		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
@@ -244,6 +246,7 @@
 
 /* Begin PBXFileReference section */
 		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
+		A01255FE2686E4EC00727630 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Shared/Timer.swift; sourceTree = SOURCE_ROOT; };
 		A0310DED2667A39F00E119CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -575,6 +578,7 @@
 				A0A7C7952605CDB7001708EE /* Views */,
 				A002A431267470A000FFB271 /* Commands */,
 				A0EE19DB26044F2200586065 /* Assets.xcassets */,
+				A01255FE2686E4EC00727630 /* Timer.swift */,
 				A0A7C78A2605CBE5001708EE /* PagiDocument.swift */,
 				A05C53A6266B97DC00CD45BB /* Theme.swift */,
 				A05C547B266BA22500CD45BB /* Font.swift */,
@@ -991,6 +995,7 @@
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
 				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
+				A01255FF2686E4EC00727630 /* Timer.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,6 +1007,7 @@
 				A0F8F30C266CAD400019AD9F /* AppDelegate.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
+				A01256002686E4EC00727630 /* Timer.swift in Sources */,
 				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,
 				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
 				A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */,

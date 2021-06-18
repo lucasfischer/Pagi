@@ -24,8 +24,12 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Editor(text: $document.text)
-            .environment(\.colorScheme, userColorScheme)
+        ZStack {
+            Color.background
+            
+            Editor(text: $document.text)
+                .environment(\.colorScheme, userColorScheme)
+        }
     }
 }
 
