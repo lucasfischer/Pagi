@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A002A433267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
 		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
-		A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0310DED2667A39F00E119CA /* Assets.xcassets */; };
 		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
 		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
 		A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */; };
@@ -244,7 +243,6 @@
 
 /* Begin PBXFileReference section */
 		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
-		A0310DED2667A39F00E119CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
@@ -607,7 +605,6 @@
 			children = (
 				A0EE19EA26044F2200586065 /* Info.plist */,
 				A0EE19EB26044F2200586065 /* macOS.entitlements */,
-				A0310DED2667A39F00E119CA /* Assets.xcassets */,
 				A0F8F30B266CAD400019AD9F /* AppDelegate.swift */,
 				A05C539E266B68D000CD45BB /* TextEditorView.swift */,
 				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
@@ -834,7 +831,6 @@
 				A05C53F8266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
 				A0A7465C26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */,
 				A05C5440266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
-				A0310DEE2667A39F00E119CA /* Assets.xcassets in Resources */,
 				A0A7465E26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */,
 				A05C5408266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
 				A05C5424266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
