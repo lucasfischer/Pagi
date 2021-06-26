@@ -45,6 +45,8 @@
 	<string>https://lucas-fischer.com/pagi/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>Jhztjm7eXfo62zgyDZe6BpZ/Zf2ylnCfG2jsSbbBl2U=</string>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
