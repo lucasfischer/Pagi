@@ -13,12 +13,15 @@ struct PagiApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #endif
     
+    @AppStorage("fontSize") private var fontSize = 18
+    @AppStorage("font") private var font = iAFont.duo
+    
     var body: some Scene {
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
         }
         .commands {
-            FontCommands()
+            FontCommands(font: $font, fontSize: $fontSize)
         }
         
         #if os(macOS)

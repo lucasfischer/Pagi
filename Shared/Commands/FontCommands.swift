@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FontCommands: Commands {
-    @AppStorage("fontSize") private var fontSize = 18
-    @AppStorage("font") private var font = iAFont.duo
+    @Binding var font: iAFont
+    @Binding var fontSize: Int
     
     var body: some Commands {
         CommandMenu("Font") {
