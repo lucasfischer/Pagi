@@ -15,6 +15,8 @@ struct PagiApp: App {
     
     @AppStorage("fontSize") private var fontSize = 18
     @AppStorage("font") private var font = iAFont.duo
+    @AppStorage("wordCount") private var wordCount = true
+    @AppStorage("progressBar") private var progressBar = true
     
     var body: some Scene {
         DocumentGroup(newDocument: PagiDocument()) { file in
@@ -22,6 +24,7 @@ struct PagiApp: App {
         }
         .commands {
             FontCommands(font: $font, fontSize: $fontSize)
+            StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
         }
         
         #if os(macOS)
