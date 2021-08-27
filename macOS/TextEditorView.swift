@@ -12,6 +12,7 @@ struct TextEditorView: NSViewControllerRepresentable {
     @Binding var text: String
     var font: String
     var size: CGFloat
+    var isSpellCheckingEnabled: Bool = false
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -25,19 +26,23 @@ struct TextEditorView: NSViewControllerRepresentable {
         if text != vc.textView.string {
             vc.textView.string = text
         }
+        
+        vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
+        vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
     }
 }
 
 // MARK: - Coordinator
 extension TextEditorView {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self, font: font, size: size)
+        return Coordinator(self, font: font, size: size, isSpellCheckingEnabled: isSpellCheckingEnabled)
     }
     
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
         var font: String
         var size: CGFloat
+        var isSpellCheckingEnabled: Bool
         var selectedRanges: [NSValue] = []
         
         var attributes: [NSAttributedString.Key : Any] {
@@ -52,10 +57,11 @@ extension TextEditorView {
             ]
         }
         
-        init(_ parent: TextEditorView, font: String, size: CGFloat) {
+        init(_ parent: TextEditorView, font: String, size: CGFloat, isSpellCheckingEnabled: Bool) {
             self.parent = parent
             self.font = font
             self.size = size
+            self.isSpellCheckingEnabled = isSpellCheckingEnabled
         }
         
         func textDidBeginEditing(_ notification: Notification) {
@@ -86,6 +92,7 @@ extension TextEditorView {
 
 // MARK: - Controller
 fileprivate final class TextEditorController: NSViewController {
+    var isSpellCheckingEnabled: Bool = false
     var textView = CustomTextView()
     
     override func loadView() {
@@ -104,6 +111,8 @@ fileprivate final class TextEditorController: NSViewController {
         textView.textColor = NSColor(.foreground)
         textView.isRichText = false
         textView.insertionPointColor = .controlAccentColor
+        textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
+        textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
         
         self.view = scrollView
     }

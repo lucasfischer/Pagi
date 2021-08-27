@@ -15,7 +15,12 @@ struct Editor: View {
     var body: some View {
         VStack(spacing: 0) {
             #if os(macOS)
-            TextEditorView(text: $text, font: viewModel.fontFile, size: CGFloat(viewModel.fontSize))
+            TextEditorView(
+                text: $text,
+                font: viewModel.fontFile,
+                size: CGFloat(viewModel.fontSize),
+                isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+            )
                 .id("\(viewModel.fontFile)\(viewModel.fontSize)")
             #else
             TextEditor(text: $viewModel.text)

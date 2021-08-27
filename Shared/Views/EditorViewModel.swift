@@ -16,6 +16,7 @@ class EditorViewModel: ObservableObject {
     @AppStorage("progressBar") var progressBar = true
     @AppStorage("font") var font = iAFont.duo
     @AppStorage("fontSize") var fontSize = 18
+    @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
     
     @Environment(\.colorScheme) var colorScheme
     

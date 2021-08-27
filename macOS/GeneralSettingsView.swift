@@ -14,6 +14,7 @@ struct GeneralSettingsView: View {
     @AppStorage("font") private var font = iAFont.duo
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
+    @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -56,6 +57,14 @@ struct GeneralSettingsView: View {
                     .frame(width: 128, alignment: .trailing)
                 
                 Toggle("", isOn: $progressBar.animation(.spring()))
+            }
+            
+            // Spell Checker
+            HStack {
+                Text("Spell Checker:")
+                    .frame(width: 128, alignment: .trailing)
+                
+                Toggle("", isOn: $isSpellCheckingEnabled)
             }
             
             // Font
