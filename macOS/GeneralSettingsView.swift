@@ -10,8 +10,6 @@ import Sparkle
 
 struct GeneralSettingsView: View {
     @AppStorage("wordTarget") private var wordTarget = 1500
-    @AppStorage("theme") private var theme = Theme.system
-    @AppStorage("font") private var font = iAFont.duo
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
@@ -67,36 +65,6 @@ struct GeneralSettingsView: View {
                 Toggle("", isOn: $isSpellCheckingEnabled)
             }
             
-            // Font
-            HStack {
-                Text("Font:")
-                    .frame(width: 128, alignment: .trailing)
-                
-                Picker("", selection: $font) {
-                    ForEach(iAFont.allCases, id: \.self) { font in
-                        Text("\(font.rawValue)")
-                    }
-                }
-                .offset(x: -10)
-                .pickerStyle(SegmentedPickerStyle())
-                .frame(width: 160)
-            }
-            
-            // Theme
-            HStack {
-                Text("Theme:")
-                    .frame(width: 128, alignment: .trailing)
-                
-                Picker("", selection: $theme) {
-                    ForEach(Theme.allCases, id: \.self) { theme in
-                        Text("\(theme.rawValue)")
-                    }
-                }
-                .offset(x: -10)
-                .pickerStyle(SegmentedPickerStyle())
-                .frame(width: 160)
-            }
-            
             HStack {
                 // MARK: App Version
                 if let appVersion = appVersion, let appBundle = appBundle {
@@ -108,6 +76,7 @@ struct GeneralSettingsView: View {
             }
         }
         .padding()
+        .frame(width: 320)
     }
 }
 

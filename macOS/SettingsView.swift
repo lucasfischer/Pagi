@@ -9,13 +9,26 @@ import SwiftUI
 
 struct SettingsView: View {
     private enum Tabs: Hashable {
-        case general, advanced
+        case general, appearance
     }
     
     var body: some View {
-        GeneralSettingsView()
-            .padding()
-            .frame(width: 360, height: 240)
+        TabView() {
+            
+            GeneralSettingsView()
+                .tabItem {
+                    Label("General", systemImage: "gear")
+                }
+                .tag(Tabs.general)
+            
+            AppearanceSettingsView()
+                .tabItem {
+                    Label("Appearance", systemImage: "heart.text.square")
+                }
+                .tag(Tabs.appearance)
+            
+        }
+        .padding()
     }
 }
 
