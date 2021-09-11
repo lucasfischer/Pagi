@@ -20,6 +20,7 @@ struct PagiApp: App {
     
     @AppStorage("theme") private var theme = Theme.system
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.scenePhase) private var phase
     
     var userColorScheme: ColorScheme? {
         switch theme {
@@ -32,6 +33,26 @@ struct PagiApp: App {
         }
     }
     
+    init() {
+        setupColorScheme()
+    }
+   
+    private func setupColorScheme() {
+        #if os(iOS)
+        var style = UIUserInterfaceStyle.dark
+        switch theme {
+        case .system:
+            style = .unspecified
+        case .light:
+            style = .light
+        case .dark:
+            style = .dark
+        }
+        let window = UIApplication.shared.windows.first
+        window?.overrideUserInterfaceStyle = style
+        #endif
+    }
+    
     var body: some Scene {
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
@@ -40,6 +61,12 @@ struct PagiApp: App {
         .commands {
             FontCommands(font: $font, fontSize: $fontSize)
             StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
+        }
+        .onChange(of: phase) { _ in
+            setupColorScheme()
+        }
+        .onChange(of: theme) { _ in
+            setupColorScheme()
         }
         
         #if os(macOS)
