@@ -1,0 +1,103 @@
+//
+//  SettingsView.swift
+//  SettingsView
+//
+//  Created by Lucas Fischer on 11.09.21.
+//
+
+import SwiftUI
+
+struct SettingsView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @AppStorage("wordTarget") private var wordTarget = 1500
+    @AppStorage("wordCount") private var wordCount = true
+    @AppStorage("progressBar") private var progressBar = true
+    @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
+    
+    @AppStorage("theme") private var theme = Theme.system
+    @AppStorage("font") private var font = iAFont.duo
+    @AppStorage("fontSize") private var fontSize = 18.0
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    let appBundle = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Form {
+                    Section("Word Target") {
+                        TextField("Word Target",
+                                  value: $wordTarget.animation(.spring()),
+                                  formatter: formatter,
+                                  prompt: Text("Word Target")
+                        )
+                            .keyboardType(.numberPad)
+                    }
+                    
+                    Section("General") {
+                        Toggle("Word Count", isOn: $wordCount.animation(.spring()))
+                        Toggle("Progress Bar", isOn: $progressBar.animation(.spring()))
+                        Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
+                    }
+                    
+                    Section("Appearance", content: {
+                        Slider(value: $fontSize, in: 10...40, step: 1) {
+                            Text("Font Size (\(fontSize, specifier: "%.0f")):")
+                        } minimumValueLabel: {
+                            Image(systemName: "character")
+                                .resizable()
+                                .frame(width: 8, height: 8)
+                                .foregroundColor(.secondary)
+                        } maximumValueLabel: {
+                            Image(systemName: "character")
+                                .resizable()
+                                .frame(width: 14, height: 14)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Picker("Font:", selection: $font) {
+                            ForEach(iAFont.allCases, id: \.self) { font in
+                                Text("\(font.rawValue)")
+                            }
+                        }
+                        
+                        Picker("Theme:", selection: $theme) {
+                            ForEach(Theme.allCases, id: \.self) { theme in
+                                Text("\(theme.rawValue)")
+                            }
+                        }
+                    })
+                    
+                    // MARK: App Version
+                    if let appVersion = appVersion, let appBundle = appBundle {
+                        Text("Version: \(appVersion) (\(appBundle))")
+                    }
+                }
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
+            .tint(.accentColor)
+            .pickerStyle(.segmented)
+            .navigationTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+    }
+}

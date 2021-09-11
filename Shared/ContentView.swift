@@ -9,12 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var document: PagiDocument
+    @SceneStorage("showSettings") private var showSettings = false
     
     var body: some View {
         ZStack {
-            Color.background
+            Color.background.ignoresSafeArea()
             
             Editor(text: $document.text)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
+        .toolbar {
+            #if os(iOS)
+            ToolbarItem(placement: .navigation) {
+                Button(action: {
+                    showSettings.toggle()
+                }) {
+                    Label("Settings", systemImage: "gear")
+                }
+            }
+            #endif
         }
     }
 }

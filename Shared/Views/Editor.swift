@@ -12,6 +12,22 @@ struct Editor: View {
     
     @StateObject var viewModel = EditorViewModel()
     
+    init(text: Binding<String>) {
+        #if os(iOS)
+        UITextView.appearance().backgroundColor = .clear
+        #endif
+        
+        self._text = text
+    }
+    
+    var progressBarHeight: CGFloat {
+        #if os(iOS)
+        48
+        #else
+        24
+        #endif
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             #if os(macOS)
@@ -23,15 +39,24 @@ struct Editor: View {
             )
                 .id("\(viewModel.fontFile)\(viewModel.fontSize)")
             #else
-            TextEditor(text: $viewModel.text)
-                .font(.custom(viewModel.fontFile, size: viewModel.fontSize))
-                .frame(maxWidth: 650)
-                .lineSpacing(8)
-                .padding(.vertical, 32)
-                .background(Color.background)
-                .foregroundColor(.foreground)
+            ScrollView {
+                VStack {
+                    TextEditorView(
+                        text: $text,
+                        font: viewModel.fontFile,
+                        size: CGFloat(viewModel.fontSize),
+                        isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+                    )
+                        .frame(maxWidth: 650, maxHeight: .infinity)
+                        .frame(maxWidth: .infinity)
+                        .id("\(viewModel.fontFile)\(viewModel.fontSize)")
+                }
+                .padding(.bottom, 40)
+                .frame(maxHeight: .infinity)
+            }
             #endif
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
         .overlay(
             VStack {
@@ -57,13 +82,17 @@ struct Editor: View {
                     
                     // MARK: Progress Bar
                     if viewModel.progressBarVisible {
-                        ProgressBar(percent: viewModel.percent, color: .accentColor, height: viewModel.isProgressBarExpanded ? 24 : 5)
+                        ProgressBar(
+                            percent: viewModel.percent,
+                            color: .accentColor,
+                            height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
+                        )
                             .transition(.move(edge: .bottom))
                             .overlay (
                                 VStack {
                                     if viewModel.isProgressBarExpanded {
                                         Label(viewModel.successText, systemImage: "checkmark")
-                                            .transition(.offset(x: 0, y: 24))
+                                            .transition(.offset(x: 0, y: progressBarHeight))
                                         
                                     }
                                 }
@@ -82,6 +111,7 @@ struct Editor: View {
                 })
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
+            .ignoresSafeArea(.all, edges: .bottom)
         )
         .onAppear {
             viewModel.calculateWordCount(text)
