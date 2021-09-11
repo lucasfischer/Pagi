@@ -62,28 +62,32 @@ struct SettingsView: View {
                                 .foregroundColor(.secondary)
                         }
                         
-                        Picker("Font:", selection: $font) {
+                        Picker("Font", selection: $font) {
                             ForEach(iAFont.allCases, id: \.self) { font in
                                 Text("\(font.rawValue)")
                             }
                         }
                         
-                        Picker("Theme:", selection: $theme) {
+                        Picker("Theme", selection: $theme) {
                             ForEach(Theme.allCases, id: \.self) { theme in
                                 Text("\(theme.rawValue)")
                             }
                         }
                     })
                     
-                    // MARK: App Version
-                    if let appVersion = appVersion, let appBundle = appBundle {
-                        Text("Version: \(appVersion) (\(appBundle))")
-                    }
+                    
+                }
+                
+                // MARK: App Version
+                if let appVersion = appVersion, let appBundle = appBundle {
+                    Text("Version: \(appVersion) (\(appBundle))")
+                        .font(.system(size: 12))
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                        .padding(.vertical, 24)
                 }
             }
-            .frame(maxHeight: .infinity, alignment: .top)
             .tint(.accentColor)
-            .pickerStyle(.segmented)
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .navigation) {
