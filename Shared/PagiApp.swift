@@ -18,9 +18,24 @@ struct PagiApp: App {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     
+    @AppStorage("theme") private var theme = Theme.system
+    @Environment(\.colorScheme) var colorScheme
+    
+    var userColorScheme: ColorScheme? {
+        switch theme {
+        case .system:
+            return nil
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
+    }
+    
     var body: some Scene {
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
+                .preferredColorScheme(userColorScheme)
         }
         .commands {
             FontCommands(font: $font, fontSize: $fontSize)
@@ -30,6 +45,7 @@ struct PagiApp: App {
         #if os(macOS)
         Settings {
             SettingsView()
+                .preferredColorScheme(userColorScheme)
         }
         #endif
     }
