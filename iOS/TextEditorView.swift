@@ -81,9 +81,9 @@ struct TextEditorView: View {
         }
         
         func updateUIView(_ uiView: UITextView, context: Context) {
-            let selectedRange = uiView.selectedRange
-            uiView.text = text
-            uiView.selectedRange = selectedRange
+            if uiView.text != text {
+                uiView.text = text
+            }
             
             MultilineTextView.recalculateHeight(view: uiView, result: $calculatedHeight)
         }
