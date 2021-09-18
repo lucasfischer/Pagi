@@ -32,16 +32,23 @@ struct SettingsView: View {
         NavigationView {
             VStack {
                 Form {
-                    Section("Word Target") {
-                        TextField("Word Target",
-                                  value: $wordTarget.animation(.spring()),
-                                  formatter: formatter,
-                                  prompt: Text("Word Target")
-                        )
-                            .keyboardType(.numberPad)
-                    }
-                    
                     Section("General") {
+                        HStack {
+                            Text("Word Target")
+                            
+                            Spacer()
+                            
+                            TextField(
+                                "Word Target",
+                                value: $wordTarget.animation(.spring()),
+                                formatter: formatter,
+                                prompt: Text("Word Target")
+                            )
+                                .keyboardType(.numberPad)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
                         Toggle("Word Count", isOn: $wordCount.animation(.spring()))
                         Toggle("Progress Bar", isOn: $progressBar.animation(.spring()))
                         Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
@@ -75,16 +82,17 @@ struct SettingsView: View {
                         }
                     })
                     
-                    
-                }
-                
-                // MARK: App Version
-                if let appVersion = appVersion, let appBundle = appBundle {
-                    Text("Version: \(appVersion) (\(appBundle))")
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
-                        .foregroundColor(.secondary)
-                        .padding(.vertical, 24)
+                    // MARK: App Version
+                    if let appVersion = appVersion, let appBundle = appBundle {
+                        HStack {
+                            Text("Version")
+                            
+                            Spacer()
+                            
+                            Text("\(appVersion) (\(appBundle))")
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
             }
             .tint(.accentColor)
