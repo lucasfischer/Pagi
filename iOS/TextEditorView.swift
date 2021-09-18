@@ -64,7 +64,7 @@ struct TextEditorView: View {
                 NSAttributedString.Key.paragraphStyle : style,
                 NSAttributedString.Key.font: UIFont(name: font, size: size)
             ]
-            view.typingAttributes = attributes
+            view.typingAttributes = attributes as [NSAttributedString.Key : Any]
             
             view.text = text
             

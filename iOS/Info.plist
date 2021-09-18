@@ -79,6 +79,8 @@
 		<string>iAWriterDuoV.ttf</string>
 		<string>iAWriterQuattroV.ttf</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
