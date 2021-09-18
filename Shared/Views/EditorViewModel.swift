@@ -18,7 +18,11 @@ class EditorViewModel: ObservableObject {
     @AppStorage("fontSize") var fontSize = 18
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
     
-    @Environment(\.colorScheme) var colorScheme
+    #if os(iOS)
+    private let isiOS = true
+    #else
+    private let isiOS = false
+    #endif
     
     let timer = Timer()
     
@@ -27,7 +31,7 @@ class EditorViewModel: ObservableObject {
     }
     
     var isProgressBarExpanded: Bool {
-        targetReached && (words <= (wordTarget + 10) || overlayHover)
+        targetReached && (words <= (wordTarget + 10) || overlayHover || isiOS)
     }
     
     var progressBarVisible: Bool {

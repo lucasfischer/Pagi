@@ -12,6 +12,13 @@ struct Editor: View {
     
     @StateObject var viewModel = EditorViewModel()
     
+    #if os(iOS)
+    private let isiOS = true
+    #else
+    private let isiOS = false
+    #endif
+    private let progressBarHeight: CGFloat = 24
+    
     init(text: Binding<String>) {
         #if os(iOS)
         UITextView.appearance().backgroundColor = .clear
@@ -20,40 +27,88 @@ struct Editor: View {
         self._text = text
     }
     
-    var progressBarHeight: CGFloat {
-        #if os(iOS)
-        48
-        #else
-        24
-        #endif
+    @ViewBuilder
+    func iOSEditor() -> some View {
+        ScrollView {
+            VStack {
+                TextEditorView(
+                    text: $text,
+                    font: viewModel.fontFile,
+                    size: CGFloat(viewModel.fontSize),
+                    isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+                )
+                    .frame(maxWidth: 650, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity)
+            }
+            .padding(.vertical, 32)
+            .frame(maxHeight: .infinity)
+            .id("\(viewModel.fontFile)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
+        }
+    }
+    
+    @ViewBuilder
+    func macEditor() -> some View {
+        TextEditorView(
+            text: $text,
+            font: viewModel.fontFile,
+            size: CGFloat(viewModel.fontSize),
+            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+        )
+            .id("\(viewModel.fontFile)\(viewModel.fontSize)")
+    }
+    
+    @ViewBuilder
+    func wordCount() -> some View {
+        HStack {
+            Spacer()
+            
+            if viewModel.wordCount {
+                Text("\(viewModel.words)W")
+                    .font(
+                        .custom(viewModel.fontFile, size: 12)
+                            .monospacedDigit()
+                    )
+                    .foregroundColor(.foregroundLight)
+                    .padding(.trailing, 10)
+                    .transition(.move(edge: .trailing))
+            }
+        }
+        .padding(isiOS ? .top : .bottom, viewModel.progressBarVisible ? 0 : 10)
+    }
+    
+    @ViewBuilder
+    func progressBar() -> some View {
+        VStack(spacing: 0) {
+            if viewModel.progressBarVisible {
+                ProgressBar(
+                    percent: viewModel.percent,
+                    color: .accentColor,
+                    height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
+                )
+                    .transition(.move(edge: isiOS ? .top : .bottom))
+                    .overlay (
+                        VStack {
+                            if viewModel.isProgressBarExpanded {
+                                Label(viewModel.successText, systemImage: "checkmark")
+                                    .transition(.offset(x: 0, y: progressBarHeight))
+                            }
+                        }
+                            .font(
+                                .custom(viewModel.fontFile, size: 12)
+                                    .monospacedDigit()
+                            )
+                            .foregroundColor(.background)
+                    )
+            }
+        }
     }
     
     var body: some View {
         VStack(spacing: 0) {
             #if os(macOS)
-            TextEditorView(
-                text: $text,
-                font: viewModel.fontFile,
-                size: CGFloat(viewModel.fontSize),
-                isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
-            )
-                .id("\(viewModel.fontFile)\(viewModel.fontSize)")
+            macEditor()
             #else
-            ScrollView {
-                VStack {
-                    TextEditorView(
-                        text: $text,
-                        font: viewModel.fontFile,
-                        size: CGFloat(viewModel.fontSize),
-                        isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
-                    )
-                        .frame(maxWidth: 650, maxHeight: .infinity)
-                        .frame(maxWidth: .infinity)
-                        .id("\(viewModel.fontFile)\(viewModel.fontSize)")
-                }
-                .padding(.bottom, 40)
-                .frame(maxHeight: .infinity)
-            }
+            iOSEditor()
             #endif
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -61,48 +116,13 @@ struct Editor: View {
         .overlay(
             VStack {
                 VStack {
-                    
-                    // MARK: Word Count
-                    HStack {
-                        Spacer()
-                        
-                        if viewModel.wordCount {
-                            Text("\(viewModel.words)W")
-                                .font(
-                                    .custom(viewModel.fontFile, size: 12)
-                                        .monospacedDigit()
-                                )
-                                .foregroundColor(.foregroundLight)
-                                .padding(.trailing, 10)
-                                .transition(.move(edge: .trailing))
-                        }
-                    }
-                    .padding(.bottom, viewModel.progressBarVisible ? 0 : 5)
-                    
-                    
-                    // MARK: Progress Bar
-                    if viewModel.progressBarVisible {
-                        ProgressBar(
-                            percent: viewModel.percent,
-                            color: .accentColor,
-                            height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
-                        )
-                            .transition(.move(edge: .bottom))
-                            .overlay (
-                                VStack {
-                                    if viewModel.isProgressBarExpanded {
-                                        Label(viewModel.successText, systemImage: "checkmark")
-                                            .transition(.offset(x: 0, y: progressBarHeight))
-                                        
-                                    }
-                                }
-                                .font(
-                                    .custom(viewModel.fontFile, size: 12)
-                                        .monospacedDigit()
-                                )
-                                .foregroundColor(.background)
-                            )
-                    }
+                    #if os(macOS)
+                    wordCount()
+                    progressBar()
+                    #else
+                    progressBar()
+                    wordCount()
+                    #endif
                 }
                 .onHover(perform: { hover in
                     withAnimation {
@@ -110,8 +130,7 @@ struct Editor: View {
                     }
                 })
             }
-            .frame(maxHeight: .infinity, alignment: .bottom)
-            .ignoresSafeArea(.all, edges: .bottom)
+                .frame(maxHeight: .infinity, alignment: isiOS ? .top : .bottom)
         )
         .onAppear {
             viewModel.calculateWordCount(text)
