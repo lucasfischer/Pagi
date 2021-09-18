@@ -50,6 +50,7 @@ struct TextEditorView: View {
             
             view.font = UIFont(name: font, size: size)
             view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
+            view.autocorrectionType =  isSpellCheckingEnabled ? .yes : .no
             view.textColor = UIColor(.foreground)
             view.isScrollEnabled = false
             view.isEditable = true
@@ -62,7 +63,8 @@ struct TextEditorView: View {
             style.lineSpacing = 8
             let attributes = [
                 NSAttributedString.Key.paragraphStyle : style,
-                NSAttributedString.Key.font: UIFont(name: font, size: size)
+                NSAttributedString.Key.font: UIFont(name: font, size: size),
+                NSAttributedString.Key.foregroundColor: UIColor(.foreground)
             ]
             view.typingAttributes = attributes as [NSAttributedString.Key : Any]
             
