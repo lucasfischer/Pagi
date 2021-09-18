@@ -31,6 +31,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>iAWriterMonoV.ttf</string>
+		<string>iAWriterDuoV.ttf</string>
+		<string>iAWriterQuattroV.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -57,7 +63,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UTImportedTypeDeclarations</key>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeIcons</key>
@@ -73,15 +81,7 @@
 			</dict>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>iAWriterMonoV.ttf</string>
-		<string>iAWriterDuoV.ttf</string>
-		<string>iAWriterQuattroV.ttf</string>
-	</array>
-	<key>UISupportsDocumentBrowser</key>
-	<true/>
-	<key>UTExportedTypeDeclarations</key>
+	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeIcons</key>

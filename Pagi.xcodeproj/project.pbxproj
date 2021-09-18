@@ -1199,7 +1199,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Morning-Pages";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1221,7 +1221,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Morning-Pages";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
