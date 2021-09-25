@@ -33,7 +33,7 @@ struct Editor: View {
             VStack {
                 TextEditorView(
                     text: $text,
-                    font: viewModel.fontFile,
+                    font: viewModel.font.fileName,
                     size: CGFloat(viewModel.fontSize),
                     isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
                 )
@@ -42,7 +42,7 @@ struct Editor: View {
             }
             .padding(.vertical, 32)
             .frame(maxHeight: .infinity)
-            .id("\(viewModel.fontFile)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
+            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
         }
     }
     
@@ -50,11 +50,11 @@ struct Editor: View {
     func macEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.fontFile,
+            font: viewModel.font.fileName,
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
         )
-            .id("\(viewModel.fontFile)\(viewModel.fontSize)")
+            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)")
     }
     
     @ViewBuilder
@@ -65,7 +65,7 @@ struct Editor: View {
             if viewModel.wordCount {
                 Text("\(viewModel.words)W")
                     .font(
-                        .custom(viewModel.fontFile, size: 12)
+                        .custom(viewModel.font.fileName, size: 12)
                             .monospacedDigit()
                     )
                     .foregroundColor(.foregroundLight)
@@ -94,7 +94,7 @@ struct Editor: View {
                             }
                         }
                             .font(
-                                .custom(viewModel.fontFile, size: 12)
+                                .custom(viewModel.font.fileName, size: 12)
                                     .monospacedDigit()
                             )
                             .foregroundColor(.background)

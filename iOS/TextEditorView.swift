@@ -121,7 +121,7 @@ struct TextEditorView_Previews: PreviewProvider {
         var body: some View {
             TextEditorView(
                 text: $text,
-                font: "iAWriterQuattroV-Text",
+                font: iAFont.quattro.fileName,
                 size: 18,
                 isSpellCheckingEnabled: false
             )

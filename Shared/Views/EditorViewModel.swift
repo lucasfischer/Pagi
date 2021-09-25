@@ -42,17 +42,6 @@ class EditorViewModel: ObservableObject {
         Float(self.words) / Float(wordTarget)
     }
     
-    var fontFile: String {
-        switch font {
-        case .mono:
-            return "iAWriterMonoV-Text"
-        case .duo:
-            return "iAWriterDuoV-Text"
-        case .quattro:
-            return "iAWriterQuattroV-Text"
-        }
-    }
-    
     var successText: String {
         if let endDuration = timer.endDuration {
             return "\(words) words in \(endDuration)"
