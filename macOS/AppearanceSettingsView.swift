@@ -15,19 +15,13 @@ struct AppearanceSettingsView: View {
     var body: some View {
         
         Form {
-            
-            Slider(value: $fontSize, in: 10...40, step: 1) {
+            Slider(
+                value: $fontSize,
+                in: 10...40, step: 1,
+                minimumValueLabel: SliderLabel(size: 8),
+                maximumValueLabel: SliderLabel(size: 14)
+            ) {
                 Text("Font Size (\(fontSize, specifier: "%.0f")):")
-            } minimumValueLabel: {
-                Image(systemName: "character")
-                    .resizable()
-                    .frame(width: 8, height: 8)
-                    .foregroundColor(.secondary)
-            } maximumValueLabel: {
-                Image(systemName: "character")
-                    .resizable()
-                    .frame(width: 14, height: 14)
-                    .foregroundColor(.secondary)
             }
             
             Picker("Font:", selection: $font) {
@@ -46,6 +40,19 @@ struct AppearanceSettingsView: View {
         .frame(width: 320)
         .pickerStyle(SegmentedPickerStyle())
         
+    }
+}
+
+extension AppearanceSettingsView {
+    struct SliderLabel: View {
+        var size: Double
+        
+        var body: some View {
+            Image(systemName: "character")
+                .resizable()
+                .frame(width: size, height: size)
+                .foregroundColor(.secondary)
+        }
     }
 }
 
