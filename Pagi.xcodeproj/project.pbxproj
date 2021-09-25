@@ -21,150 +21,14 @@
 		A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
 		A05C53A9266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
 		A05C53AA266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
-		A05C53DF266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
-		A05C53E0266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
-		A05C53E1266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
-		A05C53E2266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AE266BA14C00CD45BB /* iAWriterDuoV-Italic.ttf */; };
 		A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
 		A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
 		A05C53E5266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
 		A05C53E6266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
-		A05C53EB266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
-		A05C53EC266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
-		A05C53ED266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
-		A05C53EE266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B2266BA14C00CD45BB /* iAWriterDuoS-Regular.woff */; };
-		A05C53EF266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
-		A05C53F0266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
-		A05C53F1266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
-		A05C53F2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B3266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff2 */; };
-		A05C53F3266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
-		A05C53F4266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
-		A05C53F5266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
-		A05C53F6266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B4266BA14C00CD45BB /* iAWriterDuoS-Bold.eot */; };
-		A05C53F7266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
-		A05C53F8266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
-		A05C53F9266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
-		A05C53FA266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B5266BA14C00CD45BB /* iAWriterDuoS-Regular.woff2 */; };
-		A05C53FB266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
-		A05C53FC266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
-		A05C53FD266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
-		A05C53FE266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B6266BA14C00CD45BB /* iAWriterDuoS-Italic.eot */; };
-		A05C53FF266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
-		A05C5400266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
-		A05C5401266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
-		A05C5402266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B7266BA14C00CD45BB /* iAWriterDuoS-Bold.woff */; };
-		A05C5403266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
-		A05C5404266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
-		A05C5405266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
-		A05C5406266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B8266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.eot */; };
-		A05C5407266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
-		A05C5408266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
-		A05C5409266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
-		A05C540A266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53B9266BA14C00CD45BB /* iAWriterDuoS-Bold.woff2 */; };
-		A05C540B266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
-		A05C540C266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
-		A05C540D266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
-		A05C540E266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BA266BA14C00CD45BB /* iAWriterDuoS-Italic.woff2 */; };
-		A05C540F266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
-		A05C5410266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
-		A05C5411266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
-		A05C5412266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BB266BA14C00CD45BB /* iAWriterDuoS-Regular.eot */; };
-		A05C5413266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
-		A05C5414266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
-		A05C5415266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
-		A05C5416266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BC266BA14C00CD45BB /* iAWriterDuoS-BoldItalic.woff */; };
-		A05C5417266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
-		A05C5418266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
-		A05C5419266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
-		A05C541A266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BD266BA14C00CD45BB /* iAWriterDuoS-Italic.woff */; };
-		A05C541B266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
-		A05C541C266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
-		A05C541D266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
-		A05C541E266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53BF266BA14C00CD45BB /* iAWriterDuoS-Italic.ttf */; };
-		A05C541F266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
-		A05C5420266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
-		A05C5421266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
-		A05C5422266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C0266BA14C00CD45BB /* iAWriterDuoS-Bold.ttf */; };
-		A05C5423266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
-		A05C5424266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
-		A05C5425266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
-		A05C5426266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C1266BA14C00CD45BB /* iAWriterDuoS-Regular.ttf */; };
-		A05C5427266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
-		A05C5428266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
-		A05C5429266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
-		A05C542A266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf */; };
 		A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
 		A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
 		A05C5431266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
 		A05C5432266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
-		A05C5433266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
-		A05C5434266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
-		A05C5435266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
-		A05C5436266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C7266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf */; };
-		A05C543B266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
-		A05C543C266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
-		A05C543D266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
-		A05C543E266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CA266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff */; };
-		A05C543F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
-		A05C5440266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
-		A05C5441266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
-		A05C5442266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CB266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 */; };
-		A05C5443266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
-		A05C5444266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
-		A05C5445266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
-		A05C5446266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CC266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 */; };
-		A05C5447266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
-		A05C5448266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
-		A05C5449266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
-		A05C544A266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CD266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot */; };
-		A05C544B266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
-		A05C544C266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
-		A05C544D266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
-		A05C544E266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CE266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff */; };
-		A05C544F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
-		A05C5450266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
-		A05C5451266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
-		A05C5452266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53CF266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff */; };
-		A05C5453266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
-		A05C5454266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
-		A05C5455266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
-		A05C5456266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D0266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff */; };
-		A05C5457266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
-		A05C5458266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
-		A05C5459266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
-		A05C545A266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D1266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot */; };
-		A05C545B266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
-		A05C545C266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
-		A05C545D266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
-		A05C545E266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D2266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot */; };
-		A05C545F266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
-		A05C5460266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
-		A05C5461266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
-		A05C5462266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D3266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 */; };
-		A05C5463266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
-		A05C5464266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
-		A05C5465266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
-		A05C5466266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D4266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 */; };
-		A05C5467266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
-		A05C5468266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
-		A05C5469266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
-		A05C546A266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D5266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot */; };
-		A05C546B266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
-		A05C546C266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
-		A05C546D266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
-		A05C546E266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D7266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf */; };
-		A05C546F266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
-		A05C5470266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
-		A05C5471266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
-		A05C5472266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D8266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf */; };
-		A05C5473266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
-		A05C5474266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
-		A05C5475266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
-		A05C5476266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53D9266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf */; };
-		A05C5477266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
-		A05C5478266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
-		A05C5479266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
-		A05C547A266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53DA266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf */; };
 		A05C547C266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
 		A05C547D266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
 		A05C547E266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
@@ -175,44 +39,8 @@
 		A0749B142698730000CEFBC1 /* StatsCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0749B122698730000CEFBC1 /* StatsCommands.swift */; };
 		A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
 		A09314D6267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
-		A0A7464526072E0200155F4D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = A0A7462E26072E0200155F4D /* LICENSE.md */; };
-		A0A7464626072E0200155F4D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = A0A7462E26072E0200155F4D /* LICENSE.md */; };
 		A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
-		A0A7464926072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */; };
-		A0A7464A26072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */; };
-		A0A7464D26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */; };
-		A0A7464E26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463426072E0200155F4D /* iAWriterMonoS-Regular.eot */; };
-		A0A7464F26072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */; };
-		A0A7465026072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463526072E0200155F4D /* iAWriterMonoS-Italic.woff */; };
-		A0A7465126072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */; };
-		A0A7465226072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463626072E0200155F4D /* iAWriterMonoS-Regular.woff */; };
-		A0A7465326072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */; };
-		A0A7465426072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463726072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 */; };
-		A0A7465526072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */; };
-		A0A7465626072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463826072E0200155F4D /* iAWriterMonoS-Bold.woff2 */; };
-		A0A7465726072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */; };
-		A0A7465826072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463926072E0200155F4D /* iAWriterMonoS-Bold.woff */; };
-		A0A7465926072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */; };
-		A0A7465A26072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463A26072E0200155F4D /* iAWriterMonoS-Italic.eot */; };
-		A0A7465B26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */; };
-		A0A7465C26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463B26072E0200155F4D /* iAWriterMonoS-Bold.eot */; };
-		A0A7465D26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */; };
-		A0A7465E26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463C26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot */; };
-		A0A7465F26072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */; };
-		A0A7466026072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463D26072E0200155F4D /* iAWriterMonoS-Regular.woff2 */; };
-		A0A7466126072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */; };
-		A0A7466226072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463E26072E0200155F4D /* iAWriterMonoS-BoldItalic.woff */; };
-		A0A7466326072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */; };
-		A0A7466426072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463F26072E0200155F4D /* iAWriterMonoS-Italic.woff2 */; };
-		A0A7466526072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */; };
-		A0A7466626072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464126072E0200155F4D /* iAWriterMonoS-Regular.ttf */; };
-		A0A7466726072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */; };
-		A0A7466826072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464226072E0200155F4D /* iAWriterMonoS-Bold.ttf */; };
-		A0A7466926072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */; };
-		A0A7466A26072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */; };
-		A0A7466B26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */; };
-		A0A7466C26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */; };
 		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
 		A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
 		A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */; };
@@ -780,61 +608,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05C544B266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
-				A0A7465F26072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */,
-				A0A7465B26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */,
-				A05C5417266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
-				A05C5413266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
-				A05C5427266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
-				A05C53FF266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
-				A0A7465D26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */,
-				A0A7466126072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */,
-				A0A7465326072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */,
-				A0A7464526072E0200155F4D /* LICENSE.md in Resources */,
-				A05C5433266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
-				A05C543B266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
-				A05C543F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
-				A05C544F266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
-				A05C53DF266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
-				A0A7464926072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */,
-				A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
-				A05C546B266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
-				A05C545B266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
-				A05C5463266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
-				A05C5467266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
-				A05C5407266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
-				A0A7466326072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */,
-				A0A7466526072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */,
-				A05C541B266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
-				A05C5473266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
-				A05C540F266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
-				A05C53F7266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
-				A05C545F266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
-				A05C540B266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
-				A05C541F266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
-				A0A7466726072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */,
-				A0A7466926072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */,
-				A05C53EF266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
-				A0A7465926072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */,
-				A05C53FB266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
-				A05C5447266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
-				A0A7464D26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */,
-				A0A7465726072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */,
-				A05C53F3266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
-				A05C5403266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
-				A05C546F266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
-				A0A7465526072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */,
-				A0A7465126072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */,
-				A05C5443266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
-				A05C5477266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
-				A0A7466B26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */,
-				A05C5453266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
-				A0A7464F26072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */,
-				A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
-				A05C5457266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
 				A0EE1A0626044F2200586065 /* Assets.xcassets in Resources */,
-				A05C5423266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
-				A05C53EB266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
+				A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
 				A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,61 +619,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A7466026072E0200155F4D /* iAWriterMonoS-Regular.woff2 in Resources */,
-				A05C5464266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
-				A05C53F8266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
-				A0A7465C26072E0200155F4D /* iAWriterMonoS-Bold.eot in Resources */,
-				A05C5440266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
-				A0A7465E26072E0200155F4D /* iAWriterMonoS-BoldItalic.eot in Resources */,
-				A05C5408266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
-				A05C5424266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
-				A05C5448266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
-				A05C5458266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
-				A05C5474266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
-				A05C5410266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
-				A05C5404266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
-				A05C5444266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
-				A05C5400266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
-				A05C545C266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
-				A05C544C266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
-				A05C5460266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
-				A05C53F0266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
-				A0A7466226072E0200155F4D /* iAWriterMonoS-BoldItalic.woff in Resources */,
-				A05C5468266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
-				A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
-				A05C53FC266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
-				A0A7465426072E0200155F4D /* iAWriterMonoS-BoldItalic.woff2 in Resources */,
-				A05C541C266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
-				A0A7464626072E0200155F4D /* LICENSE.md in Resources */,
-				A0A7464A26072E0200155F4D /* iAWriterMonoV-Italic.ttf in Resources */,
-				A0A7466426072E0200155F4D /* iAWriterMonoS-Italic.woff2 in Resources */,
-				A0A7466626072E0200155F4D /* iAWriterMonoS-Regular.ttf in Resources */,
-				A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
-				A05C53F4266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
-				A0A7466826072E0200155F4D /* iAWriterMonoS-Bold.ttf in Resources */,
-				A05C53EC266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
-				A0A7466A26072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf in Resources */,
-				A0A7465A26072E0200155F4D /* iAWriterMonoS-Italic.eot in Resources */,
-				A05C5428266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
-				A05C543C266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
-				A0A7464E26072E0200155F4D /* iAWriterMonoS-Regular.eot in Resources */,
-				A05C5414266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
-				A05C5418266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
-				A0A7465826072E0200155F4D /* iAWriterMonoS-Bold.woff in Resources */,
-				A05C5434266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
-				A05C540C266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
-				A0A7465626072E0200155F4D /* iAWriterMonoS-Bold.woff2 in Resources */,
-				A0A7465226072E0200155F4D /* iAWriterMonoS-Regular.woff in Resources */,
-				A05C5420266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
-				A05C5450266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
-				A05C546C266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
-				A05C5454266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
-				A05C53E0266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
-				A0A7466C26072E0200155F4D /* iAWriterMonoS-Italic.ttf in Resources */,
-				A0A7465026072E0200155F4D /* iAWriterMonoS-Italic.woff in Resources */,
-				A05C5470266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
-				A05C5478266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
 				A0EE1A0726044F2200586065 /* Assets.xcassets in Resources */,
+				A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
+				A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
 				A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -906,42 +630,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05C5401266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
-				A05C5429266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
-				A05C5411266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
-				A05C5449266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
-				A05C545D266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
 				A05C53E5266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
-				A05C5465266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
-				A05C53ED266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
-				A05C5415266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
-				A05C53F1266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
-				A05C546D266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
-				A05C5409266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
-				A05C5421266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
-				A05C5405266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
-				A05C5469266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
-				A05C5479266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
-				A05C53F9266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
-				A05C5455266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
-				A05C544D266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
-				A05C5425266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
-				A05C5451266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
-				A05C5461266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
-				A05C53FD266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
-				A05C540D266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
-				A05C5419266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
-				A05C5475266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
-				A05C543D266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
-				A05C53F5266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
-				A05C5435266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
-				A05C5445266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
-				A05C53E1266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
-				A05C541D266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
 				A05C5431266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
-				A05C5459266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
-				A05C5441266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
-				A05C5471266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,42 +639,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05C5402266BA14D00CD45BB /* iAWriterDuoS-Bold.woff in Resources */,
-				A05C542A266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.ttf in Resources */,
-				A05C5412266BA14D00CD45BB /* iAWriterDuoS-Regular.eot in Resources */,
-				A05C544A266BA14D00CD45BB /* iAWriterQuattroS-Bold.eot in Resources */,
-				A05C545E266BA14D00CD45BB /* iAWriterQuattroS-Regular.eot in Resources */,
 				A05C53E6266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
-				A05C5466266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff2 in Resources */,
-				A05C53EE266BA14D00CD45BB /* iAWriterDuoS-Regular.woff in Resources */,
-				A05C5416266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff in Resources */,
-				A05C53F2266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.woff2 in Resources */,
-				A05C546E266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.ttf in Resources */,
-				A05C540A266BA14D00CD45BB /* iAWriterDuoS-Bold.woff2 in Resources */,
-				A05C5422266BA14D00CD45BB /* iAWriterDuoS-Bold.ttf in Resources */,
-				A05C5406266BA14D00CD45BB /* iAWriterDuoS-BoldItalic.eot in Resources */,
-				A05C546A266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.eot in Resources */,
-				A05C547A266BA14D00CD45BB /* iAWriterQuattroS-Regular.ttf in Resources */,
-				A05C53FA266BA14D00CD45BB /* iAWriterDuoS-Regular.woff2 in Resources */,
-				A05C5456266BA14D00CD45BB /* iAWriterQuattroS-Italic.woff in Resources */,
-				A05C544E266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff in Resources */,
-				A05C5426266BA14D00CD45BB /* iAWriterDuoS-Regular.ttf in Resources */,
-				A05C5452266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff in Resources */,
-				A05C5462266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff2 in Resources */,
-				A05C53FE266BA14D00CD45BB /* iAWriterDuoS-Italic.eot in Resources */,
-				A05C540E266BA14D00CD45BB /* iAWriterDuoS-Italic.woff2 in Resources */,
-				A05C541A266BA14D00CD45BB /* iAWriterDuoS-Italic.woff in Resources */,
-				A05C5476266BA14D00CD45BB /* iAWriterQuattroS-Italic.ttf in Resources */,
-				A05C543E266BA14D00CD45BB /* iAWriterQuattroS-Regular.woff in Resources */,
-				A05C53F6266BA14D00CD45BB /* iAWriterDuoS-Bold.eot in Resources */,
-				A05C5436266BA14D00CD45BB /* iAWriterQuattroV-Italic.ttf in Resources */,
-				A05C5446266BA14D00CD45BB /* iAWriterQuattroS-Bold.woff2 in Resources */,
-				A05C53E2266BA14D00CD45BB /* iAWriterDuoV-Italic.ttf in Resources */,
-				A05C541E266BA14D00CD45BB /* iAWriterDuoS-Italic.ttf in Resources */,
 				A05C5432266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
-				A05C545A266BA14D00CD45BB /* iAWriterQuattroS-Italic.eot in Resources */,
-				A05C5442266BA14D00CD45BB /* iAWriterQuattroS-BoldItalic.woff2 in Resources */,
-				A05C5472266BA14D00CD45BB /* iAWriterQuattroS-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
