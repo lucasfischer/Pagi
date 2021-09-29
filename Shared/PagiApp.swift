@@ -20,6 +20,7 @@ struct PagiApp: App {
     
     @AppStorage("theme") private var theme = Theme.system
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
     
     var userColorScheme: ColorScheme? {
@@ -61,6 +62,23 @@ struct PagiApp: App {
         .commands {
             FontCommands(font: $font, fontSize: $fontSize)
             StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
+            
+            #if os(macOS)
+            CommandGroup(replacing: .newItem, addition: {
+                Button("New") {
+                    NSDocumentController.shared.newDocument(nil)
+                }
+                .keyboardShortcut("n", modifiers: .command)
+            })
+            #endif
+            
+            CommandGroup(replacing: .appInfo, addition: {
+                Button("About Pagi") {
+                    if let url = URL(string: "pagi://about") {
+                        openURL(url)
+                    }
+                }
+            })
         }
         .onChange(of: phase) { _ in
             setupColorScheme()
@@ -74,6 +92,13 @@ struct PagiApp: App {
             SettingsView()
                 .preferredColorScheme(userColorScheme)
         }
+        
+        WindowGroup("About Pagi") {
+            AboutView()
+                .preferredColorScheme(userColorScheme)
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "about"), allowing: Set(arrayLiteral: "about"))
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
         #endif
     }
 }

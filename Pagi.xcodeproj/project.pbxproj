@@ -39,6 +39,7 @@
 		A0749B142698730000CEFBC1 /* StatsCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0749B122698730000CEFBC1 /* StatsCommands.swift */; };
 		A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
 		A09314D6267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
+		A0997F172702B706003EDD8C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0997F162702B706003EDD8C /* AboutView.swift */; };
 		A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
@@ -129,6 +130,7 @@
 		A05C5480266BB13B00CD45BB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A0749B122698730000CEFBC1 /* StatsCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCommands.swift; sourceTree = "<group>"; };
 		A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		A0997F162702B706003EDD8C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		A0A7462E26072E0200155F4D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iAWriterMonoV.ttf; sourceTree = "<group>"; };
 		A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoV-Italic.ttf"; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
 				A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */,
 				A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */,
+				A0997F162702B706003EDD8C /* AboutView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
 				A01256002686E4EC00727630 /* Timer.swift in Sources */,
+				A0997F172702B706003EDD8C /* AboutView.swift in Sources */,
 				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,
 				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
 				A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */,
