@@ -15,7 +15,7 @@ struct FontCommands: Commands {
         CommandMenu("Font") {
             Picker("Font", selection: $font) {
                 ForEach(iAFont.allCases, id: \.self) { font in
-                    Text("\(font.rawValue)")
+                    Text(verbatim: font.rawValue)
                 }
             }
             

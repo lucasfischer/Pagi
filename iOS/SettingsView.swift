@@ -71,13 +71,13 @@ struct SettingsView: View {
                         
                         Picker("Font", selection: $font) {
                             ForEach(iAFont.allCases, id: \.self) { font in
-                                Text("\(font.rawValue)")
+                                Text(verbatim: font.rawValue)
                             }
                         }
                         
                         Picker("Theme", selection: $theme) {
                             ForEach(Theme.allCases, id: \.self) { theme in
-                                Text("\(theme.rawValue)")
+                                Text(verbatim: theme.rawValue)
                             }
                         }
                     })

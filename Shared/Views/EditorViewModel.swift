@@ -42,7 +42,7 @@ class EditorViewModel: ObservableObject {
         Float(self.words) / Float(wordTarget)
     }
     
-    var successText: String {
+    var successText: LocalizedStringKey {
         if let endDuration = timer.endDuration {
             return "\(words) words in \(endDuration)"
         } else {
