@@ -59,10 +59,12 @@ struct TextEditorView: View {
             view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             
             // Style
-            let style = NSMutableParagraphStyle()
-            style.lineSpacing = 8
+            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            paragraphStyle.lineHeightMultiple = 1.3
+            paragraphStyle.lineSpacing = 4
+            
             let attributes = [
-                NSAttributedString.Key.paragraphStyle : style,
+                NSAttributedString.Key.paragraphStyle : paragraphStyle,
                 NSAttributedString.Key.font: UIFont(name: font, size: size),
                 NSAttributedString.Key.foregroundColor: UIColor(.foreground)
             ]
