@@ -34,26 +34,6 @@ struct PagiApp: App {
         }
     }
     
-    init() {
-        setupColorScheme()
-    }
-    
-    private func setupColorScheme() {
-        #if os(iOS)
-        var style = UIUserInterfaceStyle.dark
-        switch theme {
-        case .system:
-            style = .unspecified
-        case .light:
-            style = .light
-        case .dark:
-            style = .dark
-        }
-        let window = UIApplication.shared.windows.first
-        window?.overrideUserInterfaceStyle = style
-        #endif
-    }
-    
     var body: some Scene {
         #if os(macOS)
         
@@ -98,12 +78,6 @@ struct PagiApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(userColorScheme)
-        }
-        .onChange(of: phase) { _ in
-            setupColorScheme()
-        }
-        .onChange(of: theme) { _ in
-            setupColorScheme()
         }
         
         #endif
