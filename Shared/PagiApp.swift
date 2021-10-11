@@ -23,23 +23,12 @@ struct PagiApp: App {
     @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
     
-    var userColorScheme: ColorScheme? {
-        switch theme {
-        case .system:
-            return nil
-        case .light:
-            return .light
-        case .dark:
-            return .dark
-        }
-    }
-    
     var body: some Scene {
         #if os(macOS)
         
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
-                .preferredColorScheme(userColorScheme)
+                .preferredColorScheme(theme.colorScheme)
         }
         .commands {
             FontCommands(font: $font, fontSize: $fontSize)
@@ -63,12 +52,12 @@ struct PagiApp: App {
         
         Settings {
             SettingsView()
-                .preferredColorScheme(userColorScheme)
+                .preferredColorScheme(theme.colorScheme)
         }
         
         WindowGroup("About Pagi") {
             AboutView()
-                .preferredColorScheme(userColorScheme)
+                .preferredColorScheme(theme.colorScheme)
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "about"), allowing: Set(arrayLiteral: "about"))
         }
         .windowStyle(HiddenTitleBarWindowStyle())
@@ -77,7 +66,7 @@ struct PagiApp: App {
         
         WindowGroup {
             ContentView()
-                .preferredColorScheme(userColorScheme)
+                .preferredColorScheme(theme.colorScheme)
         }
         
         #endif
