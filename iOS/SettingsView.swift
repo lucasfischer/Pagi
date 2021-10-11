@@ -93,6 +93,12 @@ struct SettingsView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+                    NavigationLink("Acknowlegements") {
+                        Form {
+                            Link("iA Writer Typeface", destination: URL(string: "https://github.com/iaolo/iA-Fonts")!)
+                        }
+                        .navigationTitle("Acknowlegements")
+                    }
                 }
             }
             .tint(.accentColor)
@@ -112,5 +118,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .navigationViewStyle(.stack)
     }
 }
