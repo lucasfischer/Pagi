@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("text") private var text = ""
+    @AppStorage("theme") private var theme = Theme.system
     
     @State private var showExport = false
     @State private var showSettings = false
@@ -41,6 +42,7 @@ struct ContentView: View {
                                 idealHeight: 700,
                                 alignment: .top
                             )
+                            .preferredColorScheme(theme.colorScheme)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
