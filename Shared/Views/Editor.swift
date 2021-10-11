@@ -41,6 +41,7 @@ struct Editor: View {
                     .frame(maxWidth: .infinity)
             }
             .padding(.vertical, 32)
+            .padding(.horizontal)
             .frame(maxHeight: .infinity)
             .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
         }
