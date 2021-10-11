@@ -37,7 +37,7 @@ struct PagiApp: App {
     init() {
         setupColorScheme()
     }
-   
+    
     private func setupColorScheme() {
         #if os(iOS)
         var style = UIUserInterfaceStyle.dark
@@ -55,6 +55,8 @@ struct PagiApp: App {
     }
     
     var body: some Scene {
+        #if os(macOS)
+        
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
                 .preferredColorScheme(userColorScheme)
@@ -63,14 +65,12 @@ struct PagiApp: App {
             FontCommands(font: $font, fontSize: $fontSize)
             StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
             
-            #if os(macOS)
             CommandGroup(replacing: .newItem, addition: {
                 Button("New") {
                     NSDocumentController.shared.newDocument(nil)
                 }
                 .keyboardShortcut("n", modifiers: .command)
             })
-            #endif
             
             CommandGroup(replacing: .appInfo, addition: {
                 Button("About Pagi") {
@@ -80,14 +80,7 @@ struct PagiApp: App {
                 }
             })
         }
-        .onChange(of: phase) { _ in
-            setupColorScheme()
-        }
-        .onChange(of: theme) { _ in
-            setupColorScheme()
-        }
         
-        #if os(macOS)
         Settings {
             SettingsView()
                 .preferredColorScheme(userColorScheme)
@@ -99,6 +92,20 @@ struct PagiApp: App {
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "about"), allowing: Set(arrayLiteral: "about"))
         }
         .windowStyle(HiddenTitleBarWindowStyle())
+        
+        #elseif os(iOS)
+        
+        WindowGroup {
+            ContentView()
+                .preferredColorScheme(userColorScheme)
+        }
+        .onChange(of: phase) { _ in
+            setupColorScheme()
+        }
+        .onChange(of: theme) { _ in
+            setupColorScheme()
+        }
+        
         #endif
     }
 }

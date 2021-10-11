@@ -11,8 +11,9 @@
 		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
 		A01255FF2686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A01256002686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
-		A025926526EC85EB00B8324F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19DA26044F2100586065 /* ContentView.swift */; };
 		A025926726EC87D700B8324F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025926626EC877B00B8324F /* SettingsView.swift */; };
+		A03930F32712889B005CAEF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F22712889B005CAEF1 /* ContentView.swift */; };
+		A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F4271293E5005CAEF1 /* ShareSheet.swift */; };
 		A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */; };
 		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
 		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
@@ -81,6 +82,8 @@
 		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
 		A01255FE2686E4EC00727630 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Shared/Timer.swift; sourceTree = SOURCE_ROOT; };
 		A025926626EC877B00B8324F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A03930F4271293E5005CAEF1 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -412,7 +415,6 @@
 			children = (
 				A0A7462C26072DF200155F4D /* Fonts */,
 				A0EE19D926044F2100586065 /* PagiApp.swift */,
-				A0EE19DA26044F2100586065 /* ContentView.swift */,
 				A0A7C7952605CDB7001708EE /* Views */,
 				A002A431267470A000FFB271 /* Commands */,
 				A0EE19DB26044F2200586065 /* Assets.xcassets */,
@@ -440,8 +442,10 @@
 			isa = PBXGroup;
 			children = (
 				A0EE19E326044F2200586065 /* Info.plist */,
+				A03930F22712889B005CAEF1 /* ContentView.swift */,
 				A025926626EC877B00B8324F /* SettingsView.swift */,
 				A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */,
+				A03930F4271293E5005CAEF1 /* ShareSheet.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -451,6 +455,7 @@
 			children = (
 				A0EE19EA26044F2200586065 /* Info.plist */,
 				A0EE19EB26044F2200586065 /* macOS.entitlements */,
+				A0EE19DA26044F2100586065 /* ContentView.swift */,
 				A0F8F30B266CAD400019AD9F /* AppDelegate.swift */,
 				A05C539E266B68D000CD45BB /* TextEditorView.swift */,
 				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
@@ -654,9 +659,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A025926526EC85EB00B8324F /* ContentView.swift in Sources */,
 				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
+				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
+				A03930F32712889B005CAEF1 /* ContentView.swift in Sources */,
 				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
 				A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */,
 				A002A433267470CC00FFB271 /* FontCommands.swift in Sources */,
