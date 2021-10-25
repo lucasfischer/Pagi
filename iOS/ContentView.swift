@@ -8,33 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("text") private var text = ""
-    @AppStorage("theme") private var theme = Theme.system
-    
-    @State private var showExport = false
-    @State private var showSettings = false
-    @State private var showShareSheet = false
-    
-    var currentDateString: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd"
-        return formatter.string(from: Date())
-    }
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
             ZStack {
                 Color.background.ignoresSafeArea()
                 
-                Editor(text: $text)
+                Editor(text: $viewModel.text)
+                    .id(viewModel.lastOpenedDate)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { showSettings.toggle() }) {
+                    Button(action: { viewModel.showSettings.toggle() }) {
                         Label("Settings", systemImage: "gear")
                     }
                     .keyboardShortcut(",", modifiers: .command)
-                    .popover(isPresented: $showSettings) {
+                    .popover(isPresented: $viewModel.showSettings) {
                         SettingsView()
                             .frame(
                                 minWidth: 320,
@@ -42,26 +32,25 @@ struct ContentView: View {
                                 idealHeight: 700,
                                 alignment: .top
                             )
-                            .preferredColorScheme(theme.colorScheme)
+                            .preferredColorScheme(viewModel.theme.colorScheme)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Button(action: { showShareSheet.toggle() }) {
+                        Button(action: { viewModel.showShareSheet.toggle() }) {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
-                        
-                        Button(action: { showExport.toggle() }) {
+                        Button(action: { viewModel.showExport.toggle() }) {
                             Label("Export", systemImage: "square.and.arrow.up.on.square")
                         }
                     } label: {
-                        Button(action: { showExport.toggle() }) {
+                        Button(action: { viewModel.showExport.toggle() }) {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
                     }
-                    .disabled(text.isEmpty)
-                    .popover(isPresented: $showShareSheet) {
-                        ShareSheet(activityItems: [text])
+                    .disabled(viewModel.text.isEmpty)
+                    .popover(isPresented: $viewModel.showShareSheet) {
+                        ShareSheet(activityItems: [viewModel.text])
                     }
                 }
             }
@@ -69,12 +58,96 @@ struct ContentView: View {
         }
         .navigationViewStyle(.stack)
         .fileExporter(
-            isPresented: $showExport,
-            document: PagiDocument(text: text),
+            isPresented: $viewModel.showExport,
+            document: PagiDocument(text: viewModel.text),
             contentType: .plainText,
-            defaultFilename: currentDateString,
-            onCompletion: { _ in }
+            defaultFilename: viewModel.currentDateString,
+            onCompletion: viewModel.onFileExported
         )
+        .alert(
+            "Do you want to clear your notes?",
+            isPresented: $viewModel.showClearNotification,
+            actions: {
+                Button("Keep") {
+                    viewModel.showClearNotification = false
+                }
+                Button("Clear") {
+                    viewModel.showClearNotification = false
+                    viewModel.reset()
+                }
+                if !viewModel.isFileExported {
+                    Button("Export then clear") {
+                        viewModel.showExport = true
+                        viewModel.shouldReset = true
+                    }
+                }
+            })
+        .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
+        .onAppear(perform: viewModel.onAppear)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            viewModel.onAppear()
+        }
+    }
+}
+
+extension ContentView {
+    class ViewModel: ObservableObject {
+        @AppStorage("text") var text = ""
+        @AppStorage("theme") var theme = Theme.system
+        @AppStorage("lastOpenedDate") var lastOpenedDate: String?
+        @AppStorage("isFileExported") var isFileExported = false
+        
+        @Published var showExport = false
+        @Published var showSettings = false
+        @Published var showShareSheet = false
+        @Published var showClearNotification = false
+        
+        var shouldReset = false
+        
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY-MM-dd"
+            return formatter
+        }()
+        
+        var currentDateString: String {
+            dateFormatter.string(from: Date())
+        }
+        
+        func onAppear() {
+            if let date = lastOpenedDate,
+               let lastDate = dateFormatter.date(from: date),
+               !Calendar.current.isDateInToday(lastDate) && !text.isEmpty {
+                showClearNotification = true
+            }
+            else {
+                showClearNotification = false
+            }
+        }
+        
+        func onTextUpdate(_ text: String) {
+            lastOpenedDate = dateFormatter.string(from: Date())
+            isFileExported = false
+        }
+        
+        func onFileExported(_ result: Result<URL, Error>) {
+            switch result {
+            case .success:
+                if shouldReset {
+                    reset()
+                }
+                showClearNotification = false
+                showExport = false
+                isFileExported = true
+            default:
+                break
+            }
+        }
+        
+        func reset() {
+            self.text = ""
+            self.lastOpenedDate = nil
+        }
     }
 }
 
