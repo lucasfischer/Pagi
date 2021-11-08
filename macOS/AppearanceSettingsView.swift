@@ -22,6 +22,7 @@ struct AppearanceSettingsView: View {
                 maximumValueLabel: SliderLabel(size: 14)
             ) {
                 Text("Font Size (\(fontSize, specifier: "%.0f")):")
+                    .font(.system(.body).monospacedDigit())
             }
             
             Picker("Font:", selection: $font) {
