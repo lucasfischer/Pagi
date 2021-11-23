@@ -72,6 +72,8 @@ struct TextEditorView: View {
             
             view.text = text
             
+            view.becomeFirstResponder()
+            
             return view
         }
         
