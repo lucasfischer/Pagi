@@ -16,24 +16,14 @@ struct TextEditorView: View {
     @State private var dynamicHeight: CGFloat = 40
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            // Placeholder Hack
-            if text.isEmpty {
-                TextEditor(text: .constant("Type something..."))
-                    .font(.custom(font, size: size))
-                    .foregroundColor(.foreground)
-                    .opacity(text.isEmpty ? 0.5 : 0)
-                    .disabled(true)
-            }
-            MultilineTextView(
-                text: $text,
-                calculatedHeight: $dynamicHeight,
-                font: font,
-                size: size,
-                isSpellCheckingEnabled: isSpellCheckingEnabled
-            )
-                .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
-        }
+        MultilineTextView(
+            text: $text,
+            calculatedHeight: $dynamicHeight,
+            font: font,
+            size: size,
+            isSpellCheckingEnabled: isSpellCheckingEnabled
+        )
+            .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
     }
     
     struct MultilineTextView: UIViewRepresentable {
