@@ -13,6 +13,7 @@ struct GeneralSettingsView: View {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
+    @AppStorage("isTypeWriterModeEabled") private var isTypeWriterModeEabled = false
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -63,6 +64,14 @@ struct GeneralSettingsView: View {
                     .frame(width: 128, alignment: .trailing)
                 
                 Toggle("", isOn: $isSpellCheckingEnabled)
+            }
+            
+            // Typewriter Mode
+            HStack {
+                Text("Typewriter Mode:")
+                    .frame(width: 128, alignment: .trailing)
+                
+                Toggle("", isOn: $isTypeWriterModeEabled)
             }
             
             HStack {

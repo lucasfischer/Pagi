@@ -13,6 +13,7 @@ struct TextEditorView: NSViewControllerRepresentable {
     var font: String
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
+    var isTypeWriterModeEabled: Bool = false
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -35,7 +36,13 @@ struct TextEditorView: NSViewControllerRepresentable {
 // MARK: - Coordinator
 extension TextEditorView {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self, font: font, size: size, isSpellCheckingEnabled: isSpellCheckingEnabled)
+        return Coordinator(
+            self,
+            font: font,
+            size: size,
+            isSpellCheckingEnabled: isSpellCheckingEnabled,
+            isTypeWriterModeEabled: isTypeWriterModeEabled
+        )
     }
     
     class Coordinator: NSObject, NSTextViewDelegate {
@@ -43,6 +50,7 @@ extension TextEditorView {
         var font: String
         var size: CGFloat
         var isSpellCheckingEnabled: Bool
+        var isTypeWriterModeEabled: Bool
         var selectedRanges: [NSValue] = []
         
         var attributes: [NSAttributedString.Key : Any] {
@@ -57,11 +65,12 @@ extension TextEditorView {
             ]
         }
         
-        init(_ parent: TextEditorView, font: String, size: CGFloat, isSpellCheckingEnabled: Bool) {
+        init(_ parent: TextEditorView, font: String, size: CGFloat, isSpellCheckingEnabled: Bool, isTypeWriterModeEabled: Bool) {
             self.parent = parent
             self.font = font
             self.size = size
             self.isSpellCheckingEnabled = isSpellCheckingEnabled
+            self.isTypeWriterModeEabled = isTypeWriterModeEabled
         }
         
         func textDidBeginEditing(_ notification: Notification) {
@@ -75,6 +84,29 @@ extension TextEditorView {
             
             self.parent.text = textView.string
             self.selectedRanges = textView.selectedRanges
+        }
+        
+        func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
+            // ignore if typewriter mode is not enabled
+            if !isTypeWriterModeEabled {
+                return true
+            }
+            
+            guard let text = replacementString, let textStorage = textView.textStorage else {
+                return false
+            }
+            
+            let isAtEndOfText = textView.selectedRange().lowerBound == textStorage.length
+            if isAtEndOfText && !text.isEmpty {
+                // If changing text at the end of the string allow replacement
+                return true
+            } else {
+                // Otherwise set cursor to last character and reject the replacement
+                let lastCharacterRange = NSRange(location: textStorage.length, length: 0)
+                textView.setSelectedRange(lastCharacterRange)
+                
+                return false
+            }
         }
         
         func textDidEndEditing(_ notification: Notification) {

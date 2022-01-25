@@ -53,9 +53,10 @@ struct Editor: View {
             text: $text,
             font: viewModel.font.fileName,
             size: CGFloat(viewModel.fontSize),
-            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
+            isTypeWriterModeEabled: viewModel.isTypeWriterModeEabled
         )
-            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)")
+            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isTypeWriterModeEabled)")
     }
     
     @ViewBuilder

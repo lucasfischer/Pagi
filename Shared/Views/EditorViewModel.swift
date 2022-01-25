@@ -17,6 +17,7 @@ class EditorViewModel: ObservableObject {
     @AppStorage("font") var font = iAFont.duo
     @AppStorage("fontSize") var fontSize = 18
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
+    @AppStorage("isTypeWriterModeEabled") var isTypeWriterModeEabled = false
     
     #if os(iOS)
     private let isiOS = true
