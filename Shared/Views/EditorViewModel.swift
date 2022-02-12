@@ -11,6 +11,8 @@ class EditorViewModel: ObservableObject {
     @Published var words = 0
     @Published var overlayHover = false
     
+    @Published private(set) var isTitleBarHidden = false
+    
     @AppStorage("wordTarget") var wordTarget = 1500
     @AppStorage("wordCount")  var wordCount = true
     @AppStorage("progressBar") var progressBar = true
@@ -67,5 +69,17 @@ class EditorViewModel: ObservableObject {
             timer.stop()
         }
         timer.typing()
+    }
+    
+    @available(macOS 11, *)
+    func hideTitleBar(window: NSWindow) {
+        window.hideTitlebar()
+        isTitleBarHidden = true
+    }
+    
+    @available(macOS 11, *)
+    func showTitleBar(window: NSWindow) {
+        window.showTitlebar()
+        isTitleBarHidden = false
     }
 }

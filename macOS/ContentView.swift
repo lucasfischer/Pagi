@@ -15,6 +15,7 @@ struct ContentView: View {
             Color.background.ignoresSafeArea()
             
             Editor(text: $document.text)
+                .ignoresSafeArea()
         }
     }
 }

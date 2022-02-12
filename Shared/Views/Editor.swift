@@ -33,9 +33,7 @@ struct Editor: View {
             VStack {
                 TextEditorView(
                     text: $text,
-                    font: viewModel.font.fileName,
-                    size: CGFloat(viewModel.fontSize),
-                    isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled
+                    viewModel: viewModel
                 )
                     .frame(maxWidth: 650, maxHeight: .infinity)
                     .frame(maxWidth: .infinity)
@@ -51,10 +49,7 @@ struct Editor: View {
     func macEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.font.fileName,
-            size: CGFloat(viewModel.fontSize),
-            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-            isTypeWriterModeEabled: viewModel.isTypeWriterModeEabled
+            viewModel: viewModel
         )
             .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isTypeWriterModeEabled)")
     }

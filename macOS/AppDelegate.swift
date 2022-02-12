@@ -11,6 +11,9 @@ import Sparkle
 class AppDelegate: NSObject, NSApplicationDelegate, SUUpdaterDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
         setupSparkle()
+        
+        NSWindow.allowsAutomaticWindowTabbing = false
+        // TODO: find way to allow multiple tabs at once
     }
     
     func applicationDidBecomeActive(_ notification: Notification) {

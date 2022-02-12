@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
+import Combine
+import UserNotifications
 
 // MARK: - View
 struct TextEditorView: NSViewControllerRepresentable {
     @Binding var text: String
-    var font: String
-    var size: CGFloat
-    var isSpellCheckingEnabled: Bool = false
-    var isTypeWriterModeEabled: Bool = false
+    var viewModel: EditorViewModel
     
     func makeNSViewController(context: Context) -> NSViewController {
-        let vc = TextEditorController()
+        let vc = TextEditorController(viewModel: viewModel)
         vc.textView.delegate = context.coordinator
         return vc
     }
@@ -28,8 +27,8 @@ struct TextEditorView: NSViewControllerRepresentable {
             vc.textView.string = text
         }
         
-        vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
-        vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
+        vc.textView.isContinuousSpellCheckingEnabled = viewModel.isSpellCheckingEnabled
+        vc.textView.isGrammarCheckingEnabled = viewModel.isSpellCheckingEnabled
     }
 }
 
@@ -38,19 +37,13 @@ extension TextEditorView {
     func makeCoordinator() -> Coordinator {
         return Coordinator(
             self,
-            font: font,
-            size: size,
-            isSpellCheckingEnabled: isSpellCheckingEnabled,
-            isTypeWriterModeEabled: isTypeWriterModeEabled
+            viewModel: viewModel
         )
     }
     
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
-        var font: String
-        var size: CGFloat
-        var isSpellCheckingEnabled: Bool
-        var isTypeWriterModeEabled: Bool
+        var viewModel: EditorViewModel
         var selectedRanges: [NSValue] = []
         
         var attributes: [NSAttributedString.Key : Any] {
@@ -60,17 +53,14 @@ extension TextEditorView {
             
             return  [
                 NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font : NSFont(name: font, size: size)!,
+                NSAttributedString.Key.font : NSFont(name: viewModel.font.fileName, size: CGFloat(viewModel.fontSize))!,
                 NSAttributedString.Key.foregroundColor: NSColor(.foreground)
             ]
         }
         
-        init(_ parent: TextEditorView, font: String, size: CGFloat, isSpellCheckingEnabled: Bool, isTypeWriterModeEabled: Bool) {
+        init(_ parent: TextEditorView, viewModel: EditorViewModel) {
             self.parent = parent
-            self.font = font
-            self.size = size
-            self.isSpellCheckingEnabled = isSpellCheckingEnabled
-            self.isTypeWriterModeEabled = isTypeWriterModeEabled
+            self.viewModel = viewModel
         }
         
         func textDidBeginEditing(_ notification: Notification) {
@@ -84,11 +74,15 @@ extension TextEditorView {
             
             self.parent.text = textView.string
             self.selectedRanges = textView.selectedRanges
+            
+            if let window = textView.window {
+                viewModel.hideTitleBar(window: window)
+            }
         }
         
         func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
             // ignore if typewriter mode is not enabled
-            if !isTypeWriterModeEabled {
+            if !viewModel.isTypeWriterModeEabled {
                 return true
             }
             
@@ -126,6 +120,19 @@ extension TextEditorView {
 fileprivate final class TextEditorController: NSViewController {
     var isSpellCheckingEnabled: Bool = false
     var textView = CustomTextView()
+    var viewModel: EditorViewModel
+    
+    private var cancellable: Cancellable?
+    
+    init(viewModel: EditorViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         let scrollView = NSScrollView()
@@ -136,6 +143,7 @@ fileprivate final class TextEditorController: NSViewController {
         scrollView.hasHorizontalScroller = false
         scrollView.autohidesScrollers = true
         scrollView.drawsBackground = false
+        scrollView.automaticallyAdjustsContentInsets = false
         
         // - TextView
         textView.autoresizingMask = [.width]
@@ -145,8 +153,37 @@ fileprivate final class TextEditorController: NSViewController {
         textView.insertionPointColor = .controlAccentColor
         textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
+        textView.setViewModel(viewModel)
         
         self.view = scrollView
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollViewDidScroll(_:)),
+            name: NSScrollView.didLiveScrollNotification,
+            object: scrollView
+        )
+        
+        cancellable = viewModel.$isTitleBarHidden.sink { [weak self] isTitleBarHidden in
+            guard let self = self else { return }
+            
+            if !isTitleBarHidden {
+                if let titleBarHeight = self.view.window?.titleBarHeight {
+                    scrollView.scrollerInsets = .init(top: titleBarHeight, left: 0, bottom: 0, right: 0)
+                }
+            }
+        }
+        
+    }
+    
+    @objc func scrollViewDidScroll(_ test: Any) {
+        guard let window = self.view.window else { return }
+        viewModel.hideTitleBar(window: window)
+        
+        if let scrollView = view as? NSScrollView {
+            scrollView.scrollerInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        }
+        
     }
     
     // Center NSTextView in NSScrollView
@@ -157,7 +194,7 @@ fileprivate final class TextEditorController: NSViewController {
         
         let horizontalPadding = (frameWidth - 650) / 2
         if horizontalPadding > 0 {
-            textView.textContainerInset = NSSize(width: horizontalPadding, height: 32)
+            textView.textContainerInset = NSSize(width: horizontalPadding, height: 48)
         }
         else {
             textView.textContainerInset = NSSize(width: 16, height: 16)
@@ -168,8 +205,18 @@ fileprivate final class TextEditorController: NSViewController {
         self.view.window?.makeFirstResponder(self.view)
     }
     
+    override func viewDidDisappear() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     class CustomTextView: NSTextView {
-        var caretSize: CGFloat = 3
+        var viewModel = EditorViewModel()
+        
+        let caretSize: CGFloat = 3
+        
+        func setViewModel(_ viewModel: EditorViewModel) {
+            self.viewModel = viewModel
+        }
         
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
             var rect = rect
@@ -181,6 +228,14 @@ fileprivate final class TextEditorController: NSViewController {
             var rect = rect
             rect.size.width += caretSize - 1
             super.setNeedsDisplay(rect, avoidAdditionalLayout: flag)
+        }
+        
+        override func mouseMoved(with event: NSEvent) {
+            guard let window = event.window else { return }
+            
+            if window.mouseLocationOutsideOfEventStream.y > window.frame.height - window.titleBarHeight {
+                viewModel.showTitleBar(window: window)
+            }
         }
     }
     
