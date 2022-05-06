@@ -87,6 +87,36 @@ extension TextEditorView {
             
             return attributes
         }
+        
+        func textViewDidChangeSelection(_ notification: Notification) {
+            guard let textView = notification.object as? NSTextView else { return }
+            
+            let insertionRect = textView.layoutManager?.boundingRect(forGlyphRange: textView.selectedRange(), in: textView.textContainer!)
+            guard let rect = insertionRect else { return }
+            
+            let point = NSPoint(x: 0, y: rect.origin.y + rect.size.height)
+            
+            guard let scrollView = textView.enclosingScrollView else { return }
+            scrollView.scroll(to: point, animationDuration: 0.2)
+            
+            if let str = textView.string as NSString?,
+               let textStorage = textView.textStorage {
+                let selectedRange = textView.selectedRange()
+                
+                let paragraph = str.paragraphRange(for: selectedRange)
+                
+                //                print(str.substring(with: selectedRange))
+                //                print(str.rangeOfCharacter(from: .punctuationCharacters, range: NSRange(location: selectedRange.location, length: selectedRange.length)))
+                //                let character = str.character(at: range.location - 1)
+                //                let charRange = str.rangeOfCharacter(from: .punctuationCharacters, range: NSRange(location: paragraph.location, length: paragraph.length))
+                //                print(charRange)
+                //                print(str.substring(with: charRange))
+                
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundLight), range: NSRange(location: 0, length: str.length))
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
+            }
+        }
+        
     }
 }
 
@@ -124,10 +154,12 @@ fileprivate final class TextEditorController: NSViewController {
         super.viewWillLayout()
         
         let frameWidth = self.view.frame.size.width
+        let frameHeight = self.view.frame.size.height
         
         let horizontalPadding = (frameWidth - 650) / 2
         if horizontalPadding > 0 {
-            textView.textContainerInset = NSSize(width: horizontalPadding, height: 32)
+            textView.textContainerInset = NSSize(width: horizontalPadding, height: frameHeight / 2)
+            //            textView.textContainerInset = NSSize(width: horizontalPadding, height: 32)
         }
         else {
             textView.textContainerInset = NSSize(width: 16, height: 16)
@@ -154,4 +186,14 @@ fileprivate final class TextEditorController: NSViewController {
         }
     }
     
+}
+
+extension NSScrollView {
+    func scroll(to point: NSPoint, animationDuration: Double) {
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.current.duration = animationDuration
+        contentView.animator().setBoundsOrigin(point)
+        reflectScrolledClipView(contentView)
+        NSAnimationContext.endGrouping()
+    }
 }
