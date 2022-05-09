@@ -12,13 +12,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, SUUpdaterDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
         setupSparkle()
     }
-    
-    func applicationDidBecomeActive(_ notification: Notification) {
-        // Open empty document after becoming active
-        if NSDocumentController.shared.documents.count == 0 {
-            NSDocumentController.shared.newDocument(nil)
-        }
-    }
 }
 
 // MARK: Sparkle
