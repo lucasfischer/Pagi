@@ -45,6 +45,8 @@
 		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
 		A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
+		A0B696F32828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
+		A0B696F42828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
 		A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */; };
 		A0EE19F526044F2200586065 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19F426044F2200586065 /* Tests_iOS.swift */; };
 		A0EE1A0026044F2200586065 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19FF26044F2200586065 /* Tests_macOS.swift */; };
@@ -155,6 +157,7 @@
 		A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.ttf"; sourceTree = "<group>"; };
 		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
+		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
 		A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		A0EE19D926044F2100586065 /* PagiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiApp.swift; sourceTree = "<group>"; };
 		A0EE19DA26044F2100586065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 		A002A431267470A000FFB271 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				A0B696F22828A3A20079433C /* FindCommands.swift */,
 				A002A432267470CC00FFB271 /* FontCommands.swift */,
 				A0749B122698730000CEFBC1 /* StatsCommands.swift */,
 			);
@@ -659,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B696F32828A3A20079433C /* FindCommands.swift in Sources */,
 				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
@@ -684,6 +689,7 @@
 				A0F8F30C266CAD400019AD9F /* AppDelegate.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
+				A0B696F42828A3A20079433C /* FindCommands.swift in Sources */,
 				A01256002686E4EC00727630 /* Timer.swift in Sources */,
 				A0997F172702B706003EDD8C /* AboutView.swift in Sources */,
 				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,

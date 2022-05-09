@@ -31,6 +31,7 @@ struct PagiApp: App {
                 .preferredColorScheme(theme.colorScheme)
         }
         .commands {
+            FindCommands()
             FontCommands(font: $font, fontSize: $fontSize)
             StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
             

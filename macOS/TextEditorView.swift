@@ -113,6 +113,8 @@ fileprivate final class TextEditorController: NSViewController {
         textView.insertionPointColor = .controlAccentColor
         textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
+        textView.usesFindBar = true
+        textView.isIncrementalSearchingEnabled = true
         
         self.view = scrollView
     }
