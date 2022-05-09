@@ -17,6 +17,7 @@ struct PagiApp: App {
     @AppStorage("font") private var font = iAFont.duo
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
+    @AppStorage("focusMode") private var focusMode = false
     
     @AppStorage("theme") private var theme = Theme.system
     @Environment(\.colorScheme) var colorScheme
@@ -49,6 +50,11 @@ struct PagiApp: App {
                     }
                 }
             })
+            
+            CommandMenu("Focus") {
+                Toggle("Focus Mode", isOn: $focusMode)
+                    .keyboardShortcut("d", modifiers: .command)
+            }
         }
         
         Settings {

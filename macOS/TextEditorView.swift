@@ -13,6 +13,7 @@ struct TextEditorView: NSViewControllerRepresentable {
     var font: String
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
+    @Binding var focusMode: Bool
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -27,8 +28,18 @@ struct TextEditorView: NSViewControllerRepresentable {
             vc.textView.string = text
         }
         
+        if focusMode != vc.focusMode {
+            vc.focusMode = focusMode
+            if focusMode {
+                vc.enableFocusMode()
+            } else {
+                vc.resetFocusMode()
+            }
+        }
+        
         vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
+        vc.isSpellCheckingEnabled = isSpellCheckingEnabled
     }
 }
 
@@ -89,41 +100,41 @@ extension TextEditorView {
         }
         
         func textViewDidChangeSelection(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
-            
-            let insertionRect = textView.layoutManager?.boundingRect(forGlyphRange: textView.selectedRange(), in: textView.textContainer!)
-            guard let rect = insertionRect else { return }
-            
-            let point = NSPoint(x: 0, y: rect.origin.y + rect.size.height)
-            
-            guard let scrollView = textView.enclosingScrollView else { return }
-            scrollView.scroll(to: point, animationDuration: 0.2)
-            
-            if let str = textView.string as NSString?,
-               let textStorage = textView.textStorage {
-                let selectedRange = textView.selectedRange()
-                
-                let paragraph = str.paragraphRange(for: selectedRange)
-                
-                //                print(str.substring(with: selectedRange))
-                //                print(str.rangeOfCharacter(from: .punctuationCharacters, range: NSRange(location: selectedRange.location, length: selectedRange.length)))
-                //                let character = str.character(at: range.location - 1)
-                //                let charRange = str.rangeOfCharacter(from: .punctuationCharacters, range: NSRange(location: paragraph.location, length: paragraph.length))
-                //                print(charRange)
-                //                print(str.substring(with: charRange))
-                
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundLight), range: NSRange(location: 0, length: str.length))
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
+            if !parent.focusMode {
+                return
             }
+            
+            guard let textView = notification.object as? TextEditorController.CustomTextView else { return }
+            
+            textView.highlightSelectedParagraph()
+            textView.focusSelection()
         }
-        
     }
 }
 
 // MARK: - Controller
 fileprivate final class TextEditorController: NSViewController {
     var isSpellCheckingEnabled: Bool = false
+    var focusMode: Bool = false
     var textView = CustomTextView()
+    
+    var textContainerInset: NSSize {
+        let frameWidth = self.view.frame.size.width
+        let frameHeight = self.view.frame.size.height
+        
+        let horizontalPadding = (frameWidth - 650) / 2
+        if horizontalPadding > 0 {
+            if focusMode {
+                return NSSize(width: horizontalPadding, height: frameHeight / 2)
+            }
+            else {
+                return NSSize(width: horizontalPadding, height: 32)
+            }
+        }
+        else {
+            return NSSize(width: 16, height: 16)
+        }
+    }
     
     override func loadView() {
         let scrollView = NSScrollView()
@@ -152,22 +163,23 @@ fileprivate final class TextEditorController: NSViewController {
     // Center NSTextView in NSScrollView
     override func viewWillLayout() {
         super.viewWillLayout()
-        
-        let frameWidth = self.view.frame.size.width
-        let frameHeight = self.view.frame.size.height
-        
-        let horizontalPadding = (frameWidth - 650) / 2
-        if horizontalPadding > 0 {
-            textView.textContainerInset = NSSize(width: horizontalPadding, height: frameHeight / 2)
-            //            textView.textContainerInset = NSSize(width: horizontalPadding, height: 32)
-        }
-        else {
-            textView.textContainerInset = NSSize(width: 16, height: 16)
-        }
+        textView.textContainerInset = textContainerInset
     }
     
     override func viewDidAppear() {
         self.view.window?.makeFirstResponder(self.view)
+    }
+    
+    func resetFocusMode() {
+        textView.textContainerInset = textContainerInset
+        textView.resetHighlight()
+        textView.focusSelection()
+    }
+    
+    func enableFocusMode() {
+        textView.textContainerInset = textContainerInset
+        textView.highlightSelectedParagraph()
+        textView.focusSelection()
     }
     
     class CustomTextView: NSTextView {
@@ -183,6 +195,40 @@ fileprivate final class TextEditorController: NSViewController {
             var rect = rect
             rect.size.width += caretSize - 1
             super.setNeedsDisplay(rect, avoidAdditionalLayout: flag)
+        }
+        
+        func focusSelection() {
+            let textView = self
+            
+            let insertionRect = textView.layoutManager?.boundingRect(forGlyphRange: textView.selectedRange(), in: textView.textContainer!)
+            guard let rect = insertionRect else { return }
+            
+            let point = NSPoint(x: 0, y: rect.origin.y + rect.size.height)
+            
+            guard let scrollView = textView.enclosingScrollView else { return }
+            scrollView.scroll(to: point, animationDuration: 0.2)
+        }
+        
+        func resetHighlight() {
+            let textView = self
+            if let str = textView.string as NSString?,
+               let textStorage = textView.textStorage {
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: NSRange(location: 0, length: str.length))
+            }
+        }
+        
+        func highlightSelectedParagraph() {
+            let textView = self
+            
+            if let str = textView.string as NSString?,
+               let textStorage = textView.textStorage {
+                let selectedRange = textView.selectedRange()
+                
+                let paragraph = str.paragraphRange(for: selectedRange)
+                
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundLight), range: NSRange(location: 0, length: str.length))
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
+            }
         }
     }
     

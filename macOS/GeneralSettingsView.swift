@@ -13,6 +13,7 @@ struct GeneralSettingsView: View {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
+    @AppStorage("focusMode") private var isFocusModeEnabled = false
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -63,6 +64,14 @@ struct GeneralSettingsView: View {
                     .frame(width: 128, alignment: .trailing)
                 
                 Toggle("", isOn: $isSpellCheckingEnabled)
+            }
+            
+            // Focus Mode
+            HStack {
+                Text("Focus Mode:")
+                    .frame(width: 128, alignment: .trailing)
+                
+                Toggle("", isOn: $isFocusModeEnabled)
             }
             
             HStack {
