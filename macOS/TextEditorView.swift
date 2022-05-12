@@ -121,18 +121,13 @@ fileprivate final class TextEditorController: NSViewController {
     var textContainerInset: NSSize {
         let frameWidth = self.view.frame.size.width
         let frameHeight = self.view.frame.size.height
+        let horizontalPadding = max(((frameWidth - 650) / 2), 16)
         
-        let horizontalPadding = (frameWidth - 650) / 2
-        if horizontalPadding > 0 {
-            if focusMode {
-                return NSSize(width: horizontalPadding, height: frameHeight / 2)
-            }
-            else {
-                return NSSize(width: horizontalPadding, height: 32)
-            }
+        if focusMode {
+            return NSSize(width: horizontalPadding, height: frameHeight / 2)
         }
         else {
-            return NSSize(width: 16, height: 16)
+            return NSSize(width: horizontalPadding, height: 32)
         }
     }
     
