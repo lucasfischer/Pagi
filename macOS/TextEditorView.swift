@@ -107,7 +107,7 @@ extension TextEditorView {
             guard let textView = notification.object as? TextEditorController.CustomTextView else { return }
             
             textView.highlightSelectedParagraph()
-            textView.focusSelection()
+            textView.focusSelection(animate: true)
         }
     }
 }
@@ -116,7 +116,8 @@ extension TextEditorView {
 fileprivate final class TextEditorController: NSViewController {
     var isSpellCheckingEnabled: Bool = false
     var focusMode: Bool = false
-    var textView = CustomTextView()
+    let textView = CustomTextView()
+    let scrollView = NSScrollView()
     
     var textContainerInset: NSSize {
         let frameWidth = self.view.frame.size.width
@@ -132,8 +133,6 @@ fileprivate final class TextEditorController: NSViewController {
     }
     
     override func loadView() {
-        let scrollView = NSScrollView()
-        
         // - ScrollView
         scrollView.documentView = textView
         scrollView.hasVerticalScroller = true
@@ -166,9 +165,14 @@ fileprivate final class TextEditorController: NSViewController {
     }
     
     func resetFocusMode() {
+        let origin = textView.textContainerOrigin
         textView.textContainerInset = textContainerInset
         textView.resetHighlight()
-        textView.focusSelection()
+        
+        // Fix scroll offset
+        let offset = textView.textContainerOrigin.y - origin.y
+        let point = NSPoint(x: 0, y: scrollView.contentView.bounds.origin.y + offset)
+        scrollView.scroll(to: point, animationDuration: 0)
     }
     
     func enableFocusMode() {
@@ -192,16 +196,16 @@ fileprivate final class TextEditorController: NSViewController {
             super.setNeedsDisplay(rect, avoidAdditionalLayout: flag)
         }
         
-        func focusSelection() {
+        func focusSelection(animate: Bool = false) {
             let textView = self
             
             let insertionRect = textView.layoutManager?.boundingRect(forGlyphRange: textView.selectedRange(), in: textView.textContainer!)
-            guard let rect = insertionRect else { return }
+            guard let rect = insertionRect,
+                  let scrollView = textView.enclosingScrollView
+            else { return }
             
             let point = NSPoint(x: 0, y: rect.origin.y + rect.size.height)
-            
-            guard let scrollView = textView.enclosingScrollView else { return }
-            scrollView.scroll(to: point, animationDuration: 0.2)
+            scrollView.scroll(to: point, animationDuration: animate ? 0.2 : 0)
         }
         
         func resetHighlight() {
