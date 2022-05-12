@@ -139,6 +139,7 @@ fileprivate final class TextEditorController: NSViewController {
         scrollView.hasHorizontalScroller = false
         scrollView.autohidesScrollers = true
         scrollView.drawsBackground = false
+        scrollView.lineScroll *= 2
         
         // - TextView
         textView.autoresizingMask = [.width]
