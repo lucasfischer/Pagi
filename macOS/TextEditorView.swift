@@ -225,7 +225,7 @@ fileprivate final class TextEditorController: NSViewController {
                 
                 let paragraph = str.paragraphRange(for: selectedRange)
                 
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundLight), range: NSRange(location: 0, length: str.length))
+                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundFaded), range: NSRange(location: 0, length: str.length))
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
             }
         }
