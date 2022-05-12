@@ -174,12 +174,28 @@ fileprivate final class TextEditorController: NSViewController {
         let offset = textView.textContainerOrigin.y - origin.y
         let point = NSPoint(x: 0, y: scrollView.contentView.bounds.origin.y + offset)
         scrollView.scroll(to: point, animationDuration: 0)
+        
+        // Remove Observer
+        NotificationCenter.default.removeObserver(self)
     }
     
     func enableFocusMode() {
         textView.textContainerInset = textContainerInset
         textView.highlightSelectedParagraph()
         textView.focusSelection()
+        
+        // Add Observer
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onStartedScrolling),
+            name: NSScrollView.didLiveScrollNotification,
+            object: scrollView
+        )
+    }
+    
+    @objc
+    func onStartedScrolling(_ notification: Notification) {
+        textView.resetHighlight()
     }
     
     class CustomTextView: NSTextView {
