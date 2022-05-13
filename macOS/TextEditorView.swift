@@ -75,23 +75,11 @@ extension TextEditorView {
             self.isSpellCheckingEnabled = isSpellCheckingEnabled
         }
         
-        func textDidBeginEditing(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
-            
-            self.parent.text = textView.string
-        }
-        
         func textDidChange(_ notification: Notification) {
             guard let textView = notification.object as? NSTextView else { return }
             
             self.parent.text = textView.string
             self.selectedRanges = textView.selectedRanges
-        }
-        
-        func textDidEndEditing(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
-            
-            self.parent.text = textView.string
         }
         
         func textView(_ textView: NSTextView, shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:], toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any] {
