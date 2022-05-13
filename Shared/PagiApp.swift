@@ -34,7 +34,11 @@ struct PagiApp: App {
         .commands {
             FindCommands()
             FontCommands(font: $font, fontSize: $fontSize)
-            StatsCommands(wordCount: $wordCount, progressBar: $progressBar)
+            ViewCommands(
+                focusMode: $focusMode,
+                wordCount: $wordCount,
+                progressBar: $progressBar
+            )
             
             CommandGroup(replacing: .newItem, addition: {
                 Button("New") {
@@ -50,11 +54,6 @@ struct PagiApp: App {
                     }
                 }
             })
-            
-            CommandMenu("Focus") {
-                Toggle("Focus Mode", isOn: $focusMode)
-                    .keyboardShortcut("d", modifiers: .command)
-            }
         }
         
         Settings {
