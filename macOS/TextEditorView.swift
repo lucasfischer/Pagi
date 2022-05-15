@@ -39,6 +39,7 @@ struct TextEditorView: NSViewControllerRepresentable {
         
         vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
+        vc.textView.focusMode = focusMode
         vc.isSpellCheckingEnabled = isSpellCheckingEnabled
     }
 }
@@ -85,17 +86,6 @@ extension TextEditorView {
         func textView(_ textView: NSTextView, shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:], toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any] {
             
             return attributes
-        }
-        
-        func textViewDidChangeSelection(_ notification: Notification) {
-            if !parent.focusMode {
-                return
-            }
-            
-            guard let textView = notification.object as? TextEditorController.CustomTextView else { return }
-            
-            textView.highlightSelectedParagraph()
-            textView.focusSelection(animate: true)
         }
     }
 }
@@ -187,7 +177,11 @@ fileprivate final class TextEditorController: NSViewController {
     }
     
     class CustomTextView: NSTextView {
-        var caretSize: CGFloat = 3
+        var focusMode = false
+        
+        private var caretSize: CGFloat = 3
+        private var mouseWasDown = false
+        private var focusTask: Task<Void, Never>?
         
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
             var rect = rect
@@ -233,6 +227,49 @@ fileprivate final class TextEditorController: NSViewController {
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundFaded), range: NSRange(location: 0, length: str.length))
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
             }
+        }
+        
+        override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+            super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
+            
+            // Stop exectution if not in focus mode
+            if !focusMode {
+                return
+            }
+            
+            // If selection is done
+            if !stillSelectingFlag {
+                // Highlight the selected paragraph
+                highlightSelectedParagraph()
+                
+                // If selection via mouse down event delay focus
+                if mouseWasDown {
+                    focusTask = Task {
+                        do {
+                            try await Task.sleep(seconds: 0.15)
+                            focusSelection(animate: true)
+                            mouseWasDown = false
+                        }
+                        catch {
+                            // Cancelled Task
+                        }
+                    }
+                }
+                else {
+                    focusSelection(animate: true)
+                }
+            }
+        }
+        
+        override func mouseDown(with event: NSEvent) {
+            // Cancel focus task
+            if let task = focusTask {
+                task.cancel()
+                self.focusTask = nil
+            }
+            mouseWasDown = true // Mark selection via mouse down event
+            
+            super.mouseDown(with: event)
         }
     }
     

@@ -11,6 +11,8 @@
 		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
 		A01255FF2686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A01256002686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
+		A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
+		A01BDE0228309AF6008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
 		A025926726EC87D700B8324F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025926626EC877B00B8324F /* SettingsView.swift */; };
 		A03930F32712889B005CAEF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F22712889B005CAEF1 /* ContentView.swift */; };
 		A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F4271293E5005CAEF1 /* ShareSheet.swift */; };
@@ -83,6 +85,7 @@
 /* Begin PBXFileReference section */
 		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
 		A01255FE2686E4EC00727630 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Shared/Timer.swift; sourceTree = SOURCE_ROOT; };
+		A01BDE0028309A2A008296EE /* Task+sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+sleep.swift"; sourceTree = "<group>"; };
 		A025926626EC877B00B8324F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A03930F4271293E5005CAEF1 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -427,6 +430,7 @@
 				A05C53A6266B97DC00CD45BB /* Theme.swift */,
 				A05C547B266BA22500CD45BB /* Font.swift */,
 				A05C5480266BB13B00CD45BB /* Color.swift */,
+				A01BDE0028309A2A008296EE /* Task+sleep.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -673,6 +677,7 @@
 				A002A433267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */,
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
+				A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */,
 				A0749B132698730000CEFBC1 /* ViewCommands.swift in Sources */,
 				A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
 				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
@@ -696,6 +701,7 @@
 				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
 				A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */,
 				A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */,
+				A01BDE0228309AF6008296EE /* Task+sleep.swift in Sources */,
 				A09314D6267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
 				A0EE1A0526044F2200586065 /* ContentView.swift in Sources */,
 				A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */,
