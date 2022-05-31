@@ -61,6 +61,8 @@ extension TextEditorView {
         var isSpellCheckingEnabled: Bool
         var selectedRanges: [NSValue] = []
         
+        private let textViewUndoManager = UndoManager()
+        
         var attributes: [NSAttributedString.Key : Any] {
             let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             paragraphStyle.lineHeightMultiple = 1.3
@@ -90,6 +92,10 @@ extension TextEditorView {
         func textView(_ textView: NSTextView, shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:], toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any] {
             
             return attributes
+        }
+        
+        func undoManager(for view: NSTextView) -> UndoManager? {
+            textViewUndoManager
         }
     }
 }
