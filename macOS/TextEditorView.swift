@@ -37,6 +37,10 @@ struct TextEditorView: NSViewControllerRepresentable {
             }
         }
         
+        if !context.coordinator.selectedRanges.isEmpty {
+            vc.textView.selectedRanges = context.coordinator.selectedRanges
+        }
+        
         vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
         vc.textView.focusMode = focusMode
