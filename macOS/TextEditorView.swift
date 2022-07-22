@@ -89,6 +89,12 @@ extension TextEditorView {
             self.selectedRanges = textView.selectedRanges
         }
         
+        func textViewDidChangeSelection(_ notification: Notification) {
+            guard let textView = notification.object as? NSTextView else { return }
+            
+            self.selectedRanges = textView.selectedRanges
+        }
+        
         func textView(_ textView: NSTextView, shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:], toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any] {
             
             return attributes
