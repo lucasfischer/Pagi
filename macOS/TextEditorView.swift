@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NaturalLanguage
 
 // MARK: - View
 struct TextEditorView: NSViewControllerRepresentable {
@@ -198,6 +199,7 @@ fileprivate final class TextEditorController: NSViewController {
         private var caretSize: CGFloat = 3
         private var mouseWasDown = false
         private var focusTask: Task<Void, Never>?
+        let tokenizer = NLTokenizer(unit: .sentence)
         
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
             var rect = rect
@@ -224,24 +226,32 @@ fileprivate final class TextEditorController: NSViewController {
         }
         
         func resetHighlight() {
-            let textView = self
-            if let str = textView.string as NSString?,
-               let textStorage = textView.textStorage {
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: NSRange(location: 0, length: str.length))
-            }
+            self.textStorage?.foregroundColor = NSColor(.foreground)
         }
         
         func highlightSelectedParagraph() {
             let textView = self
-            
-            if let str = textView.string as NSString?,
-               let textStorage = textView.textStorage {
+
+            if let textStorage = textView.textStorage {
+                let text = textView.string
                 let selectedRange = textView.selectedRange()
                 
-                let paragraph = str.paragraphRange(for: selectedRange)
+                textStorage.foregroundColor = NSColor(.foregroundFaded)
                 
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundFaded), range: NSRange(location: 0, length: str.length))
+                let range = Range(selectedRange, in: text)!
+                var index = range.lowerBound
+                // Fix for last character in String
+                if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
+                    index = text.index(range.lowerBound, offsetBy: -1)
+                }
+                
+                // Find range in current selection
+                tokenizer.string = text
+                let tokenRange = tokenizer.tokenRange(at: index)
+                let paragraph = NSRange(tokenRange, in: text)
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
+                
+                textView.display()
             }
         }
         
