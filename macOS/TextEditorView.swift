@@ -231,7 +231,7 @@ fileprivate final class TextEditorController: NSViewController {
         
         func highlightSelectedParagraph() {
             let textView = self
-
+            
             if let textStorage = textView.textStorage {
                 let text = textView.string
                 let selectedRange = textView.selectedRange()
@@ -251,7 +251,15 @@ fileprivate final class TextEditorController: NSViewController {
                 let paragraph = NSRange(tokenRange, in: text)
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
                 
-                textView.display()
+                // If starting a new sentence invalidate display for the sentence before so the colors of the paragraphs before can change
+                if paragraph.length == 1 && text.count >= 2 {
+                    let index = text.index(tokenRange.lowerBound, offsetBy: -1)
+                    let tokenRange = tokenizer.tokenRange(at: index)
+                    let paragraph = NSRange(tokenRange, in: text)
+                    textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundFaded), range: paragraph)
+                    textStorage.layoutManagers.first?.invalidateDisplay(forGlyphRange: paragraph)
+                }
+                
             }
         }
         
