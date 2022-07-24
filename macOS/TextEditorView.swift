@@ -289,10 +289,11 @@ fileprivate final class TextEditorController: NSViewController {
                 return
             }
             
+            highlightSelectedParagraph()
+            
             // If selection is done
             if !stillSelectingFlag {
                 // Highlight the selected paragraph
-                highlightSelectedParagraph()
                 
                 // If selection via mouse down event delay focus
                 if mouseWasDown {
