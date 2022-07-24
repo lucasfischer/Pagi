@@ -121,8 +121,6 @@ fileprivate final class TextEditorController: NSViewController {
     let textView = CustomTextView()
     let scrollView = NSScrollView()
     
-    private var isScrolling = false
-    
     var textContainerInset: NSSize {
         let frameWidth = self.view.frame.size.width
         let frameHeight = self.view.frame.size.height
@@ -193,29 +191,14 @@ fileprivate final class TextEditorController: NSViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onStartedScrolling),
-            name: NSScrollView.didLiveScrollNotification,
-            object: scrollView
-        )
-        // End Scrolling
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onEndedScrolling),
-            name: NSScrollView.didEndLiveScrollNotification,
+            name: NSScrollView.willStartLiveScrollNotification,
             object: scrollView
         )
     }
     
     @objc
     func onStartedScrolling(_ notification: Notification) {
-        if !isScrolling {
-            textView.resetHighlight()
-            isScrolling = true
-        }
-    }
-    
-    @objc
-    func onEndedScrolling(_ notification: Notification) {
-        isScrolling = false
+        textView.resetHighlight()
     }
     
     class CustomTextView: NSTextView {
