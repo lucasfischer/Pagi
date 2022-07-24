@@ -18,6 +18,7 @@ struct PagiApp: App {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("focusMode") private var focusMode = false
+    @AppStorage("focusType") private var focusType = FocusType.sentence
     
     @AppStorage("theme") private var theme = Theme.system
     @Environment(\.colorScheme) var colorScheme
@@ -35,10 +36,14 @@ struct PagiApp: App {
             FindCommands()
             FontCommands(font: $font, fontSize: $fontSize)
             ViewCommands(
-                focusMode: $focusMode,
                 wordCount: $wordCount,
                 progressBar: $progressBar
             )
+            FocusCommands(
+                focusMode: $focusMode,
+                focusType: $focusType
+            )
+            
             
             CommandGroup(replacing: .newItem, addition: {
                 Button("New") {
@@ -54,6 +59,8 @@ struct PagiApp: App {
                     }
                 }
             })
+            
+            UpdateCommands()
         }
         
         Settings {

@@ -49,6 +49,12 @@
 		A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
 		A0B696F32828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
 		A0B696F42828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
+		A0CA583F288D30980050442A /* FocusCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA583E288D30980050442A /* FocusCommands.swift */; };
+		A0CA5840288D30980050442A /* FocusCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA583E288D30980050442A /* FocusCommands.swift */; };
+		A0CA5842288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
+		A0CA5843288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
+		A0CA5845288D3E0E0050442A /* UpdateCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5844288D3E0E0050442A /* UpdateCommands.swift */; };
+		A0CA5846288D3E0E0050442A /* UpdateCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5844288D3E0E0050442A /* UpdateCommands.swift */; };
 		A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */; };
 		A0EE19F526044F2200586065 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19F426044F2200586065 /* Tests_iOS.swift */; };
 		A0EE1A0026044F2200586065 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE19FF26044F2200586065 /* Tests_macOS.swift */; };
@@ -161,6 +167,9 @@
 		A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.ttf"; sourceTree = "<group>"; };
 		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
 		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
+		A0CA583E288D30980050442A /* FocusCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusCommands.swift; sourceTree = "<group>"; };
+		A0CA5841288D32BB0050442A /* FocusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusType.swift; sourceTree = "<group>"; };
+		A0CA5844288D3E0E0050442A /* UpdateCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommands.swift; sourceTree = "<group>"; };
 		A0EDD01426D8ECAE0051D15B /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		A0EE19D926044F2100586065 /* PagiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiApp.swift; sourceTree = "<group>"; };
 		A0EE19DA26044F2100586065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -220,6 +229,8 @@
 				A0B696F22828A3A20079433C /* FindCommands.swift */,
 				A002A432267470CC00FFB271 /* FontCommands.swift */,
 				A0749B122698730000CEFBC1 /* ViewCommands.swift */,
+				A0CA583E288D30980050442A /* FocusCommands.swift */,
+				A0CA5844288D3E0E0050442A /* UpdateCommands.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -431,6 +442,7 @@
 				A05C547B266BA22500CD45BB /* Font.swift */,
 				A05C5480266BB13B00CD45BB /* Color.swift */,
 				A01BDE0028309A2A008296EE /* Task+sleep.swift */,
+				A0CA5841288D32BB0050442A /* FocusType.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -671,16 +683,19 @@
 				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
+				A0CA583F288D30980050442A /* FocusCommands.swift in Sources */,
 				A03930F32712889B005CAEF1 /* ContentView.swift in Sources */,
 				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
 				A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */,
 				A002A433267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */,
+				A0CA5842288D32BB0050442A /* FocusType.swift in Sources */,
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */,
 				A0749B132698730000CEFBC1 /* ViewCommands.swift in Sources */,
 				A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
 				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
+				A0CA5845288D3E0E0050442A /* UpdateCommands.swift in Sources */,
 				A01255FF2686E4EC00727630 /* Timer.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
 				A025926726EC87D700B8324F /* SettingsView.swift in Sources */,
@@ -707,9 +722,12 @@
 				A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */,
 				A0EE1A1C26044F4200586065 /* ProgressBar.swift in Sources */,
 				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
+				A0CA5843288D32BB0050442A /* FocusType.swift in Sources */,
 				A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */,
+				A0CA5846288D3E0E0050442A /* UpdateCommands.swift in Sources */,
 				A002A434267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,
+				A0CA5840288D30980050442A /* FocusCommands.swift in Sources */,
 				A0749B142698730000CEFBC1 /* ViewCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

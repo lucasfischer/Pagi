@@ -17,6 +17,7 @@ class EditorViewModel: ObservableObject {
     @AppStorage("font") var font = iAFont.duo
     @AppStorage("fontSize") var fontSize = 18
     @AppStorage("focusMode") var focusMode = false
+    @AppStorage("focusType") var focusType = FocusType.sentence
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
     
     #if os(iOS)

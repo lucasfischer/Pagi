@@ -15,6 +15,7 @@ struct TextEditorView: NSViewControllerRepresentable {
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
+    var focusType: FocusType
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -31,10 +32,17 @@ struct TextEditorView: NSViewControllerRepresentable {
         
         if focusMode != vc.focusMode {
             vc.focusMode = focusMode
+            vc.textView.focusMode = focusMode
             if focusMode {
                 vc.enableFocusMode()
             } else {
                 vc.resetFocusMode()
+            }
+        }
+        if focusType != vc.textView.focusType {
+            vc.textView.focusType = focusType
+            if focusMode {
+                vc.textView.highlightSelectedParagraph()
             }
         }
         
@@ -44,7 +52,6 @@ struct TextEditorView: NSViewControllerRepresentable {
         
         vc.textView.isContinuousSpellCheckingEnabled = isSpellCheckingEnabled
         vc.textView.isGrammarCheckingEnabled = isSpellCheckingEnabled
-        vc.textView.focusMode = focusMode
         vc.isSpellCheckingEnabled = isSpellCheckingEnabled
     }
 }
@@ -213,11 +220,11 @@ fileprivate final class TextEditorController: NSViewController {
     
     class CustomTextView: NSTextView {
         var focusMode = false
+        var focusType: FocusType = .sentence
         
         private var caretSize: CGFloat = 3
         private var mouseWasDown = false
         private var focusTask: Task<Void, Never>?
-        let tokenizer = NLTokenizer(unit: .sentence)
         
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
             var rect = rect
@@ -254,6 +261,11 @@ fileprivate final class TextEditorController: NSViewController {
                 let text = textView.string
                 let selectedRange = textView.selectedRange()
                 
+                if focusType == .typeWriter {
+                    textStorage.foregroundColor = NSColor(.foreground)
+                    return
+                }
+                
                 textStorage.foregroundColor = NSColor(.foregroundFaded)
                 
                 let range = Range(selectedRange, in: text)!
@@ -264,6 +276,7 @@ fileprivate final class TextEditorController: NSViewController {
                 }
                 
                 // Find range in current selection
+                let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
                 tokenizer.string = text
                 let tokenRange = tokenizer.tokenRange(at: index)
                 let paragraph = NSRange(tokenRange, in: text)

@@ -36,7 +36,8 @@ struct Editor: View {
                     font: viewModel.font.fileName,
                     size: CGFloat(viewModel.fontSize),
                     isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-                    focusMode: $viewModel.focusMode
+                    focusMode: $viewModel.focusMode,
+                    focusType: viewModel.focusType
                 )
                     .frame(maxWidth: 650, maxHeight: .infinity)
                     .frame(maxWidth: .infinity)
@@ -55,7 +56,8 @@ struct Editor: View {
             font: viewModel.font.fileName,
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-            focusMode: $viewModel.focusMode
+            focusMode: $viewModel.focusMode,
+            focusType: viewModel.focusType
         )
             .id("\(viewModel.font.rawValue)\(viewModel.fontSize)")
     }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Sparkle
 
 struct GeneralSettingsView: View {
     @AppStorage("wordTarget") private var wordTarget = 1500
@@ -14,6 +13,7 @@ struct GeneralSettingsView: View {
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
     @AppStorage("focusMode") private var isFocusModeEnabled = false
+    @AppStorage("focusType") private var focusType = FocusType.sentence
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -21,68 +21,42 @@ struct GeneralSettingsView: View {
         return formatter
     }()
     
-    private func checkForUpdates() {
-        guard let updater = SUUpdater.shared() else { return }
-        updater.checkForUpdates(self)
-    }
-    
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    let appBundle = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             
-            // Word Target
-            HStack {
-                Text("Word Target:")
-                    .frame(width: 128, alignment: .trailing)
+            Form {
                 
-                TextField("Word Target", value: $wordTarget.animation(.spring()), formatter: formatter)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 80)
-            }
-            
-            // Word Count
-            HStack {
-                Text("Show Word Count:")
-                    .frame(width: 128, alignment: .trailing)
+                TextField("Word Target:", value: $wordTarget.animation(.spring()), formatter: formatter)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 144)
                 
-                Toggle("", isOn: $wordCount.animation(.spring()))
-            }
-            
-            // Progress Bar
-            HStack {
-                Text("Show Progress Bar:")
-                    .frame(width: 128, alignment: .trailing)
+                Spacer()
+                    .frame(height: 16)
                 
-                Toggle("", isOn: $progressBar.animation(.spring()))
-            }
-            
-            // Spell Checker
-            HStack {
-                Text("Spell Checker:")
-                    .frame(width: 128, alignment: .trailing)
+                Toggle("Show Word Count", isOn: $wordCount.animation(.spring()))
                 
-                Toggle("", isOn: $isSpellCheckingEnabled)
-            }
-            
-            // Focus Mode
-            HStack {
-                Text("Focus Mode:")
-                    .frame(width: 128, alignment: .trailing)
+                Toggle("Show Progress Bar", isOn: $progressBar.animation(.spring()))
                 
-                Toggle("", isOn: $isFocusModeEnabled)
-            }
-            
-            HStack {
-                // MARK: App Version
-                if let appVersion = appVersion, let appBundle = appBundle {
-                    Text("Version: \(appVersion) (\(appBundle))")
-                        .frame(width: 128, alignment: .trailing)
+                Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
+                
+                Spacer()
+                    .frame(height: 16)
+                
+                
+                Toggle("Focus Mode", isOn: $isFocusModeEnabled)
+                
+                Picker("Focus:", selection: $focusType) {
+                    ForEach(FocusType.allCases, id: \.self) { type in
+                        Button(type.title) {
+                            focusType = type
+                        }
+                    }
                 }
+                .pickerStyle(.menu)
+                .frame(width: 152)
                 
-                Button("Check For Updates", action: checkForUpdates)
             }
+            
         }
         .padding()
         .frame(width: 320)
