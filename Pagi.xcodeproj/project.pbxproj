@@ -167,6 +167,7 @@
 		A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.ttf"; sourceTree = "<group>"; };
 		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
 		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
+		A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS Config.xcconfig"; sourceTree = "<group>"; };
 		A0CA583E288D30980050442A /* FocusCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusCommands.swift; sourceTree = "<group>"; };
 		A0CA5841288D32BB0050442A /* FocusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusType.swift; sourceTree = "<group>"; };
 		A0CA5844288D3E0E0050442A /* UpdateCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommands.swift; sourceTree = "<group>"; };
@@ -473,6 +474,7 @@
 		A0EE19E926044F2200586065 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */,
 				A0EE19EA26044F2200586065 /* Info.plist */,
 				A0EE19EB26044F2200586065 /* macOS.entitlements */,
 				A0EE19DA26044F2100586065 /* ContentView.swift */,
@@ -930,6 +932,7 @@
 		};
 		A0EE1A0E26044F2200586065 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -937,7 +940,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -947,7 +949,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = macosx;
@@ -957,6 +958,7 @@
 		};
 		A0EE1A0F26044F2200586065 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -964,7 +966,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -974,7 +975,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = macosx;
@@ -1029,6 +1029,7 @@
 		};
 		A0EE1A1426044F2200586065 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1051,6 +1052,7 @@
 		};
 		A0EE1A1526044F2200586065 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
