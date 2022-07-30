@@ -57,9 +57,7 @@ class EditorViewModel: ObservableObject {
         let components = text.components(separatedBy: chararacterSet)
         let words = components.filter { !$0.isEmpty }
         
-        withAnimation {
-            self.words = words.count
-        }
+        self.words = words.count
         
         if typing && !timer.isRunning && !timer.isEnded {
             timer.start()

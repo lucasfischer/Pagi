@@ -76,9 +76,12 @@ struct Editor: View {
                     .foregroundColor(.foregroundLight)
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
+                    .animation(nil, value: viewModel.words)
             }
         }
         .padding(isiOS ? .top : .bottom, viewModel.progressBarVisible ? 0 : 10)
+        .animation(.interactiveSpring(), value: viewModel.overlayHover)
+        .animation(.default, value: viewModel.words)
     }
     
     @ViewBuilder
@@ -90,20 +93,23 @@ struct Editor: View {
                     color: .accentColor,
                     height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
                 )
-                    .transition(.move(edge: isiOS ? .top : .bottom))
-                    .overlay (
-                        VStack {
-                            if viewModel.isProgressBarExpanded {
-                                Label(viewModel.successText, systemImage: "checkmark")
-                                    .transition(.offset(x: 0, y: progressBarHeight))
-                            }
+                .transition(.move(edge: isiOS ? .top : .bottom))
+                .animation(.default, value: viewModel.words)
+                .animation(.interactiveSpring(), value: viewModel.overlayHover)
+                .overlay (
+                    VStack {
+                        if viewModel.isProgressBarExpanded {
+                            Label(viewModel.successText, systemImage: "checkmark")
+                                .transition(.offset(x: 0, y: progressBarHeight))
                         }
-                            .font(
-                                .custom(viewModel.font.fileName, size: 12)
-                                    .monospacedDigit()
-                            )
-                            .foregroundColor(.background)
-                    )
+                    }
+                        .font(
+                            .custom(viewModel.font.fileName, size: 12)
+                            .monospacedDigit()
+                        )
+                        .foregroundColor(.background)
+                        .animation(.interactiveSpring(), value: viewModel.overlayHover)
+                )
             }
         }
     }
@@ -130,9 +136,7 @@ struct Editor: View {
                     #endif
                 }
                 .onHover(perform: { hover in
-                    withAnimation {
-                        viewModel.overlayHover = hover
-                    }
+                    viewModel.overlayHover = hover
                 })
             }
                 .frame(maxHeight: .infinity, alignment: isiOS ? .top : .bottom)
