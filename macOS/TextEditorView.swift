@@ -251,17 +251,17 @@ fileprivate final class TextEditorController: NSViewController {
                 
                 textStorage.foregroundColor = NSColor(.foregroundFaded)
                 
-                let range = Range(selectedRange, in: text)!
-                var index = range.lowerBound
+                var range = Range(selectedRange, in: text)!
                 // Fix for last character in String
                 if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
-                    index = text.index(range.lowerBound, offsetBy: -1)
+                    let lowerBound = text.index(range.lowerBound, offsetBy: -1)
+                    range = lowerBound..<range.upperBound
                 }
                 
                 // Find range in current selection
                 let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
                 tokenizer.string = text
-                let tokenRange = tokenizer.tokenRange(at: index)
+                let tokenRange = tokenizer.tokenRange(for: range)
                 let paragraph = NSRange(tokenRange, in: text)
                 textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
                 
