@@ -209,6 +209,27 @@ fileprivate final class TextEditorController: NSViewController {
         private var mouseWasDown = false
         private var focusTask: Task<Void, Never>?
         
+        private func setTemporaryForegroundColor(
+            _ color: Color,
+            forCharacterRange: NSRange? = nil
+        ) {
+            // Setting temporary attributes seems to yield great performance benefits compared to updating
+            // normal attributes. Apple describes them as follows:
+            // "Temporary attributes are used only for onscreen drawing and are not persistent in any way.
+            // NSTextView uses them to color misspelled words when continuous spell checking is enabled.
+            // Currently the only temporary attributes recognized are those that do not affect layout
+            // (colors, underlines, and so on)."
+            
+            // Use full string range if none was provided
+            let range = forCharacterRange ?? NSRange(string.startIndex..<string.endIndex, in: string)
+            
+            layoutManager?.addTemporaryAttribute(
+                .foregroundColor,
+                value: NSColor(color),
+                forCharacterRange: range
+            )
+        }
+        
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
             var rect = rect
             rect.size.width = caretSize
@@ -234,47 +255,34 @@ fileprivate final class TextEditorController: NSViewController {
         }
         
         func resetHighlight() {
-            self.textStorage?.foregroundColor = NSColor(.foreground)
+            setTemporaryForegroundColor(.foreground)
         }
         
         func highlightSelectedParagraph() {
             let textView = self
+            let text = textView.string
+            let selectedRange = textView.selectedRange()
             
-            if let textStorage = textView.textStorage {
-                let text = textView.string
-                let selectedRange = textView.selectedRange()
-                
-                if focusType == .typeWriter {
-                    textStorage.foregroundColor = NSColor(.foreground)
-                    return
-                }
-                
-                textStorage.foregroundColor = NSColor(.foregroundFaded)
-                
-                var range = Range(selectedRange, in: text)!
-                // Fix for last character in String
-                if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
-                    let lowerBound = text.index(range.lowerBound, offsetBy: -1)
-                    range = lowerBound..<range.upperBound
-                }
-                
-                // Find range in current selection
-                let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
-                tokenizer.string = text
-                let tokenRange = tokenizer.tokenRange(for: range)
-                let paragraph = NSRange(tokenRange, in: text)
-                textStorage.addAttribute(.foregroundColor, value: NSColor(.foreground), range: paragraph)
-                
-                // If starting a new sentence invalidate display for the sentence before so the colors of the paragraphs before can change
-                if paragraph.length == 1 && text.count >= 2 {
-                    let index = text.index(tokenRange.lowerBound, offsetBy: -1)
-                    let tokenRange = tokenizer.tokenRange(at: index)
-                    let paragraph = NSRange(tokenRange, in: text)
-                    textStorage.addAttribute(.foregroundColor, value: NSColor(.foregroundFaded), range: paragraph)
-                    textStorage.layoutManagers.first?.invalidateDisplay(forGlyphRange: paragraph)
-                }
-                
+            if focusType == .typeWriter {
+                setTemporaryForegroundColor(.foreground)
+                return
+            } else {
+                setTemporaryForegroundColor(.foregroundFaded)
             }
+            
+            var range = Range(selectedRange, in: text)!
+            // Fix for last character in String
+            if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
+                let lowerBound = text.index(range.lowerBound, offsetBy: -1)
+                range = lowerBound..<range.upperBound
+            }
+            
+            // Find range in current selection
+            let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
+            tokenizer.string = text
+            let tokenRange = tokenizer.tokenRange(for: range)
+            let paragraph = NSRange(tokenRange, in: text)
+            setTemporaryForegroundColor(.foreground, forCharacterRange: paragraph)
         }
         
         override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
