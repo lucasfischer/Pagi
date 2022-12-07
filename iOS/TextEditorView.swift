@@ -12,6 +12,8 @@ struct TextEditorView: View {
     var font: String
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
+    @Binding var focusMode: Bool
+    var focusType: FocusType
     
     @State private var dynamicHeight: CGFloat = 40
     
@@ -117,7 +119,9 @@ struct TextEditorView_Previews: PreviewProvider {
                 text: $text,
                 font: iAFont.quattro.fileName,
                 size: 18,
-                isSpellCheckingEnabled: false
+                isSpellCheckingEnabled: false,
+                focusMode: .constant(false),
+                focusType: .sentence
             )
         }
     }
