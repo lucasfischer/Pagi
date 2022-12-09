@@ -130,17 +130,18 @@ extension TextEditorView {
 extension TextEditorView {
     class PagiTextView: UITextView {
         
-        
         func focusSelection(animated: Bool = false) {
+            // TODO: re-write this without hacks
             self.layoutIfNeeded()
             
-            let rect = layoutManager.boundingRect(forGlyphRange: selectedRange, in: textContainer)
-            let y = (rect.origin.y + rect.height).rounded()
+            let isCursorAtEndOfDocument = selectedTextRange?.end == endOfDocument // Is Cursor at the end of the document?
             
-            if self.contentOffset.y != y {
-                UIView.animate(withDuration: 0.15) {
-                    self.setContentOffset(CGPoint(x: 0, y: y), animated: false)
-                }
+            let rect = self.layoutManager.boundingRect(forGlyphRange: self.selectedRange, in: self.textContainer)
+            let y = (rect.origin.y + (isCursorAtEndOfDocument ? rect.height : 0)).rounded()
+            
+            let differenceIsTooBig = abs(self.contentOffset.y - y) >= rect.height
+            if differenceIsTooBig {
+                self.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
             }
         }
         
