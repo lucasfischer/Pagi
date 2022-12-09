@@ -29,7 +29,6 @@ struct Editor: View {
     
     @ViewBuilder
     func iOSEditor() -> some View {
-        ScrollView {
             VStack {
                 TextEditorView(
                     text: $text,
@@ -39,14 +38,10 @@ struct Editor: View {
                     focusMode: $viewModel.focusMode,
                     focusType: viewModel.focusType
                 )
-                    .frame(maxWidth: 650, maxHeight: .infinity)
-                    .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity)
             }
-            .padding(.vertical, 32)
-            .padding(.horizontal)
             .frame(maxHeight: .infinity)
             .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
-        }
     }
     
     @ViewBuilder

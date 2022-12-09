@@ -15,28 +15,28 @@ struct TextEditorView: View {
     @Binding var focusMode: Bool
     var focusType: FocusType
     
-    @State private var dynamicHeight: CGFloat = 40
-    
     var body: some View {
-        MultilineTextView(
-            text: $text,
-            calculatedHeight: $dynamicHeight,
-            font: font,
-            size: size,
-            isSpellCheckingEnabled: isSpellCheckingEnabled
-        )
-            .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
+        GeometryReader { geometry in
+            MultilineTextView(
+                text: $text,
+                font: font,
+                size: size,
+                isSpellCheckingEnabled: isSpellCheckingEnabled,
+                height: geometry.size.height
+            )
+            .ignoresSafeArea(.all, edges: [.bottom])
+        }
     }
     
     struct MultilineTextView: UIViewRepresentable {
         @Binding var text: String
-        @Binding var calculatedHeight: CGFloat
         var font: String
         var size: CGFloat
         var isSpellCheckingEnabled: Bool = false
+        var height: Double
         
         func makeUIView(context: Context) -> UITextView {
-            let view = UITextView()
+            let view = PagiTextView()
             
             view.delegate = context.coordinator
             
@@ -44,7 +44,7 @@ struct TextEditorView: View {
             view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
             view.autocorrectionType =  isSpellCheckingEnabled ? .yes : .no
             view.textColor = UIColor(.foreground)
-            view.isScrollEnabled = false
+            view.isScrollEnabled = true
             view.isEditable = true
             view.isUserInteractionEnabled = true
             
@@ -69,34 +69,30 @@ struct TextEditorView: View {
             return view
         }
         
-        fileprivate static func recalculateHeight(view: UIView, result: Binding<CGFloat>) {
-            let newSize = view.sizeThatFits(CGSize(width: view.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
-            if result.wrappedValue != newSize.height {
-                DispatchQueue.main.async {
-                    result.wrappedValue = newSize.height // !! must be called asynchronously
-                }
-            }
-        }
-        
         func updateUIView(_ uiView: UITextView, context: Context) {
             if uiView.text != text {
                 uiView.text = text
             }
             
-            MultilineTextView.recalculateHeight(view: uiView, result: $calculatedHeight)
+            context.coordinator.height = self.height
+            
+            // TODO: Call when `viewWillLayout`
+            let frameWidth = uiView.frame.size.width
+            let horizontalPadding = max(((frameWidth - 650) / 2), 16)
+            uiView.textContainerInset = UIEdgeInsets(top: 0, left: horizontalPadding, bottom: 0, right: horizontalPadding)
         }
         
         func makeCoordinator() -> Coordinator {
-            Coordinator(text: $text, calculatedHeight: $calculatedHeight)
+            Coordinator(text: $text, height: height)
         }
         
-        class Coordinator: NSObject, UITextViewDelegate {
+        class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
             var text: Binding<String>
-            var calculatedHeight: Binding<CGFloat>
+            var height: Double
             
-            init(text: Binding<String>, calculatedHeight: Binding<CGFloat>) {
+            init(text: Binding<String>, height: Double) {
                 self.text = text
-                self.calculatedHeight = calculatedHeight
+                self.height = height
             }
             
             func textViewDidChange(_ textView: UITextView) {
@@ -104,9 +100,27 @@ struct TextEditorView: View {
                     return
                 }
                 self.text.wrappedValue = textView.text
-                MultilineTextView.recalculateHeight(view: textView, result: calculatedHeight)
+            }
+            
+            func textViewDidChangeSelection(_ textView: UITextView) {
+                guard let view = textView as? PagiTextView else { return }
+                view.focusSelection(height: height, animated: true)
             }
         }
+    }
+}
+
+extension TextEditorView {
+    class PagiTextView: UITextView {
+        
+        func focusSelection(height: Double, animated: Bool = false) {
+            let rect = layoutManager.boundingRect(forGlyphRange: selectedRange, in: textContainer)
+            let y = rect.origin.y - (rect.height + height / 3)
+            DispatchQueue.main.async { // Without this tapping has no effect.
+                self.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
+            }
+        }
+        
     }
 }
 
