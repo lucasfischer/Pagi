@@ -29,19 +29,16 @@ struct Editor: View {
     
     @ViewBuilder
     func iOSEditor() -> some View {
-            VStack {
-                TextEditorView(
-                    text: $text,
-                    font: viewModel.font.fileName,
-                    size: CGFloat(viewModel.fontSize),
-                    isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-                    focusMode: $viewModel.focusMode,
-                    focusType: viewModel.focusType
-                )
-                .frame(maxWidth: .infinity)
-            }
-            .frame(maxHeight: .infinity)
-            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)\(viewModel.isSpellCheckingEnabled)")
+        TextEditorView(
+            text: $text,
+            font: viewModel.font.fileName,
+            size: CGFloat(viewModel.fontSize),
+            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
+            focusMode: $viewModel.focusMode,
+            focusType: viewModel.focusType
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.all, edges: [.bottom])
     }
     
     @ViewBuilder

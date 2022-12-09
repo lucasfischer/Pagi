@@ -16,83 +16,64 @@ struct TextEditorView: View {
     var focusType: FocusType
     
     var body: some View {
-        GeometryReader { geometry in
-            MultilineTextView(
-                text: $text,
-                font: font,
-                size: size,
-                isSpellCheckingEnabled: isSpellCheckingEnabled,
-                height: geometry.size.height
-            )
-            .ignoresSafeArea(.all, edges: [.bottom])
-        }
+        MultilineTextView(
+            text: $text,
+            font: font,
+            size: size,
+            isSpellCheckingEnabled: isSpellCheckingEnabled
+        )
     }
     
-    struct MultilineTextView: UIViewRepresentable {
+    struct MultilineTextView: UIViewControllerRepresentable {
         @Binding var text: String
         var font: String
         var size: CGFloat
         var isSpellCheckingEnabled: Bool = false
-        var height: Double
         
-        func makeUIView(context: Context) -> UITextView {
-            let view = PagiTextView()
-            
-            view.delegate = context.coordinator
-            
-            view.font = UIFont(name: font, size: size)
-            view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
-            view.autocorrectionType =  isSpellCheckingEnabled ? .yes : .no
-            view.textColor = UIColor(.foreground)
-            view.isScrollEnabled = true
-            view.isEditable = true
-            view.isUserInteractionEnabled = true
-            
-            view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-            
-            // Style
+        var typingAttributes: [NSAttributedString.Key : Any] {
             let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             paragraphStyle.lineHeightMultiple = 1.3
             paragraphStyle.lineSpacing = 4
             
-            let attributes = [
+            return [
                 NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font: UIFont(name: font, size: size),
+                NSAttributedString.Key.font: UIFont(name: font, size: size)!,
                 NSAttributedString.Key.foregroundColor: UIColor(.foreground)
             ]
-            view.typingAttributes = attributes as [NSAttributedString.Key : Any]
-            
-            view.text = text
-            
-            view.becomeFirstResponder()
-            
-            return view
         }
         
-        func updateUIView(_ uiView: UITextView, context: Context) {
-            if uiView.text != text {
-                uiView.text = text
+        func makeUIViewController(context: Context) -> UIViewController {
+            let viewController = TextEditorController()
+            if let view = viewController.view as? UITextView {
+                view.delegate = context.coordinator
             }
             
-            context.coordinator.height = self.height
+            return viewController
+        }
+        
+        func updateUIViewController(_ controller: UIViewController, context: Context) {
+            guard let view = controller.view as? UITextView else { return }
             
-            // TODO: Call when `viewWillLayout`
-            let frameWidth = uiView.frame.size.width
-            let horizontalPadding = max(((frameWidth - 650) / 2), 16)
-            uiView.textContainerInset = UIEdgeInsets(top: 0, left: horizontalPadding, bottom: 0, right: horizontalPadding)
+            if view.text != text {
+                view.text = text
+                view.attributedText = NSAttributedString(string: text, attributes: typingAttributes)
+            }
+            
+            view.typingAttributes = typingAttributes
+            view.font = UIFont(name: font, size: size)
+            view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
+            view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
         }
         
         func makeCoordinator() -> Coordinator {
-            Coordinator(text: $text, height: height)
+            Coordinator(text: $text)
         }
         
         class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
             var text: Binding<String>
-            var height: Double
             
-            init(text: Binding<String>, height: Double) {
+            init(text: Binding<String>) {
                 self.text = text
-                self.height = height
             }
             
             func textViewDidChange(_ textView: UITextView) {
@@ -104,8 +85,44 @@ struct TextEditorView: View {
             
             func textViewDidChangeSelection(_ textView: UITextView) {
                 guard let view = textView as? PagiTextView else { return }
-                view.focusSelection(height: height, animated: true)
+                view.focusSelection(animated: true)
             }
+        }
+    }
+}
+
+extension TextEditorView {
+    final class TextEditorController: UIViewController {
+        private let textView = PagiTextView()
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            if let view = self.view as? UITextView {
+                let frameWidth = view.frame.size.width
+                let frameHeight = view.frame.size.height
+                let horizontalPadding = max(((frameWidth - 650) / 2), 16)
+                let verticalPadding = frameHeight / 2
+                view.textContainerInset = UIEdgeInsets(
+                    top: verticalPadding,
+                    left: horizontalPadding,
+                    bottom: verticalPadding,
+                    right: horizontalPadding
+                )
+            }
+        }
+        
+        override func loadView() {
+            self.view = textView
+            let view = textView
+            
+            view.textColor = UIColor(.foreground)
+            view.isScrollEnabled = true
+            view.isEditable = true
+            view.isUserInteractionEnabled = true
+            view.allowsEditingTextAttributes = false
+            
+            view.becomeFirstResponder()
         }
     }
 }
@@ -113,11 +130,17 @@ struct TextEditorView: View {
 extension TextEditorView {
     class PagiTextView: UITextView {
         
-        func focusSelection(height: Double, animated: Bool = false) {
+        
+        func focusSelection(animated: Bool = false) {
+            self.layoutIfNeeded()
+            
             let rect = layoutManager.boundingRect(forGlyphRange: selectedRange, in: textContainer)
-            let y = rect.origin.y - (rect.height + height / 3)
-            DispatchQueue.main.async { // Without this tapping has no effect.
-                self.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
+            let y = (rect.origin.y + rect.height).rounded()
+            
+            if self.contentOffset.y != y {
+                UIView.animate(withDuration: 0.15) {
+                    self.setContentOffset(CGPoint(x: 0, y: y), animated: false)
+                }
             }
         }
         
