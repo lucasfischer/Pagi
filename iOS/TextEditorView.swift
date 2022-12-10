@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct TextEditorView: View {
+
+struct TextEditorView: UIViewControllerRepresentable {
     @Binding var text: String
     var font: String
     var size: CGFloat
@@ -15,101 +16,101 @@ struct TextEditorView: View {
     @Binding var focusMode: Bool
     var focusType: FocusType
     
-    var body: some View {
-        MultilineTextView(
-            text: $text,
-            font: font,
-            size: size,
-            isSpellCheckingEnabled: isSpellCheckingEnabled
-        )
+    var typingAttributes: [NSAttributedString.Key : Any] {
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineHeightMultiple = 1.3
+        paragraphStyle.lineSpacing = 4
+        
+        return [
+            NSAttributedString.Key.paragraphStyle : paragraphStyle,
+            NSAttributedString.Key.font: UIFont(name: font, size: size)!,
+            NSAttributedString.Key.foregroundColor: UIColor(.foreground)
+        ]
     }
     
-    struct MultilineTextView: UIViewControllerRepresentable {
-        @Binding var text: String
-        var font: String
-        var size: CGFloat
-        var isSpellCheckingEnabled: Bool = false
-        
-        var typingAttributes: [NSAttributedString.Key : Any] {
-            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-            paragraphStyle.lineHeightMultiple = 1.3
-            paragraphStyle.lineSpacing = 4
-            
-            return [
-                NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font: UIFont(name: font, size: size)!,
-                NSAttributedString.Key.foregroundColor: UIColor(.foreground)
-            ]
+    func makeUIViewController(context: Context) -> UIViewController {
+        let viewController = TextEditorController()
+        if let view = viewController.view as? UITextView {
+            view.delegate = context.coordinator
         }
         
-        func makeUIViewController(context: Context) -> UIViewController {
-            let viewController = TextEditorController()
-            if let view = viewController.view as? UITextView {
-                view.delegate = context.coordinator
-            }
-            
-            return viewController
+        return viewController
+    }
+    
+    func updateUIViewController(_ controller: UIViewController, context: Context) {
+        guard let vc = controller as? TextEditorController,
+              let view = controller.view as? PagiTextView
+        else { return }
+        
+        if view.text != text {
+            view.text = text
+            view.attributedText = NSAttributedString(string: text, attributes: typingAttributes)
         }
         
-        func updateUIViewController(_ controller: UIViewController, context: Context) {
-            guard let view = controller.view as? UITextView else { return }
-            
-            if view.text != text {
-                view.text = text
-                view.attributedText = NSAttributedString(string: text, attributes: typingAttributes)
+        view.typingAttributes = typingAttributes
+        view.font = UIFont(name: font, size: size)
+        view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
+        view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
+        
+        if focusMode != vc.focusMode {
+            vc.focusMode = focusMode
+            vc.setContainerInsets()
+            if focusMode {
+                view.focusSelection(animated: false)
             }
-            
-            view.typingAttributes = typingAttributes
-            view.font = UIFont(name: font, size: size)
-            view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
-            view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
+        }
+        context.coordinator.focusMode = focusMode
+        vc.focusMode = focusMode
+        vc.setContainerInsets()
+    }
+    
+}
+
+// MARK: - Coordinator
+extension TextEditorView {
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text, focusMode: focusMode)
+    }
+    
+    class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
+        var text: Binding<String>
+        var focusMode: Bool
+        
+        init(text: Binding<String>, focusMode: Bool) {
+            self.text = text
+            self.focusMode = focusMode
         }
         
-        func makeCoordinator() -> Coordinator {
-            Coordinator(text: $text)
+        func textViewDidChange(_ textView: UITextView) {
+            if (textView.markedTextRange != nil) {
+                return
+            }
+            self.text.wrappedValue = textView.text
         }
         
-        class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
-            var text: Binding<String>
-            
-            init(text: Binding<String>) {
-                self.text = text
-            }
-            
-            func textViewDidChange(_ textView: UITextView) {
-                if (textView.markedTextRange != nil) {
-                    return
-                }
-                self.text.wrappedValue = textView.text
-            }
-            
-            func textViewDidChangeSelection(_ textView: UITextView) {
-                guard let view = textView as? PagiTextView else { return }
+        func textViewDidChangeSelection(_ textView: UITextView) {
+            guard let view = textView as? PagiTextView else { return }
+            if focusMode {
                 view.focusSelection(animated: true)
             }
         }
     }
+    
 }
 
+
 extension TextEditorView {
+    
     final class TextEditorController: UIViewController {
         private let textView = PagiTextView()
+        
+        var focusMode: Bool = false
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-            if let view = self.view as? UITextView {
-                let frameWidth = view.frame.size.width
-                let frameHeight = view.frame.size.height
-                let horizontalPadding = max(((frameWidth - 650) / 2), 16)
-                let verticalPadding = frameHeight / 2
-                view.textContainerInset = UIEdgeInsets(
-                    top: verticalPadding,
-                    left: horizontalPadding,
-                    bottom: verticalPadding,
-                    right: horizontalPadding
-                )
-            }
+            setContainerInsets()
         }
         
         override func loadView() {
@@ -124,7 +125,23 @@ extension TextEditorView {
             
             view.becomeFirstResponder()
         }
+        
+        func setContainerInsets() {
+            if let view = self.view as? UITextView {
+                let frameWidth = view.frame.size.width
+                let frameHeight = view.frame.size.height
+                let horizontalPadding = max(((frameWidth - 650) / 2), 16)
+                let verticalPadding = focusMode ? frameHeight / 2 : 32
+                view.textContainerInset = UIEdgeInsets(
+                    top: verticalPadding,
+                    left: horizontalPadding,
+                    bottom: verticalPadding,
+                    right: horizontalPadding
+                )
+            }
+        }
     }
+    
 }
 
 extension TextEditorView {

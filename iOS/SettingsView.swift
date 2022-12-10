@@ -14,6 +14,7 @@ struct SettingsView: View {
     @AppStorage("wordCount") private var wordCount = true
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
+    @AppStorage("focusMode") private var isFocusModeEnabled = false
     
     @AppStorage("theme") private var theme = Theme.system
     @AppStorage("font") private var font = iAFont.duo
@@ -52,6 +53,7 @@ struct SettingsView: View {
                         Toggle("Word Count", isOn: $wordCount.animation(.spring()))
                         Toggle("Progress Bar", isOn: $progressBar.animation(.spring()))
                         Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
+                        Toggle("Focus Mode", isOn: $isFocusModeEnabled)
                     }
                     
                     Section("Appearance", content: {
