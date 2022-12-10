@@ -158,7 +158,9 @@ extension TextEditorView {
             
             let differenceIsTooBig = abs(self.contentOffset.y - y) >= rect.height
             if differenceIsTooBig {
-                self.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
+                UIView.animate(withDuration: animated ?  0.15 : 0) {
+                    self.contentOffset.y = y
+                }
             }
         }
         
