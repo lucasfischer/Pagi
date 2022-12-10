@@ -56,6 +56,7 @@ struct ContentView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
         }
+        .setPersistentSystemOverlays(.hidden)
         .navigationViewStyle(.stack)
         .fileExporter(
             isPresented: $viewModel.showExport,
