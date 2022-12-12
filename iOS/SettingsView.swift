@@ -15,6 +15,7 @@ struct SettingsView: View {
     @AppStorage("progressBar") private var progressBar = true
     @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
     @AppStorage("focusMode") private var isFocusModeEnabled = false
+    @AppStorage("focusType") private var focusType = FocusType.sentence
     
     @AppStorage("theme") private var theme = Theme.system
     @AppStorage("font") private var font = iAFont.duo
@@ -54,6 +55,14 @@ struct SettingsView: View {
                         Toggle("Progress Bar", isOn: $progressBar.animation(.spring()))
                         Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
                         Toggle("Focus Mode", isOn: $isFocusModeEnabled)
+                        Picker("Focus:", selection: $focusType) {
+                            ForEach(FocusType.allCases, id: \.self) { type in
+                                Button(type.title) {
+                                    focusType = type
+                                }
+                            }
+                        }
+                        .pickerStyle(.menu)
                     }
                     
                     Section("Appearance", content: {

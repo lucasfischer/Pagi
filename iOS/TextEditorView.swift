@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import NaturalLanguage
 
 struct TextEditorView: UIViewControllerRepresentable {
     @Binding var text: String
@@ -15,18 +15,6 @@ struct TextEditorView: UIViewControllerRepresentable {
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
     var focusType: FocusType
-    
-    var typingAttributes: [NSAttributedString.Key : Any] {
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-        paragraphStyle.lineHeightMultiple = 1.3
-        paragraphStyle.lineSpacing = 4
-        
-        return [
-            NSAttributedString.Key.paragraphStyle : paragraphStyle,
-            NSAttributedString.Key.font: UIFont(name: font, size: size)!,
-            NSAttributedString.Key.foregroundColor: UIColor(.foreground)
-        ]
-    }
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = TextEditorController()
@@ -38,30 +26,44 @@ struct TextEditorView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ controller: UIViewController, context: Context) {
-        guard let vc = controller as? TextEditorController,
-              let view = controller.view as? PagiTextView
-        else { return }
+        guard let view = controller.view as? PagiTextView else { return }
         
         if view.text != text {
             view.text = text
-            view.attributedText = NSAttributedString(string: text, attributes: typingAttributes)
+            view.attributedText = NSAttributedString(string: text, attributes: view.defaultTypingAttributes)
         }
         
-        view.typingAttributes = typingAttributes
-        view.font = UIFont(name: font, size: size)
-        view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
-        view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
+        if view.selectedFont != font {
+            view.selectedFont = font
+            view.font = UIFont(name: font, size: size)
+        }
+        if view.size != size {
+            view.size = size
+        }
         
-        if focusMode != vc.focusMode {
-            vc.focusMode = focusMode
-            vc.setContainerInsets()
+        if focusMode != view.focusMode {
+            context.coordinator.focusMode = focusMode
+            view.focusMode = focusMode
+            
+            view.setContainerInsets()
             if focusMode {
                 view.focusSelection(animated: false)
+                view.highlightSelectedParagraph()
+            } else {
+                view.resetFocusMode()
             }
         }
-        context.coordinator.focusMode = focusMode
-        vc.focusMode = focusMode
-        vc.setContainerInsets()
+        
+        if focusType != view.focusType {
+            context.coordinator.focusType = focusType
+            view.focusType = focusType
+            if focusMode {
+                view.highlightSelectedParagraph()
+            }
+        }
+        
+        view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
+        view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
     }
     
 }
@@ -76,6 +78,7 @@ extension TextEditorView {
     class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
         var text: Binding<String>
         var focusMode: Bool
+        var focusType: FocusType = .paragraph
         
         init(text: Binding<String>, focusMode: Bool) {
             self.text = text
@@ -86,6 +89,8 @@ extension TextEditorView {
             if (textView.markedTextRange != nil) {
                 return
             }
+            
+            // TODO: debounce
             self.text.wrappedValue = textView.text
         }
         
@@ -93,6 +98,7 @@ extension TextEditorView {
             guard let view = textView as? PagiTextView else { return }
             if focusMode {
                 view.focusSelection(animated: true)
+                view.highlightSelectedParagraph()
             }
         }
     }
@@ -105,12 +111,10 @@ extension TextEditorView {
     final class TextEditorController: UIViewController {
         private let textView = PagiTextView()
         
-        var focusMode: Bool = false
-        
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            
-            setContainerInsets()
+            textView.setContainerInsets()
+            textView.typingAttributes = textView.defaultTypingAttributes
         }
         
         override func loadView() {
@@ -122,30 +126,95 @@ extension TextEditorView {
             view.isEditable = true
             view.isUserInteractionEnabled = true
             view.allowsEditingTextAttributes = false
+            view.isPagingEnabled = false
+            view.automaticallyAdjustsScrollIndicatorInsets = false
+            view.contentInsetAdjustmentBehavior = .never
             
             view.becomeFirstResponder()
         }
         
-        func setContainerInsets() {
-            if let view = self.view as? UITextView {
-                let frameWidth = view.frame.size.width
-                let frameHeight = view.frame.size.height
-                let horizontalPadding = max(((frameWidth - 650) / 2), 16)
-                let verticalPadding = focusMode ? frameHeight / 2 : 32
-                view.textContainerInset = UIEdgeInsets(
-                    top: verticalPadding,
-                    left: horizontalPadding,
-                    bottom: verticalPadding,
-                    right: horizontalPadding
-                )
-            }
-        }
     }
     
 }
 
 extension TextEditorView {
     class PagiTextView: UITextView {
+        var selectedFont: String = "iAWriterMonoV-Text"
+        var size: Double = 18
+        var focusMode: Bool = false
+        var focusType: FocusType = .paragraph
+        
+        var defaultTypingAttributes: [NSAttributedString.Key : Any] {
+            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            paragraphStyle.lineHeightMultiple = 1.3
+            paragraphStyle.lineSpacing = 4
+            
+            return [
+                NSAttributedString.Key.paragraphStyle : paragraphStyle,
+                NSAttributedString.Key.font: UIFont(name: selectedFont, size: size)!,
+                NSAttributedString.Key.foregroundColor: UIColor(.foreground)
+            ]
+        }
+        
+        func setContainerInsets() {
+            let frameWidth = frame.size.width
+            let frameHeight = frame.size.height
+            let horizontalPadding = max(((frameWidth - 650) / 2), 16)
+            let verticalPadding = focusMode ? frameHeight / 2 : 48
+            let inset = UIEdgeInsets(
+                top: verticalPadding,
+                left: horizontalPadding,
+                bottom: verticalPadding,
+                right: horizontalPadding
+            )
+            
+            textContainerInset = focusMode ? inset : .zero
+            contentInset = focusMode ? .zero : inset
+        }
+        
+        private func setTemporaryForegroundColor(
+            _ color: Color,
+            forCharacterRange: NSRange? = nil
+        ) {
+            // Use full string range if none was provided
+            let range = forCharacterRange ?? NSRange(text.startIndex..<text.endIndex, in: text)
+            
+            var attributes = defaultTypingAttributes
+            attributes[.foregroundColor] = UIColor(color)
+            textStorage.setAttributes(attributes, range: range)
+        }
+        
+        func resetFocusMode() {
+            setContainerInsets()
+            setTemporaryForegroundColor(.foreground)
+        }
+        
+        func highlightSelectedParagraph() {
+            let textView = self
+            let text = textView.text!
+            let selectedRange = textView.selectedRange
+            
+            if focusType == .typeWriter {
+                setTemporaryForegroundColor(.foreground)
+                return
+            } else {
+                setTemporaryForegroundColor(.foregroundFaded)
+            }
+            
+            var range = Range(selectedRange, in: text)!
+            // Fix for last character in String
+            if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
+                let lowerBound = text.index(range.lowerBound, offsetBy: -1)
+                range = lowerBound..<range.upperBound
+            }
+            
+            // Find range in current selection
+            let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
+            tokenizer.string = text
+            let tokenRange = tokenizer.tokenRange(for: range)
+            let paragraph = NSRange(tokenRange, in: text)
+            setTemporaryForegroundColor(.foreground, forCharacterRange: paragraph)
+        }
         
         func focusSelection(animated: Bool = false) {
             // TODO: re-write this without hacks
