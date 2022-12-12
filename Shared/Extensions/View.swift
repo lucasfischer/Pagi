@@ -9,6 +9,7 @@ import SwiftUI
 
 extension View {
     
+    @available(macOS 12.0, *)
     func setPersistentSystemOverlays(_ visibility: Visibility) -> some View {
         if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
             return self.persistentSystemOverlays(visibility)
