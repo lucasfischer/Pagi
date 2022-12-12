@@ -119,19 +119,15 @@ struct Editor: View {
         .overlay(
             VStack {
                 VStack {
-                    #if os(macOS)
                     wordCount()
                     progressBar()
-                    #else
-                    progressBar()
-                    wordCount()
-                    #endif
                 }
                 .onHover(perform: { hover in
                     viewModel.overlayHover = hover
                 })
             }
-                .frame(maxHeight: .infinity, alignment: isiOS ? .top : .bottom)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .ignoresSafeArea(.all, edges: [.bottom])
         )
         .onAppear {
             viewModel.calculateWordCount(text)

@@ -130,6 +130,9 @@ extension TextEditorView {
             view.automaticallyAdjustsScrollIndicatorInsets = false
             view.contentInsetAdjustmentBehavior = .never
             
+            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            view.verticalScrollIndicatorInsets.bottom = scene?.windows.first?.safeAreaInsets.bottom ?? 0
+            
             view.becomeFirstResponder()
         }
         
