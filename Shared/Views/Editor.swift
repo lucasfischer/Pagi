@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Editor: View {
     @Binding var text: String
-    
+    @Binding var shouldHideToolbar: Bool
     @StateObject var viewModel = EditorViewModel()
     
     #if os(iOS)
@@ -19,14 +19,6 @@ struct Editor: View {
     #endif
     private let progressBarHeight: CGFloat = 24
     
-    init(text: Binding<String>) {
-        #if os(iOS)
-        UITextView.appearance().backgroundColor = .clear
-        #endif
-        
-        self._text = text
-    }
-    
     @ViewBuilder
     func iOSEditor() -> some View {
         TextEditorView(
@@ -35,7 +27,8 @@ struct Editor: View {
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
             focusMode: $viewModel.focusMode,
-            focusType: viewModel.focusType
+            focusType: viewModel.focusType,
+            shouldHideToolbar: $shouldHideToolbar
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea(.all, edges: [.bottom])
@@ -49,7 +42,8 @@ struct Editor: View {
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
             focusMode: $viewModel.focusMode,
-            focusType: viewModel.focusType
+            focusType: viewModel.focusType,
+            shouldHideToolbar: $shouldHideToolbar
         )
             .id("\(viewModel.font.rawValue)\(viewModel.fontSize)")
     }
@@ -140,6 +134,6 @@ struct Editor: View {
 
 struct Editor_Previews: PreviewProvider {
     static var previews: some View {
-        Editor(text: .constant("This is a test."))
+        Editor(text: .constant("This is a test."), shouldHideToolbar: .constant(false))
     }
 }

@@ -11,17 +11,19 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.background.ignoresSafeArea()
-                
-                Editor(text: $viewModel.text)
-                    .id(viewModel.lastOpenedDate)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+        
+        Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
+            .ignoresSafeArea()
+            .id(viewModel.lastOpenedDate)
+            .animation(.default, value: viewModel.shouldHideToolbar)
+            .statusBarHidden(viewModel.shouldHideToolbar)
+            .setPersistentSystemOverlays(viewModel.shouldHideToolbar ? .hidden : .automatic)
+            .overlay(alignment: .top) {
+                HStack {
                     Button(action: { viewModel.showSettings.toggle() }) {
                         Label("Settings", systemImage: "gear")
+                            .labelStyle(.iconOnly)
+                            .font(.title2)
                     }
                     .keyboardShortcut(",", modifiers: .command)
                     .popover(isPresented: $viewModel.showSettings) {
@@ -34,8 +36,9 @@ struct ContentView: View {
                             )
                             .preferredColorScheme(viewModel.theme.colorScheme)
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    Spacer()
+                    
                     Menu {
                         Button(action: { viewModel.showShareSheet.toggle() }) {
                             Label("Share", systemImage: "square.and.arrow.up")
@@ -46,48 +49,60 @@ struct ContentView: View {
                     } label: {
                         Button(action: { viewModel.showExport.toggle() }) {
                             Label("Share", systemImage: "square.and.arrow.up")
+                                .labelStyle(.iconOnly)
+                                .font(.title2)
                         }
                     }
                     .disabled(viewModel.text.isEmpty)
                     .popover(isPresented: $viewModel.showShareSheet) {
                         ShareSheet(activityItems: [viewModel.text])
                     }
+                    
                 }
+                .ignoresSafeArea()
+                .padding(.horizontal)
+                .padding(.vertical, 12)
+                //                .frame(height: 48)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .frame(height: 1)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.black.opacity(0.1))
+                }
+                .offset(x: 0, y: viewModel.shouldHideToolbar ? -48 : 0)
+                .animation(.easeInOut(duration: 0.3), value: viewModel.shouldHideToolbar)
             }
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .setPersistentSystemOverlays(.hidden)
-        .navigationViewStyle(.stack)
-        .fileExporter(
-            isPresented: $viewModel.showExport,
-            document: PagiDocument(text: viewModel.text),
-            contentType: .plainText,
-            defaultFilename: viewModel.currentDateString,
-            onCompletion: viewModel.onFileExported
-        )
-        .alert(
-            "Do you want to clear your notes?",
-            isPresented: $viewModel.showClearNotification,
-            actions: {
-                Button("Keep") {
-                    viewModel.showClearNotification = false
-                }
-                Button("Clear") {
-                    viewModel.showClearNotification = false
-                    viewModel.reset()
-                }
-                if !viewModel.isFileExported {
-                    Button("Export then clear") {
-                        viewModel.showExport = true
-                        viewModel.shouldReset = true
+            .fileExporter(
+                isPresented: $viewModel.showExport,
+                document: PagiDocument(text: viewModel.text),
+                contentType: .plainText,
+                defaultFilename: viewModel.currentDateString,
+                onCompletion: viewModel.onFileExported
+            )
+            .alert(
+                "Do you want to clear your notes?",
+                isPresented: $viewModel.showClearNotification,
+                actions: {
+                    Button("Keep") {
+                        viewModel.showClearNotification = false
                     }
-                }
-            })
-        .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
-        .onAppear(perform: viewModel.onAppear)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            viewModel.onAppear()
-        }
+                    Button("Clear") {
+                        viewModel.showClearNotification = false
+                        viewModel.reset()
+                    }
+                    if !viewModel.isFileExported {
+                        Button("Export then clear") {
+                            viewModel.showExport = true
+                            viewModel.shouldReset = true
+                        }
+                    }
+                })
+            .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
+            .onAppear(perform: viewModel.onAppear)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                viewModel.onAppear()
+            }
     }
 }
 
@@ -102,6 +117,7 @@ extension ContentView {
         @Published var showSettings = false
         @Published var showShareSheet = false
         @Published var showClearNotification = false
+        @Published var shouldHideToolbar = false
         
         var shouldReset = false
         

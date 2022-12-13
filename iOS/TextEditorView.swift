@@ -15,6 +15,7 @@ struct TextEditorView: UIViewControllerRepresentable {
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
     var focusType: FocusType
+    @Binding var shouldHideToolbar: Bool
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = TextEditorController()
@@ -72,17 +73,21 @@ struct TextEditorView: UIViewControllerRepresentable {
 extension TextEditorView {
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text, focusMode: focusMode)
+        Coordinator(text: $text, focusMode: focusMode, shouldHideToolbar: $shouldHideToolbar)
     }
     
     class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
         var text: Binding<String>
         var focusMode: Bool
         var focusType: FocusType = .paragraph
+        var shouldHideToolbar: Binding<Bool>
         
-        init(text: Binding<String>, focusMode: Bool) {
+        private var lastVelocityYSign = 0
+        
+        init(text: Binding<String>, focusMode: Bool, shouldHideToolbar: Binding<Bool>) {
             self.text = text
             self.focusMode = focusMode
+            self.shouldHideToolbar = shouldHideToolbar
         }
         
         func textViewDidChange(_ textView: UITextView) {
@@ -91,7 +96,8 @@ extension TextEditorView {
             }
             
             // TODO: debounce
-            self.text.wrappedValue = textView.text
+            text.wrappedValue = textView.text
+            shouldHideToolbar.wrappedValue = true
         }
         
         func textViewDidChangeSelection(_ textView: UITextView) {
@@ -99,6 +105,21 @@ extension TextEditorView {
             if focusMode {
                 view.focusSelection(animated: true)
                 view.highlightSelectedParagraph()
+            }
+        }
+        
+        // MARK: UIScrollView
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let currentVelocityY =  scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y
+            let currentVelocityYSign = Int(currentVelocityY).signum()
+            if currentVelocityYSign != lastVelocityYSign &&
+                currentVelocityYSign != 0 {
+                lastVelocityYSign = currentVelocityYSign
+            }
+            if lastVelocityYSign < 0 {
+                shouldHideToolbar.wrappedValue = true
+            } else if lastVelocityYSign > 0 {
+                shouldHideToolbar.wrappedValue = false
             }
         }
     }
@@ -122,6 +143,7 @@ extension TextEditorView {
             let view = textView
             
             view.textColor = UIColor(.foreground)
+            view.backgroundColor = UIColor(.background)
             view.isScrollEnabled = true
             view.isEditable = true
             view.isUserInteractionEnabled = true
@@ -132,6 +154,7 @@ extension TextEditorView {
             
             let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             view.verticalScrollIndicatorInsets.bottom = scene?.windows.first?.safeAreaInsets.bottom ?? 0
+            view.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
             
             view.becomeFirstResponder()
         }
@@ -163,7 +186,7 @@ extension TextEditorView {
             let frameWidth = frame.size.width
             let frameHeight = frame.size.height
             let horizontalPadding = max(((frameWidth - 650) / 2), 16)
-            let verticalPadding = focusMode ? frameHeight / 2 : 48
+            let verticalPadding = focusMode ? frameHeight / 2 : 80
             let inset = UIEdgeInsets(
                 top: verticalPadding,
                 left: horizontalPadding,
@@ -250,7 +273,8 @@ struct TextEditorView_Previews: PreviewProvider {
                 size: 18,
                 isSpellCheckingEnabled: false,
                 focusMode: .constant(false),
-                focusType: .sentence
+                focusType: .sentence,
+                shouldHideToolbar: .constant(false)
             )
         }
     }
