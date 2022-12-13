@@ -62,7 +62,6 @@ struct ContentView: View {
                 .ignoresSafeArea()
                 .padding(.horizontal)
                 .padding(.vertical, 12)
-                //                .frame(height: 48)
                 .background(Color(uiColor: .tertiarySystemBackground))
                 .overlay(alignment: .bottom) {
                     Rectangle()
@@ -70,7 +69,7 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.black.opacity(0.1))
                 }
-                .offset(x: 0, y: viewModel.shouldHideToolbar ? -48 : 0)
+                .offset(x: 0, y: viewModel.shouldHideToolbar ? -56 : 0)
                 .animation(.easeInOut(duration: 0.3), value: viewModel.shouldHideToolbar)
             }
             .fileExporter(

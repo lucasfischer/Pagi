@@ -110,8 +110,7 @@ extension TextEditorView {
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             let currentVelocityY =  scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y
             let currentVelocityYSign = Int(currentVelocityY).signum()
-            if currentVelocityYSign != lastVelocityYSign &&
-                currentVelocityYSign != 0 {
+            if currentVelocityYSign != lastVelocityYSign {
                 lastVelocityYSign = currentVelocityYSign
             }
             if lastVelocityYSign < 0 {
