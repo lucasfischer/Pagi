@@ -56,7 +56,6 @@ struct TextEditorView: UIViewControllerRepresentable {
         }
         
         if focusType != view.focusType {
-            context.coordinator.focusType = focusType
             view.focusType = focusType
             if focusMode {
                 view.highlightSelectedParagraph()
@@ -79,7 +78,6 @@ extension TextEditorView {
     class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
         var text: Binding<String>
         var focusMode: Bool
-        var focusType: FocusType = .paragraph
         var shouldHideToolbar: Binding<Bool>
         
         private var lastVelocityYSign = 0
