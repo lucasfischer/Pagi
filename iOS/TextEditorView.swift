@@ -116,8 +116,14 @@ extension TextEditorView {
             }
             if lastVelocityYSign < 0 {
                 shouldHideToolbar = true
+                UIView.animate(withDuration: 0.3) {
+                    scrollView.resetScrollIndicators()
+                }
             } else if lastVelocityYSign > 0 {
                 shouldHideToolbar = false
+                UIView.animate(withDuration: 0.3) {
+                    scrollView.padScrollIndicators()
+                }
             }
         }
     }
@@ -150,9 +156,7 @@ extension TextEditorView {
             view.automaticallyAdjustsScrollIndicatorInsets = false
             view.contentInsetAdjustmentBehavior = .never
             
-            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            view.verticalScrollIndicatorInsets.bottom = scene?.windows.first?.safeAreaInsets.bottom ?? 0
-            view.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
+            view.resetScrollIndicators()
             
             view.becomeFirstResponder()
         }
@@ -257,6 +261,18 @@ extension TextEditorView {
             }
         }
         
+    }
+}
+
+extension UIScrollView {
+    func resetScrollIndicators() {
+        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        verticalScrollIndicatorInsets.bottom = (scene?.windows.first?.safeAreaInsets.bottom ?? 0) + 4
+        verticalScrollIndicatorInsets.top = max(scene?.windows.first?.safeAreaInsets.top ?? 0, 20)
+    }
+    
+    func padScrollIndicators() {
+        verticalScrollIndicatorInsets.top = 74
     }
 }
 
