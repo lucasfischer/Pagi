@@ -126,6 +126,11 @@ extension TextEditorView {
                 }
             }
         }
+        
+        func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            guard let view = scrollView as? PagiTextView else { return }
+            view.resetHighlight()
+        }
     }
     
 }
@@ -139,7 +144,6 @@ extension TextEditorView {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             textView.setContainerInsets()
-            textView.typingAttributes = textView.defaultTypingAttributes
         }
         
         override func loadView() {
@@ -166,11 +170,17 @@ extension TextEditorView {
 }
 
 extension TextEditorView {
+    enum HighlightState: String {
+        case full
+        case partial
+    }
+    
     class PagiTextView: UITextView {
         var selectedFont: String = "iAWriterMonoV-Text"
         var size: Double = 18
         var focusMode: Bool = false
         var focusType: FocusType = .paragraph
+        var highlightState: HighlightState = .full
         
         var defaultTypingAttributes: [NSAttributedString.Key : Any] {
             let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
@@ -187,12 +197,11 @@ extension TextEditorView {
         func setContainerInsets() {
             let frameWidth = frame.size.width
             let frameHeight = frame.size.height
-            let horizontalPadding = max(((frameWidth - 650) / 2), 16)
-            let verticalPadding = focusMode ? frameHeight / 2 : 80
+            let horizontalPadding = max((frameWidth - 650) / 2, 16)
             let inset = UIEdgeInsets(
-                top: verticalPadding,
+                top: focusMode ? frameHeight / 2 : 120,
                 left: horizontalPadding,
-                bottom: verticalPadding,
+                bottom: focusMode ? frameHeight / 2 : 80,
                 right: horizontalPadding
             )
             
@@ -200,21 +209,28 @@ extension TextEditorView {
             contentInset = focusMode ? .zero : inset
         }
         
-        private func setTemporaryForegroundColor(
-            _ color: Color,
-            forCharacterRange: NSRange? = nil
-        ) {
-            // Use full string range if none was provided
-            let range = forCharacterRange ?? NSRange(text.startIndex..<text.endIndex, in: text)
-            
+        private func highlightRange(_ range: NSRange) {
+            highlightState = .partial
+            textColor = UIColor(.foregroundFaded)
             var attributes = defaultTypingAttributes
-            attributes[.foregroundColor] = UIColor(color)
+            attributes[.foregroundColor] = UIColor(.foreground)
             textStorage.setAttributes(attributes, range: range)
         }
         
         func resetFocusMode() {
             setContainerInsets()
-            setTemporaryForegroundColor(.foreground)
+            resetHighlight()
+        }
+        
+        func resetHighlight() {
+            if highlightState == .partial {
+                var attributes = defaultTypingAttributes
+                let range = NSRange(text.startIndex..<text.endIndex, in: text)
+                attributes[.foregroundColor] = UIColor(.foreground)
+                textStorage.setAttributes(attributes, range: range)
+            }
+            
+            highlightState = .full
         }
         
         func highlightSelectedParagraph() {
@@ -223,10 +239,8 @@ extension TextEditorView {
             let selectedRange = textView.selectedRange
             
             if focusType == .typeWriter {
-                setTemporaryForegroundColor(.foreground)
+                resetHighlight()
                 return
-            } else {
-                setTemporaryForegroundColor(.foregroundFaded)
             }
             
             var range = Range(selectedRange, in: text)!
@@ -241,7 +255,7 @@ extension TextEditorView {
             tokenizer.string = text
             let tokenRange = tokenizer.tokenRange(for: range)
             let paragraph = NSRange(tokenRange, in: text)
-            setTemporaryForegroundColor(.foreground, forCharacterRange: paragraph)
+            highlightRange(paragraph)
         }
         
         func focusSelection(animated: Bool = false) {
