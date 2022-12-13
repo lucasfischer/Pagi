@@ -76,16 +76,16 @@ extension TextEditorView {
     }
     
     class Coordinator: NSObject, UITextViewDelegate, UIScrollViewDelegate {
-        var text: Binding<String>
+        @Binding var text: String
         var focusMode: Bool
-        var shouldHideToolbar: Binding<Bool>
+        @Binding var shouldHideToolbar: Bool
         
         private var lastVelocityYSign = 0
         
         init(text: Binding<String>, focusMode: Bool, shouldHideToolbar: Binding<Bool>) {
-            self.text = text
+            self._text = text
             self.focusMode = focusMode
-            self.shouldHideToolbar = shouldHideToolbar
+            self._shouldHideToolbar = shouldHideToolbar
         }
         
         func textViewDidChange(_ textView: UITextView) {
@@ -94,8 +94,8 @@ extension TextEditorView {
             }
             
             // TODO: debounce
-            text.wrappedValue = textView.text
-            shouldHideToolbar.wrappedValue = true
+            text = textView.text
+            shouldHideToolbar = true
         }
         
         func textViewDidChangeSelection(_ textView: UITextView) {
@@ -115,9 +115,9 @@ extension TextEditorView {
                 lastVelocityYSign = currentVelocityYSign
             }
             if lastVelocityYSign < 0 {
-                shouldHideToolbar.wrappedValue = true
+                shouldHideToolbar = true
             } else if lastVelocityYSign > 0 {
-                shouldHideToolbar.wrappedValue = false
+                shouldHideToolbar = false
             }
         }
     }
