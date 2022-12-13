@@ -30,7 +30,6 @@ struct TextEditorView: UIViewControllerRepresentable {
         guard let view = controller.view as? PagiTextView else { return }
         
         if view.text != text {
-            view.text = text
             view.attributedText = NSAttributedString(string: text, attributes: view.defaultTypingAttributes)
         }
         
