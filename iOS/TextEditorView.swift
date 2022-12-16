@@ -157,6 +157,7 @@ extension TextEditorView {
             view.isPagingEnabled = false
             view.automaticallyAdjustsScrollIndicatorInsets = false
             view.contentInsetAdjustmentBehavior = .never
+            view.alwaysBounceVertical = true
             
             view.resetScrollIndicators()
             
