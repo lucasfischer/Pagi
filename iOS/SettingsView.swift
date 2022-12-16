@@ -69,16 +69,11 @@ struct SettingsView: View {
                         Slider(value: $fontSize, in: 10...40, step: 1) {
                             Text("Font Size (\(fontSize, specifier: "%.0f")):")
                         } minimumValueLabel: {
-                            Image(systemName: "character")
-                                .resizable()
-                                .frame(width: 8, height: 8)
-                                .foregroundColor(.secondary)
+                            Image(systemName: "textformat.size.smaller")
                         } maximumValueLabel: {
-                            Image(systemName: "character")
-                                .resizable()
-                                .frame(width: 14, height: 14)
-                                .foregroundColor(.secondary)
+                            Image(systemName: "textformat.size.larger")
                         }
+                        .foregroundColor(.secondary)
                         
                         Picker("Font", selection: $font) {
                             ForEach(iAFont.allCases, id: \.self) { font in
