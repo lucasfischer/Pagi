@@ -164,6 +164,12 @@ extension TextEditorView {
             view.becomeFirstResponder()
         }
         
+        // Update insets when device orientation changes
+        override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+            super.viewWillTransition(to: size, with: coordinator)
+            textView.setContainerInsets(width: size.width, height: size.height)
+        }
+        
     }
     
 }
@@ -193,9 +199,10 @@ extension TextEditorView {
             ]
         }
         
-        func setContainerInsets() {
-            let frameWidth = frame.size.width
-            let frameHeight = frame.size.height
+        func setContainerInsets(width: Double? = nil, height: Double? = nil) {
+            let frameWidth = width ?? frame.size.width
+            let frameHeight = height ?? frame.size.height
+            
             let horizontalPadding = max((frameWidth - 650) / 2, 16)
             let inset = UIEdgeInsets(
                 top: focusMode ? frameHeight / 2 : 120,
