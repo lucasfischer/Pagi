@@ -230,7 +230,6 @@ extension TextEditorView {
         }
         
         func resetFocusMode() {
-            setContainerInsets()
             resetHighlight()
         }
         
