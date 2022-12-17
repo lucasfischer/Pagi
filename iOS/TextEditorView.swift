@@ -158,6 +158,7 @@ extension TextEditorView {
             view.allowsEditingTextAttributes = false
             view.isPagingEnabled = false
             view.automaticallyAdjustsScrollIndicatorInsets = false
+            view.insetsLayoutMarginsFromSafeArea = false
             view.contentInsetAdjustmentBehavior = .never
             view.alwaysBounceVertical = true
             if #available(iOS 16, *) {
