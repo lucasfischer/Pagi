@@ -46,6 +46,8 @@ struct TextEditorView: UIViewControllerRepresentable {
             view.focusMode = focusMode
             
             view.setContainerInsets()
+            view.setTypingAttributes()
+            
             if focusMode {
                 view.focusSelection(animated: false)
                 view.highlightSelectedParagraph()
@@ -197,6 +199,10 @@ extension TextEditorView {
                 NSAttributedString.Key.font: UIFont(name: selectedFont, size: size)!,
                 NSAttributedString.Key.foregroundColor: UIColor(.foreground)
             ]
+        }
+        
+        func setTypingAttributes() {
+            typingAttributes = defaultTypingAttributes
         }
         
         func setContainerInsets(width: Double? = nil, height: Double? = nil) {
