@@ -160,6 +160,9 @@ extension TextEditorView {
             view.automaticallyAdjustsScrollIndicatorInsets = false
             view.contentInsetAdjustmentBehavior = .never
             view.alwaysBounceVertical = true
+            if #available(iOS 16, *) {
+                view.isFindInteractionEnabled = true
+            }
             
             view.resetScrollIndicators()
             
