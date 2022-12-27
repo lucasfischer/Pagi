@@ -35,10 +35,11 @@ struct TextEditorView: UIViewControllerRepresentable {
         
         if view.selectedFont != font {
             view.selectedFont = font
-            view.font = UIFont(name: font, size: size)
+            view.updateAttributes()
         }
         if view.size != size {
             view.size = size
+            view.updateAttributes()
         }
         
         if focusMode != view.focusMode {
@@ -48,19 +49,13 @@ struct TextEditorView: UIViewControllerRepresentable {
             view.setContainerInsets()
             view.setTypingAttributes()
             
-            if focusMode {
-                view.focusSelection(animated: false)
-                view.highlightSelectedParagraph()
-            } else {
-                view.resetFocusMode()
-            }
+            view.updateAttributes(animated: true)
         }
         
         if focusType != view.focusType {
             view.focusType = focusType
-            if focusMode {
-                view.highlightSelectedParagraph()
-            }
+            
+            view.updateAttributes()
         }
         
         view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
@@ -233,8 +228,14 @@ extension TextEditorView {
             textStorage.setAttributes(attributes, range: range)
         }
         
-        func resetFocusMode() {
+        func updateAttributes(animated: Bool = false) {
+            highlightState = .partial
             resetHighlight()
+            
+            if focusMode {
+                highlightSelectedParagraph()
+                focusSelection(animated: animated)
+            }
         }
         
         func resetHighlight() {
