@@ -16,7 +16,7 @@ class EditorViewModel: ObservableObject {
     @AppStorage("progressBar") var progressBar = true
     @AppStorage("font") var font = iAFont.duo
     @AppStorage("fontSize") var fontSize = 18
-    @AppStorage("focusMode") var focusMode = false
+    @AppStorage("focusMode") var focusMode = true
     @AppStorage("focusType") var focusType = FocusType.sentence
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
     
