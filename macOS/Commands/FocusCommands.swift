@@ -14,7 +14,7 @@ struct FocusCommands: Commands {
     
     var body: some Commands {
         CommandMenu("Focus") {
-            Toggle("Focus Mode", isOn: $focusMode)
+            Toggle(focusMode ? "Disable Focus Mode" : "Enable Focus Mode", isOn: $focusMode)
                 .keyboardShortcut("d", modifiers: .command)
             
             Picker("Mode", selection: $focusType) {
