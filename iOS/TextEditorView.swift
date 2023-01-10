@@ -146,6 +146,7 @@ extension TextEditorView {
             
             view.textColor = UIColor(.foreground)
             view.backgroundColor = UIColor(.background)
+            view.setTypingAttributes()
             view.isScrollEnabled = true
             view.isEditable = true
             view.autocorrectionType = .no // hides the predictive keyboard bar
