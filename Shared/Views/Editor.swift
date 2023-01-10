@@ -12,11 +12,6 @@ struct Editor: View {
     @Binding var shouldHideToolbar: Bool
     @StateObject var viewModel = EditorViewModel()
     
-    #if os(iOS)
-    private let isiOS = true
-    #else
-    private let isiOS = false
-    #endif
     private let progressBarHeight: CGFloat = 24
     
     @ViewBuilder
@@ -65,7 +60,7 @@ struct Editor: View {
                     .animation(nil, value: viewModel.words)
             }
         }
-        .padding(isiOS ? .top : .bottom, viewModel.progressBarVisible ? 0 : 10)
+        .padding(.bottom, viewModel.progressBarVisible ? 0 : 10)
         .animation(.interactiveSpring(), value: viewModel.overlayHover)
         .animation(.default, value: viewModel.words)
     }
@@ -79,7 +74,7 @@ struct Editor: View {
                     color: .accentColor,
                     height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
                 )
-                .transition(.move(edge: isiOS ? .top : .bottom))
+                .transition(.move(edge: .bottom))
                 .animation(.default, value: viewModel.words)
                 .animation(.interactiveSpring(), value: viewModel.overlayHover)
                 .overlay (
