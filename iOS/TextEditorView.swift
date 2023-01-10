@@ -59,7 +59,6 @@ struct TextEditorView: UIViewControllerRepresentable {
         }
         
         view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
-        view.autocorrectionType = isSpellCheckingEnabled ? .yes : .no
     }
     
 }
@@ -149,6 +148,7 @@ extension TextEditorView {
             view.backgroundColor = UIColor(.background)
             view.isScrollEnabled = true
             view.isEditable = true
+            view.autocorrectionType = .no // hides the predictive keyboard bar
             view.isUserInteractionEnabled = true
             view.allowsEditingTextAttributes = false
             view.isPagingEnabled = false
@@ -159,6 +159,12 @@ extension TextEditorView {
             if #available(iOS 16, *) {
                 view.isFindInteractionEnabled = true
             }
+            
+            // Removes the keyboard overlay when a hardware keyboard activated
+            // TODO: Only remove excute when hardware keyboard is activated
+            let item = view.inputAssistantItem
+            item.leadingBarButtonGroups = []
+            item.trailingBarButtonGroups = []
             
             view.resetScrollIndicators()
             
