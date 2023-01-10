@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = ViewModel()
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         
@@ -25,7 +25,6 @@ struct ContentView: View {
                             .labelStyle(.iconOnly)
                             .font(.title2)
                     }
-                    .keyboardShortcut(",", modifiers: .command)
                     .popover(isPresented: $viewModel.showSettings) {
                         SettingsView()
                             .frame(
@@ -169,6 +168,6 @@ extension ContentView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: ContentView.ViewModel())
     }
 }

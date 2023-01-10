@@ -25,6 +25,8 @@ struct PagiApp: App {
     @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
     
+    @StateObject private var viewModel = ContentView.ViewModel()
+    
     var body: some Scene {
         #if os(macOS)
         
@@ -78,8 +80,16 @@ struct PagiApp: App {
         #elseif os(iOS)
         
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
                 .preferredColorScheme(theme.colorScheme)
+        }
+        .commands {
+            FontCommands(font: $font, fontSize: $fontSize)
+            FocusCommands(
+                focusMode: $focusMode,
+                focusType: $focusType
+            )
+            ViewCommands(viewModel: viewModel, wordCount: $wordCount, progressBar: $progressBar)
         }
         
         #endif
