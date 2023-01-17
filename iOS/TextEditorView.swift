@@ -207,7 +207,7 @@ extension TextEditorView {
             let frameWidth = width ?? frame.size.width
             let frameHeight = height ?? frame.size.height
             
-            let horizontalPadding = max((frameWidth - 650) / 2, 16)
+            let horizontalPadding = max((frameWidth - 704) / 2, 16)
             let inset = UIEdgeInsets(
                 top: focusMode ? frameHeight / 2 : 120,
                 left: horizontalPadding,
