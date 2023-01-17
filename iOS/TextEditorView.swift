@@ -10,7 +10,7 @@ import NaturalLanguage
 
 struct TextEditorView: UIViewControllerRepresentable {
     @Binding var text: String
-    var font: String
+    var font: iAFont
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
@@ -189,22 +189,14 @@ extension TextEditorView {
     }
     
     class PagiTextView: UITextView {
-        var selectedFont: String = "iAWriterMonoV-Text"
+        var selectedFont: iAFont = .duo
         var size: Double = 18
         var focusMode: Bool = false
         var focusType: FocusType = .paragraph
         var highlightState: HighlightState = .full
         
         var defaultTypingAttributes: [NSAttributedString.Key : Any] {
-            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-            paragraphStyle.lineHeightMultiple = 1.3
-            paragraphStyle.lineSpacing = 4
-            
-            return [
-                NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font: UIFont(name: selectedFont, size: size)!,
-                NSAttributedString.Key.foregroundColor: UIColor(.foreground)
-            ]
+            selectedFont.attributes(forSize: size)
         }
         
         func setTypingAttributes() {
@@ -320,7 +312,7 @@ struct TextEditorView_Previews: PreviewProvider {
         var body: some View {
             TextEditorView(
                 text: $text,
-                font: iAFont.quattro.fileName,
+                font: iAFont.duo,
                 size: 18,
                 isSpellCheckingEnabled: false,
                 focusMode: .constant(false),

@@ -18,7 +18,7 @@ struct Editor: View {
     func iOSEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.font.fileName,
+            font: viewModel.font,
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
             focusMode: $viewModel.focusMode,
@@ -33,7 +33,7 @@ struct Editor: View {
     func macEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.font.fileName,
+            font: viewModel.font,
             size: CGFloat(viewModel.fontSize),
             isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
             focusMode: $viewModel.focusMode,

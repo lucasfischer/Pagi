@@ -25,7 +25,9 @@ struct PagiApp: App {
     @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
     
+    #if os(iOS)
     @StateObject private var viewModel = ContentView.ViewModel()
+    #endif
     
     var body: some Scene {
         #if os(macOS)

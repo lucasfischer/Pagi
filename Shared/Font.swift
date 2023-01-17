@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
 enum iAFont: String, CaseIterable {
     case mono = "Mono"
@@ -21,5 +26,37 @@ enum iAFont: String, CaseIterable {
         case .quattro:
             return "iAWriterQuattroV-Text"
         }
+    }
+    
+    func attributes(forSize size: Double) -> [NSAttributedString.Key : Any] {
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        var kern = 0.0
+        
+#if os(iOS)
+        let foregroundColor = UIColor(.foreground)
+        let font = UIFont(name: fileName, size: size)!
+#else
+        let foregroundColor = NSColor(.foreground)
+        let font = NSFont(name: fileName, size: size)!
+#endif
+        
+        switch self {
+        case .mono:
+            paragraphStyle.lineHeightMultiple = 1.35
+            kern = 0.55
+        case .duo:
+            paragraphStyle.lineHeightMultiple = 1.35
+            kern = 0.55
+        case .quattro:
+            paragraphStyle.lineHeightMultiple = 1.26
+            kern = 0.05
+        }
+        
+        return [
+            .paragraphStyle: paragraphStyle,
+            .font: font,
+            .foregroundColor: foregroundColor,
+            .kern: kern,
+        ]
     }
 }

@@ -11,11 +11,12 @@ import NaturalLanguage
 // MARK: - View
 struct TextEditorView: NSViewControllerRepresentable {
     @Binding var text: String
-    var font: String
+    var font: iAFont
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
     var focusType: FocusType
+    var shouldHideToolbar: Binding<Bool> = .constant(false)
     
     func makeNSViewController(context: Context) -> NSViewController {
         let vc = TextEditorController()
@@ -64,7 +65,7 @@ extension TextEditorView {
     
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
-        var font: String
+        var font: iAFont
         var size: CGFloat
         var isSpellCheckingEnabled: Bool
         var selectedRanges: [NSValue] = []
@@ -72,18 +73,10 @@ extension TextEditorView {
         private let textViewUndoManager = UndoManager()
         
         var attributes: [NSAttributedString.Key : Any] {
-            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-            paragraphStyle.lineHeightMultiple = 1.3
-            paragraphStyle.lineSpacing = 4
-            
-            return  [
-                NSAttributedString.Key.paragraphStyle : paragraphStyle,
-                NSAttributedString.Key.font : NSFont(name: font, size: size)!,
-                NSAttributedString.Key.foregroundColor: NSColor(.foreground)
-            ]
+            font.attributes(forSize: size)
         }
         
-        init(_ parent: TextEditorView, font: String, size: CGFloat, isSpellCheckingEnabled: Bool) {
+        init(_ parent: TextEditorView, font: iAFont, size: CGFloat, isSpellCheckingEnabled: Bool) {
             self.parent = parent
             self.font = font
             self.size = size
