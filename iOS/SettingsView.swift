@@ -62,7 +62,6 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        .pickerStyle(.menu)
                     }
                     
                     Section("Appearance", content: {
