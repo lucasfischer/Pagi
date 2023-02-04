@@ -10,6 +10,7 @@ import NaturalLanguage
 
 struct TextEditorView: UIViewControllerRepresentable {
     @Binding var text: String
+    var colors: Theme.Colors
     var font: iAFont
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
@@ -31,6 +32,10 @@ struct TextEditorView: UIViewControllerRepresentable {
         
         if view.text != text {
             view.attributedText = NSAttributedString(string: text, attributes: view.defaultTypingAttributes)
+        }
+        
+        if view.colors != colors {
+            view.setColors(colors)
         }
         
         if view.selectedFont != font {
@@ -144,8 +149,7 @@ extension TextEditorView {
             self.view = textView
             let view = textView
             
-            view.textColor = UIColor(.foreground)
-            view.backgroundColor = UIColor(.background)
+            view.backgroundColor = UIColor(.clear)
             view.setTypingAttributes()
             view.isScrollEnabled = true
             view.isEditable = true
@@ -194,9 +198,22 @@ extension TextEditorView {
         var focusMode: Bool = false
         var focusType: FocusType = .paragraph
         var highlightState: HighlightState = .full
+        var colors = Theme.system.colors
         
         var defaultTypingAttributes: [NSAttributedString.Key : Any] {
             selectedFont.attributes(forSize: size)
+        }
+        
+        func setColors(_ colors: Theme.Colors) {
+            self.colors = colors
+            
+            self.textColor = UIColor(colors.foreground)
+            
+            if focusMode {
+                highlightSelectedParagraph()
+            } else {
+                resetHighlight()
+            }
         }
         
         func setTypingAttributes() {
@@ -221,9 +238,9 @@ extension TextEditorView {
         
         private func highlightRange(_ range: NSRange) {
             highlightState = .partial
-            textColor = UIColor(.foregroundFaded)
+            textColor = UIColor(colors.foregroundFaded)
             var attributes = defaultTypingAttributes
-            attributes[.foregroundColor] = UIColor(.foreground)
+            attributes[.foregroundColor] = UIColor(colors.foreground)
             textStorage.setAttributes(attributes, range: range)
         }
         
@@ -241,7 +258,7 @@ extension TextEditorView {
             if highlightState == .partial {
                 var attributes = defaultTypingAttributes
                 let range = NSRange(text.startIndex..<text.endIndex, in: text)
-                attributes[.foregroundColor] = UIColor(.foreground)
+                attributes[.foregroundColor] = UIColor(colors.foreground)
                 textStorage.setAttributes(attributes, range: range)
             }
             
@@ -312,6 +329,7 @@ struct TextEditorView_Previews: PreviewProvider {
         var body: some View {
             TextEditorView(
                 text: $text,
+                colors: Theme.system.colors,
                 font: iAFont.duo,
                 size: 18,
                 isSpellCheckingEnabled: false,

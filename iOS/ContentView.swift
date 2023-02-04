@@ -61,7 +61,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
                 .padding(.horizontal)
                 .padding(.vertical, 12)
-                .background(Color(uiColor: .tertiarySystemBackground))
+                .background(Material.thin)
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .frame(height: 1)

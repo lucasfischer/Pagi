@@ -76,6 +76,11 @@ struct SettingsView: View {
                                 Text(verbatim: theme.rawValue)
                             }
                         }
+                        if preferences.theme == .custom {
+                            ColorPicker("Text", selection: $preferences.foregroundColor, supportsOpacity: false)
+                            ColorPicker("Background", selection: $preferences.backgroundColor, supportsOpacity: false)
+                            ColorPicker("Accent", selection: $preferences.accentColor, supportsOpacity: false)
+                        }
                     })
                     
                     // MARK: App Version
@@ -97,7 +102,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .tint(.accentColor)
+            .tint(preferences.theme.colors.accent)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

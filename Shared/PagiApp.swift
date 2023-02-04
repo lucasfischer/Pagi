@@ -76,6 +76,7 @@ struct PagiApp: App {
         
         WindowGroup {
             ContentView(viewModel: viewModel)
+                .tint(preferences.theme.colors.accent)
                 .preferredColorScheme(preferences.theme.colorScheme)
         }
         .commands {
