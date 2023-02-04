@@ -34,9 +34,15 @@ struct AppearanceSettingsView: View {
                     Text(theme.rawValue)
                 }
             }
+            
+            if preferences.theme == .custom {
+                ColorPicker("Text:", selection: $preferences.foregroundColor, supportsOpacity: false)
+                ColorPicker("Background:", selection: $preferences.backgroundColor, supportsOpacity: false)
+                ColorPicker("Accent:", selection: $preferences.accentColor, supportsOpacity: false)
+            }
         }
         .padding()
-        .frame(width: 320)
+        .frame(width: 400)
         .pickerStyle(SegmentedPickerStyle())
         
     }

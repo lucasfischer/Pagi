@@ -11,6 +11,7 @@ import NaturalLanguage
 // MARK: - View
 struct TextEditorView: NSViewControllerRepresentable {
     @Binding var text: String
+    var colors: Theme.Colors
     var font: iAFont
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
@@ -29,6 +30,10 @@ struct TextEditorView: NSViewControllerRepresentable {
         
         if text != vc.textView.string {
             vc.textView.string = text
+        }
+        
+        if colors != vc.textView.colors {
+            vc.textView.setColors(colors)
         }
         
         if focusMode != vc.focusMode {
@@ -137,6 +142,7 @@ fileprivate final class TextEditorController: NSViewController {
         scrollView.lineScroll *= 2
         
         // - TextView
+        textView.drawsBackground = false
         textView.autoresizingMask = [.width]
         textView.allowsUndo = true
         textView.textColor = NSColor(.foreground)
@@ -197,10 +203,25 @@ fileprivate final class TextEditorController: NSViewController {
     class CustomTextView: NSTextView {
         var focusMode = false
         var focusType: FocusType = .sentence
+        var colors = Theme.system.colors
         
         private var caretSize: CGFloat = 3
         private var mouseWasDown = false
         private var focusTask: Task<Void, Never>?
+        
+        func setColors(_ colors: Theme.Colors) {
+            self.colors = colors
+            
+            self.insertionPointColor = NSColor(colors.accent)
+            self.textColor = NSColor(colors.foreground)
+            self.selectedTextAttributes = [.backgroundColor: NSColor(colors.accent.opacity(0.25))]
+            
+            if focusMode {
+                highlightSelectedParagraph()
+            } else {
+                resetHighlight()
+            }
+        }
         
         private func setTemporaryForegroundColor(
             _ color: Color,
@@ -248,7 +269,7 @@ fileprivate final class TextEditorController: NSViewController {
         }
         
         func resetHighlight() {
-            setTemporaryForegroundColor(.foreground)
+            setTemporaryForegroundColor(colors.foreground)
         }
         
         func highlightSelectedParagraph() {
@@ -257,10 +278,10 @@ fileprivate final class TextEditorController: NSViewController {
             let selectedRange = textView.selectedRange()
             
             if focusType == .typeWriter {
-                setTemporaryForegroundColor(.foreground)
+                setTemporaryForegroundColor(colors.foreground)
                 return
             } else {
-                setTemporaryForegroundColor(.foregroundFaded)
+                setTemporaryForegroundColor(colors.foregroundFaded)
             }
             
             var range = Range(selectedRange, in: text)!
@@ -275,7 +296,7 @@ fileprivate final class TextEditorController: NSViewController {
             tokenizer.string = text
             let tokenRange = tokenizer.tokenRange(for: range)
             let paragraph = NSRange(tokenRange, in: text)
-            setTemporaryForegroundColor(.foreground, forCharacterRange: paragraph)
+            setTemporaryForegroundColor(colors.foreground, forCharacterRange: paragraph)
         }
         
         override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {

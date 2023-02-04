@@ -34,6 +34,7 @@ struct Editor: View {
     func macEditor() -> some View {
         TextEditorView(
             text: $text,
+            colors: preferences.theme.colors,
             font: preferences.font,
             size: preferences.fontSize,
             isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
