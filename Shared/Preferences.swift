@@ -21,4 +21,8 @@ class Preferences: ObservableObject {
     @AppStorage("theme") var theme = Theme.system
     @AppStorage("font") var font = iAFont.duo
     @AppStorage("fontSize") var fontSize = 18.0
+    
+    @AppStorage("foregroundColor") var foregroundColor = Color.foreground
+    @AppStorage("backgroundColor") var backgroundColor = Color.background
+    @AppStorage("accentColor") var accentColor = Color.accentColor
 }

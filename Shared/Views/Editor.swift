@@ -55,7 +55,7 @@ struct Editor: View {
                         .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
                     )
-                    .foregroundColor(.foregroundLight)
+                    .foregroundColor(preferences.theme.colors.foregroundLight)
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                     .animation(nil, value: viewModel.words)
@@ -72,7 +72,7 @@ struct Editor: View {
             if viewModel.progressBarVisible {
                 ProgressBar(
                     percent: viewModel.percent,
-                    color: .accentColor,
+                    color: preferences.theme.colors.accent,
                     height: viewModel.isProgressBarExpanded ? progressBarHeight : 5
                 )
                 .transition(.move(edge: .bottom))
@@ -89,7 +89,7 @@ struct Editor: View {
                             .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
                         )
-                        .foregroundColor(.background)
+                        .foregroundColor(preferences.theme.colors.background)
                         .animation(.interactiveSpring(), value: viewModel.overlayHover)
                 )
             }
@@ -105,7 +105,7 @@ struct Editor: View {
             #endif
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.background)
+        .background(preferences.theme.colors.background)
         .overlay(
             VStack {
                 VStack {
