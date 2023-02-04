@@ -13,18 +13,11 @@ struct PagiApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #endif
     
-    @AppStorage("fontSize") private var fontSize = 18
-    @AppStorage("font") private var font = iAFont.duo
-    @AppStorage("wordCount") private var wordCount = true
-    @AppStorage("progressBar") private var progressBar = true
-    @AppStorage("focusMode") private var focusMode = false
-    @AppStorage("focusType") private var focusType = FocusType.sentence
-    
-    @AppStorage("theme") private var theme = Theme.system
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
     
+    @StateObject private var preferences = Preferences.shared
     #if os(iOS)
     @StateObject private var viewModel = ContentView.ViewModel()
     #endif
@@ -34,18 +27,18 @@ struct PagiApp: App {
         
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document)
-                .preferredColorScheme(theme.colorScheme)
+                .preferredColorScheme(preferences.theme.colorScheme)
         }
         .commands {
             FindCommands()
-            FontCommands(font: $font, fontSize: $fontSize)
+            FontCommands(font: $preferences.font, fontSize: $preferences.fontSize)
             ViewCommands(
-                wordCount: $wordCount,
-                progressBar: $progressBar
+                wordCount: $preferences.wordCount,
+                progressBar: $preferences.progressBar
             )
             FocusCommands(
-                focusMode: $focusMode,
-                focusType: $focusType
+                focusMode: $preferences.isFocusModeEnabled,
+                focusType: $preferences.focusType
             )
             
             
@@ -69,12 +62,12 @@ struct PagiApp: App {
         
         Settings {
             SettingsView()
-                .preferredColorScheme(theme.colorScheme)
+                .preferredColorScheme(preferences.theme.colorScheme)
         }
         
         WindowGroup("About Pagi") {
             AboutView()
-                .preferredColorScheme(theme.colorScheme)
+                .preferredColorScheme(preferences.theme.colorScheme)
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "about"), allowing: Set(arrayLiteral: "about"))
         }
         .windowStyle(HiddenTitleBarWindowStyle())
@@ -83,15 +76,15 @@ struct PagiApp: App {
         
         WindowGroup {
             ContentView(viewModel: viewModel)
-                .preferredColorScheme(theme.colorScheme)
+                .preferredColorScheme(preferences.theme.colorScheme)
         }
         .commands {
-            FontCommands(font: $font, fontSize: $fontSize)
+            FontCommands(font: $preferences.font, fontSize: $preferences.fontSize)
             FocusCommands(
-                focusMode: $focusMode,
-                focusType: $focusType
+                focusMode: $preferences.isFocusModeEnabled,
+                focusType: $preferences.focusType
             )
-            ViewCommands(viewModel: viewModel, wordCount: $wordCount, progressBar: $progressBar)
+            ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
         }
         
         #endif

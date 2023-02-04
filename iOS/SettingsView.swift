@@ -10,16 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage("wordTarget") private var wordTarget = 1500
-    @AppStorage("wordCount") private var wordCount = true
-    @AppStorage("progressBar") private var progressBar = true
-    @AppStorage("isSpellCheckingEnabled") private var isSpellCheckingEnabled = false
-    @AppStorage("focusMode") private var isFocusModeEnabled = false
-    @AppStorage("focusType") private var focusType = FocusType.sentence
-    
-    @AppStorage("theme") private var theme = Theme.system
-    @AppStorage("font") private var font = iAFont.duo
-    @AppStorage("fontSize") private var fontSize = 18.0
+    @StateObject private var preferences = Preferences.shared
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -42,7 +33,7 @@ struct SettingsView: View {
                             
                             TextField(
                                 "Word Target",
-                                value: $wordTarget.animation(.spring()),
+                                value: $preferences.wordTarget.animation(.spring()),
                                 formatter: formatter,
                                 prompt: Text("Word Target")
                             )
@@ -51,22 +42,22 @@ struct SettingsView: View {
                                 .multilineTextAlignment(.trailing)
                         }
                         
-                        Toggle("Word Count", isOn: $wordCount.animation(.spring()))
-                        Toggle("Progress Bar", isOn: $progressBar.animation(.spring()))
-                        Toggle("Spell Checker", isOn: $isSpellCheckingEnabled)
-                        Toggle("Focus Mode", isOn: $isFocusModeEnabled)
-                        Picker("Focus:", selection: $focusType) {
+                        Toggle("Word Count", isOn: $preferences.wordCount.animation(.spring()))
+                        Toggle("Progress Bar", isOn: $preferences.progressBar.animation(.spring()))
+                        Toggle("Spell Checker", isOn: $preferences.isSpellCheckingEnabled)
+                        Toggle("Focus Mode", isOn: $preferences.isFocusModeEnabled)
+                        Picker("Focus:", selection: $preferences.focusType) {
                             ForEach(FocusType.allCases, id: \.self) { type in
                                 Button(type.title) {
-                                    focusType = type
+                                    preferences.focusType = type
                                 }
                             }
                         }
                     }
                     
                     Section("Appearance", content: {
-                        Slider(value: $fontSize, in: 10...40, step: 1) {
-                            Text("Font Size (\(fontSize, specifier: "%.0f")):")
+                        Slider(value: $preferences.fontSize, in: 10...40, step: 1) {
+                            Text("Font Size (\(preferences.fontSize, specifier: "%.0f")):")
                         } minimumValueLabel: {
                             Image(systemName: "textformat.size.smaller")
                         } maximumValueLabel: {
@@ -74,13 +65,13 @@ struct SettingsView: View {
                         }
                         .foregroundColor(.secondary)
                         
-                        Picker("Font", selection: $font) {
+                        Picker("Font", selection: $preferences.font) {
                             ForEach(iAFont.allCases, id: \.self) { font in
                                 Text(verbatim: font.rawValue)
                             }
                         }
                         
-                        Picker("Theme", selection: $theme) {
+                        Picker("Theme", selection: $preferences.theme) {
                             ForEach(Theme.allCases, id: \.self) { theme in
                                 Text(verbatim: theme.rawValue)
                             }

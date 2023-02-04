@@ -8,30 +8,28 @@
 import SwiftUI
 
 struct AppearanceSettingsView: View {
-    @AppStorage("theme") private var theme = Theme.system
-    @AppStorage("font") private var font = iAFont.duo
-    @AppStorage("fontSize") private var fontSize = 18.0
+    @StateObject private var preferences = Preferences.shared
     
     var body: some View {
         
         Form {
             Slider(
-                value: $fontSize,
+                value: $preferences.fontSize,
                 in: 10...40, step: 1,
                 minimumValueLabel: SliderLabel(size: 8),
                 maximumValueLabel: SliderLabel(size: 14)
             ) {
-                Text("Font Size (\(fontSize, specifier: "%.0f")):")
+                Text("Font Size (\(preferences.fontSize, specifier: "%.0f")):")
                     .font(.system(.body).monospacedDigit())
             }
             
-            Picker("Font:", selection: $font) {
+            Picker("Font:", selection: $preferences.font) {
                 ForEach(iAFont.allCases, id: \.self) { font in
                     Text(verbatim: font.rawValue)
                 }
             }
             
-            Picker("Theme:", selection: $theme) {
+            Picker("Theme:", selection: $preferences.theme) {
                 ForEach(Theme.allCases, id: \.self) { theme in
                     Text(theme.rawValue)
                 }

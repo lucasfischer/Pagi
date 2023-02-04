@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FontCommands: Commands {
     @Binding var font: iAFont
-    @Binding var fontSize: Int
+    @Binding var fontSize: Double
     
     var body: some Commands {
         CommandMenu("Font") {

@@ -16,6 +16,8 @@
 		A03930F32712889B005CAEF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F22712889B005CAEF1 /* ContentView.swift */; };
 		A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03930F4271293E5005CAEF1 /* ShareSheet.swift */; };
 		A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */; };
+		A0413E45298D150000422D37 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0413E44298D150000422D37 /* Preferences.swift */; };
+		A0413E46298D150000422D37 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0413E44298D150000422D37 /* Preferences.swift */; };
 		A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C539E266B68D000CD45BB /* TextEditorView.swift */; };
 		A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A2266B8F9800CD45BB /* SettingsView.swift */; };
 		A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */; };
@@ -96,6 +98,7 @@
 		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A03930F4271293E5005CAEF1 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
+		A0413E44298D150000422D37 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		A05C539E266B68D000CD45BB /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		A05C53A2266B8F9800CD45BB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
@@ -469,6 +472,7 @@
 				A05C5480266BB13B00CD45BB /* Color.swift */,
 				A01BDE0028309A2A008296EE /* Task+sleep.swift */,
 				A0CA5841288D32BB0050442A /* FocusType.swift */,
+				A0413E44298D150000422D37 /* Preferences.swift */,
 				A0AFEE6E29444BF300C4B2A7 /* Extensions */,
 			);
 			path = Shared;
@@ -711,6 +715,7 @@
 			files = (
 				A0AFEE7029444C0300C4B2A7 /* View.swift in Sources */,
 				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
+				A0413E45298D150000422D37 /* Preferences.swift in Sources */,
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A0D6D2B8296CF86A00642AB4 /* FocusCommands.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
@@ -742,6 +747,7 @@
 				A01256002686E4EC00727630 /* Timer.swift in Sources */,
 				A0997F172702B706003EDD8C /* AboutView.swift in Sources */,
 				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,
+				A0413E46298D150000422D37 /* Preferences.swift in Sources */,
 				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
 				A0AFEE7129444C6400C4B2A7 /* View.swift in Sources */,
 				A05C53A3266B8F9800CD45BB /* SettingsView.swift in Sources */,

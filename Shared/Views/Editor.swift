@@ -11,6 +11,7 @@ struct Editor: View {
     @Binding var text: String
     @Binding var shouldHideToolbar: Bool
     @StateObject var viewModel = EditorViewModel()
+    @StateObject var preferences = Preferences.shared
     
     private let progressBarHeight: CGFloat = 24
     
@@ -18,11 +19,11 @@ struct Editor: View {
     func iOSEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.font,
-            size: CGFloat(viewModel.fontSize),
-            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-            focusMode: $viewModel.focusMode,
-            focusType: viewModel.focusType,
+            font: preferences.font,
+            size: preferences.fontSize,
+            isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
+            focusMode: $preferences.isFocusModeEnabled,
+            focusType: preferences.focusType,
             shouldHideToolbar: $shouldHideToolbar
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -33,14 +34,14 @@ struct Editor: View {
     func macEditor() -> some View {
         TextEditorView(
             text: $text,
-            font: viewModel.font,
-            size: CGFloat(viewModel.fontSize),
-            isSpellCheckingEnabled: viewModel.isSpellCheckingEnabled,
-            focusMode: $viewModel.focusMode,
-            focusType: viewModel.focusType,
+            font: preferences.font,
+            size: preferences.fontSize,
+            isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
+            focusMode: $preferences.isFocusModeEnabled,
+            focusType: preferences.focusType,
             shouldHideToolbar: $shouldHideToolbar
         )
-            .id("\(viewModel.font.rawValue)\(viewModel.fontSize)")
+            .id("\(preferences.font.rawValue)\(preferences.fontSize)")
     }
     
     @ViewBuilder
@@ -48,10 +49,10 @@ struct Editor: View {
         HStack {
             Spacer()
             
-            if viewModel.wordCount {
+            if preferences.wordCount {
                 Text("\(viewModel.words)W")
                     .font(
-                        .custom(viewModel.font.fileName, size: 12)
+                        .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
                     )
                     .foregroundColor(.foregroundLight)
@@ -85,7 +86,7 @@ struct Editor: View {
                         }
                     }
                         .font(
-                            .custom(viewModel.font.fileName, size: 12)
+                            .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
                         )
                         .foregroundColor(.background)

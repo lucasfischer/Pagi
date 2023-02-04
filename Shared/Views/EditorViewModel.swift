@@ -11,14 +11,7 @@ class EditorViewModel: ObservableObject {
     @Published var words = 0
     @Published var overlayHover = false
     
-    @AppStorage("wordTarget") var wordTarget = 1500
-    @AppStorage("wordCount")  var wordCount = true
-    @AppStorage("progressBar") var progressBar = true
-    @AppStorage("font") var font = iAFont.duo
-    @AppStorage("fontSize") var fontSize = 18.0
-    @AppStorage("focusMode") var focusMode = true
-    @AppStorage("focusType") var focusType = FocusType.sentence
-    @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
+    let preferences = Preferences.shared
     
     #if os(iOS)
     private let isiOS = true
@@ -29,19 +22,19 @@ class EditorViewModel: ObservableObject {
     let timer = Timer()
     
     var targetReached: Bool {
-        words >= wordTarget
+        words >= preferences.wordTarget
     }
     
     var isProgressBarExpanded: Bool {
-        targetReached && (words <= (wordTarget + 10) || overlayHover || isiOS)
+        targetReached && (words <= (preferences.wordTarget + 10) || overlayHover || isiOS)
     }
     
     var progressBarVisible: Bool {
-        progressBar || targetReached
+        preferences.progressBar || targetReached
     }
     
     var percent: Float {
-        Float(self.words) / Float(wordTarget)
+        Float(self.words) / Float(preferences.wordTarget)
     }
     
     var successText: LocalizedStringKey {
