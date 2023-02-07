@@ -71,11 +71,25 @@ struct SettingsView: View {
                             }
                         }
                         
-                        Picker("Theme", selection: $preferences.theme) {
-                            ForEach(Theme.allCases, id: \.self) { theme in
-                                Text(verbatim: theme.rawValue)
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(Theme.allCases, id: \.self) { theme in
+                                    Button {
+                                        preferences.theme = theme
+                                    } label: {
+                                        ThemePreview(
+                                            theme: theme,
+                                            font: preferences.font,
+                                            isActive: theme == preferences.theme
+                                        )
+                                    }
+                                    .buttonStyle(.plain)
+                                }
                             }
+                            .padding(8)
+                            .padding(.bottom)
                         }
+                        
                         if preferences.theme == .custom {
                             ColorPicker("Text", selection: $preferences.foregroundColor, supportsOpacity: false)
                             ColorPicker("Background", selection: $preferences.backgroundColor, supportsOpacity: false)
