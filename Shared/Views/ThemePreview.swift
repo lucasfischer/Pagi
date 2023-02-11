@@ -37,7 +37,7 @@ struct ThemePreview: View {
             )
             .background(
                 isActive ? RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(theme.colors.accent) : nil
+                    .foregroundColor(.accentColor) : nil
             )
             
             
