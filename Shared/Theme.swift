@@ -11,6 +11,7 @@ enum Theme: String, CaseIterable {
     case system = "System"
     case light = "Light"
     case dark = "Dark"
+    case blackWhite
     case futureland
     case oneDark
     case neon
@@ -25,6 +26,8 @@ enum Theme: String, CaseIterable {
             return "Light"
         case .dark:
             return "Dark"
+        case .blackWhite:
+            return "B/W"
         case .futureland:
             return "Futureland"
         case .oneDark:
@@ -44,7 +47,7 @@ enum Theme: String, CaseIterable {
             return nil
         case .light, .pastel:
             return .light
-        case .dark, .oneDark, .neon, .futureland:
+        case .blackWhite, .dark, .oneDark, .neon, .futureland:
             return .dark
         }
     }
@@ -77,6 +80,10 @@ enum Theme: String, CaseIterable {
             foreground = preferences.foregroundColor
             background = preferences.backgroundColor
             accent = preferences.accentColor
+        case .blackWhite:
+            foreground = .white
+            background = .black
+            accent = .white
         case .futureland:
             foreground = Color(hex: "#A5A5A5")
             background = Color(hex: "#000000")
@@ -93,7 +100,7 @@ enum Theme: String, CaseIterable {
             foreground = Color(hex: "#524135")
             background = Color(hex: "#E5DFDA")
             accent = Color(hex: "#9E8C96")
-        case .system:
+        default:
             break
         }
         
