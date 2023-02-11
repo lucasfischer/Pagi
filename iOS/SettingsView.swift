@@ -71,23 +71,29 @@ struct SettingsView: View {
                             }
                         }
                         
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(Theme.allCases, id: \.self) { theme in
-                                    Button {
-                                        preferences.theme = theme
-                                    } label: {
-                                        ThemePreview(
-                                            theme: theme,
-                                            font: preferences.font,
-                                            isActive: theme == preferences.theme
-                                        )
+                        ScrollViewReader { proxy in
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(Theme.allCases, id: \.self) { theme in
+                                        Button {
+                                            preferences.theme = theme
+                                        } label: {
+                                            ThemePreview(
+                                                theme: theme,
+                                                font: preferences.font,
+                                                isActive: theme == preferences.theme
+                                            )
+                                        }
+                                        .buttonStyle(.plain)
+                                        .id(theme)
                                     }
-                                    .buttonStyle(.plain)
                                 }
+                                .padding(8)
+                                .padding(.bottom)
                             }
-                            .padding(8)
-                            .padding(.bottom)
+                            .onAppear {
+                                proxy.scrollTo(preferences.theme, anchor: .center)
+                            }
                         }
                         
                         if preferences.theme == .custom {
