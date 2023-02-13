@@ -28,7 +28,6 @@ struct Editor: View {
             shouldHideToolbar: $shouldHideToolbar
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ignoresSafeArea(.all, edges: [.bottom])
     }
     
     @ViewBuilder

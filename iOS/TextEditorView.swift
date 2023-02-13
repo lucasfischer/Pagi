@@ -104,6 +104,8 @@ extension TextEditorView {
                 view.focusSelection(animated: true)
                 view.highlightSelectedParagraph()
             }
+            
+            view.setContainerInsets()
         }
         
         // MARK: UIScrollView

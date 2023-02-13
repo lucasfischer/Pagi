@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         
         Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
-            .ignoresSafeArea()
+            .ignoresSafeArea(viewModel.isKeyboardVisible ? .container : .all, edges: [.bottom])
             .id(viewModel.lastOpenedDate)
             .animation(.default, value: viewModel.shouldHideToolbar)
             .statusBarHidden(viewModel.shouldHideToolbar)
@@ -101,6 +101,12 @@ struct ContentView: View {
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 viewModel.onAppear()
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardDidShowNotification)) { data in
+                viewModel.isKeyboardVisible = true
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardDidHideNotification)) { data in
+                viewModel.isKeyboardVisible = false
+            }
     }
 }
 
@@ -116,6 +122,7 @@ extension ContentView {
         @Published var showShareSheet = false
         @Published var showClearNotification = false
         @Published var shouldHideToolbar = false
+        @Published var isKeyboardVisible = false
         
         var shouldReset = false
         
