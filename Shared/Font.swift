@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 #if os(iOS)
 import UIKit
 #else
@@ -30,15 +31,15 @@ enum iAFont: String, CaseIterable {
     
     private var preferences: Preferences { Preferences.shared }
     
-    func attributes(forSize size: Double) -> [NSAttributedString.Key : Any] {
+    func attributes(forSize size: Double, color: Color) -> [NSAttributedString.Key : Any] {
         let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         var kern = 0.0
         
 #if os(iOS)
-        let foregroundColor = UIColor(preferences.foregroundColor)
+        let foregroundColor = UIColor(color)
         let font = UIFont(name: fileName, size: size)!
 #else
-        let foregroundColor = NSColor(preferences.foregroundColor)
+        let foregroundColor = NSColor(color)
         let font = NSFont(name: fileName, size: size)!
 #endif
         

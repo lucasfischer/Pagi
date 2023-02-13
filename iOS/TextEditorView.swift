@@ -201,7 +201,7 @@ extension TextEditorView {
         var colors = Theme.system.colors
         
         var defaultTypingAttributes: [NSAttributedString.Key : Any] {
-            selectedFont.attributes(forSize: size)
+            selectedFont.attributes(forSize: size, color: colors.foreground)
         }
         
         func setColors(_ colors: Theme.Colors) {

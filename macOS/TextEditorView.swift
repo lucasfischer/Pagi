@@ -33,6 +33,7 @@ struct TextEditorView: NSViewControllerRepresentable {
         }
         
         if colors != vc.textView.colors {
+            context.coordinator.colors = colors
             vc.textView.setColors(colors)
         }
         
@@ -65,11 +66,18 @@ struct TextEditorView: NSViewControllerRepresentable {
 // MARK: - Coordinator
 extension TextEditorView {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self, font: font, size: size, isSpellCheckingEnabled: isSpellCheckingEnabled)
+        return Coordinator(
+            self,
+            colors: colors,
+            font: font,
+            size: size,
+            isSpellCheckingEnabled: isSpellCheckingEnabled
+        )
     }
     
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
+        var colors: Theme.Colors
         var font: iAFont
         var size: CGFloat
         var isSpellCheckingEnabled: Bool
@@ -78,11 +86,12 @@ extension TextEditorView {
         private let textViewUndoManager = UndoManager()
         
         var attributes: [NSAttributedString.Key : Any] {
-            font.attributes(forSize: size)
+            font.attributes(forSize: size, color: colors.foreground)
         }
         
-        init(_ parent: TextEditorView, font: iAFont, size: CGFloat, isSpellCheckingEnabled: Bool) {
+        init(_ parent: TextEditorView, colors: Theme.Colors, font: iAFont, size: CGFloat, isSpellCheckingEnabled: Bool) {
             self.parent = parent
+            self.colors = colors
             self.font = font
             self.size = size
             self.isSpellCheckingEnabled = isSpellCheckingEnabled
