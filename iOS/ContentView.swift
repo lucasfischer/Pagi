@@ -14,6 +14,7 @@ struct ContentView: View {
         
         Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
             .ignoresSafeArea(viewModel.isKeyboardVisible ? .container : .all, edges: [.bottom])
+            .ignoresSafeArea(.all, edges: .top)
             .id(viewModel.lastOpenedDate)
             .animation(.default, value: viewModel.shouldHideToolbar)
             .statusBarHidden(viewModel.shouldHideToolbar)
