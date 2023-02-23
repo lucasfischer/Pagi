@@ -150,6 +150,7 @@
 		A05C547B266BA22500CD45BB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		A05C5480266BB13B00CD45BB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A0749B122698730000CEFBC1 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
+		A08ADF6129A714AB00B24FCD /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
 		A0997F162702B706003EDD8C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		A0A7462E26072E0200155F4D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -498,8 +499,9 @@
 		A0EE19E226044F2200586065 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A0D6D2BA296D11ED00642AB4 /* Commands */,
+				A08ADF6129A714AB00B24FCD /* Config.xcconfig */,
 				A0EE19E326044F2200586065 /* Info.plist */,
+				A0D6D2BA296D11ED00642AB4 /* Commands */,
 				A03930F22712889B005CAEF1 /* ContentView.swift */,
 				A025926626EC877B00B8324F /* SettingsView.swift */,
 				A0F5E63B29A703F6008AD297 /* AboutView.swift */,
@@ -931,6 +933,7 @@
 		};
 		A0EE1A0B26044F2200586065 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A08ADF6129A714AB00B24FCD /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -943,7 +946,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
@@ -966,7 +968,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
@@ -1032,6 +1033,7 @@
 		};
 		A0EE1A1126044F2200586065 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A08ADF6129A714AB00B24FCD /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
