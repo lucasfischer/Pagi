@@ -18,9 +18,6 @@ struct SettingsView: View {
         return formatter
     }()
     
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    let appBundle = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -37,9 +34,9 @@ struct SettingsView: View {
                                 formatter: formatter,
                                 prompt: Text("Word Target")
                             )
-                                .keyboardType(.numberPad)
-                                .foregroundColor(.secondary)
-                                .multilineTextAlignment(.trailing)
+                            .keyboardType(.numberPad)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
                         }
                         
                         Toggle("Word Count", isOn: $preferences.wordCount.animation(.spring()))
@@ -103,22 +100,8 @@ struct SettingsView: View {
                         }
                     })
                     
-                    // MARK: App Version
-                    if let appVersion = appVersion, let appBundle = appBundle {
-                        HStack {
-                            Text("Version")
-                            
-                            Spacer()
-                            
-                            Text("\(appVersion) (\(appBundle))")
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    NavigationLink("Acknowlegements") {
-                        Form {
-                            Link("iA Writer Typeface", destination: URL(string: "https://github.com/iaolo/iA-Fonts")!)
-                        }
-                        .navigationTitle("Acknowlegements")
+                    NavigationLink("About") {
+                        AboutView()
                     }
                 }
             }
