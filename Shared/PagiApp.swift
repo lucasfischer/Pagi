@@ -40,7 +40,7 @@ struct PagiApp: App {
                 focusMode: $preferences.isFocusModeEnabled,
                 focusType: $preferences.focusType
             )
-            
+            HelpCommands()
             
             CommandGroup(replacing: .newItem, addition: {
                 Button("New") {
