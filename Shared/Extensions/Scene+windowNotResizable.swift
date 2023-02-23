@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 @available(macOS, deprecated: 13.0, message: "Scene+windowNotResizable extension is only useful when targeting macOS versions earlier than 13")
 extension Scene {
     
@@ -19,3 +20,4 @@ extension Scene {
     }
     
 }
+#endif
