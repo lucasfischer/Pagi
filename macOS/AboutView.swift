@@ -51,7 +51,6 @@ struct AboutView: View {
                 .popover(isPresented: $showAck) {
                     VStack(alignment: .leading) {
                         HoverLink("iA Writer Typeface", destination: URL(string: "https://github.com/iaolo/iA-Fonts")!)
-                        HoverLink("Sparkle", destination: URL(string: "https://sparkle-project.org")!)
                     }
                     .padding()
                 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,7 +55,6 @@
 		A0CA5840288D30980050442A /* FocusCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA583E288D30980050442A /* FocusCommands.swift */; };
 		A0CA5842288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
 		A0CA5843288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
-		A0CA5846288D3E0E0050442A /* UpdateCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5844288D3E0E0050442A /* UpdateCommands.swift */; };
 		A0CFB8C729A71B6900563EF6 /* HelpCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CFB8C529A71B6900563EF6 /* HelpCommands.swift */; };
 		A0CFB8C929A71D6F00563EF6 /* Scene+windowNotResizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CFB8C829A71D6F00563EF6 /* Scene+windowNotResizable.swift */; };
 		A0CFB8CA29A71D6F00563EF6 /* Scene+windowNotResizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CFB8C829A71D6F00563EF6 /* Scene+windowNotResizable.swift */; };
@@ -75,8 +74,6 @@
 		A0EE1A2226044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
 		A0EE1A2326044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
 		A0F5E63C29A703F6008AD297 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F5E63B29A703F6008AD297 /* AboutView.swift */; };
-		A0F8F30C266CAD400019AD9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F8F30B266CAD400019AD9F /* AppDelegate.swift */; };
-		A0F8F319266CDA160019AD9F /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A0F8F318266CDA160019AD9F /* Sparkle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,7 +179,6 @@
 		A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS Config.xcconfig"; sourceTree = "<group>"; };
 		A0CA583E288D30980050442A /* FocusCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusCommands.swift; sourceTree = "<group>"; };
 		A0CA5841288D32BB0050442A /* FocusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusType.swift; sourceTree = "<group>"; };
-		A0CA5844288D3E0E0050442A /* UpdateCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommands.swift; sourceTree = "<group>"; };
 		A0CFB8C529A71B6900563EF6 /* HelpCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommands.swift; sourceTree = "<group>"; };
 		A0CFB8C829A71D6F00563EF6 /* Scene+windowNotResizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scene+windowNotResizable.swift"; sourceTree = "<group>"; };
 		A0D6D2BB296D120900642AB4 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
@@ -204,7 +200,6 @@
 		A0EE1A1A26044F4200586065 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A0EE1A2126044F8000586065 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		A0F5E63B29A703F6008AD297 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		A0F8F30B266CAD400019AD9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +214,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0F8F319266CDA160019AD9F /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +239,6 @@
 			children = (
 				A0B696F22828A3A20079433C /* FindCommands.swift */,
 				A0749B122698730000CEFBC1 /* ViewCommands.swift */,
-				A0CA5844288D3E0E0050442A /* UpdateCommands.swift */,
 				A0CFB8C529A71B6900563EF6 /* HelpCommands.swift */,
 			);
 			path = Commands;
@@ -525,7 +518,6 @@
 				A0EE19EA26044F2200586065 /* Info.plist */,
 				A0EE19EB26044F2200586065 /* macOS.entitlements */,
 				A0EE19DA26044F2100586065 /* ContentView.swift */,
-				A0F8F30B266CAD400019AD9F /* AppDelegate.swift */,
 				A05C539E266B68D000CD45BB /* TextEditorView.swift */,
 				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
 				A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */,
@@ -590,7 +582,6 @@
 			);
 			name = "Pagi (macOS)";
 			packageProductDependencies = (
-				A0F8F318266CDA160019AD9F /* Sparkle */,
 			);
 			productName = "Morning Pages (macOS)";
 			productReference = A0EE19E826044F2200586065 /* Pagi.app */;
@@ -667,7 +658,6 @@
 			);
 			mainGroup = A0EE19D326044F2000586065;
 			packageReferences = (
-				A0F8F317266CDA160019AD9F /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = A0EE19E126044F2200586065 /* Products */;
 			projectDirPath = "";
@@ -759,7 +749,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0F8F30C266CAD400019AD9F /* AppDelegate.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
 				A0B696F42828A3A20079433C /* FindCommands.swift in Sources */,
@@ -782,7 +771,6 @@
 				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
 				A0CA5843288D32BB0050442A /* FocusType.swift in Sources */,
 				A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */,
-				A0CA5846288D3E0E0050442A /* UpdateCommands.swift in Sources */,
 				A002A434267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,
 				A0CA5840288D30980050442A /* FocusCommands.swift in Sources */,
@@ -1186,25 +1174,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A0F8F317266CDA160019AD9F /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.26.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A0F8F318266CDA160019AD9F /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A0F8F317266CDA160019AD9F /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A0EE19D426044F2000586065 /* Project object */;
 }

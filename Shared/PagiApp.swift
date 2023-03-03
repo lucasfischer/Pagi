@@ -9,10 +9,6 @@ import SwiftUI
 
 @main
 struct PagiApp: App {
-    #if os(macOS)
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    #endif
-    
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.openURL) var openURL
     @Environment(\.scenePhase) private var phase
@@ -56,8 +52,6 @@ struct PagiApp: App {
                     }
                 }
             })
-            
-            UpdateCommands()
         }
         
         Settings {
