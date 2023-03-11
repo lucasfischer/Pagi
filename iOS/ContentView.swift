@@ -46,6 +46,9 @@ struct ContentView: View {
                         Button(action: { viewModel.showExport.toggle() }) {
                             Label("Export", systemImage: "square.and.arrow.up.on.square")
                         }
+                        Button(action: { viewModel.copy() }) {
+                            Label("Copy", systemImage: "doc.on.doc")
+                        }
                     } label: {
                         Button(action: { viewModel.showExport.toggle() }) {
                             Label("Share", systemImage: "square.and.arrow.up")
@@ -173,6 +176,10 @@ extension ContentView {
         func reset() {
             self.text = ""
             self.lastOpenedDate = nil
+        }
+        
+        func copy() {
+            UIPasteboard.general.string = text
         }
     }
 }
