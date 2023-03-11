@@ -59,7 +59,6 @@ struct ContentView: View {
                     }
                     
                 }
-                .ignoresSafeArea()
                 .padding(.horizontal)
                 .padding(.vertical, 12)
                 .background(Material.thin)
@@ -69,8 +68,11 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.black.opacity(0.1))
                 }
-                .offset(x: 0, y: viewModel.shouldHideToolbar ? -56 : 0)
-                .animation(.easeInOut(duration: 0.3), value: viewModel.shouldHideToolbar)
+                .offset(x: 0, y: viewModel.shouldHideToolbar ? 0 - viewModel.toolbarHeight : 0)
+                .animation(.spring(), value: viewModel.shouldHideToolbar)
+                .readSize { height in
+                    viewModel.toolbarHeight = height
+                }
             }
             .fileExporter(
                 isPresented: $viewModel.showExport,
@@ -123,6 +125,7 @@ extension ContentView {
         @Published var showShareSheet = false
         @Published var showClearNotification = false
         @Published var shouldHideToolbar = false
+        @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
         
         var shouldReset = false

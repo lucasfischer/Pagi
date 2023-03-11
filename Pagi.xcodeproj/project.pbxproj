@@ -52,6 +52,8 @@
 		A0AFEE7029444C0300C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0AFEE7129444C6400C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0B696F42828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
+		A0C6C65229BC39FD004679A9 /* View+readSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6C65129BC39FD004679A9 /* View+readSize.swift */; };
+		A0C6C65329BC39FD004679A9 /* View+readSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6C65129BC39FD004679A9 /* View+readSize.swift */; };
 		A0CA5840288D30980050442A /* FocusCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA583E288D30980050442A /* FocusCommands.swift */; };
 		A0CA5842288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
 		A0CA5843288D32BB0050442A /* FocusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CA5841288D32BB0050442A /* FocusType.swift */; };
@@ -177,6 +179,7 @@
 		A0AFEE6F29444C0300C4B2A7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
 		A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS Config.xcconfig"; sourceTree = "<group>"; };
+		A0C6C65129BC39FD004679A9 /* View+readSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+readSize.swift"; sourceTree = "<group>"; };
 		A0CA583E288D30980050442A /* FocusCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusCommands.swift; sourceTree = "<group>"; };
 		A0CA5841288D32BB0050442A /* FocusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusType.swift; sourceTree = "<group>"; };
 		A0CFB8C529A71B6900563EF6 /* HelpCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommands.swift; sourceTree = "<group>"; };
@@ -480,6 +483,7 @@
 				A01BDE0028309A2A008296EE /* Task+sleep.swift */,
 				A0CA5841288D32BB0050442A /* FocusType.swift */,
 				A0413E44298D150000422D37 /* Preferences.swift */,
+				A0C6C65129BC39FD004679A9 /* View+readSize.swift */,
 				A0AFEE6E29444BF300C4B2A7 /* Extensions */,
 			);
 			path = Shared;
@@ -722,6 +726,7 @@
 				A0AFEE7029444C0300C4B2A7 /* View.swift in Sources */,
 				A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */,
 				A0F5E63C29A703F6008AD297 /* AboutView.swift in Sources */,
+				A0C6C65229BC39FD004679A9 /* View+readSize.swift in Sources */,
 				A0413E45298D150000422D37 /* Preferences.swift in Sources */,
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A0D6D2B8296CF86A00642AB4 /* FocusCommands.swift in Sources */,
@@ -749,6 +754,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C6C65329BC39FD004679A9 /* View+readSize.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
 				A0B696F42828A3A20079433C /* FindCommands.swift in Sources */,
@@ -947,8 +953,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -970,8 +979,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.pagi";
 				PRODUCT_NAME = Pagi;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
