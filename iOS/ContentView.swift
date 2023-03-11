@@ -44,7 +44,7 @@ struct ContentView: View {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
                         Button(action: { viewModel.showExport.toggle() }) {
-                            Label("Export", systemImage: "square.and.arrow.up.on.square")
+                            Label("Save", systemImage: "square.and.arrow.down")
                         }
                         Button(action: { viewModel.copy() }) {
                             Label("Copy", systemImage: "doc.on.doc")
