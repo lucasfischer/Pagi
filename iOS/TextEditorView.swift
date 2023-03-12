@@ -115,6 +115,8 @@ extension TextEditorView {
             let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             textView.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
             textView.verticalScrollIndicatorInsets.bottom = 0
+            
+            Haptics.selectionChanged()
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
@@ -169,7 +171,7 @@ extension TextEditorView {
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
             let moveLeft = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.left.fill"), style: .plain, target: self, action: #selector(moveToLeft(sender:)))
             let moveRight = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.right.fill"), style: .plain, target: self, action: #selector(moveToRight(sender:)))
-            let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: view, action: #selector(UIResponder.resignFirstResponder))
+            let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: self, action: #selector(closeKeyboard(sender:)))
             toolbar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
             
             // Use UIInputView so the background is the same background as the system keyboard
@@ -226,6 +228,8 @@ extension TextEditorView {
         
         @objc
         func moveToLeft(sender: UIBarButtonItem!) {
+            Haptics.selectionChanged()
+            
             if textView.selectedRange.location - 1 >= 0 {
                 textView.selectedRange.location = textView.selectedRange.location - 1
             }
@@ -233,9 +237,17 @@ extension TextEditorView {
         
         @objc
         func moveToRight(sender: UIBarButtonItem!) {
+            Haptics.selectionChanged()
+            
             if textView.selectedRange.location + 1 <= textView.textStorage.length {
                 textView.selectedRange.location = textView.selectedRange.location + 1
             }
+        }
+        
+        @objc
+        func closeKeyboard(sender: UIBarButtonItem!) {
+            Haptics.selectionChanged()
+            textView.resignFirstResponder()
         }
         
         func setToolbarTintColor(_ color: Color) {

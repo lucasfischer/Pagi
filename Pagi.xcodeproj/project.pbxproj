@@ -45,6 +45,7 @@
 		A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
 		A09314D6267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
 		A0997F172702B706003EDD8C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0997F162702B706003EDD8C /* AboutView.swift */; };
+		A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A9B5329BDFCF1000C3880 /* Haptics.swift */; };
 		A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
@@ -155,6 +156,7 @@
 		A08ADF6129A714AB00B24FCD /* iOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS Config.xcconfig"; sourceTree = "<group>"; };
 		A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
 		A0997F162702B706003EDD8C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		A09A9B5329BDFCF1000C3880 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		A0A7462E26072E0200155F4D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iAWriterMonoV.ttf; sourceTree = "<group>"; };
 		A0A7463126072E0200155F4D /* iAWriterMonoV-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoV-Italic.ttf"; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				A0F5E63B29A703F6008AD297 /* AboutView.swift */,
 				A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */,
 				A03930F4271293E5005CAEF1 /* ShareSheet.swift */,
+				A09A9B5329BDFCF1000C3880 /* Haptics.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				A0D6D2B9296D106F00642AB4 /* FontCommands.swift in Sources */,
 				A01255FF2686E4EC00727630 /* Timer.swift in Sources */,
 				A0CFB8C929A71D6F00563EF6 /* Scene+windowNotResizable.swift in Sources */,
+				A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
 				A025926726EC87D700B8324F /* SettingsView.swift in Sources */,
 			);
