@@ -50,6 +50,9 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                        .onChange(of: preferences.focusType) { focusType in
+                            Haptics.selectionChanged()
+                        }
                     }
                     
                     Section("Appearance", content: {
@@ -60,6 +63,9 @@ struct SettingsView: View {
                         } maximumValueLabel: {
                             Image(systemName: "textformat.size.larger")
                         }
+                        .onChange(of: preferences.fontSize) { fontSize in
+                            Haptics.selectionChanged()
+                        }
                         .foregroundColor(.secondary)
                         
                         Picker("Font", selection: $preferences.font) {
@@ -67,12 +73,16 @@ struct SettingsView: View {
                                 Text(verbatim: font.rawValue)
                             }
                         }
+                        .onChange(of: preferences.font) { font in
+                            Haptics.selectionChanged()
+                        }
                         
                         ScrollViewReader { proxy in
                             ScrollView(.horizontal) {
                                 HStack {
                                     ForEach(Theme.allCases, id: \.self) { theme in
                                         Button {
+                                            Haptics.selectionChanged()
                                             preferences.theme = theme
                                         } label: {
                                             ThemePreview(
