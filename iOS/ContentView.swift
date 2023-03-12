@@ -43,6 +43,17 @@ struct ContentView: View {
             
             Spacer()
             
+            Button {
+                viewModel.showClearNotification.toggle()
+            } label: {
+                Label("Clear Text", systemImage: "trash")
+                    .labelStyle(.iconOnly)
+                    .font(.title2)
+            }
+            .disabled(viewModel.text.isEmpty)
+            
+            Spacer()
+            
             if isiPad {
                 Menu {
                     Button(action: { viewModel.showShareSheet.toggle() }) {
@@ -66,21 +77,27 @@ struct ContentView: View {
                     ShareSheet(activityItems: [viewModel.text])
                 }
             } else {
-                HStack(spacing: 16) {
-                    Button(action: { viewModel.showShareSheet.toggle() }) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
-                    Button(action: { viewModel.showExport.toggle() }) {
-                        Label("Save", systemImage: "square.and.arrow.down")
-                    }
+                Group {
                     Button(action: { viewModel.copy() }) {
                         Label("Copy", systemImage: "doc.on.doc")
                     }
+                    
+                    Spacer()
+                    
+                    Button(action: { viewModel.showExport.toggle() }) {
+                        Label("Save", systemImage: "square.and.arrow.down")
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: { viewModel.showShareSheet.toggle() }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    .popover(isPresented: $viewModel.showShareSheet) {
+                        ShareSheet(activityItems: [viewModel.text])
+                    }
                 }
                 .disabled(viewModel.text.isEmpty)
-                .popover(isPresented: $viewModel.showShareSheet) {
-                    ShareSheet(activityItems: [viewModel.text])
-                }
                 .labelStyle(.iconOnly)
                 .font(.title2)
             }
