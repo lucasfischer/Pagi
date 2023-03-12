@@ -11,17 +11,6 @@ import UIKit
 struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
     
-    let isiPad = UIDevice.current.userInterfaceIdiom == .pad
-    
-    func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
-        var height = viewModel.shouldHideToolbar || viewModel.isKeyboardVisible ? viewModel.toolbarHeight + geometry.safeAreaInsets.bottom : 0
-        if isiPad {
-            height = viewModel.shouldHideToolbar ? 0 - viewModel.toolbarHeight + geometry.safeAreaInsets.top : 0
-        }
-        
-        return CGSize(width: 0, height: height)
-    }
-    
     @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
         HStack {
@@ -54,7 +43,7 @@ struct ContentView: View {
             
             Spacer()
             
-            if isiPad {
+            if viewModel.isiPad {
                 Menu {
                     Button(action: { viewModel.showShareSheet.toggle() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
@@ -106,13 +95,13 @@ struct ContentView: View {
         .padding(.horizontal)
         .padding(.vertical, 12)
         .background(Material.thin)
-        .overlay(alignment: isiPad ? .bottom : .top) {
+        .overlay(alignment: viewModel.isiPad ? .bottom : .top) {
             Rectangle()
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
                 .foregroundColor(.black.opacity(0.1))
         }
-        .offset(getToolbarOffset(geometry))
+        .offset(viewModel.getToolbarOffset(geometry))
         .animation(.spring(), value: viewModel.shouldHideToolbar)
         .readSize { height in
             viewModel.toolbarHeight = height
@@ -123,7 +112,7 @@ struct ContentView: View {
         GeometryReader { geometry in
             Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
                 .ignoresSafeArea(.container, edges: .vertical)
-                .safeAreaInset(edge: isiPad ? .top : .bottom) {
+                .safeAreaInset(edge: viewModel.isiPad ? .top : .bottom) {
                     Header(geometry)
                 }
         }
@@ -189,6 +178,8 @@ extension ContentView {
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
         
+        let isiPad = UIDevice.current.userInterfaceIdiom == .pad
+        
         var shouldReset = false
         
         let dateFormatter: DateFormatter = {
@@ -210,6 +201,15 @@ extension ContentView {
             else {
                 showClearNotification = false
             }
+        }
+        
+        func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
+            var height = shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
+            if isiPad {
+                height = shouldHideToolbar ? 0 - toolbarHeight + geometry.safeAreaInsets.top : 0
+            }
+            
+            return CGSize(width: 0, height: height)
         }
         
         func onTextUpdate(_ text: String) {
