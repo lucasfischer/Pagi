@@ -125,10 +125,10 @@ struct ContentView: View {
             "Do you want to clear your notes?",
             isPresented: $viewModel.showClearNotification,
             actions: {
-                Button("Keep") {
+                Button("Keep", role: .cancel) {
                     viewModel.showClearNotification = false
                 }
-                Button("Clear") {
+                Button("Clear", role: .destructive) {
                     viewModel.showClearNotification = false
                     viewModel.reset()
                 }
