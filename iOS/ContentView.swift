@@ -14,7 +14,7 @@ struct ContentView: View {
     @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
         HStack {
-            Button(action: { viewModel.showSettings.toggle() }) {
+            Button(action: { viewModel.onShowSettings() }) {
                 Label("Settings", systemImage: "gear")
                     .labelStyle(.iconOnly)
                     .font(.title2)
@@ -33,7 +33,7 @@ struct ContentView: View {
             Spacer()
             
             Button {
-                viewModel.showClearNotification.toggle()
+                viewModel.onShowClearNotification()
             } label: {
                 Label("Clear Text", systemImage: "trash")
                     .labelStyle(.iconOnly)
@@ -45,17 +45,17 @@ struct ContentView: View {
             
             if viewModel.isiPad {
                 Menu {
-                    Button(action: { viewModel.showShareSheet.toggle() }) {
+                    Button(action: { viewModel.onShowShareSheet() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
-                    Button(action: { viewModel.showExport.toggle() }) {
+                    Button(action: { viewModel.onShowExport() }) {
                         Label("Save", systemImage: "square.and.arrow.down")
                     }
-                    Button(action: { viewModel.copy() }) {
+                    Button(action: { viewModel.onCopy() }) {
                         Label("Copy", systemImage: "doc.on.doc")
                     }
                 } label: {
-                    Button(action: { viewModel.showExport.toggle() }) {
+                    Button(action: { viewModel.onShowExport() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                             .labelStyle(.iconOnly)
                             .font(.title2)
@@ -67,19 +67,19 @@ struct ContentView: View {
                 }
             } else {
                 Group {
-                    Button(action: { viewModel.copy() }) {
+                    Button(action: { viewModel.onCopy() }) {
                         Label("Copy", systemImage: "doc.on.doc")
                     }
                     
                     Spacer()
                     
-                    Button(action: { viewModel.showExport.toggle() }) {
+                    Button(action: { viewModel.onShowExport() }) {
                         Label("Save", systemImage: "square.and.arrow.down")
                     }
                     
                     Spacer()
                     
-                    Button(action: { viewModel.showShareSheet.toggle() }) {
+                    Button(action: { viewModel.onShowShareSheet() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                     .popover(isPresented: $viewModel.showShareSheet) {
@@ -196,10 +196,7 @@ extension ContentView {
             if let date = lastOpenedDate,
                let lastDate = dateFormatter.date(from: date),
                !Calendar.current.isDateInToday(lastDate) && !text.isEmpty {
-                showClearNotification = true
-            }
-            else {
-                showClearNotification = false
+                onShowClearNotification()
             }
         }
         
@@ -215,6 +212,35 @@ extension ContentView {
         func onTextUpdate(_ text: String) {
             lastOpenedDate = dateFormatter.string(from: Date())
             isFileExported = false
+        }
+        
+        func onButtonTap() {
+            Haptics.impactOccurred(.rigid)
+        }
+        
+        func onShowClearNotification() {
+            onButtonTap()
+            showClearNotification.toggle()
+        }
+        
+        func onShowSettings() {
+            onButtonTap()
+            showSettings.toggle()
+        }
+        
+        func onShowExport() {
+            onButtonTap()
+            showExport.toggle()
+        }
+        
+        func onShowShareSheet() {
+            onButtonTap()
+            showShareSheet.toggle()
+        }
+        
+        func onCopy() {
+            onButtonTap()
+            UIPasteboard.general.string = text
         }
         
         func onFileExported(_ result: Result<URL, Error>) {
@@ -236,9 +262,6 @@ extension ContentView {
             self.lastOpenedDate = nil
         }
         
-        func copy() {
-            UIPasteboard.general.string = text
-        }
     }
 }
 
