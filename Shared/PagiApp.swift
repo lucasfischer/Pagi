@@ -71,6 +71,7 @@ struct PagiApp: App {
         
         WindowGroup {
             ContentView(viewModel: viewModel)
+                .background(preferences.theme.colors.background.ignoresSafeArea())
                 .tint(preferences.theme.colors.accent)
                 .preferredColorScheme(preferences.theme.colorScheme)
         }
