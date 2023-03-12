@@ -122,11 +122,10 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
-                .ignoresSafeArea(viewModel.isKeyboardVisible ? .container : .all, edges: [.bottom, .top])
+                .ignoresSafeArea(.container, edges: .vertical)
                 .safeAreaInset(edge: isiPad ? .top : .bottom) {
                     Header(geometry)
                 }
-            
         }
         .id(viewModel.lastOpenedDate)
         .statusBarHidden(viewModel.shouldHideToolbar)
