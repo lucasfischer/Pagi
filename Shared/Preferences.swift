@@ -11,7 +11,7 @@ class Preferences: ObservableObject {
     
     static let shared = Preferences()
     
-    @AppStorage("wordTarget") var wordTarget = 1500
+    @AppStorage("wordTarget") var wordTarget = 750
     @AppStorage("wordCount") var wordCount = true
     @AppStorage("progressBar") var progressBar = true
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
