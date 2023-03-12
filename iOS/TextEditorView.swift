@@ -36,6 +36,9 @@ struct TextEditorView: UIViewControllerRepresentable {
         
         if view.colors != colors {
             view.setColors(colors)
+            if let controller = controller as? TextEditorController {
+                controller.setToolbarTintColor(colors.accent)
+            }
         }
         
         if view.selectedFont != font {
@@ -108,6 +111,18 @@ extension TextEditorView {
             view.setContainerInsets()
         }
         
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            textView.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
+            textView.verticalScrollIndicatorInsets.bottom = 0
+        }
+        
+        func textViewDidEndEditing(_ textView: UITextView) {
+            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            textView.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
+            textView.verticalScrollIndicatorInsets.bottom = scene?.windows.first?.safeAreaInsets.bottom ?? 0
+        }
+        
         // MARK: UIScrollView
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             let currentVelocityY =  scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y
@@ -117,14 +132,8 @@ extension TextEditorView {
             }
             if lastVelocityYSign < 0 {
                 shouldHideToolbar = true
-                UIView.animate(withDuration: 0.3) {
-                    scrollView.resetScrollIndicators()
-                }
             } else if lastVelocityYSign > 0 {
                 shouldHideToolbar = false
-                UIView.animate(withDuration: 0.3) {
-                    scrollView.padScrollIndicators()
-                }
             }
         }
         
@@ -141,6 +150,7 @@ extension TextEditorView {
     
     final class TextEditorController: UIViewController {
         private let textView = PagiTextView()
+        private let bar = UIToolbar()
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -173,7 +183,24 @@ extension TextEditorView {
             item.leadingBarButtonGroups = []
             item.trailingBarButtonGroups = []
             
-            view.resetScrollIndicators()
+            
+            // Keyboard Toolbar
+            bar.sizeToFit()
+            bar.isTranslucent = true
+            bar.tintColor = UIColor(view.colors.accent) // TODO: Set correct color
+            
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+            
+            let moveLeft = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.left.fill"), style: .plain, target: self, action: #selector(moveToLeft(sender:)))
+            let moveRight = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.right.fill"), style: .plain, target: self, action: #selector(moveToRight(sender:)))
+            
+            let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: view, action: #selector(UIResponder.resignFirstResponder))
+            
+            bar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                view.inputAccessoryView = bar
+            }
             
             view.becomeFirstResponder()
         }
@@ -182,6 +209,24 @@ extension TextEditorView {
         override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
             super.viewWillTransition(to: size, with: coordinator)
             textView.setContainerInsets(width: size.width, height: size.height)
+        }
+        
+        @objc
+        func moveToLeft(sender: UIBarButtonItem!) {
+            if textView.selectedRange.location - 1 >= 0 {
+                textView.selectedRange.location = textView.selectedRange.location - 1
+            }
+        }
+        
+        @objc
+        func moveToRight(sender: UIBarButtonItem!) {
+            if textView.selectedRange.location + 1 <= textView.textStorage.length {
+                textView.selectedRange.location = textView.selectedRange.location + 1
+            }
+        }
+        
+        func setToolbarTintColor(_ color: Color) {
+            bar.tintColor = UIColor(color)
         }
         
     }
@@ -226,11 +271,17 @@ extension TextEditorView {
             let frameWidth = width ?? frame.size.width
             let frameHeight = height ?? frame.size.height
             
+            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let safeAreaInsets = scene?.windows.first?.safeAreaInsets
+            
+            let isiPad = UIDevice.current.userInterfaceIdiom == .pad
             let horizontalPadding = max((frameWidth - 704) / 2, 16)
+            let topPadding = isiPad ? (safeAreaInsets?.top ?? 0) + 96 : (safeAreaInsets?.top ?? 0)
+            let bottomPadding = isiPad ? (safeAreaInsets?.bottom ?? 0) + 40 : (safeAreaInsets?.bottom ?? 0) + 24
             let inset = UIEdgeInsets(
-                top: focusMode ? frameHeight / 2 : 120,
+                top: focusMode ? frameHeight / 2 : topPadding,
                 left: horizontalPadding,
-                bottom: focusMode ? frameHeight / 2 : 80,
+                bottom: focusMode ? frameHeight / 2 : bottomPadding,
                 right: horizontalPadding
             )
             
@@ -309,18 +360,6 @@ extension TextEditorView {
             }
         }
         
-    }
-}
-
-extension UIScrollView {
-    func resetScrollIndicators() {
-        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        verticalScrollIndicatorInsets.bottom = (scene?.windows.first?.safeAreaInsets.bottom ?? 0) + 4
-        verticalScrollIndicatorInsets.top = max(scene?.windows.first?.safeAreaInsets.top ?? 0, 20)
-    }
-    
-    func padScrollIndicators() {
-        verticalScrollIndicatorInsets.top = 74
     }
 }
 
