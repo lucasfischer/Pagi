@@ -17,7 +17,7 @@ extension View {
         background(
             GeometryReader { geometryProxy in
                 Color.clear
-                    .preference(key: HeightPreferenceKey.self, value: geometryProxy.size.height + geometryProxy.safeAreaInsets.top)
+                    .preference(key: HeightPreferenceKey.self, value: geometryProxy.size.height)
             }
         )
         .onPreferenceChange(HeightPreferenceKey.self, perform: onChange)

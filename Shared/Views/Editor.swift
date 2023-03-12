@@ -118,7 +118,6 @@ struct Editor: View {
                 })
             }
                 .frame(maxHeight: .infinity, alignment: .bottom)
-                .ignoresSafeArea(.all, edges: [.bottom])
         )
         .onAppear {
             viewModel.calculateWordCount(text)

@@ -6,113 +6,150 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
     
-    var body: some View {
+    let isiPad = UIDevice.current.userInterfaceIdiom == .pad
+    
+    func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
+        var height = viewModel.shouldHideToolbar || viewModel.isKeyboardVisible ? viewModel.toolbarHeight + geometry.safeAreaInsets.bottom : 0
+        if isiPad {
+            height = viewModel.shouldHideToolbar ? 0 - viewModel.toolbarHeight + geometry.safeAreaInsets.top : 0
+        }
         
-        Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
-            .ignoresSafeArea(viewModel.isKeyboardVisible ? .container : .all, edges: [.bottom])
-            .ignoresSafeArea(.all, edges: .top)
-            .id(viewModel.lastOpenedDate)
-            .animation(.default, value: viewModel.shouldHideToolbar)
-            .statusBarHidden(viewModel.shouldHideToolbar)
-            .setPersistentSystemOverlays(viewModel.shouldHideToolbar ? .hidden : .automatic)
-            .overlay(alignment: .top) {
-                HStack {
-                    Button(action: { viewModel.showSettings.toggle() }) {
-                        Label("Settings", systemImage: "gear")
+        return CGSize(width: 0, height: height)
+    }
+    
+    @ViewBuilder
+    func Header(_ geometry: GeometryProxy) -> some View {
+        HStack {
+            Button(action: { viewModel.showSettings.toggle() }) {
+                Label("Settings", systemImage: "gear")
+                    .labelStyle(.iconOnly)
+                    .font(.title2)
+            }
+            .popover(isPresented: $viewModel.showSettings) {
+                SettingsView()
+                    .frame(
+                        minWidth: 320,
+                        idealWidth: 400,
+                        idealHeight: 700,
+                        alignment: .top
+                    )
+                    .preferredColorScheme(viewModel.theme.colorScheme)
+            }
+            
+            Spacer()
+            
+            if isiPad {
+                Menu {
+                    Button(action: { viewModel.showShareSheet.toggle() }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    Button(action: { viewModel.showExport.toggle() }) {
+                        Label("Save", systemImage: "square.and.arrow.down")
+                    }
+                    Button(action: { viewModel.copy() }) {
+                        Label("Copy", systemImage: "doc.on.doc")
+                    }
+                } label: {
+                    Button(action: { viewModel.showExport.toggle() }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
                             .labelStyle(.iconOnly)
                             .font(.title2)
                     }
-                    .popover(isPresented: $viewModel.showSettings) {
-                        SettingsView()
-                            .frame(
-                                minWidth: 320,
-                                idealWidth: 400,
-                                idealHeight: 700,
-                                alignment: .top
-                            )
-                            .preferredColorScheme(viewModel.theme.colorScheme)
-                    }
-                    
-                    Spacer()
-                    
-                    Menu {
-                        Button(action: { viewModel.showShareSheet.toggle() }) {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }
-                        Button(action: { viewModel.showExport.toggle() }) {
-                            Label("Save", systemImage: "square.and.arrow.down")
-                        }
-                        Button(action: { viewModel.copy() }) {
-                            Label("Copy", systemImage: "doc.on.doc")
-                        }
-                    } label: {
-                        Button(action: { viewModel.showExport.toggle() }) {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                                .labelStyle(.iconOnly)
-                                .font(.title2)
-                        }
-                    }
-                    .disabled(viewModel.text.isEmpty)
-                    .popover(isPresented: $viewModel.showShareSheet) {
-                        ShareSheet(activityItems: [viewModel.text])
-                    }
-                    
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 12)
-                .background(Material.thin)
-                .overlay(alignment: .bottom) {
-                    Rectangle()
-                        .frame(height: 1)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.black.opacity(0.1))
+                .disabled(viewModel.text.isEmpty)
+                .popover(isPresented: $viewModel.showShareSheet) {
+                    ShareSheet(activityItems: [viewModel.text])
                 }
-                .offset(x: 0, y: viewModel.shouldHideToolbar ? 0 - viewModel.toolbarHeight : 0)
-                .animation(.spring(), value: viewModel.shouldHideToolbar)
-                .readSize { height in
-                    viewModel.toolbarHeight = height
+            } else {
+                HStack(spacing: 16) {
+                    Button(action: { viewModel.showShareSheet.toggle() }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    Button(action: { viewModel.showExport.toggle() }) {
+                        Label("Save", systemImage: "square.and.arrow.down")
+                    }
+                    Button(action: { viewModel.copy() }) {
+                        Label("Copy", systemImage: "doc.on.doc")
+                    }
                 }
+                .disabled(viewModel.text.isEmpty)
+                .popover(isPresented: $viewModel.showShareSheet) {
+                    ShareSheet(activityItems: [viewModel.text])
+                }
+                .labelStyle(.iconOnly)
+                .font(.title2)
             }
-            .fileExporter(
-                isPresented: $viewModel.showExport,
-                document: PagiDocument(text: viewModel.text),
-                contentType: .plainText,
-                defaultFilename: viewModel.currentDateString,
-                onCompletion: viewModel.onFileExported
-            )
-            .alert(
-                "Do you want to clear your notes?",
-                isPresented: $viewModel.showClearNotification,
-                actions: {
-                    Button("Keep") {
-                        viewModel.showClearNotification = false
+            
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 12)
+        .background(Material.thin)
+        .overlay(alignment: isiPad ? .bottom : .top) {
+            Rectangle()
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.black.opacity(0.1))
+        }
+        .offset(getToolbarOffset(geometry))
+        .animation(.spring(), value: viewModel.shouldHideToolbar)
+        .readSize { height in
+            viewModel.toolbarHeight = height
+        }
+    }
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
+                .ignoresSafeArea(viewModel.isKeyboardVisible ? .container : .all, edges: [.bottom, .top])
+                .safeAreaInset(edge: isiPad ? .top : .bottom) {
+                    Header(geometry)
+                }
+            
+        }
+        .id(viewModel.lastOpenedDate)
+        .statusBarHidden(viewModel.shouldHideToolbar)
+        .setPersistentSystemOverlays(viewModel.shouldHideToolbar ? .hidden : .automatic)
+        .fileExporter(
+            isPresented: $viewModel.showExport,
+            document: PagiDocument(text: viewModel.text),
+            contentType: .plainText,
+            defaultFilename: viewModel.currentDateString,
+            onCompletion: viewModel.onFileExported
+        )
+        .alert(
+            "Do you want to clear your notes?",
+            isPresented: $viewModel.showClearNotification,
+            actions: {
+                Button("Keep") {
+                    viewModel.showClearNotification = false
+                }
+                Button("Clear") {
+                    viewModel.showClearNotification = false
+                    viewModel.reset()
+                }
+                if !viewModel.isFileExported {
+                    Button("Export then clear") {
+                        viewModel.showExport = true
+                        viewModel.shouldReset = true
                     }
-                    Button("Clear") {
-                        viewModel.showClearNotification = false
-                        viewModel.reset()
-                    }
-                    if !viewModel.isFileExported {
-                        Button("Export then clear") {
-                            viewModel.showExport = true
-                            viewModel.shouldReset = true
-                        }
-                    }
-                })
-            .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
-            .onAppear(perform: viewModel.onAppear)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                viewModel.onAppear()
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardDidShowNotification)) { data in
-                viewModel.isKeyboardVisible = true
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardDidHideNotification)) { data in
-                viewModel.isKeyboardVisible = false
-            }
+                }
+            })
+        .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
+        .onAppear(perform: viewModel.onAppear)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            viewModel.onAppear()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)) { data in
+            viewModel.isKeyboardVisible = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)) { data in
+            viewModel.isKeyboardVisible = false
+        }
     }
 }
 
@@ -124,7 +161,12 @@ extension ContentView {
         @AppStorage("isFileExported") var isFileExported = false
         
         @Published var showExport = false
-        @Published var showSettings = false
+        @Published var showSettings = false {
+            /// Hide Keyboard when opening/closing the settings to prevent `.popover()` related glitch.
+            didSet {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+        }
         @Published var showShareSheet = false
         @Published var showClearNotification = false
         @Published var shouldHideToolbar = false
