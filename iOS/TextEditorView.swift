@@ -150,7 +150,34 @@ extension TextEditorView {
     
     final class TextEditorController: UIViewController {
         private let textView = PagiTextView()
-        private let bar = UIToolbar()
+        
+        private lazy var toolbar: UIView = {
+            let toolbar = UIToolbar()
+            
+            // Make background transparent
+            toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+            toolbar.backgroundColor = .clear
+            toolbar.sizeToFit()
+            
+            // Set proper width for toolbar
+            let width = UIScreen.main.bounds.size.width
+            var frame = toolbar.frame
+            frame.size.width = width
+            toolbar.frame = frame
+            
+            // Set Toolbar items
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+            let moveLeft = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.left.fill"), style: .plain, target: self, action: #selector(moveToLeft(sender:)))
+            let moveRight = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.right.fill"), style: .plain, target: self, action: #selector(moveToRight(sender:)))
+            let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: view, action: #selector(UIResponder.resignFirstResponder))
+            toolbar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
+            
+            // Use UIInputView so the background is the same background as the system keyboard
+            let inputView = UIInputView(frame: toolbar.bounds, inputViewStyle: .keyboard)
+            inputView.addSubview(toolbar)
+            
+            return inputView
+        }()
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -183,23 +210,9 @@ extension TextEditorView {
             item.leadingBarButtonGroups = []
             item.trailingBarButtonGroups = []
             
-            
             // Keyboard Toolbar
-            bar.sizeToFit()
-            bar.isTranslucent = true
-            bar.tintColor = UIColor(view.colors.accent) // TODO: Set correct color
-            
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-            
-            let moveLeft = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.left.fill"), style: .plain, target: self, action: #selector(moveToLeft(sender:)))
-            let moveRight = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.right.fill"), style: .plain, target: self, action: #selector(moveToRight(sender:)))
-            
-            let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: view, action: #selector(UIResponder.resignFirstResponder))
-            
-            bar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
-            
             if UIDevice.current.userInterfaceIdiom == .phone {
-                view.inputAccessoryView = bar
+                view.inputAccessoryView = toolbar
             }
             
             view.becomeFirstResponder()
@@ -226,7 +239,7 @@ extension TextEditorView {
         }
         
         func setToolbarTintColor(_ color: Color) {
-            bar.tintColor = UIColor(color)
+            toolbar.tintColor = UIColor(color)
         }
         
     }
