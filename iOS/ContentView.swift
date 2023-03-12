@@ -63,7 +63,7 @@ struct ContentView: View {
                 }
                 .disabled(viewModel.text.isEmpty)
                 .popover(isPresented: $viewModel.showShareSheet) {
-                    ShareSheet(activityItems: [viewModel.text])
+                    ShareSheet(activityItems: [viewModel.shareURL ?? viewModel.text])
                 }
             } else {
                 Group {
@@ -83,7 +83,7 @@ struct ContentView: View {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                     .popover(isPresented: $viewModel.showShareSheet) {
-                        ShareSheet(activityItems: [viewModel.text])
+                        ShareSheet(activityItems: [viewModel.shareURL ?? viewModel.text])
                     }
                 }
                 .disabled(viewModel.text.isEmpty)
@@ -172,6 +172,7 @@ extension ContentView {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
+        @Published var shareURL: URL?
         @Published var showShareSheet = false
         @Published var showClearNotification = false
         @Published var shouldHideToolbar = false
@@ -235,6 +236,17 @@ extension ContentView {
         
         func onShowShareSheet() {
             onButtonTap()
+            
+            // Create temporary file to share
+            do {
+                let url = FileManager.default.temporaryDirectory.appendingPathComponent(currentDateString, conformingTo: .plainText)
+                let data = Data(text.utf8)
+                try data.write(to: url)
+                shareURL = url
+            } catch {
+                print(error)
+            }
+            
             showShareSheet.toggle()
         }
         
