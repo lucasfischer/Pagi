@@ -123,6 +123,8 @@ extension TextEditorView {
             let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             textView.verticalScrollIndicatorInsets.top = scene?.windows.first?.safeAreaInsets.top ?? 0
             textView.verticalScrollIndicatorInsets.bottom = scene?.windows.first?.safeAreaInsets.bottom ?? 0
+            
+            shouldHideToolbar = false
         }
         
         // MARK: UIScrollView
