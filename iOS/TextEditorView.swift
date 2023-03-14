@@ -62,7 +62,7 @@ struct TextEditorView: UIViewControllerRepresentable {
         
         if focusType != view.focusType {
             view.focusType = focusType
-            
+            view.setTypingAttributes()
             view.updateAttributes()
         }
         
