@@ -86,6 +86,7 @@ struct Editor: View {
                                 .transition(.offset(x: 0, y: progressBarHeight))
                         }
                     }
+                        .textSelection(.enabled)
                         .font(
                             .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
