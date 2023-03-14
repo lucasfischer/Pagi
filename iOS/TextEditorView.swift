@@ -371,19 +371,12 @@ extension TextEditorView {
         }
         
         func focusSelection(animated: Bool = false) {
-            // TODO: re-write this without hacks
-            self.layoutIfNeeded()
+            guard let selectedTextRange = selectedTextRange else { return }
+            let rect = caretRect(for: selectedTextRange.end)
+            let y = rect.origin.y - bounds.height / 2
             
-            let isCursorAtEndOfDocument = selectedTextRange?.end == endOfDocument // Is Cursor at the end of the document?
-            
-            let rect = self.layoutManager.boundingRect(forGlyphRange: self.selectedRange, in: self.textContainer)
-            let y = (rect.origin.y + (isCursorAtEndOfDocument ? rect.height : 0)).rounded()
-            
-            let differenceIsTooBig = abs(self.contentOffset.y - y) >= rect.height
-            if differenceIsTooBig {
-                UIView.animate(withDuration: animated ?  0.15 : 0) {
-                    self.contentOffset.y = y
-                }
+            UIView.animate(withDuration: animated ?  0.15 : 0) {
+                self.contentOffset.y = y
             }
         }
         
