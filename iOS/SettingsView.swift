@@ -121,6 +121,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
+                        Haptics.selectionChanged()
                         dismiss()
                     }
                 }
