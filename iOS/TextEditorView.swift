@@ -117,6 +117,14 @@ extension TextEditorView {
             textView.verticalScrollIndicatorInsets.bottom = 0
             
             Haptics.selectionChanged()
+            
+            // Focus selection after keyboard poped up
+            if let textView = textView as? PagiTextView, textView.focusMode {
+                Task {
+                    try! await Task.sleep(seconds: 0.5)
+                    textView.focusSelection(animated: true)
+                }
+            }
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
