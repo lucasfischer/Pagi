@@ -196,7 +196,7 @@ extension TextEditorView {
             view.setTypingAttributes()
             view.isScrollEnabled = true
             view.isEditable = true
-            view.autocorrectionType = .no // hides the predictive keyboard bar
+            view.autocorrectionType = .default
             view.isUserInteractionEnabled = true
             view.allowsEditingTextAttributes = false
             view.isPagingEnabled = false
