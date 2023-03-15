@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import NaturalLanguage
 
 struct TextEditorView: UIViewControllerRepresentable {
     @Binding var text: String
@@ -354,27 +353,24 @@ extension TextEditorView {
         }
         
         func highlightSelectedParagraph() {
-            let textView = self
-            let text = textView.text!
-            let selectedRange = textView.selectedRange
-            
             if focusType == .typeWriter {
                 resetHighlight()
                 return
             }
             
-            var range = Range(selectedRange, in: text)!
-            // Fix for last character in String
-            if range.lowerBound == text.endIndex && range.lowerBound != text.startIndex {
-                let lowerBound = text.index(range.lowerBound, offsetBy: -1)
-                range = lowerBound..<range.upperBound
-            }
             
             // Find range in current selection
-            let tokenizer = NLTokenizer(unit: focusType == .paragraph ? .paragraph : .sentence)
-            tokenizer.string = text
-            let tokenRange = tokenizer.tokenRange(for: range)
-            let paragraph = NSRange(tokenRange, in: text)
+            let granularity: UITextGranularity = focusType == .paragraph ? .paragraph : .sentence
+            guard let end = selectedTextRange?.end,
+                  let selectedTextRange = tokenizer.rangeEnclosingPosition(end, with: granularity, inDirection: .storage(.backward))
+            else { return }
+            
+            let sentenceStart = selectedTextRange.start
+            let sentenceEnd = selectedTextRange.end
+            let location = offset(from: beginningOfDocument, to: sentenceStart)
+            let length = offset(from: sentenceStart, to: sentenceEnd)
+            let paragraph = NSRange(location: location, length: length)
+            
             highlightRange(paragraph)
         }
         
