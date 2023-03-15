@@ -23,6 +23,7 @@ struct Editor: View {
             font: preferences.font,
             size: preferences.fontSize,
             isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
+            isAutocorrectionEnabled: preferences.isAutocorrectionEnabled,
             focusMode: $preferences.isFocusModeEnabled,
             focusType: preferences.focusType,
             shouldHideToolbar: $shouldHideToolbar

@@ -15,6 +15,7 @@ class Preferences: ObservableObject {
     @AppStorage("wordCount") var wordCount = true
     @AppStorage("progressBar") var progressBar = true
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false
+    @AppStorage("isAutocorrectionEnabled") var isAutocorrectionEnabled = false
     @AppStorage("focusMode") var isFocusModeEnabled = false
     @AppStorage("focusType") var focusType = FocusType.sentence
     

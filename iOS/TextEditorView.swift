@@ -13,6 +13,7 @@ struct TextEditorView: UIViewControllerRepresentable {
     var font: iAFont
     var size: CGFloat
     var isSpellCheckingEnabled: Bool = false
+    var isAutocorrectionEnabled: Bool = false
     @Binding var focusMode: Bool
     var focusType: FocusType
     @Binding var shouldHideToolbar: Bool
@@ -66,6 +67,7 @@ struct TextEditorView: UIViewControllerRepresentable {
         }
         
         view.spellCheckingType = isSpellCheckingEnabled ? .yes : .no
+        view.autocorrectionType = isAutocorrectionEnabled ? .yes : .no
     }
     
 }
@@ -398,6 +400,7 @@ struct TextEditorView_Previews: PreviewProvider {
                 font: iAFont.duo,
                 size: 18,
                 isSpellCheckingEnabled: false,
+                isAutocorrectionEnabled: false,
                 focusMode: .constant(false),
                 focusType: .sentence,
                 shouldHideToolbar: .constant(false)

@@ -42,6 +42,7 @@ struct SettingsView: View {
                         Toggle("Word Count", isOn: $preferences.wordCount.animation(.spring()))
                         Toggle("Progress Bar", isOn: $preferences.progressBar.animation(.spring()))
                         Toggle("Spell Checker", isOn: $preferences.isSpellCheckingEnabled)
+                        Toggle("Autocorrection", isOn: $preferences.isAutocorrectionEnabled)
                         Toggle("Focus Mode", isOn: $preferences.isFocusModeEnabled)
                         Picker("Focus:", selection: $preferences.focusType) {
                             ForEach(FocusType.allCases, id: \.self) { type in
