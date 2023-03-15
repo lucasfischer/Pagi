@@ -381,6 +381,8 @@ extension TextEditorView {
             let rect = caretRect(for: selectedTextRange.end)
             let y = rect.origin.y - bounds.height / 2
             
+            layoutIfNeeded()
+            
             UIView.animate(withDuration: animated ?  0.15 : 0) {
                 self.contentOffset.y = y
             }
