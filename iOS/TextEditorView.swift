@@ -280,6 +280,7 @@ extension TextEditorView {
         @available(iOS 16.0, *)
         @objc
         func find(sender: UIBarButtonItem!) {
+            Haptics.selectionChanged()
             textView.find(sender)
         }
         
