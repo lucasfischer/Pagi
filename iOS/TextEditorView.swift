@@ -179,11 +179,26 @@ extension TextEditorView {
             toolbar.frame = frame
             
             // Set Toolbar items
+            let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
+            fixedSpace.width = 8
+            
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+            let placeholder = UIBarButtonItem(image: UIImage(systemName: "circle"), style: .plain, target: nil, action: nil)
+            if #available(iOS 16.0, *) {
+                placeholder.isHidden = true
+            }
+            
             let moveLeft = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.left.fill"), style: .plain, target: self, action: #selector(moveToLeft(sender:)))
             let moveRight = UIBarButtonItem(image: UIImage(systemName: "arrowtriangle.right.fill"), style: .plain, target: self, action: #selector(moveToRight(sender:)))
             let dismissKeyboard = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: self, action: #selector(closeKeyboard(sender:)))
-            toolbar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
+            
+            // Add find button
+            if #available(iOS 16.0, *) {
+                let find = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(find(sender:)))
+                toolbar.items = [placeholder, fixedSpace, find, flexibleSpace, dismissKeyboard, flexibleSpace, moveLeft, fixedSpace, moveRight]
+            } else {
+                toolbar.items = [dismissKeyboard, flexibleSpace, moveLeft, moveRight]
+            }
             
             // Use UIInputView so the background is the same background as the system keyboard
             let inputView = UIInputView(frame: toolbar.bounds, inputViewStyle: .keyboard)
@@ -260,6 +275,12 @@ extension TextEditorView {
         func closeKeyboard(sender: UIBarButtonItem!) {
             Haptics.selectionChanged()
             textView.resignFirstResponder()
+        }
+        
+        @available(iOS 16.0, *)
+        @objc
+        func find(sender: UIBarButtonItem!) {
+            textView.find(sender)
         }
         
         func setToolbarTintColor(_ color: Color) {
