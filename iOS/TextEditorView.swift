@@ -213,6 +213,7 @@ extension TextEditorView {
             view.insetsLayoutMarginsFromSafeArea = false
             view.contentInsetAdjustmentBehavior = .never
             view.alwaysBounceVertical = true
+            view.layoutManager.allowsNonContiguousLayout = false // Fixes jumping around in focus mode
             if #available(iOS 16, *) {
                 view.isFindInteractionEnabled = true
             }
