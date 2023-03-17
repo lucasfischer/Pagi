@@ -13,7 +13,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
-        HStack {
+        HStack(spacing: viewModel.isiPad ? 24 : nil) {
             Button(action: { viewModel.onShowSettings() }) {
                 Label("Settings", systemImage: "gear")
                     .labelStyle(.iconOnly)
@@ -30,7 +30,9 @@ struct ContentView: View {
                     .preferredColorScheme(viewModel.theme.colorScheme)
             }
             
-            Spacer()
+            if !viewModel.isiPad {
+                Spacer()
+            }
             
             Button {
                 viewModel.onShowClearNotification()
