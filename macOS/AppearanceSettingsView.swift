@@ -33,6 +33,8 @@ struct AppearanceSettingsView: View {
                 LabeledContent("Theme:") {
                     ThemePicker(theme: $preferences.theme, font: $preferences.font)
                 }
+            } else {
+                ThemePicker(theme: $preferences.theme, font: $preferences.font)
             }
             
             if preferences.theme == .custom {
