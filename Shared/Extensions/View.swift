@@ -17,5 +17,16 @@ extension View {
             return self
         }
     }
+}
+
+extension View {
+    
+    func textSelectionEnabled() -> some View {
+        if #available(iOS 15, macOS 12.0, *) {
+            return self.textSelection(.enabled)
+        } else {
+            return self
+        }
+    }
     
 }

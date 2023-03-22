@@ -15,6 +15,7 @@ struct Editor: View {
     
     private let progressBarHeight: CGFloat = 24
     
+#if os(iOS)
     @ViewBuilder
     func iOSEditor() -> some View {
         TextEditorView(
@@ -30,6 +31,7 @@ struct Editor: View {
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+#endif
     
     @ViewBuilder
     func macEditor() -> some View {
@@ -87,7 +89,7 @@ struct Editor: View {
                                 .transition(.offset(x: 0, y: progressBarHeight))
                         }
                     }
-                        .textSelection(.enabled)
+                        .textSelectionEnabled()
                         .font(
                             .custom(preferences.font.fileName, size: 12)
                             .monospacedDigit()
