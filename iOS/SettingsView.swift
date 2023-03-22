@@ -78,31 +78,7 @@ struct SettingsView: View {
                             Haptics.selectionChanged()
                         }
                         
-                        ScrollViewReader { proxy in
-                            ScrollView(.horizontal) {
-                                HStack {
-                                    ForEach(Theme.allCases, id: \.self) { theme in
-                                        Button {
-                                            Haptics.selectionChanged()
-                                            preferences.theme = theme
-                                        } label: {
-                                            ThemePreview(
-                                                theme: theme,
-                                                font: preferences.font,
-                                                isActive: theme == preferences.theme
-                                            )
-                                        }
-                                        .buttonStyle(.plain)
-                                        .id(theme)
-                                    }
-                                }
-                                .padding(8)
-                                .padding(.bottom)
-                            }
-                            .onAppear {
-                                proxy.scrollTo(preferences.theme, anchor: .center)
-                            }
-                        }
+                        ThemePicker(theme: $preferences.theme, font: $preferences.font)
                         
                         if preferences.theme == .custom {
                             ColorPicker("Text", selection: $preferences.foregroundColor, supportsOpacity: false)

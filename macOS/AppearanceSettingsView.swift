@@ -29,41 +29,9 @@ struct AppearanceSettingsView: View {
                 }
             }
             
-            
             if #available(macOS 13.0, *) {
                 LabeledContent("Theme:") {
-                    ScrollViewReader { proxy in
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(Theme.allCases, id: \.self) { theme in
-                                    Button {
-                                        preferences.theme = theme
-                                    } label: {
-                                        ThemePreview(
-                                            theme: theme,
-                                            font: preferences.font,
-                                            isActive: theme == preferences.theme
-                                        )
-                                        
-                                    }
-                                    .buttonStyle(.plain)
-                                    .id(theme)
-                                }
-                            }
-                            .padding(8)
-                            .padding(.bottom)
-                            
-                        }
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(
-                                    Color(NSColor.textBackgroundColor)
-                                )
-                        )
-                        .onAppear {
-                            proxy.scrollTo(preferences.theme, anchor: .center)
-                        }
-                    }
+                    ThemePicker(theme: $preferences.theme, font: $preferences.font)
                 }
             }
             
