@@ -57,11 +57,9 @@ struct ContentView: View {
                         Label("Copy", systemImage: "doc.on.doc")
                     }
                 } label: {
-                    Button(action: { viewModel.onShowExport() }) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                            .labelStyle(.iconOnly)
-                            .font(.title2)
-                    }
+                    Label("Share", systemImage: "square.and.arrow.up")
+                        .labelStyle(.iconOnly)
+                        .font(.title2)
                 }
                 .disabled(viewModel.text.isEmpty)
                 .popover(isPresented: $viewModel.showShareSheet) {
