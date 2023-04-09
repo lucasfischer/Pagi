@@ -52,6 +52,10 @@
 		A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
 		A0A7C78B2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
 		A0A7C78C2605CBE5001708EE /* PagiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A7C78A2605CBE5001708EE /* PagiDocument.swift */; };
+		A0AA0B3E29E276CA00327101 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B3D29E276CA00327101 /* UTType.swift */; };
+		A0AA0B3F29E276CA00327101 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B3D29E276CA00327101 /* UTType.swift */; };
+		A0AA0B4129E27DB000327101 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B4029E27DB000327101 /* FileType.swift */; };
+		A0AA0B4229E27DB000327101 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B4029E27DB000327101 /* FileType.swift */; };
 		A0AFEE7029444C0300C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0AFEE7129444C6400C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0B696F42828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
@@ -179,6 +183,8 @@
 		A0A7464326072E0200155F4D /* iAWriterMonoS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A0A7464426072E0200155F4D /* iAWriterMonoS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iAWriterMonoS-Italic.ttf"; sourceTree = "<group>"; };
 		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
+		A0AA0B3D29E276CA00327101 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
+		A0AA0B4029E27DB000327101 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 		A0AFEE6F29444C0300C4B2A7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
 		A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS Config.xcconfig"; sourceTree = "<group>"; };
@@ -435,6 +441,7 @@
 			children = (
 				A0AFEE6F29444C0300C4B2A7 /* View.swift */,
 				A0CFB8C829A71D6F00563EF6 /* Scene+windowNotResizable.swift */,
+				A0AA0B3D29E276CA00327101 /* UTType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -482,6 +489,7 @@
 				A05C53A6266B97DC00CD45BB /* Theme.swift */,
 				A05C547B266BA22500CD45BB /* Font.swift */,
 				A05C5480266BB13B00CD45BB /* Color.swift */,
+				A0AA0B4029E27DB000327101 /* FileType.swift */,
 				A01BDE0028309A2A008296EE /* Task+sleep.swift */,
 				A0CA5841288D32BB0050442A /* FocusType.swift */,
 				A0413E44298D150000422D37 /* Preferences.swift */,
@@ -732,6 +740,7 @@
 				A0413E45298D150000422D37 /* Preferences.swift in Sources */,
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A0D6D2B8296CF86A00642AB4 /* FocusCommands.swift in Sources */,
+				A0AA0B3E29E276CA00327101 /* UTType.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
 				A03930F32712889B005CAEF1 /* ContentView.swift in Sources */,
 				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
@@ -750,6 +759,7 @@
 				A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */,
 				A0034FA329CAF291003D647A /* ThemePicker.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
+				A0AA0B4129E27DB000327101 /* FileType.swift in Sources */,
 				A025926726EC87D700B8324F /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AA0B4229E27DB000327101 /* FileType.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
 				A0B696F42828A3A20079433C /* FindCommands.swift in Sources */,
@@ -780,6 +791,7 @@
 				A0EE1A1C26044F4200586065 /* ProgressBar.swift in Sources */,
 				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
 				A0CA5843288D32BB0050442A /* FocusType.swift in Sources */,
+				A0AA0B3F29E276CA00327101 /* UTType.swift in Sources */,
 				A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */,
 				A002A434267470CC00FFB271 /* FontCommands.swift in Sources */,
 				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,

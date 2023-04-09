@@ -124,7 +124,7 @@ struct ContentView: View {
         .fileExporter(
             isPresented: $viewModel.showExport,
             document: PagiDocument(text: viewModel.text),
-            contentType: .plainText,
+            contentType: viewModel.exportType.type,
             defaultFilename: viewModel.currentDateString,
             onCompletion: viewModel.onFileExported
         )
@@ -181,6 +181,8 @@ extension ContentView {
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
         
+        var exportType = Preferences.shared.exportType
+        
         let isiPad = UIDevice.current.userInterfaceIdiom == .pad
         
         var shouldReset = false
@@ -231,7 +233,8 @@ extension ContentView {
             showSettings.toggle()
         }
         
-        func onShowExport() {
+        func onShowExport(type: FileType = Preferences.shared.exportType) {
+            exportType = type
             onButtonTap()
             showExport.toggle()
         }

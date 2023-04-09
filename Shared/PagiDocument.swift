@@ -15,7 +15,7 @@ struct PagiDocument: FileDocument {
         self.text = text
     }
 
-    static var readableContentTypes: [UTType] = [.plainText]
+    static var readableContentTypes: [UTType] = [.plainText, .markdown]
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,

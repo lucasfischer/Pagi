@@ -11,6 +11,7 @@ class Preferences: ObservableObject {
     
     static let shared = Preferences()
     
+    @AppStorage("exportType") var exportType: FileType = .text
     @AppStorage("wordTarget") var wordTarget = 750
     @AppStorage("wordCount") var wordCount = true
     @AppStorage("progressBar") var progressBar = true

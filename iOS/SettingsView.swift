@@ -87,6 +87,23 @@ struct SettingsView: View {
                         }
                     })
                     
+                    Section {
+                        Picker("Default File Type", selection: $preferences.exportType) {
+                            ForEach(FileType.allCases, id: \.self) { type in
+                                Button(type.name) {
+                                    preferences.exportType = type
+                                }
+                            }
+                        }
+                        .onChange(of: preferences.exportType) { _ in
+                            Haptics.selectionChanged()
+                        }
+                    } header: {
+                        Text("Files")
+                    } footer: {
+                        Text("Saved files will have the .\(preferences.exportType.type.preferredFilenameExtension ?? "") extension.")
+                    }
+                    
                     NavigationLink("About") {
                         AboutView()
                     }
