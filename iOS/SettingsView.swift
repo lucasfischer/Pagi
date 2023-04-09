@@ -44,7 +44,7 @@ struct SettingsView: View {
                         Toggle("Spell Checker", isOn: $preferences.isSpellCheckingEnabled)
                         Toggle("Autocorrection", isOn: $preferences.isAutocorrectionEnabled)
                         Toggle("Focus Mode", isOn: $preferences.isFocusModeEnabled)
-                        Picker("Focus:", selection: $preferences.focusType) {
+                        Picker("Focus", selection: $preferences.focusType) {
                             ForEach(FocusType.allCases, id: \.self) { type in
                                 Button(type.title) {
                                     preferences.focusType = type
