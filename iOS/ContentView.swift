@@ -76,6 +76,14 @@ struct ContentView: View {
                     Button(action: { viewModel.onShowExport() }) {
                         Label("Save", systemImage: "square.and.arrow.down")
                     }
+                    .contextMenu {
+                        Button(action: { viewModel.onShowExport(type: .text) }) {
+                            Label("Save as Plain Text", systemImage: "square.and.arrow.down")
+                        }
+                        Button(action: { viewModel.onShowExport(type: .markdown) }) {
+                            Label("Save as Markdown", systemImage: "square.and.arrow.down")
+                        }
+                    }
                     
                     Spacer()
                     
