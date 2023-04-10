@@ -10,7 +10,7 @@ import SwiftUI
 struct Editor: View {
     @Binding var text: String
     @Binding var shouldHideToolbar: Bool
-    @StateObject var viewModel = EditorViewModel()
+    @ObservedObject var viewModel: EditorViewModel
     @StateObject var preferences = Preferences.shared
     
     private let progressBarHeight: CGFloat = 24
@@ -134,6 +134,6 @@ struct Editor: View {
 
 struct Editor_Previews: PreviewProvider {
     static var previews: some View {
-        Editor(text: .constant("This is a test."), shouldHideToolbar: .constant(false))
+        Editor(text: .constant("This is a test."), shouldHideToolbar: .constant(false), viewModel: EditorViewModel())
     }
 }

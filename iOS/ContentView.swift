@@ -118,7 +118,7 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar)
+            Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar, viewModel: viewModel.editorViewModel)
                 .ignoresSafeArea(.container, edges: .vertical)
                 .safeAreaInset(edge: viewModel.isiPad ? .top : .bottom) {
                     Header(geometry)
@@ -186,6 +186,8 @@ extension ContentView {
         @Published var shouldHideToolbar = false
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
+        
+        var editorViewModel = EditorViewModel()
         
         var exportType = Preferences.shared.exportType
         
@@ -283,6 +285,7 @@ extension ContentView {
         func reset() {
             self.text = ""
             self.lastOpenedDate = nil
+            self.editorViewModel.resetTimer()
         }
         
     }

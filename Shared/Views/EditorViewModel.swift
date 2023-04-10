@@ -60,4 +60,8 @@ class EditorViewModel: ObservableObject {
         }
         timer.typing()
     }
+    
+    func resetTimer() {
+        timer.reset()
+    }
 }

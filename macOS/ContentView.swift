@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var document: PagiDocument
+    @StateObject var viewModel = EditorViewModel()
     
     var body: some View {
         ZStack {
             Color.background.ignoresSafeArea()
             
-            Editor(text: $document.text, shouldHideToolbar: .constant(false))
+            Editor(text: $document.text, shouldHideToolbar: .constant(false), viewModel: viewModel)
         }
     }
 }
