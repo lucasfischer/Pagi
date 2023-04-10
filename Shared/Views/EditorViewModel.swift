@@ -10,6 +10,7 @@ import SwiftUI
 class EditorViewModel: ObservableObject {
     @Published var words = 0
     @Published var overlayHover = false
+    @Published var shouldHideToolbar = false
     
     let preferences = Preferences.shared
     

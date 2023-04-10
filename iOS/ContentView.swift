@@ -110,7 +110,7 @@ struct ContentView: View {
                 .foregroundColor(.black.opacity(0.1))
         }
         .offset(viewModel.getToolbarOffset(geometry))
-        .animation(.spring(), value: viewModel.shouldHideToolbar)
+        .animation(.spring(), value: viewModel.editorViewModel.shouldHideToolbar)
         .readSize { height in
             viewModel.toolbarHeight = height
         }
@@ -118,15 +118,15 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            Editor(text: $viewModel.text, shouldHideToolbar: $viewModel.shouldHideToolbar, viewModel: viewModel.editorViewModel)
+            Editor(text: $viewModel.text, viewModel: viewModel.editorViewModel)
                 .ignoresSafeArea(.container, edges: .vertical)
                 .safeAreaInset(edge: viewModel.isiPad ? .top : .bottom) {
                     Header(geometry)
                 }
         }
         .id(viewModel.lastOpenedDate)
-        .statusBarHidden(viewModel.shouldHideToolbar)
-        .setPersistentSystemOverlays(viewModel.shouldHideToolbar ? .hidden : .automatic)
+        .statusBarHidden(viewModel.editorViewModel.shouldHideToolbar)
+        .setPersistentSystemOverlays(viewModel.editorViewModel.shouldHideToolbar ? .hidden : .automatic)
         .fileExporter(
             isPresented: $viewModel.showExport,
             document: PagiDocument(text: viewModel.text),
@@ -183,7 +183,6 @@ extension ContentView {
         @Published var shareURL: URL?
         @Published var showShareSheet = false
         @Published var showClearNotification = false
-        @Published var shouldHideToolbar = false
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
         
@@ -214,9 +213,9 @@ extension ContentView {
         }
         
         func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
-            var height = shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
+            var height = editorViewModel.shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
             if isiPad {
-                height = shouldHideToolbar ? 0 - toolbarHeight + geometry.safeAreaInsets.top : 0
+                height = editorViewModel.shouldHideToolbar ? 0 - toolbarHeight + geometry.safeAreaInsets.top : 0
             }
             
             return CGSize(width: 0, height: height)

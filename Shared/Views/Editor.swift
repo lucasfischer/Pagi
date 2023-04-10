@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Editor: View {
     @Binding var text: String
-    @Binding var shouldHideToolbar: Bool
     @ObservedObject var viewModel: EditorViewModel
     @StateObject var preferences = Preferences.shared
     
@@ -27,7 +26,7 @@ struct Editor: View {
             isAutocorrectionEnabled: preferences.isAutocorrectionEnabled,
             focusMode: $preferences.isFocusModeEnabled,
             focusType: preferences.focusType,
-            shouldHideToolbar: $shouldHideToolbar
+            shouldHideToolbar: $viewModel.shouldHideToolbar
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -43,7 +42,7 @@ struct Editor: View {
             isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
             focusMode: $preferences.isFocusModeEnabled,
             focusType: preferences.focusType,
-            shouldHideToolbar: $shouldHideToolbar
+            shouldHideToolbar: $viewModel.shouldHideToolbar
         )
             .id("\(preferences.font.rawValue)\(preferences.fontSize)")
     }
@@ -134,6 +133,6 @@ struct Editor: View {
 
 struct Editor_Previews: PreviewProvider {
     static var previews: some View {
-        Editor(text: .constant("This is a test."), shouldHideToolbar: .constant(false), viewModel: EditorViewModel())
+        Editor(text: .constant("This is a test."), viewModel: EditorViewModel())
     }
 }

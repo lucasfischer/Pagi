@@ -15,7 +15,7 @@ struct ContentView: View {
         ZStack {
             Color.background.ignoresSafeArea()
             
-            Editor(text: $document.text, shouldHideToolbar: .constant(false), viewModel: viewModel)
+            Editor(text: $document.text, viewModel: viewModel)
         }
     }
 }
