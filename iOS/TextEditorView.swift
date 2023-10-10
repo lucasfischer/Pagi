@@ -222,6 +222,9 @@ extension TextEditorView {
             view.isScrollEnabled = true
             view.isEditable = true
             view.autocorrectionType = .default
+            if #available(iOS 17.0, *) {
+                view.inlinePredictionType = .no
+            }
             view.isUserInteractionEnabled = true
             view.allowsEditingTextAttributes = false
             view.isPagingEnabled = false
