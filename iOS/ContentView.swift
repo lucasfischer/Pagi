@@ -102,7 +102,7 @@ struct ContentView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
-        .background(Material.thin)
+        .background(Material.ultraThin)
         .overlay(alignment: viewModel.isiPad ? .bottom : .top) {
             Rectangle()
                 .frame(height: 1)
