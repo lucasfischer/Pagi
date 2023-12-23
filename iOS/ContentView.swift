@@ -10,6 +10,12 @@ import UIKit
 
 struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var editorViewModel: EditorViewModel // To update View on EditorViewModel changes
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self._editorViewModel = ObservedObject(initialValue: viewModel.editorViewModel)
+    }
     
     @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
