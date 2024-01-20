@@ -8,5 +8,5 @@
 import UniformTypeIdentifiers
 
 extension UTType {
-    static let markdown: UTType = UTType(filenameExtension: "md", conformingTo: .plainText)!
+    static let markdown = Self("net.daringfireball.markdown")!
 }
