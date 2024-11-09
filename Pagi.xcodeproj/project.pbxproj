@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A002A434267470CC00FFB271 /* FontCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002A432267470CC00FFB271 /* FontCommands.swift */; };
-		A0034FA329CAF291003D647A /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0034FA229CAF291003D647A /* ThemePicker.swift */; };
-		A0034FA429CAF291003D647A /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0034FA229CAF291003D647A /* ThemePicker.swift */; };
 		A01255FF2686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A01256002686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
 		A01BDE0228309AF6008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
 		A02491742CDEF64E00AED935 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A02491732CDEF64E00AED935 /* Localizable.xcstrings */; };
 		A02491762CDEF65900AED935 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A02491752CDEF65900AED935 /* Localizable.xcstrings */; };
+		A024917B2CDF089500AED935 /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024917A2CDF089500AED935 /* ThemePicker.swift */; };
+		A024917C2CDF089500AED935 /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024917A2CDF089500AED935 /* ThemePicker.swift */; };
 		A025926726EC87D700B8324F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025926626EC877B00B8324F /* SettingsView.swift */; };
 		A02F1DAE299248D2003BD5EB /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02F1DAD299248D2003BD5EB /* ThemePreview.swift */; };
 		A02F1DAF299248D2003BD5EB /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02F1DAD299248D2003BD5EB /* ThemePreview.swift */; };
@@ -104,11 +104,11 @@
 
 /* Begin PBXFileReference section */
 		A002A432267470CC00FFB271 /* FontCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCommands.swift; sourceTree = "<group>"; };
-		A0034FA229CAF291003D647A /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemePicker.swift; path = Views/ThemePicker.swift; sourceTree = "<group>"; };
 		A01255FE2686E4EC00727630 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Shared/Timer.swift; sourceTree = SOURCE_ROOT; };
 		A01BDE0028309A2A008296EE /* Task+sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+sleep.swift"; sourceTree = "<group>"; };
 		A02491732CDEF64E00AED935 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A02491752CDEF65900AED935 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A024917A2CDF089500AED935 /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
 		A025926626EC877B00B8324F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A02F1DAD299248D2003BD5EB /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
 		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -436,6 +436,7 @@
 				A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */,
 				A0EE1A1A26044F4200586065 /* ProgressBar.swift */,
 				A02F1DAD299248D2003BD5EB /* ThemePreview.swift */,
+				A024917A2CDF089500AED935 /* ThemePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -498,7 +499,6 @@
 				A0CA5841288D32BB0050442A /* FocusType.swift */,
 				A0413E44298D150000422D37 /* Preferences.swift */,
 				A0AFEE6E29444BF300C4B2A7 /* Extensions */,
-				A0034FA229CAF291003D647A /* ThemePicker.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -755,6 +755,7 @@
 				A0EE1A1B26044F4200586065 /* ProgressBar.swift in Sources */,
 				A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */,
 				A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */,
+				A024917B2CDF089500AED935 /* ThemePicker.swift in Sources */,
 				A0CA5842288D32BB0050442A /* FocusType.swift in Sources */,
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */,
@@ -766,7 +767,6 @@
 				A01255FF2686E4EC00727630 /* Timer.swift in Sources */,
 				A0CFB8C929A71D6F00563EF6 /* Scene+windowNotResizable.swift in Sources */,
 				A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */,
-				A0034FA329CAF291003D647A /* ThemePicker.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
 				A0AA0B4129E27DB000327101 /* FileType.swift in Sources */,
 				A025926726EC87D700B8324F /* SettingsView.swift in Sources */,
@@ -782,11 +782,11 @@
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
 				A0B696F42828A3A20079433C /* FindCommands.swift in Sources */,
 				A0CFB8CA29A71D6F00563EF6 /* Scene+windowNotResizable.swift in Sources */,
+				A024917C2CDF089500AED935 /* ThemePicker.swift in Sources */,
 				A02F1DAF299248D2003BD5EB /* ThemePreview.swift in Sources */,
 				A01256002686E4EC00727630 /* Timer.swift in Sources */,
 				A0997F172702B706003EDD8C /* AboutView.swift in Sources */,
 				A05C5482266BB13B00CD45BB /* Color.swift in Sources */,
-				A0034FA429CAF291003D647A /* ThemePicker.swift in Sources */,
 				A0413E46298D150000422D37 /* Preferences.swift in Sources */,
 				A05C547D266BA22500CD45BB /* Font.swift in Sources */,
 				A0AFEE7129444C6400C4B2A7 /* View.swift in Sources */,
