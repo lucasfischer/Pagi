@@ -38,7 +38,7 @@ struct AboutView: View {
             
             // MARK: App Version
             if let appVersion = appVersion, let appBundle = appBundle {
-                Text("Version \(appVersion) (\(appBundle))")
+                Text("Version \(appVersion) \(Text(verbatim: "(\(appBundle))").fontWeight(.regular))")
                     .padding(.top, 1)
             }
             

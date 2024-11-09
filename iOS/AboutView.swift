@@ -36,7 +36,7 @@ struct AboutView: View {
             Section {
                 VStack(spacing: 4) {
                     if let appVersion = appVersion, let appBundle = appBundle {
-                        Text("Version \(appVersion) (\(appBundle))")
+                        Text("Version \(appVersion) \(Text(verbatim: "(\(appBundle))").fontWeight(.regular))")
                     }
                     
                     Text("Copyright © \(Date(), format: Date.FormatStyle().year()) Lucas Fischer")
