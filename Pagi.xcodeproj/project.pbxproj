@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		A01256002686E4EC00727630 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01255FE2686E4EC00727630 /* Timer.swift */; };
 		A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
 		A01BDE0228309AF6008296EE /* Task+sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01BDE0028309A2A008296EE /* Task+sleep.swift */; };
+		A02491742CDEF64E00AED935 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A02491732CDEF64E00AED935 /* Localizable.xcstrings */; };
+		A02491762CDEF65900AED935 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A02491752CDEF65900AED935 /* Localizable.xcstrings */; };
 		A025926726EC87D700B8324F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025926626EC877B00B8324F /* SettingsView.swift */; };
 		A02F1DAE299248D2003BD5EB /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02F1DAD299248D2003BD5EB /* ThemePreview.swift */; };
 		A02F1DAF299248D2003BD5EB /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02F1DAD299248D2003BD5EB /* ThemePreview.swift */; };
@@ -105,6 +107,8 @@
 		A0034FA229CAF291003D647A /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemePicker.swift; path = Views/ThemePicker.swift; sourceTree = "<group>"; };
 		A01255FE2686E4EC00727630 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Shared/Timer.swift; sourceTree = SOURCE_ROOT; };
 		A01BDE0028309A2A008296EE /* Task+sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+sleep.swift"; sourceTree = "<group>"; };
+		A02491732CDEF64E00AED935 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A02491752CDEF65900AED935 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A025926626EC877B00B8324F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A02F1DAD299248D2003BD5EB /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
 		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 			children = (
 				A08ADF6129A714AB00B24FCD /* iOS Config.xcconfig */,
 				A0EE19E326044F2200586065 /* Info.plist */,
+				A02491732CDEF64E00AED935 /* Localizable.xcstrings */,
 				A0D6D2BA296D11ED00642AB4 /* Commands */,
 				A03930F22712889B005CAEF1 /* ContentView.swift */,
 				A025926626EC877B00B8324F /* SettingsView.swift */,
@@ -532,6 +537,7 @@
 				A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */,
 				A0EE19EA26044F2200586065 /* Info.plist */,
 				A0EE19EB26044F2200586065 /* macOS.entitlements */,
+				A02491752CDEF65900AED935 /* Localizable.xcstrings */,
 				A0EE19DA26044F2100586065 /* ContentView.swift */,
 				A05C539E266B68D000CD45BB /* TextEditorView.swift */,
 				A05C53A2266B8F9800CD45BB /* SettingsView.swift */,
@@ -693,6 +699,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0EE1A0626044F2200586065 /* Assets.xcassets in Resources */,
+				A02491742CDEF64E00AED935 /* Localizable.xcstrings in Resources */,
 				A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
 				A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
 				A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
@@ -704,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0EE1A0726044F2200586065 /* Assets.xcassets in Resources */,
+				A02491762CDEF65900AED935 /* Localizable.xcstrings in Resources */,
 				A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
 				A05C5430266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
 				A0A7464826072E0200155F4D /* iAWriterMonoV.ttf in Resources */,
@@ -894,6 +902,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -948,6 +957,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
