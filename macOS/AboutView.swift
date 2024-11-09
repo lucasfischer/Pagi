@@ -88,12 +88,12 @@ extension AboutView {
     }
     
     struct HoverLink: View {
-        var label: LocalizedStringKey
+        var label: any StringProtocol
         var destination: URL
         
         @State private var isHover = false
         
-        init(_ label: LocalizedStringKey, destination: URL) {
+        init(_ label: any StringProtocol, destination: URL) {
             self.label = label
             self.destination = destination
         }
