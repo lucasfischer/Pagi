@@ -40,8 +40,7 @@ struct ThemePreview: View {
                     .foregroundColor(.accentColor) : nil
             )
             
-            
-            Text(theme.name)
+            theme.text
         }
     }
 }

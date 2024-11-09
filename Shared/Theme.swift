@@ -18,28 +18,29 @@ enum Theme: String, CaseIterable {
     case pastel
     case custom
     
-    var name: LocalizedStringKey {
+    var text: Text {
         switch self {
-        case .system:
-            return "System"
-        case .light:
-            return "Light"
-        case .dark:
-            return "Dark"
-        case .blackWhite:
-            return "B/W"
-        case .futureland:
-            return "Futureland"
-        case .oneDark:
-            return "One Dark"
-        case .neon:
-            return "Neon"
-        case .pastel:
-            return "Pastel"
-        case .custom:
-            return "Custom"
+            case .system:
+                Text("System")
+            case .light:
+                Text("Light")
+            case .dark:
+                Text("Dark")
+            case .blackWhite:
+                Text(verbatim: "B/W")
+            case .futureland:
+                Text(verbatim: "Futureland")
+            case .oneDark:
+                Text(verbatim: "One Dark")
+            case .neon:
+                Text(verbatim: "Neon")
+            case .pastel:
+                Text(verbatim: "Pastel")
+            case .custom:
+                Text("Custom")
         }
     }
+    
     
     var colorScheme: ColorScheme? {
         switch self {
