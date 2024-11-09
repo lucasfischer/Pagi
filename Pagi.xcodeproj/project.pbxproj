@@ -652,7 +652,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					A0EE19DF26044F2200586065 = {
 						CreatedOnToolsVersion = 12.4;
@@ -884,6 +884,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -947,6 +948,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1071,7 +1073,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A08ADF6129A714AB00B24FCD /* iOS Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
@@ -1094,7 +1095,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A08ADF6129A714AB00B24FCD /* iOS Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
@@ -1118,7 +1118,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1142,7 +1141,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
