@@ -25,7 +25,9 @@ struct AboutView: View {
             
             NavigationLink("Acknowlegements") {
                 Form {
-                    Link("iA Writer Typeface", destination: URL(string: "https://github.com/iaolo/iA-Fonts")!)
+                    Link(destination: URL(string: "https://github.com/iaolo/iA-Fonts")!) {
+                        Text(verbatim: "iA Writer Typeface")
+                    }
                 }
                 .navigationTitle("Acknowlegements")
             }
