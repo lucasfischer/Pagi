@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class Preferences: ObservableObject {
     
     static let shared = Preferences()

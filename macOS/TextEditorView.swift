@@ -75,6 +75,7 @@ extension TextEditorView {
         )
     }
     
+    @MainActor
     class Coordinator: NSObject, NSTextViewDelegate {
         var parent: TextEditorView
         var colors: Theme.Colors

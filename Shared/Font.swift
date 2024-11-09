@@ -13,6 +13,7 @@ import UIKit
 import AppKit
 #endif
 
+@MainActor
 enum iAFont: String, CaseIterable {
     case mono = "Mono"
     case duo = "Duo"

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class EditorViewModel: ObservableObject {
     @Published var words = 0
     @Published var overlayHover = false

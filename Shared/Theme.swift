@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 enum Theme: String, CaseIterable {
     case system = "System"
     case light = "Light"

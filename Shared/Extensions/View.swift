@@ -20,7 +20,7 @@ extension View {
 }
 
 struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: Double = .zero
+    static let defaultValue: Double = .zero
     static func reduce(value: inout Double, nextValue: () -> Double) {}
 }
 

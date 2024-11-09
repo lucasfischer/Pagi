@@ -173,6 +173,8 @@ struct ContentView: View {
 }
 
 extension ContentView {
+    
+    @MainActor
     class ViewModel: ObservableObject {
         @AppStorage("text") var text = ""
         @AppStorage("theme") var theme = Theme.system

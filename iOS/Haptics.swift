@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 enum Haptics {
     
     @AppStorage("isHapticsEnabled") static var isHapticsEnabled = true
