@@ -29,8 +29,6 @@
 		A05C53A5266B901100CD45BB /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A4266B901100CD45BB /* GeneralSettingsView.swift */; };
 		A05C53A7266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
 		A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
-		A05C53A9266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
-		A05C53AA266B97DC00CD45BB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C53A6266B97DC00CD45BB /* Theme.swift */; };
 		A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
 		A05C53E4266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
 		A05C53E5266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53AF266BA14C00CD45BB /* iAWriterDuoV.ttf */; };
@@ -41,8 +39,6 @@
 		A05C5432266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A05C53C6266BA14D00CD45BB /* iAWriterQuattroV.ttf */; };
 		A05C547C266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
 		A05C547D266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
-		A05C547E266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
-		A05C547F266BA22500CD45BB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C547B266BA22500CD45BB /* Font.swift */; };
 		A05C5481266BB13B00CD45BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C5480266BB13B00CD45BB /* Color.swift */; };
 		A05C5482266BB13B00CD45BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C5480266BB13B00CD45BB /* Color.swift */; };
 		A0749B142698730000CEFBC1 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0749B122698730000CEFBC1 /* ViewCommands.swift */; };
@@ -86,6 +82,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A07DF0982CE47B0A00211B36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0EE19D426044F2000586065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0EE19E726044F2200586065;
+			remoteInfo = "Pagi (macOS)";
+		};
+		A07DF09A2CE47B0F00211B36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0EE19D426044F2000586065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0EE19DF26044F2200586065;
+			remoteInfo = "Pagi (iOS)";
+		};
 		A0EE19F126044F2200586065 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A0EE19D426044F2000586065 /* Project object */;
@@ -620,6 +630,7 @@
 			);
 			dependencies = (
 				A0EE19F226044F2200586065 /* PBXTargetDependency */,
+				A07DF0992CE47B0A00211B36 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
 			productName = "Tests iOS";
@@ -638,6 +649,7 @@
 			);
 			dependencies = (
 				A0EE19FD26044F2200586065 /* PBXTargetDependency */,
+				A07DF09B2CE47B0F00211B36 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
 			productName = "Tests macOS";
@@ -814,8 +826,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0EE19F526044F2200586065 /* Tests_iOS.swift in Sources */,
-				A05C53A9266B97DC00CD45BB /* Theme.swift in Sources */,
-				A05C547E266BA22500CD45BB /* Font.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,14 +834,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0EE1A0026044F2200586065 /* Tests_macOS.swift in Sources */,
-				A05C53AA266B97DC00CD45BB /* Theme.swift in Sources */,
-				A05C547F266BA22500CD45BB /* Font.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A07DF0992CE47B0A00211B36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0EE19E726044F2200586065 /* Pagi (macOS) */;
+			targetProxy = A07DF0982CE47B0A00211B36 /* PBXContainerItemProxy */;
+		};
+		A07DF09B2CE47B0F00211B36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0EE19DF26044F2200586065 /* Pagi (iOS) */;
+			targetProxy = A07DF09A2CE47B0F00211B36 /* PBXContainerItemProxy */;
+		};
 		A0EE19F226044F2200586065 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A0EE19DF26044F2200586065 /* Pagi (iOS) */;
@@ -899,6 +917,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -957,6 +977,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -976,7 +998,6 @@
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1001,7 +1022,6 @@
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1076,7 +1096,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1087,7 +1106,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Morning Pages (iOS)";
+				TEST_TARGET_NAME = "Pagi (iOS)";
 			};
 			name = Debug;
 		};
@@ -1098,7 +1117,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1109,7 +1127,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Morning Pages (iOS)";
+				TEST_TARGET_NAME = "Pagi (iOS)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1128,12 +1146,11 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Morning Pages (macOS)";
+				TEST_TARGET_NAME = "Pagi (macOS)";
 			};
 			name = Debug;
 		};
@@ -1151,12 +1168,11 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lucas-fischer.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Morning Pages (macOS)";
+				TEST_TARGET_NAME = "Pagi (macOS)";
 			};
 			name = Release;
 		};
