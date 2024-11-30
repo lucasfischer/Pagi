@@ -254,12 +254,12 @@ extension ContentView {
             showExport.toggle()
         }
         
-        func onShowShareSheet() {
+        func onShowShareSheet(type: FileType = Preferences.shared.exportType) {
             onButtonTap()
             
             // Create temporary file to share
             do {
-                let url = FileManager.default.temporaryDirectory.appendingPathComponent(currentDateString, conformingTo: .plainText)
+                let url = FileManager.default.temporaryDirectory.appendingPathComponent(currentDateString, conformingTo: type.type)
                 let data = Data(text.utf8)
                 try data.write(to: url)
                 shareURL = url
