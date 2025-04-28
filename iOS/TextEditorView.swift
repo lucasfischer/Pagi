@@ -109,8 +109,6 @@ extension TextEditorView {
                 view.focusSelection(animated: true)
                 view.highlightSelectedParagraph()
             }
-            
-            view.setContainerInsets()
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
