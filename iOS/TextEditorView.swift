@@ -340,16 +340,23 @@ extension TextEditorView {
             let isiPad = UIDevice.current.userInterfaceIdiom == .pad
             let horizontalPadding = max((frameWidth - 704) / 2, 16)
             let topPadding = isiPad ? (safeAreaInsets?.top ?? 0) + 96 : (safeAreaInsets?.top ?? 0) + 8
-            let bottomPadding = isiPad ? (safeAreaInsets?.bottom ?? 0) + 40 : (safeAreaInsets?.bottom ?? 0) + 24
-            let inset = UIEdgeInsets(
-                top: focusMode ? frameHeight / 2 : topPadding,
+            let bottomPadding = (safeAreaInsets?.bottom ?? 0) + 40
+            
+            textContainerInset = UIEdgeInsets(
+                top: focusMode ? frameHeight / 2 : 0,
                 left: horizontalPadding,
-                bottom: focusMode ? frameHeight / 2 : bottomPadding,
+                bottom: focusMode ? frameHeight / 2 : 0,
                 right: horizontalPadding
             )
             
-            textContainerInset = focusMode ? inset : .zero
-            contentInset = focusMode ? .zero : inset
+            // Sets the padding while typing.
+            // This is especially important when the cursor reaches the bottom of the screen.
+            contentInset = UIEdgeInsets(
+                top: focusMode ? 0 : topPadding,
+                left: 0,
+                bottom: bottomPadding,
+                right: 0
+            )
         }
         
         private func highlightRange(_ range: NSRange) {
