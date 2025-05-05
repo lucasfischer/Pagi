@@ -96,8 +96,9 @@ struct ContentView: View {
                     Button(action: { viewModel.onShowShareSheet() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
-                    .popover(isPresented: $viewModel.showShareSheet) {
+                    .sheet(isPresented: $viewModel.showShareSheet) {
                         ShareSheet(activityItems: [viewModel.shareURL ?? viewModel.text])
+                            .ignoresSafeArea()
                     }
                 }
                 .disabled(viewModel.text.isEmpty)
