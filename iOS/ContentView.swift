@@ -18,6 +18,33 @@ struct ContentView: View {
     }
     
     @ViewBuilder
+    func ShareSheetWrapper(_ item: ShareItem) -> some View {
+        switch item {
+            case .text(let text):
+                ShareSheet(activityItems: [text])
+                    .ignoresSafeArea()
+            case .url(let url):
+                ShareSheet(activityItems: [url])
+                    .ignoresSafeArea()
+        }
+    }
+    
+    @ViewBuilder
+    func ShareContextMenu() -> some View {
+        Button(action: { viewModel.onShowShareSheet(type: .text) }) {
+            Label("Share as Text", systemImage: "square.and.arrow.down")
+        }
+        Section {
+            Button(action: { viewModel.onShowShareSheet(type: .file(.text)) }) {
+                Label("Share as Plain Text File", systemImage: "square.and.arrow.down")
+            }
+            Button(action: { viewModel.onShowShareSheet(type: .file(.markdown)) }) {
+                Label("Share as Markdown File", systemImage: "square.and.arrow.down")
+            }
+        }
+    }
+    
+    @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
         HStack(spacing: viewModel.isiPad ? 24 : nil) {
             Button(action: { viewModel.onShowSettings() }) {
@@ -53,7 +80,9 @@ struct ContentView: View {
             
             if viewModel.isiPad {
                 Menu {
-                    Button(action: { viewModel.onShowShareSheet() }) {
+                    Menu {
+                        ShareContextMenu()
+                    } label: {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                     Button(action: { viewModel.onShowExport() }) {
@@ -68,8 +97,8 @@ struct ContentView: View {
                         .font(.title2)
                 }
                 .disabled(viewModel.text.isEmpty)
-                .popover(isPresented: $viewModel.showShareSheet) {
-                    ShareSheet(activityItems: [viewModel.shareURL ?? viewModel.text])
+                .popover(item: $viewModel.shareItem) { item in
+                    ShareSheetWrapper(item)
                 }
             } else {
                 Group {
@@ -96,9 +125,11 @@ struct ContentView: View {
                     Button(action: { viewModel.onShowShareSheet() }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
-                    .sheet(isPresented: $viewModel.showShareSheet) {
-                        ShareSheet(activityItems: [viewModel.shareURL ?? viewModel.text])
-                            .ignoresSafeArea()
+                    .contextMenu {
+                        ShareContextMenu()
+                    }
+                    .sheet(item: $viewModel.shareItem) { item in
+                        ShareSheetWrapper(item)
                     }
                 }
                 .disabled(viewModel.text.isEmpty)
@@ -189,8 +220,7 @@ extension ContentView {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
-        @Published var shareURL: URL?
-        @Published var showShareSheet = false
+        @Published var shareItem: ShareItem?
         @Published var showClearNotification = false
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
@@ -255,20 +285,23 @@ extension ContentView {
             showExport.toggle()
         }
         
-        func onShowShareSheet(type: FileType = Preferences.shared.exportType) {
+        func onShowShareSheet(type: ShareSheetType = .file(Preferences.shared.exportType)) {
             onButtonTap()
             
-            // Create temporary file to share
-            do {
-                let url = FileManager.default.temporaryDirectory.appendingPathComponent(currentDateString, conformingTo: type.type)
-                let data = Data(text.utf8)
-                try data.write(to: url)
-                shareURL = url
-            } catch {
-                print(error)
+            switch type {
+                case .file(let type):
+                    // Create temporary file to share
+                    do {
+                        let url = FileManager.default.temporaryDirectory.appendingPathComponent(currentDateString, conformingTo: type.type)
+                        let data = Data(text.utf8)
+                        try data.write(to: url)
+                        shareItem = .url(url)
+                    } catch {
+                        print(error)
+                    }
+                case .text:
+                    shareItem = .text(text)
             }
-            
-            showShareSheet.toggle()
         }
         
         func onCopy() {
@@ -278,15 +311,15 @@ extension ContentView {
         
         func onFileExported(_ result: Result<URL, Error>) {
             switch result {
-            case .success:
-                if shouldReset {
-                    reset()
-                }
-                showClearNotification = false
-                showExport = false
-                isFileExported = true
-            default:
-                break
+                case .success:
+                    if shouldReset {
+                        reset()
+                    }
+                    showClearNotification = false
+                    showExport = false
+                    isFileExported = true
+                default:
+                    break
             }
         }
         
@@ -297,6 +330,28 @@ extension ContentView {
         }
         
     }
+}
+
+extension ContentView {
+    
+    enum ShareSheetType {
+        case text, file(FileType)
+    }
+    
+    enum ShareItem: Identifiable {
+        case text(String)
+        case url(URL)
+        
+        var id: String {
+            switch self {
+                case .text(let string):
+                    string
+                case .url(let url):
+                    url.absoluteString
+            }
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -41,7 +41,7 @@ struct ViewCommands: Commands {
             .keyboardShortcut("s", modifiers: .command)
             
             Button("Share") {
-                viewModel.showShareSheet.toggle()
+                viewModel.onShowShareSheet()
             }
             .keyboardShortcut("s", modifiers: [.shift, .command])
         }
