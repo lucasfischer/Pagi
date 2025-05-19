@@ -123,6 +123,7 @@
 		A024917A2CDF089500AED935 /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
 		A025926626EC877B00B8324F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A02F1DAD299248D2003BD5EB /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
+		A03713222DDB08580040E383 /* Pagi (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pagi (iOS).entitlements"; sourceTree = "<group>"; };
 		A03930F22712889B005CAEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A03930F4271293E5005CAEF1 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -485,6 +486,7 @@
 		A0EE19D326044F2000586065 = {
 			isa = PBXGroup;
 			children = (
+				A03713222DDB08580040E383 /* Pagi (iOS).entitlements */,
 				A0EE19D826044F2100586065 /* Shared */,
 				A0EE19E226044F2200586065 /* iOS */,
 				A0EE19E926044F2200586065 /* macOS */,
@@ -1000,6 +1002,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Pagi (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_PREVIEWS = YES;
@@ -1024,6 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Pagi (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VSPR9WC4TQ;
 				ENABLE_PREVIEWS = YES;
