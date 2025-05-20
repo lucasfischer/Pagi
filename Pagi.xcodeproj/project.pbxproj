@@ -46,6 +46,7 @@
 		A0749B142698730000CEFBC1 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0749B122698730000CEFBC1 /* ViewCommands.swift */; };
 		A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
 		A09314D6267CAA8F00F7B736 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */; };
+		A097D1792DDC13FF00CF7A6E /* ContentView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A097D1782DDC13F800CF7A6E /* ContentView+ViewModel.swift */; };
 		A0997F172702B706003EDD8C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0997F162702B706003EDD8C /* AboutView.swift */; };
 		A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A9B5329BDFCF1000C3880 /* Haptics.swift */; };
 		A0A7464726072E0200155F4D /* iAWriterMonoV.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0A7463026072E0200155F4D /* iAWriterMonoV.ttf */; };
@@ -178,6 +179,7 @@
 		A0749B122698730000CEFBC1 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
 		A08ADF6129A714AB00B24FCD /* iOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS Config.xcconfig"; sourceTree = "<group>"; };
 		A09314D4267CAA8F00F7B736 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		A097D1782DDC13F800CF7A6E /* ContentView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+ViewModel.swift"; sourceTree = "<group>"; };
 		A0997F162702B706003EDD8C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		A09A9B5329BDFCF1000C3880 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		A0A7462E26072E0200155F4D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				A02491732CDEF64E00AED935 /* Localizable.xcstrings */,
 				A0D6D2BA296D11ED00642AB4 /* Commands */,
 				A03930F22712889B005CAEF1 /* ContentView.swift */,
+				A097D1782DDC13F800CF7A6E /* ContentView+ViewModel.swift */,
 				A025926626EC877B00B8324F /* SettingsView.swift */,
 				A0F5E63B29A703F6008AD297 /* AboutView.swift */,
 				A03C9A6B26ECA0950033C0F6 /* TextEditorView.swift */,
@@ -775,6 +778,7 @@
 				A03C9A6C26ECA0950033C0F6 /* TextEditorView.swift in Sources */,
 				A024917B2CDF089500AED935 /* ThemePicker.swift in Sources */,
 				A0CA5842288D32BB0050442A /* FocusType.swift in Sources */,
+				A097D1792DDC13FF00CF7A6E /* ContentView+ViewModel.swift in Sources */,
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */,
 				A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
