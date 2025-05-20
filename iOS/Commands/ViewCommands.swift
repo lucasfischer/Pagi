@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ViewCommands: Commands {
-    @ObservedObject var viewModel: ContentView.ViewModel
+    @ObservedObject var viewModel: EditorView.ViewModel
     
     @Binding var wordCount: Bool
     @Binding var progressBar: Bool

@@ -15,7 +15,7 @@ struct PagiApp: App {
     
     @StateObject private var preferences = Preferences.shared
     #if os(iOS)
-    @StateObject private var viewModel = ContentView.ViewModel()
+    @StateObject private var viewModel = EditorView.ViewModel()
     #endif
     
     var body: some Scene {

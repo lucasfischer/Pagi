@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension ContentView {
+extension EditorView {
     
     @MainActor
     class ViewModel: ObservableObject {
@@ -128,7 +128,7 @@ extension ContentView {
     }
 }
 
-extension ContentView {
+extension EditorView {
     
     enum ShareSheetType {
         case text, file(FileType)
