@@ -3,8 +3,25 @@ import SwiftUI
 extension EditorView {
     
     @MainActor
-    class ViewModel: ObservableObject {
-        @AppStorage("text") var text = ""
+    class ViewModel: NSObject, ObservableObject {
+        let url: URL
+        
+        init(url: URL, text: String) {
+            self.url = url
+            self.text = text
+            super.init()
+            let _ = url.startAccessingSecurityScopedResource()
+            NSFileCoordinator.addFilePresenter(self)
+        }
+        
+        deinit {
+            NSFileCoordinator.removeFilePresenter(self)
+            url.stopAccessingSecurityScopedResource()
+        }
+        
+        private var saveTask: Task<Void, Error>?
+        
+        @Published var text = ""
         @AppStorage("theme") var theme = Theme.system
         @AppStorage("lastOpenedDate") var lastOpenedDate: String?
         @AppStorage("isFileExported") var isFileExported = false
@@ -39,6 +56,14 @@ extension EditorView {
             dateFormatter.string(from: Date())
         }
         
+        func reload() async {
+            do {
+                self.text = try await CloudStorage.shared.read(from: url)
+            } catch {
+                print(error)
+            }
+        }
+        
         func onAppear() {
             if let date = lastOpenedDate,
                let lastDate = dateFormatter.date(from: date),
@@ -56,9 +81,18 @@ extension EditorView {
             return CGSize(width: 0, height: height)
         }
         
+        func save(delay: TimeInterval = 3) async {
+            self.saveTask?.cancel()
+            self.saveTask = Task {
+                try await Task.sleep(seconds: delay)
+                try await CloudStorage.shared.save(url, withContent: text)
+            }
+        }
+        
         func onTextUpdate(_ text: String) {
             lastOpenedDate = dateFormatter.string(from: Date())
             isFileExported = false
+            Task { await save() }
         }
         
         func onButtonTap() {
@@ -126,6 +160,24 @@ extension EditorView {
         }
         
     }
+}
+
+extension EditorView.ViewModel: NSFilePresenter {
+    
+    nonisolated var presentedItemURL: URL? {
+        url
+    }
+    
+    nonisolated var presentedItemOperationQueue: OperationQueue {
+        .main
+    }
+    
+    nonisolated func presentedItemDidChange() {
+        Task {
+            await reload()
+        }
+    }
+    
 }
 
 extension EditorView {

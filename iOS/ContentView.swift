@@ -1,13 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel: EditorView.ViewModel
-    
     var body: some View {
-        EditorView(viewModel: viewModel)
+        ListScreen(viewModel: ListScreenViewModel())
     }
 }
 
 #Preview {
-    ContentView(viewModel: .init())
+    ContentView()
 }

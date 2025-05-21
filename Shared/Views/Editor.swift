@@ -125,9 +125,9 @@ struct Editor: View {
         .onAppear {
             viewModel.calculateWordCount(text)
         }
-        .onChange(of: text, perform: { value in
+        .onChange(of: text) {
             viewModel.calculateWordCount(text, typing: true)
-        })
+        }
     }
 }
 

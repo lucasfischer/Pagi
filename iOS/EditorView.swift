@@ -12,6 +12,8 @@ struct EditorView: View {
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var editorViewModel: EditorViewModel // To update View on EditorViewModel changes
     
+    @Environment(\.dismiss) private var dismiss
+    
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
         self._editorViewModel = ObservedObject(initialValue: viewModel.editorViewModel)
@@ -47,6 +49,18 @@ struct EditorView: View {
     @ViewBuilder
     func Header(_ geometry: GeometryProxy) -> some View {
         HStack(spacing: viewModel.isiPad ? 24 : nil) {
+            Button("Back", systemImage: "chevron.left") {
+                viewModel.onButtonTap()
+                Task {
+                    await viewModel.save(delay: 0)
+                    dismiss()
+                }
+            }
+            .font(.title2)
+            .labelStyle(.iconOnly)
+            
+            Spacer()
+            
             Button(action: { viewModel.onShowSettings() }) {
                 Label("Settings", systemImage: "gear")
                     .labelStyle(.iconOnly)
@@ -190,7 +204,9 @@ struct EditorView: View {
                     }
                 }
             })
-        .onChange(of: viewModel.text, perform: viewModel.onTextUpdate)
+        .onChange(of: viewModel.text) {
+            viewModel.onTextUpdate(viewModel.text)
+        }
         .onAppear(perform: viewModel.onAppear)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             viewModel.onAppear()
@@ -204,8 +220,8 @@ struct EditorView: View {
     }
 }
 
-struct EditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditorView(viewModel: EditorView.ViewModel())
-    }
-}
+//struct EditorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditorView(viewModel: EditorView.ViewModel())
+//    }
+//}

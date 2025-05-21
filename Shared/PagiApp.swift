@@ -15,7 +15,7 @@ struct PagiApp: App {
     
     @StateObject private var preferences = Preferences.shared
     #if os(iOS)
-    @StateObject private var viewModel = EditorView.ViewModel()
+//    @StateObject private var viewModel = EditorView.ViewModel()
     #endif
     
     var body: some Scene {
@@ -70,7 +70,7 @@ struct PagiApp: App {
         #elseif os(iOS)
         
         WindowGroup {
-            ContentView(viewModel: viewModel)
+            ContentView()
                 .background(preferences.theme.colors.background.ignoresSafeArea())
                 .tint(preferences.theme.colors.accent)
                 .preferredColorScheme(preferences.theme.colorScheme)
@@ -81,7 +81,7 @@ struct PagiApp: App {
                 focusMode: $preferences.isFocusModeEnabled,
                 focusType: $preferences.focusType
             )
-            ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
+//            ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
         }
         
         #endif
