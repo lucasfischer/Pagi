@@ -65,7 +65,7 @@ struct PagiApp: App {
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "about"), allowing: Set(arrayLiteral: "about"))
         }
         .windowStyle(HiddenTitleBarWindowStyle())
-        .windowNotResizable()
+        .windowResizability(.contentSize)
         
         #elseif os(iOS)
         
