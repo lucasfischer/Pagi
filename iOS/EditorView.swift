@@ -197,19 +197,9 @@ struct EditorView: View {
                     viewModel.showClearNotification = false
                     viewModel.reset()
                 }
-                if !viewModel.isFileExported {
-                    Button("Export then clear") {
-                        viewModel.showExport = true
-                        viewModel.shouldReset = true
-                    }
-                }
             })
         .onChange(of: viewModel.text) {
             viewModel.onTextUpdate(viewModel.text)
-        }
-        .onAppear(perform: viewModel.onAppear)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            viewModel.onAppear()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)) { data in
             viewModel.isKeyboardVisible = true

@@ -23,8 +23,6 @@ extension EditorView {
         
         @Published var text = ""
         @AppStorage("theme") var theme = Theme.system
-        @AppStorage("lastOpenedDate") var lastOpenedDate: String?
-        @AppStorage("isFileExported") var isFileExported = false
         
         @Published var showExport = false
         @Published var showSettings = false {
@@ -44,8 +42,6 @@ extension EditorView {
         
         let isiPad = UIDevice.current.userInterfaceIdiom == .pad
         
-        var shouldReset = false
-        
         let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "YYYY-MM-dd"
@@ -61,14 +57,6 @@ extension EditorView {
                 self.text = try await CloudStorage.shared.read(from: url)
             } catch {
                 print(error)
-            }
-        }
-        
-        func onAppear() {
-            if let date = lastOpenedDate,
-               let lastDate = dateFormatter.date(from: date),
-               !Calendar.current.isDateInToday(lastDate) && !text.isEmpty {
-                onShowClearNotification()
             }
         }
         
@@ -90,8 +78,6 @@ extension EditorView {
         }
         
         func onTextUpdate(_ text: String) {
-            lastOpenedDate = dateFormatter.string(from: Date())
-            isFileExported = false
             Task { await save() }
         }
         
@@ -142,12 +128,8 @@ extension EditorView {
         func onFileExported(_ result: Result<URL, Error>) {
             switch result {
                 case .success:
-                    if shouldReset {
-                        reset()
-                    }
                     showClearNotification = false
                     showExport = false
-                    isFileExported = true
                 default:
                     break
             }
@@ -155,7 +137,6 @@ extension EditorView {
         
         func reset() {
             self.text = ""
-            self.lastOpenedDate = nil
             self.editorViewModel.resetTimer()
         }
         
