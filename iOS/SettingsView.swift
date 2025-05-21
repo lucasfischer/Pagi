@@ -51,7 +51,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        .onChange(of: preferences.focusType) { focusType in
+                        .onChange(of: preferences.focusType) {
                             Haptics.selectionChanged()
                         }
                     }
@@ -64,7 +64,7 @@ struct SettingsView: View {
                         } maximumValueLabel: {
                             Image(systemName: "textformat.size.larger")
                         }
-                        .onChange(of: preferences.fontSize) { fontSize in
+                        .onChange(of: preferences.fontSize) {
                             Haptics.selectionChanged()
                         }
                         .foregroundColor(.secondary)
@@ -74,7 +74,7 @@ struct SettingsView: View {
                                 Text(verbatim: font.rawValue)
                             }
                         }
-                        .onChange(of: preferences.font) { font in
+                        .onChange(of: preferences.font) {
                             Haptics.selectionChanged()
                         }
                         
@@ -95,7 +95,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        .onChange(of: preferences.exportType) { _ in
+                        .onChange(of: preferences.exportType) {
                             Haptics.selectionChanged()
                         }
                     } header: {
