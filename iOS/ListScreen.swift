@@ -180,6 +180,9 @@ struct ListScreen: View {
         .onChange(of: editorViewModel) {
             Task { await viewModel.loadFiles() }
         }
+        .onOpenURL { url in
+            Task { await open(url) }
+        }
     }
 }
 
