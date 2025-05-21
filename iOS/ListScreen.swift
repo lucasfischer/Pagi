@@ -9,6 +9,8 @@ struct ListScreen: View {
     @State private var editorViewModel: EditorView.ViewModel?
     @ObservedObject private var preferences = Preferences.shared
     
+    @Environment(\.scenePhase) var scenePhase: ScenePhase
+    
     private var dates: [(key: Date, value: [File])] {
         let calendar = Calendar.current
         return Dictionary(
@@ -150,7 +152,6 @@ struct ListScreen: View {
             .listStyle(.plain)
             .background(preferences.theme.colors.background.ignoresSafeArea())
             .scrollContentBackground(.hidden)
-            .navigationTitle("Pagi")
             .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 Toolbar()
@@ -165,6 +166,11 @@ struct ListScreen: View {
                 }
             }
            
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                Task { await viewModel.loadFiles() }
+            }
         }
         .scrollContentBackground(.hidden)
         .animation(.default, value: viewModel.files)
