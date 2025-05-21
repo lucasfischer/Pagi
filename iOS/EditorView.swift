@@ -47,8 +47,8 @@ struct EditorView: View {
     }
     
     @ViewBuilder
-    func Header(_ geometry: GeometryProxy) -> some View {
-        HStack(spacing: viewModel.isiPad ? 24 : nil) {
+    func iPhoneFooter(_ geometry: GeometryProxy) -> some View {
+        HStack {
             Button("Back", systemImage: "chevron.left") {
                 viewModel.onButtonTap()
                 Task {
@@ -77,85 +77,48 @@ struct EditorView: View {
                     .preferredColorScheme(viewModel.theme.colorScheme)
             }
             
-            if !viewModel.isiPad {
-                Spacer()
-            }
-            
-            Button {
-                viewModel.onShowClearNotification()
-            } label: {
-                Label("Clear Text", systemImage: "trash")
-                    .labelStyle(.iconOnly)
-                    .font(.title2)
-            }
-            .disabled(viewModel.text.isEmpty)
-            
             Spacer()
             
-            if viewModel.isiPad {
-                Menu {
-                    Menu {
-                        ShareContextMenu()
-                    } label: {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
-                    Button(action: { viewModel.onShowExport() }) {
-                        Label("Save", systemImage: "square.and.arrow.down")
-                    }
-                    Button(action: { viewModel.onCopy() }) {
-                        Label("Copy", systemImage: "doc.on.doc")
-                    }
-                } label: {
-                    Label("Share", systemImage: "square.and.arrow.up")
-                        .labelStyle(.iconOnly)
-                        .font(.title2)
+            Group {
+                Button(action: { viewModel.onCopy() }) {
+                    Label("Copy", systemImage: "doc.on.doc")
                 }
-                .disabled(viewModel.text.isEmpty)
-                .popover(item: $viewModel.shareItem) { item in
+                
+                Spacer()
+                
+                Button(action: { viewModel.onShowExport() }) {
+                    Label("Save", systemImage: "square.and.arrow.down")
+                }
+                .contextMenu {
+                    Button(action: { viewModel.onShowExport(type: .text) }) {
+                        Label("Save as Plain Text", systemImage: "square.and.arrow.down")
+                    }
+                    Button(action: { viewModel.onShowExport(type: .markdown) }) {
+                        Label("Save as Markdown", systemImage: "square.and.arrow.down")
+                    }
+                }
+                
+                Spacer()
+                
+                Button(action: { viewModel.onShowShareSheet() }) {
+                    Label("Share", systemImage: "square.and.arrow.up")
+                }
+                .contextMenu {
+                    ShareContextMenu()
+                }
+                .sheet(item: $viewModel.shareItem) { item in
                     ShareSheetWrapper(item)
                 }
-            } else {
-                Group {
-                    Button(action: { viewModel.onCopy() }) {
-                        Label("Copy", systemImage: "doc.on.doc")
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: { viewModel.onShowExport() }) {
-                        Label("Save", systemImage: "square.and.arrow.down")
-                    }
-                    .contextMenu {
-                        Button(action: { viewModel.onShowExport(type: .text) }) {
-                            Label("Save as Plain Text", systemImage: "square.and.arrow.down")
-                        }
-                        Button(action: { viewModel.onShowExport(type: .markdown) }) {
-                            Label("Save as Markdown", systemImage: "square.and.arrow.down")
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: { viewModel.onShowShareSheet() }) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
-                    .contextMenu {
-                        ShareContextMenu()
-                    }
-                    .sheet(item: $viewModel.shareItem) { item in
-                        ShareSheetWrapper(item)
-                    }
-                }
-                .disabled(viewModel.text.isEmpty)
-                .labelStyle(.iconOnly)
-                .font(.title2)
             }
+            .disabled(viewModel.text.isEmpty)
+            .labelStyle(.iconOnly)
+            .font(.title2)
             
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
         .background(Material.ultraThin)
-        .overlay(alignment: viewModel.isiPad ? .bottom : .top) {
+        .overlay(alignment: .top) {
             Rectangle()
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
@@ -168,15 +131,102 @@ struct EditorView: View {
         }
     }
     
+    @ToolbarContentBuilder
+    func iPadToolbar() -> some ToolbarContent {
+        ToolbarItemGroup(placement: .navigation) {
+            Button("Back", systemImage: "chevron.left") {
+                viewModel.onButtonTap()
+                Task {
+                    await viewModel.save(delay: 0)
+                    dismiss()
+                }
+            }
+            
+            Button(action: { viewModel.onShowSettings() }) {
+                Label("Settings", systemImage: "gear")
+                    .labelStyle(.iconOnly)
+                    .font(.title2)
+            }
+            .popover(isPresented: $viewModel.showSettings) {
+                SettingsView()
+                    .frame(
+                        minWidth: 320,
+                        idealWidth: 400,
+                        idealHeight: 700,
+                        alignment: .top
+                    )
+                    .preferredColorScheme(viewModel.theme.colorScheme)
+            }
+        }
+        
+        if let date = viewModel.currentDate {
+            ToolbarItem(placement: .principal) {
+                Text(date, format: .dateTime.weekday().day().month().year())
+                    .font(.headline)
+            }
+        }
+        
+        ToolbarItem(placement: .primaryAction) {
+            Menu {
+                Menu {
+                    ShareContextMenu()
+                } label: {
+                    Label("Share", systemImage: "square.and.arrow.up")
+                }
+                Button(action: { viewModel.onShowExport() }) {
+                    Label("Save", systemImage: "square.and.arrow.down")
+                }
+                Button(action: { viewModel.onCopy() }) {
+                    Label("Copy", systemImage: "doc.on.doc")
+                }
+            } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+                    .labelStyle(.iconOnly)
+                    .font(.title2)
+            }
+            .disabled(viewModel.text.isEmpty)
+            .popover(item: $viewModel.shareItem) { item in
+                ShareSheetWrapper(item)
+            }
+        }
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             Editor(text: $viewModel.text, viewModel: viewModel.editorViewModel)
                 .ignoresSafeArea(.container, edges: .vertical)
-                .safeAreaInset(edge: viewModel.isiPad ? .top : .bottom) {
-                    Header(geometry)
+                .safeAreaInset(edge: .bottom) {
+                    if !viewModel.isiPad {
+                        iPhoneFooter(geometry)
+                    }
                 }
         }
-        .id(viewModel.lastOpenedDate)
+        .toolbar {
+            if viewModel.isiPad {
+                iPadToolbar()
+            }
+        }
+        .toolbarVisibility(viewModel.editorViewModel.shouldHideToolbar || !viewModel.isiPad ? .hidden : .automatic, for: .navigationBar)
+        .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+        .toolbarBackground(Material.ultraThin, for: .navigationBar)
+        .animation(.smooth, value: viewModel.editorViewModel.shouldHideToolbar)
+        .overlay(alignment: .top) {
+            Group {
+                if let date = viewModel.currentDate, !viewModel.isiPad && !viewModel.editorViewModel.shouldHideToolbar {
+                    Text(date, format: .dateTime.weekday().day().month().year())
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(Preferences.shared.theme.colors.foregroundFaded)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Preferences.shared.theme.colors.background)
+                        )
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
+            }
+            .animation(.smooth, value: viewModel.editorViewModel.shouldHideToolbar)
+        }
         .statusBarHidden(viewModel.editorViewModel.shouldHideToolbar)
         .setPersistentSystemOverlays(viewModel.editorViewModel.shouldHideToolbar ? .hidden : .automatic)
         .fileExporter(
@@ -186,18 +236,6 @@ struct EditorView: View {
             defaultFilename: viewModel.currentDateString,
             onCompletion: viewModel.onFileExported
         )
-        .alert(
-            "Do you want to clear your notes?",
-            isPresented: $viewModel.showClearNotification,
-            actions: {
-                Button("Keep", role: .cancel) {
-                    viewModel.showClearNotification = false
-                }
-                Button("Clear", role: .destructive) {
-                    viewModel.showClearNotification = false
-                    viewModel.reset()
-                }
-            })
         .onChange(of: viewModel.text) {
             viewModel.onTextUpdate(viewModel.text)
         }

@@ -32,7 +32,6 @@ extension EditorView {
             }
         }
         @Published var shareItem: ShareItem?
-        @Published var showClearNotification = false
         @Published var toolbarHeight: Double = .zero
         @Published var isKeyboardVisible = false
         
@@ -42,14 +41,12 @@ extension EditorView {
         
         let isiPad = UIDevice.current.userInterfaceIdiom == .pad
         
-        let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "YYYY-MM-dd"
-            return formatter
-        }()
+        var currentDate: Date? {
+            try? Date.dateFormatStyle.parse(currentDateString)
+        }
         
         var currentDateString: String {
-            dateFormatter.string(from: Date())
+            url.deletingPathExtension().lastPathComponent
         }
         
         func reload() async {
@@ -61,11 +58,7 @@ extension EditorView {
         }
         
         func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
-            var height = editorViewModel.shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
-            if isiPad {
-                height = editorViewModel.shouldHideToolbar ? 0 - toolbarHeight + geometry.safeAreaInsets.top : 0
-            }
-            
+            let height = editorViewModel.shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
             return CGSize(width: 0, height: height)
         }
         
@@ -83,11 +76,6 @@ extension EditorView {
         
         func onButtonTap() {
             Haptics.impactOccurred(.rigid)
-        }
-        
-        func onShowClearNotification() {
-            onButtonTap()
-            showClearNotification.toggle()
         }
         
         func onShowSettings() {
@@ -128,7 +116,6 @@ extension EditorView {
         func onFileExported(_ result: Result<URL, Error>) {
             switch result {
                 case .success:
-                    showClearNotification = false
                     showExport = false
                 default:
                     break

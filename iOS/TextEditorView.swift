@@ -337,7 +337,7 @@ extension TextEditorView {
             
             let isiPad = UIDevice.current.userInterfaceIdiom == .pad
             let horizontalPadding = max((frameWidth - 704) / 2, 16)
-            let topPadding = isiPad ? (safeAreaInsets?.top ?? 0) + 96 : (safeAreaInsets?.top ?? 0) + 8
+            let topPadding = isiPad ? (safeAreaInsets?.top ?? 0) + 96 : (safeAreaInsets?.top ?? 0) + 24
             let bottomPadding = (safeAreaInsets?.bottom ?? 0) + 40
             
             textContainerInset = UIEdgeInsets(

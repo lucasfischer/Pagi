@@ -6,8 +6,8 @@ struct ListScreen: View {
     
     @State private var isImportPresented = false
     @State private var isSettingsPresented = false
-    @StateObject private var preferences = Preferences.shared
     @State private var editorViewModel: EditorView.ViewModel?
+    @ObservedObject private var preferences = Preferences.shared
     
     private var dates: [(key: Date, value: [File])] {
         let calendar = Calendar.current
@@ -151,7 +151,7 @@ struct ListScreen: View {
             .background(preferences.theme.colors.background.ignoresSafeArea())
             .scrollContentBackground(.hidden)
             .navigationTitle("Pagi")
-            .toolbarTitleDisplayMode(.inlineLarge)
+            .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 Toolbar()
             }
@@ -187,7 +187,7 @@ struct File: Identifiable, Hashable, Observable {
     }
     
     var date: Date? {
-        if let date = try? Date.ISO8601FormatStyle().year().month().day().parse(fileNameWithoutExtension) {
+        if let date = try? Date.dateFormatStyle.parse(fileNameWithoutExtension) {
             return date
         } else {
             return nil
@@ -196,7 +196,7 @@ struct File: Identifiable, Hashable, Observable {
     
     var displayName: String {
         if let date {
-            date.formatted(.dateTime.day().weekday())
+            date.formatted(.dateTime.day().weekday(.wide))
         } else {
             fileNameWithoutExtension
         }
