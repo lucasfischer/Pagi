@@ -33,6 +33,7 @@ struct PaywallScreen: View {
     private func Header() -> some View {
         HStack {
             Button {
+                Haptics.buttonTap()
                 dismiss()
             } label: {
                 Image(systemName: "arrow.left")
@@ -43,6 +44,7 @@ struct PaywallScreen: View {
             Spacer()
             
             Button("Restore") {
+                Haptics.buttonTap()
                 Task {
                     await store.refreshPurchasedProducts()
                 }
@@ -144,6 +146,7 @@ struct PaywallScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Button {
+                        Haptics.buttonTap()
                         Task {
                             do {
                                 try await store.purchase(product: product)

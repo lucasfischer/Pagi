@@ -28,4 +28,6 @@ class Preferences: ObservableObject {
     @AppStorage("foregroundColor") var foregroundColor = Color.foreground
     @AppStorage("backgroundColor") var backgroundColor = Color.background
     @AppStorage("accentColor") var accentColor = Color.accentColor
+    
+    @AppStorage("haptics") static private var isHapticsEnabled = true
 }

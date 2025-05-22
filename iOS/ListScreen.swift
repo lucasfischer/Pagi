@@ -78,6 +78,7 @@ struct ListScreen: View {
     func Toolbar() -> some ToolbarContent {
         ToolbarItemGroup(placement: .navigation) {
             Button("Settings", systemImage: "gear") {
+                Haptics.buttonTap()
                 isSettingsPresented.toggle()
             }
             .popover(isPresented: $isSettingsPresented) {
@@ -93,6 +94,7 @@ struct ListScreen: View {
             
             if !store.isEntitled {
                 Button {
+                    Haptics.buttonTap()
                     viewModel.isPaywallPresented.toggle()
                 } label: {
                     Text("Purchase Pagi")
@@ -108,6 +110,7 @@ struct ListScreen: View {
         
         ToolbarItem(placement: .primaryAction) {
             Button("Open") {
+                Haptics.buttonTap()
                 if shouldShowPaywall {
                     showPaywall()
                 } else {
@@ -134,6 +137,7 @@ struct ListScreen: View {
                 Label("Share", systemImage: "square.and.arrow.up")
             }
             Button("Copy", systemImage: "doc.on.doc") {
+                Haptics.notificationOccurred(.success)
                 Task {
                     let text = try await CloudStorage.shared.read(from: file.url)
                     UIPasteboard.general.string = text
@@ -142,6 +146,7 @@ struct ListScreen: View {
         }
         
         Button("Delete", systemImage: "trash", role: .destructive) {
+            Haptics.buttonTap()
             Task {
                 await viewModel.remove(file: file)
             }
@@ -155,6 +160,7 @@ struct ListScreen: View {
                     Section {
                         ForEach(files, id: \.self) { file in
                             Button {
+                                Haptics.buttonTap()
                                 Task {
                                     await open(file: file)
                                 }
