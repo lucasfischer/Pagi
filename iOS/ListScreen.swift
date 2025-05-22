@@ -8,6 +8,7 @@ struct ListScreen: View {
     @State private var isImportPresented = false
     @State private var isSettingsPresented = false
     @State private var editorViewModel: EditorView.ViewModel?
+    @State private var error: Error?
     @ObservedObject private var preferences = Preferences.shared
     
     @Environment(\.scenePhase) var scenePhase: ScenePhase
@@ -55,7 +56,8 @@ struct ListScreen: View {
             url.stopAccessingSecurityScopedResource()
             editorViewModel = .init(url: url, text: text)
         } catch {
-            print(error)
+            Haptics.notificationOccurred(.error)
+            self.error = error
         }
     }
     
@@ -69,8 +71,17 @@ struct ListScreen: View {
         for offset in offsets {
             let file = viewModel.files[offset]
             Task {
-                await viewModel.remove(file: file)
+                await remove(file: file)
             }
+        }
+    }
+    
+    func remove(file: File) async {
+        do {
+            try await viewModel.remove(file: file)
+        } catch {
+            self.error = error
+            Haptics.notificationOccurred(.error)
         }
     }
     
@@ -139,8 +150,13 @@ struct ListScreen: View {
             Button("Copy", systemImage: "doc.on.doc") {
                 Haptics.notificationOccurred(.success)
                 Task {
-                    let text = try await CloudStorage.shared.read(from: file.url)
-                    UIPasteboard.general.string = text
+                    do {
+                        let text = try await CloudStorage.shared.read(from: file.url)
+                        UIPasteboard.general.string = text
+                    } catch {
+                        self.error = error
+                        Haptics.notificationOccurred(.error)
+                    }
                 }
             }
         }
@@ -148,7 +164,7 @@ struct ListScreen: View {
         Button("Delete", systemImage: "trash", role: .destructive) {
             Haptics.buttonTap()
             Task {
-                await viewModel.remove(file: file)
+                await remove(file: file)
             }
         }
     }
@@ -202,6 +218,7 @@ struct ListScreen: View {
                 }
             }
         }
+        .errorAlert(error: $error)
         .onChange(of: scenePhase) {
             if scenePhase == .active {
                 Task { await viewModel.loadFiles() }
@@ -253,7 +270,7 @@ protocol ListScreenModel: NSObject {
     var files: [File] { get }
     var containerURL: URL? { get }
     func loadFiles() async
-    func remove(file: File) async
+    func remove(file: File) async throws
 }
 
 @Observable
@@ -316,14 +333,10 @@ class ListScreenViewModel: NSObject, ListScreenModel {
         }
     }
     
-    func remove(file: File) async {
-        do {
-            try await CloudStorage.shared.delete(file.url)
-            if let index = files.firstIndex(of: file) {
-                files.remove(at: index)
-            }
-        } catch {
-            print(error)
+    func remove(file: File) async throws {
+        try await CloudStorage.shared.delete(file.url)
+        if let index = files.firstIndex(of: file) {
+            files.remove(at: index)
         }
     }
 }
