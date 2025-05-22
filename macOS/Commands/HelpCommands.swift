@@ -11,9 +11,9 @@ import AppKit
 struct HelpCommands: Commands {
     var body: some Commands {
         CommandGroup(replacing: .help) {
-            Link("Website", destination: URL(string: "https://pagi.lucas.love")!)
+            Link("Website", destination: Configuration.webURL)
             
-            Link("Contact Developer", destination: URL(string: "mailto:xoxo@lucas.love?subject=Pagi")!)
+            Link("Contact Developer", destination: Configuration.supportEmailAddressURL)
             
             Link("Rate Pagi", destination: URL(string: "https://apps.apple.com/app/id1586446074?action=write-review")!)
             

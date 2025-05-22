@@ -16,7 +16,7 @@ struct AboutView: View {
             Section {
                 Link("Help", destination: Configuration.webURL)
                 
-                Link("Contact", destination: URL(string: "mailto:xoxo@lucas.love?subject=Pagi")!)
+                Link("Contact", destination: Configuration.supportEmailAddressURL)
                 
                 Link("Rate Pagi", destination: Configuration.reviewURL)
                 
