@@ -226,8 +226,10 @@ struct ListScreen: View {
         }
         .scrollContentBackground(.hidden)
         .animation(.default, value: viewModel.files)
-        .task {
-            await viewModel.loadFiles()
+        .onAppear {
+            if viewModel.files.isEmpty {
+                newFile()
+            }
         }
         .onChange(of: editorViewModel) {
             Task { await viewModel.loadFiles() }
@@ -331,6 +333,7 @@ class ListScreenViewModel: NSObject, ListScreenModel {
         loadTask = Task {
             await startLoadFilesTask()
         }
+        await loadTask?.value
     }
     
     func remove(file: File) async throws {
