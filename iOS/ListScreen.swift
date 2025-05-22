@@ -3,6 +3,7 @@ import SwiftUI
 struct ListScreen: View {
     
     var viewModel: ListScreenModel
+    @ObservedObject var store: Store
     
     @State private var isImportPresented = false
     @State private var isSettingsPresented = false
@@ -24,6 +25,14 @@ struct ListScreen: View {
         .sorted(by: { a, b in a.key > b.key })
     }
     
+    private var shouldShowPaywall: Bool {
+        viewModel.files.count >= Configuration.freeDays && !store.isEntitled
+    }
+    
+    private func showPaywall() {
+        viewModel.isPaywallPresented = true
+    }
+    
     func newFile() {
         let urlForToday = viewModel.containerURL?
             .appendingPathComponent(
@@ -33,7 +42,6 @@ struct ListScreen: View {
         
         Task {
             if let url = urlForToday {
-                print(url.absoluteString)
                 let text = try? await CloudStorage.shared.read(from: url)
                 self.editorViewModel = .init(url: url, text: text ?? "")
             }
@@ -68,7 +76,7 @@ struct ListScreen: View {
     
     @ToolbarContentBuilder
     func Toolbar() -> some ToolbarContent {
-        ToolbarItem(placement: .navigation) {
+        ToolbarItemGroup(placement: .navigation) {
             Button("Settings", systemImage: "gear") {
                 isSettingsPresented.toggle()
             }
@@ -82,11 +90,29 @@ struct ListScreen: View {
                     )
                     .preferredColorScheme(preferences.theme.colorScheme)
             }
+            
+            if !store.isEntitled {
+                Button {
+                    viewModel.isPaywallPresented.toggle()
+                } label: {
+                    Text("Purchase Pagi")
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background {
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(preferences.theme.colors.accent, lineWidth: 2)
+                        }
+                }
+            }
         }
         
         ToolbarItem(placement: .primaryAction) {
             Button("Open") {
-                isImportPresented.toggle()
+                if shouldShowPaywall {
+                    showPaywall()
+                } else {
+                    isImportPresented.toggle()
+                }
             }
             .fileImporter(isPresented: $isImportPresented, allowedContentTypes: [.plainText, .markdown]) { result in
                 switch result {
@@ -162,10 +188,13 @@ struct ListScreen: View {
             }
             .overlay {
                 FloatingPlusButton(color: preferences.theme.colors.accent) {
-                    newFile()
+                    if shouldShowPaywall {
+                        showPaywall()
+                    } else {
+                        newFile()
+                    }
                 }
             }
-           
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
@@ -213,7 +242,8 @@ struct File: Identifiable, Hashable, Observable {
 }
 
 @MainActor
-protocol ListScreenModel {
+protocol ListScreenModel: NSObject {
+    var isPaywallPresented: Bool { get set }
     var files: [File] { get }
     var containerURL: URL? { get }
     func loadFiles() async
@@ -231,6 +261,8 @@ class ListScreenViewModel: NSObject, ListScreenModel {
     deinit {
         NSFileCoordinator.removeFilePresenter(self)
     }
+    
+    public var isPaywallPresented = false
     
     private(set) var files: [File] = []
     
@@ -310,14 +342,17 @@ extension ListScreenViewModel: NSFilePresenter {
 }
 
 @Observable
-class MockScreenViewModel: ListScreenModel {
+class MockScreenViewModel: NSObject, ListScreenModel {
+    public var isPaywallPresented = false
+    
     private(set) var files: [File] = []
     
     var containerURL: URL? {
         FileManager.default.temporaryDirectory
     }
     
-    init() {
+    override init() {
+        super.init()
         files = Array(1...100).map { i in
             let date = Calendar.current.date(byAdding: .day, value: -i, to: .now)!
             return File(url: containerURL!.appendingPathComponent(date.formatted(.iso8601.year().month().day()), conformingTo: .plainText), text: "Hello, World!")
@@ -336,5 +371,8 @@ class MockScreenViewModel: ListScreenModel {
 }
 
 #Preview {
-    ListScreen(viewModel: MockScreenViewModel())
+    ListScreen(
+        viewModel: MockScreenViewModel(),
+        store: Store()
+    )
 }

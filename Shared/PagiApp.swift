@@ -14,6 +14,8 @@ struct PagiApp: App {
     @Environment(\.scenePhase) private var phase
     
     @StateObject private var preferences = Preferences.shared
+    @StateObject private var store = Store()
+    
     #if os(iOS)
 //    @StateObject private var viewModel = EditorView.ViewModel()
     #endif
@@ -70,7 +72,7 @@ struct PagiApp: App {
         #elseif os(iOS)
         
         WindowGroup {
-            ContentView()
+            ContentView(store: store)
                 .background(preferences.theme.colors.background.ignoresSafeArea())
                 .tint(preferences.theme.colors.accent)
                 .preferredColorScheme(preferences.theme.colorScheme)

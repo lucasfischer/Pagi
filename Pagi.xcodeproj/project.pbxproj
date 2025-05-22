@@ -69,6 +69,13 @@
 		A0AA0B3F29E276CA00327101 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B3D29E276CA00327101 /* UTType.swift */; };
 		A0AA0B4129E27DB000327101 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B4029E27DB000327101 /* FileType.swift */; };
 		A0AA0B4229E27DB000327101 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA0B4029E27DB000327101 /* FileType.swift */; };
+		A0AEEA422DDECE240076F00B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA412DDECE240076F00B /* Store.swift */; };
+		A0AEEA432DDECE240076F00B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA412DDECE240076F00B /* Store.swift */; };
+		A0AEEA452DDED4380076F00B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA442DDED4310076F00B /* Configuration.swift */; };
+		A0AEEA462DDED4380076F00B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA442DDED4310076F00B /* Configuration.swift */; };
+		A0AEEA482DDEFA6D0076F00B /* Pagi.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A0AEEA472DDEFA6D0076F00B /* Pagi.storekit */; };
+		A0AEEA4A2DDEFBDC0076F00B /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA492DDEFBDA0076F00B /* View+Alert.swift */; };
+		A0AEEA4B2DDEFBDC0076F00B /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AEEA492DDEFBDA0076F00B /* View+Alert.swift */; };
 		A0AFEE7029444C0300C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0AFEE7129444C6400C4B2A7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AFEE6F29444C0300C4B2A7 /* View.swift */; };
 		A0B696F42828A3A20079433C /* FindCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B696F22828A3A20079433C /* FindCommands.swift */; };
@@ -92,6 +99,7 @@
 		A0EE1A2226044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
 		A0EE1A2326044F8000586065 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EE1A2126044F8000586065 /* Editor.swift */; };
 		A0F5E63C29A703F6008AD297 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F5E63B29A703F6008AD297 /* AboutView.swift */; };
+		A0F62D2B2DDDA2B700AD1064 /* PaywallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F62D2A2DDDA2B200AD1064 /* PaywallScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +230,10 @@
 		A0A7C78A2605CBE5001708EE /* PagiDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagiDocument.swift; sourceTree = "<group>"; };
 		A0AA0B3D29E276CA00327101 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		A0AA0B4029E27DB000327101 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
+		A0AEEA412DDECE240076F00B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A0AEEA442DDED4310076F00B /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A0AEEA472DDEFA6D0076F00B /* Pagi.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pagi.storekit; sourceTree = "<group>"; };
+		A0AEEA492DDEFBDA0076F00B /* View+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Alert.swift"; sourceTree = "<group>"; };
 		A0AFEE6F29444C0300C4B2A7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A0B696F22828A3A20079433C /* FindCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommands.swift; sourceTree = "<group>"; };
 		A0C1214F288D76B500BB0B75 /* macOS Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "macOS Config.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +259,7 @@
 		A0EE1A1A26044F4200586065 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A0EE1A2126044F8000586065 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		A0F5E63B29A703F6008AD297 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		A0F62D2A2DDDA2B200AD1064 /* PaywallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +491,7 @@
 		A0AFEE6E29444BF300C4B2A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A0AEEA492DDEFBDA0076F00B /* View+Alert.swift */,
 				A0A12E862DDD6FE000EF4A6F /* Date.swift */,
 				A097D4DC2DDC667E00CF7A6E /* FileManager.swift */,
 				A063BC7F2DC853F400FBDA8D /* Identifiable.swift */,
@@ -525,6 +539,7 @@
 				A0A7C7952605CDB7001708EE /* Views */,
 				A0D6D2BD296D153700642AB4 /* Commands */,
 				A0EE19DB26044F2200586065 /* Assets.xcassets */,
+				A0AEEA442DDED4310076F00B /* Configuration.swift */,
 				A01255FE2686E4EC00727630 /* Timer.swift */,
 				A0A7C78A2605CBE5001708EE /* PagiDocument.swift */,
 				A05C53A6266B97DC00CD45BB /* Theme.swift */,
@@ -536,6 +551,8 @@
 				A0413E44298D150000422D37 /* Preferences.swift */,
 				A0AFEE6E29444BF300C4B2A7 /* Extensions */,
 				A03713292DDB135A0040E383 /* CloudStorage.swift */,
+				A0AEEA412DDECE240076F00B /* Store.swift */,
+				A0AEEA472DDEFA6D0076F00B /* Pagi.storekit */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -568,6 +585,7 @@
 				A03930F4271293E5005CAEF1 /* ShareSheet.swift */,
 				A09A9B5329BDFCF1000C3880 /* Haptics.swift */,
 				A097D17A2DDC179100CF7A6E /* ListScreen.swift */,
+				A0F62D2A2DDDA2B200AD1064 /* PaywallScreen.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -742,6 +760,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0EE1A0626044F2200586065 /* Assets.xcassets in Resources */,
+				A0AEEA482DDEFA6D0076F00B /* Pagi.storekit in Resources */,
 				A02491742CDEF64E00AED935 /* Localizable.xcstrings in Resources */,
 				A05C53E3266BA14D00CD45BB /* iAWriterDuoV.ttf in Resources */,
 				A05C542F266BA14D00CD45BB /* iAWriterQuattroV.ttf in Resources */,
@@ -794,6 +813,7 @@
 				A03930F5271293E5005CAEF1 /* ShareSheet.swift in Sources */,
 				A0D6D2B8296CF86A00642AB4 /* FocusCommands.swift in Sources */,
 				A0A12E872DDD6FE900EF4A6F /* Date.swift in Sources */,
+				A0AEEA4B2DDEFBDC0076F00B /* View+Alert.swift in Sources */,
 				A0AA0B3E29E276CA00327101 /* UTType.swift in Sources */,
 				A097D17B2DDC179100CF7A6E /* ListScreen.swift in Sources */,
 				A05C547C266BA22500CD45BB /* Font.swift in Sources */,
@@ -808,6 +828,7 @@
 				A05C5481266BB13B00CD45BB /* Color.swift in Sources */,
 				A01BDE0128309A2A008296EE /* Task+sleep.swift in Sources */,
 				A097D4DD2DDC668500CF7A6E /* FileManager.swift in Sources */,
+				A0AEEA452DDED4380076F00B /* Configuration.swift in Sources */,
 				A09314D5267CAA8F00F7B736 /* EditorViewModel.swift in Sources */,
 				A0EE1A2226044F8000586065 /* Editor.swift in Sources */,
 				A037132E2DDB135A0040E383 /* CloudStorage.swift in Sources */,
@@ -816,9 +837,11 @@
 				A0D6D2BC296D120900642AB4 /* ViewCommands.swift in Sources */,
 				A0D6D2B9296D106F00642AB4 /* FontCommands.swift in Sources */,
 				A01255FF2686E4EC00727630 /* Timer.swift in Sources */,
+				A0F62D2B2DDDA2B700AD1064 /* PaywallScreen.swift in Sources */,
 				A09A9B5429BDFCF1000C3880 /* Haptics.swift in Sources */,
 				A0EE1A0226044F2200586065 /* PagiApp.swift in Sources */,
 				A063BC802DC853F800FBDA8D /* Identifiable.swift in Sources */,
+				A0AEEA432DDECE240076F00B /* Store.swift in Sources */,
 				A0AA0B4129E27DB000327101 /* FileType.swift in Sources */,
 				A025926726EC87D700B8324F /* SettingsView.swift in Sources */,
 			);
@@ -828,6 +851,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AEEA422DDECE240076F00B /* Store.swift in Sources */,
 				A0AA0B4229E27DB000327101 /* FileType.swift in Sources */,
 				A05C53A8266B97DC00CD45BB /* Theme.swift in Sources */,
 				A05C539F266B68D000CD45BB /* TextEditorView.swift in Sources */,
@@ -855,8 +879,10 @@
 				A0EE1A2326044F8000586065 /* Editor.swift in Sources */,
 				A0CA5843288D32BB0050442A /* FocusType.swift in Sources */,
 				A0AA0B3F29E276CA00327101 /* UTType.swift in Sources */,
+				A0AEEA4A2DDEFBDC0076F00B /* View+Alert.swift in Sources */,
 				A0EDD01526D8ECAE0051D15B /* AppearanceSettingsView.swift in Sources */,
 				A002A434267470CC00FFB271 /* FontCommands.swift in Sources */,
+				A0AEEA462DDED4380076F00B /* Configuration.swift in Sources */,
 				A0EE1A0326044F2200586065 /* PagiApp.swift in Sources */,
 				A037132C2DDB135A0040E383 /* CloudStorage.swift in Sources */,
 				A0CA5840288D30980050442A /* FocusCommands.swift in Sources */,

@@ -14,11 +14,11 @@ struct AboutView: View {
     var body: some View {
         Form {
             Section {
-                Link("Help", destination: URL(string: "https://pagi.lucas.love")!)
+                Link("Help", destination: Configuration.webURL)
                 
                 Link("Contact", destination: URL(string: "mailto:xoxo@lucas.love?subject=Pagi")!)
                 
-                Link("Rate Pagi", destination: URL(string: "https://apps.apple.com/app/id1586446074?action=write-review")!)
+                Link("Rate Pagi", destination: Configuration.reviewURL)
                 
                 Link("Development Journal", destination: URL(string: "https://futureland.tv/lucas/pagi")!)
             }
