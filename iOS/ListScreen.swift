@@ -7,7 +7,6 @@ struct ListScreen: View {
     
     @State private var isImportPresented = false
     @State private var isSettingsPresented = false
-    @State private var error: Error?
     @ObservedObject private var preferences = Preferences.shared
     
     @Environment(\.scenePhase) var scenePhase: ScenePhase
@@ -43,12 +42,7 @@ struct ListScreen: View {
     }
     
     func remove(file: File) async {
-        do {
-            try await viewModel.remove(file: file)
-        } catch {
-            self.error = error
-            Haptics.notificationOccurred(.error)
-        }
+        await viewModel.remove(file: file)
     }
     
     @ToolbarContentBuilder
@@ -116,13 +110,7 @@ struct ListScreen: View {
             Button("Copy", systemImage: "doc.on.doc") {
                 Haptics.notificationOccurred(.success)
                 Task {
-                    do {
-                        let text = try await CloudStorage.shared.read(from: file.url)
-                        UIPasteboard.general.string = text
-                    } catch {
-                        self.error = error
-                        Haptics.notificationOccurred(.error)
-                    }
+                    await viewModel.copyToPasteboard(file: file)
                 }
             }
         }
@@ -208,7 +196,6 @@ struct ListScreen: View {
                 }
             }
         }
-        .errorAlert(error: $error)
         .onChange(of: scenePhase) {
             if scenePhase == .active {
                 Task { await viewModel.loadFiles() }

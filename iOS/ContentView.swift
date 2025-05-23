@@ -20,6 +20,7 @@ struct ContentView: View {
                     }
             }
         }
+        .errorAlert(error: $viewModel.error)
         .animation(.smooth, value: preferences.isOnboardingPresented)
         .task {
             viewModel.startObserver()

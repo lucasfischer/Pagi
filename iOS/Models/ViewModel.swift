@@ -55,6 +55,7 @@ final class ViewModel {
             }
         } catch {
             self.error = error
+            Haptics.notificationOccurred(.error)
         }
     }
     
@@ -87,6 +88,16 @@ final class ViewModel {
         var file = file
         file.text = (try? await CloudStorage.shared.read(from: file.url)) ?? file.text
         editorViewModel = .init(url: file.url, text: file.text)
+    }
+    
+    public func copyToPasteboard(file: File) async {
+        do {
+            let text = try await CloudStorage.shared.read(from: file.url)
+            UIPasteboard.general.string = text
+        } catch {
+            self.error = error
+            Haptics.notificationOccurred(.error)
+        }
     }
     
 }
