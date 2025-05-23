@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ViewCommands: Commands {
-    @ObservedObject var viewModel: EditorView.ViewModel
+    var viewModel: ViewModel
     
     @Binding var wordCount: Bool
     @Binding var progressBar: Bool
@@ -29,21 +29,22 @@ struct ViewCommands: Commands {
             }
             .keyboardShortcut("r", modifiers: .command)
             
-
-            Button("Show Settings") {
-                viewModel.showSettings = true
+            if let viewModel = viewModel.editorViewModel {
+                Button("Show Settings") {
+                    viewModel.showSettings = true
+                }
+                .keyboardShortcut(",", modifiers: .command)
+                
+                Button("Export") {
+                    viewModel.showExport.toggle()
+                }
+                .keyboardShortcut("s", modifiers: .command)
+                
+                Button("Share") {
+                    viewModel.onShowShareSheet()
+                }
+                .keyboardShortcut("s", modifiers: [.shift, .command])
             }
-            .keyboardShortcut(",", modifiers: .command)
-
-            Button("Export") {
-                viewModel.showExport.toggle()
-            }
-            .keyboardShortcut("s", modifiers: .command)
-            
-            Button("Share") {
-                viewModel.onShowShareSheet()
-            }
-            .keyboardShortcut("s", modifiers: [.shift, .command])
         }
     }
 }

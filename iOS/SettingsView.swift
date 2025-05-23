@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    let storageURL: URL?
+    
     @Environment(\.dismiss) var dismiss
+    @Environment(\.openURL) var openURL
     
     @StateObject private var preferences = Preferences.shared
     
@@ -17,6 +21,18 @@ struct SettingsView: View {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    
+    private var storageLocationURL: URL? {
+        if let url = storageURL,
+           var components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            components.scheme = "shareddocuments"
+            guard let url = components.url else { return nil }
+            guard UIApplication.shared.canOpenURL(url) else { return nil }
+            return url
+        } else {
+            return nil
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -89,6 +105,12 @@ struct SettingsView: View {
                     })
                     
                     Section {
+                        if let url = storageLocationURL {
+                            Button("Open Storage Location") {
+                                Haptics.buttonTap()
+                                openURL(url)
+                            }
+                        }
                         Picker("Default File Type", selection: $preferences.exportType) {
                             ForEach(FileType.allCases, id: \.self) { type in
                                 Button(type.name) {
@@ -133,7 +155,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(storageURL: MockStorageLocationProvider().storageURL)
             .navigationViewStyle(.stack)
     }
 }

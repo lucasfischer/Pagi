@@ -14,9 +14,12 @@ struct EditorView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    init(viewModel: ViewModel) {
+    let storageURL: URL?
+    
+    init(viewModel: ViewModel, storageURL: URL?) {
         self.viewModel = viewModel
         self._editorViewModel = ObservedObject(initialValue: viewModel.editorViewModel)
+        self.storageURL = storageURL
     }
     
     @ViewBuilder
@@ -67,7 +70,7 @@ struct EditorView: View {
                     .font(.title2)
             }
             .popover(isPresented: $viewModel.showSettings) {
-                SettingsView()
+                SettingsView(storageURL: storageURL)
                     .frame(
                         minWidth: 320,
                         idealWidth: 400,
@@ -148,7 +151,7 @@ struct EditorView: View {
                     .font(.title2)
             }
             .popover(isPresented: $viewModel.showSettings) {
-                SettingsView()
+                SettingsView(storageURL: storageURL)
                     .frame(
                         minWidth: 320,
                         idealWidth: 400,

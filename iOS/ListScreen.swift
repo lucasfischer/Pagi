@@ -2,12 +2,11 @@ import SwiftUI
 
 struct ListScreen: View {
     
-    var viewModel: ListScreenModel
+    @Bindable var viewModel: ViewModel
     @ObservedObject var store: Store
     
     @State private var isImportPresented = false
     @State private var isSettingsPresented = false
-    @State private var editorViewModel: EditorView.ViewModel?
     @State private var error: Error?
     @ObservedObject private var preferences = Preferences.shared
     
@@ -32,39 +31,6 @@ struct ListScreen: View {
     
     private func showPaywall() {
         viewModel.isPaywallPresented = true
-    }
-    
-    func newFile() {
-        let urlForToday = viewModel.containerURL?
-            .appendingPathComponent(
-                Date.now.formatted(.iso8601.year().month().day()),
-                conformingTo: Preferences.shared.exportType.type
-            )
-        
-        Task {
-            if let url = urlForToday {
-                let text = try? await CloudStorage.shared.read(from: url)
-                self.editorViewModel = .init(url: url, text: text ?? "")
-            }
-        }
-    }
-    
-    func open(_ url: URL) async {
-        do {
-            let _ = url.startAccessingSecurityScopedResource()
-            let text = try await CloudStorage.shared.read(from: url)
-            url.stopAccessingSecurityScopedResource()
-            editorViewModel = .init(url: url, text: text)
-        } catch {
-            Haptics.notificationOccurred(.error)
-            self.error = error
-        }
-    }
-    
-    func open(file: File) async {
-        var file = file
-        file.text = (try? await CloudStorage.shared.read(from: file.url)) ?? file.text
-        editorViewModel = .init(url: file.url, text: file.text)
     }
     
     func removeRows(at offsets: IndexSet) {
@@ -93,7 +59,7 @@ struct ListScreen: View {
                 isSettingsPresented.toggle()
             }
             .popover(isPresented: $isSettingsPresented) {
-                SettingsView()
+                SettingsView(storageURL: viewModel.storageURL)
                     .frame(
                         minWidth: 320,
                         idealWidth: 400,
@@ -106,7 +72,7 @@ struct ListScreen: View {
             if !store.isEntitled {
                 Button {
                     Haptics.buttonTap()
-                    viewModel.isPaywallPresented.toggle()
+                    showPaywall()
                 } label: {
                     Text("Purchase Pagi")
                         .padding(.horizontal, 8)
@@ -132,7 +98,7 @@ struct ListScreen: View {
                 switch result {
                     case .success(let url):
                         Task {
-                            await open(url)
+                            await viewModel.open(url)
                         }
                     case .failure(let error):
                         print(error)
@@ -178,7 +144,7 @@ struct ListScreen: View {
                             Button {
                                 Haptics.buttonTap()
                                 Task {
-                                    await open(file: file)
+                                    await viewModel.open(file: file)
                                 }
                             } label: {
                                 Text(file.displayName)
@@ -204,8 +170,8 @@ struct ListScreen: View {
             .toolbar {
                 Toolbar()
             }
-            .navigationDestination(item: $editorViewModel) { viewModel in
-                EditorView(viewModel: viewModel)
+            .navigationDestination(item: $viewModel.editorViewModel) { viewModel in
+                EditorView(viewModel: viewModel, storageURL: self.viewModel.storageURL)
                     .navigationBarBackButtonHidden()
             }
             .overlay {
@@ -213,7 +179,9 @@ struct ListScreen: View {
                     if shouldShowPaywall {
                         showPaywall()
                     } else {
-                        newFile()
+                        Task {
+                            await viewModel.newFile()
+                        }
                     }
                 }
             }
@@ -226,16 +194,11 @@ struct ListScreen: View {
         }
         .scrollContentBackground(.hidden)
         .animation(.default, value: viewModel.files)
-        .onAppear {
-            if viewModel.files.isEmpty {
-                newFile()
-            }
-        }
-        .onChange(of: editorViewModel) {
+        .onChange(of: viewModel.editorViewModel) {
             Task { await viewModel.loadFiles() }
         }
         .onOpenURL { url in
-            Task { await open(url) }
+            Task { await viewModel.open(url) }
         }
     }
 }
@@ -266,135 +229,9 @@ struct File: Identifiable, Hashable, Observable {
     }
 }
 
-@MainActor
-protocol ListScreenModel: NSObject {
-    var isPaywallPresented: Bool { get set }
-    var files: [File] { get }
-    var containerURL: URL? { get }
-    func loadFiles() async
-    func remove(file: File) async throws
-}
-
-@Observable
-class ListScreenViewModel: NSObject, ListScreenModel {
-    
-    override init() {
-        super.init()
-        NSFileCoordinator.addFilePresenter(self)
-    }
-    
-    deinit {
-        NSFileCoordinator.removeFilePresenter(self)
-    }
-    
-    public var isPaywallPresented = false
-    
-    private(set) var files: [File] = []
-    
-    private var loadTask: Task<Void, Never>?
-    
-    var containerURL: URL? {
-        var containerURL: URL?
-        
-        if let iCloudContainerURL = FileManager.default.iCloudContainerURL {
-            containerURL = iCloudContainerURL
-        } else {
-            containerURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        }
-        
-        return containerURL
-    }
-    
-    func startLoadFilesTask() async {
-        guard let containerURL else {
-            return
-        }
-        
-        do {
-            let urls = try await CloudStorage.shared.listFiles(in: containerURL)
-            var files = [File]()
-            for url in urls.sorted(by: { $0.lastPathComponent.localizedStandardCompare($1.lastPathComponent) == .orderedDescending }) {
-                if Task.isCancelled {
-                    return
-                }
-                let text = "" // try await CloudStorage.shared.readFromCloud(fileURL: url)
-                files.append(
-                    File(url: url, text: text)
-                )
-            }
-            self.files = files
-        } catch {
-            print(error)
-        }
-    }
-    
-    func loadFiles() async {
-        loadTask?.cancel()
-        loadTask = Task {
-            await startLoadFilesTask()
-        }
-        await loadTask?.value
-    }
-    
-    func remove(file: File) async throws {
-        try await CloudStorage.shared.delete(file.url)
-        if let index = files.firstIndex(of: file) {
-            files.remove(at: index)
-        }
-    }
-}
-
-extension ListScreenViewModel: NSFilePresenter {
-    
-    nonisolated var presentedItemURL: URL? {
-        FileManager.default.url(forUbiquityContainerIdentifier: nil)?
-            .appendingPathComponent("Documents")
-    }
-    
-    nonisolated var presentedItemOperationQueue: OperationQueue {
-        .main
-    }
-    
-    nonisolated func presentedItemDidChange() {
-        Task {
-            await loadFiles()
-        }
-    }
-    
-}
-
-@Observable
-class MockScreenViewModel: NSObject, ListScreenModel {
-    public var isPaywallPresented = false
-    
-    private(set) var files: [File] = []
-    
-    var containerURL: URL? {
-        FileManager.default.temporaryDirectory
-    }
-    
-    override init() {
-        super.init()
-        files = Array(1...100).map { i in
-            let date = Calendar.current.date(byAdding: .day, value: -i, to: .now)!
-            return File(url: containerURL!.appendingPathComponent(date.formatted(.iso8601.year().month().day()), conformingTo: .plainText), text: "Hello, World!")
-        }
-    }
-    
-    func loadFiles() async {
-        
-    }
-    
-    func remove(file: File) async {
-        if let index = files.firstIndex(of: file) {
-            files.remove(at: index)
-        }
-    }
-}
-
 #Preview {
     ListScreen(
-        viewModel: MockScreenViewModel(),
+        viewModel: .mock,
         store: Store()
     )
 }

@@ -17,7 +17,10 @@ struct PagiApp: App {
     @StateObject private var store = Store()
     
     #if os(iOS)
-//    @StateObject private var viewModel = EditorView.ViewModel()
+    @State private var viewModel = ViewModel(
+        storageLocationProvider: RealStorageLocationProvider(),
+        listFileManager: RealListFileManager(storageLocationProvider: RealStorageLocationProvider())
+    )
     #endif
     
     var body: some Scene {
@@ -72,7 +75,7 @@ struct PagiApp: App {
         #elseif os(iOS)
         
         WindowGroup {
-            ContentView(store: store)
+            ContentView(store: store, viewModel: viewModel)
                 .background(preferences.theme.colors.background.ignoresSafeArea())
                 .tint(preferences.theme.colors.accent)
                 .preferredColorScheme(preferences.theme.colorScheme)
@@ -83,7 +86,7 @@ struct PagiApp: App {
                 focusMode: $preferences.isFocusModeEnabled,
                 focusType: $preferences.focusType
             )
-//            ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
+            ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
         }
         
         #endif

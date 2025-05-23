@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var preferences = Preferences.shared
     @ObservedObject var store: Store
-    @State private var viewModel = ListScreenViewModel()
+    @Bindable var viewModel: ViewModel
     
     @State private var isPresented: Bool = true
     var body: some View {
@@ -22,12 +22,19 @@ struct ContentView: View {
         }
         .animation(.smooth, value: preferences.isOnboardingPresented)
         .task {
+            viewModel.startObserver()
             await store.refreshPurchasedProducts()
             await viewModel.loadFiles()
+            if viewModel.files.isEmpty {
+                await viewModel.newFile()
+            }
         }
     }
 }
 
 #Preview {
-    ContentView(store: .init())
+    ContentView(store: .init(), viewModel: ViewModel(
+        storageLocationProvider: MockStorageLocationProvider(),
+        listFileManager: MockListFileManager(storageLocationProvider: MockStorageLocationProvider()))
+    )
 }
