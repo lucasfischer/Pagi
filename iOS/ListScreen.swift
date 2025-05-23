@@ -135,6 +135,22 @@ struct ListScreen: View {
         }
     }
     
+    @ViewBuilder
+    func EmptyView() -> some View {
+        VStack(spacing: 16) {
+            Text("Your morning pages will appear here.")
+                .foregroundStyle(preferences.theme.colors.foregroundLight)
+            
+            Button("Start now") {
+                Task {
+                    await viewModel.newFile()
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .font(.custom(preferences.font.fileName, size: 16))
+    }
+    
     var body: some View {
         NavigationStack {
             List {
@@ -161,6 +177,12 @@ struct ListScreen: View {
                             .foregroundStyle(preferences.theme.colors.foreground)
                     }
                     .listRowBackground(Color.clear)
+                }
+            }
+            .overlay {
+                if viewModel.files.isEmpty {
+                    EmptyView()
+                        .transition(.opacity)
                 }
             }
             .listStyle(.plain)
