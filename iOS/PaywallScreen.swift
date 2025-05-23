@@ -84,18 +84,20 @@ struct PaywallScreen: View {
     
     @ViewBuilder
     private func Footer() -> some View {
+        let circleColor = colors.foregroundFaded
+        
         HStack(spacing: 8) {
             Link("Terms", destination: Configuration.termsOfService)
             Circle()
-                .fill(.white.opacity(0.2))
+                .fill(circleColor)
                 .frame(width: 2, height: 2)
             Link("Privacy", destination: Configuration.privacyPolicy)
             Circle()
-                .fill(.white.opacity(0.2))
+                .fill(circleColor)
                 .frame(width: 2, height: 2)
             Link("Help", destination: Configuration.supportEmailAddressURL)
             Circle()
-                .fill(.white.opacity(0.2))
+                .fill(circleColor)
                 .frame(width: 2, height: 2)
             Link("What's Included", destination: Configuration.webURL)
         }
@@ -113,59 +115,62 @@ struct PaywallScreen: View {
                 ]))
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 40) {
+            VStack(alignment: .leading, spacing: 0) {
                 Header()
+                    .padding(.bottom, 40)
                 
                 if store.isEntitled {
                     ThankYou()
                 } else if let product {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("Unlock Pagi")
-                                .font(.custom(font, size: headerFontSize).weight(.semibold))
-                                .foregroundColor(colors.foreground)
-                            
-                            Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.")
-                                .fixedSize(horizontal: false, vertical: true)
-                                .font(.custom(font, size: subheadlineFontSize))
-                                .lineLimit(nil)
-                                .lineSpacing(2)
-                                .foregroundColor(colors.foregroundLight)
-                        }
-                        Spacer()
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text(product.displayPrice)
-                            .foregroundStyle(colors.accent)
-                            .font(.custom(font, size: largeTitleFontSize).weight(.bold))
-                        Text("One time payment. \(Text("Valid for life.").fontWeight(.bold))")
-                            .foregroundStyle(colors.foreground)
-                            .font(.custom(font, size: subheadlineFontSize))
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Button {
-                        Haptics.buttonTap()
-                        Task {
-                            do {
-                                try await store.purchase(product: product)
-                            } catch {
-                                self.error = error
-                            }
-                        }
-                    } label: {
+                    VStack(alignment: .leading, spacing: 40) {
                         HStack {
-                            Text("Purchase")
-                                .fontWeight(.semibold)
+                            VStack(alignment: .leading, spacing: 16) {
+                                Text("Purchase Pagi")
+                                    .font(.custom(font, size: headerFontSize).weight(.semibold))
+                                    .foregroundColor(colors.foreground)
+                                
+                                Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.")
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .font(.custom(font, size: subheadlineFontSize))
+                                    .lineLimit(nil)
+                                    .lineSpacing(2)
+                                    .foregroundColor(colors.foregroundLight)
+                            }
+                            Spacer()
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 12)
-                        .background {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(preferences.theme.colors.accent, lineWidth: 2.5)
+                        
+                        VStack(alignment: .leading) {
+                            Text(product.displayPrice)
+                                .foregroundStyle(colors.accent)
+                                .font(.custom(font, size: largeTitleFontSize).weight(.bold))
+                            Text("One time payment. \(Text("Valid for life.").fontWeight(.bold))")
+                                .foregroundStyle(colors.foreground)
+                                .font(.custom(font, size: subheadlineFontSize))
                         }
-                        .contentShape(.rect)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Button {
+                            Haptics.buttonTap()
+                            Task {
+                                do {
+                                    try await store.purchase(product: product)
+                                } catch {
+                                    self.error = error
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text("Purchase")
+                                    .fontWeight(.semibold)
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
+                            .background {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(preferences.theme.colors.accent, lineWidth: 2.5)
+                            }
+                            .contentShape(.rect)
+                        }
                     }
                 } else {
                     ProgressView()
@@ -182,6 +187,7 @@ struct PaywallScreen: View {
                     .font(.custom(font, size: captionFontSize))
                 
                 Footer()
+                    .padding(.top, 40)
             }
             .padding(.top, 24)
             .padding(.bottom, 24)
