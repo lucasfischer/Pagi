@@ -104,6 +104,12 @@ struct SettingsView: View {
                         Text("Saved files will have the .\(preferences.exportType.type.preferredFilenameExtension ?? "") extension.")
                     }
                     
+                    Button("Show Onboarding") {
+                        Haptics.buttonTap()
+                        dismiss()
+                        preferences.isOnboardingPresented = true
+                    }
+                    
                     NavigationLink("About") {
                         AboutView()
                     }
