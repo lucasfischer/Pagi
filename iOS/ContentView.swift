@@ -1,15 +1,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var preferences = Preferences.shared
     @ObservedObject var store: Store
     @State private var viewModel = ListScreenViewModel()
-    @State private var isOnboardingPresented: Bool = true
     
     @State private var isPresented: Bool = true
     var body: some View {
         Group {
-            if isOnboardingPresented {
-                OnboardingScreen(isPresented: $isOnboardingPresented)
+            if preferences.isOnboardingPresented {
+                OnboardingScreen(isPresented: $preferences.isOnboardingPresented)
                     .transition(.opacity)
             } else {
                 ListScreen(viewModel: viewModel, store: store)
@@ -20,7 +20,7 @@ struct ContentView: View {
                     }
             }
         }
-        .animation(.smooth, value: isOnboardingPresented)
+        .animation(.smooth, value: preferences.isOnboardingPresented)
         .task {
             await store.refreshPurchasedProducts()
             await viewModel.loadFiles()
