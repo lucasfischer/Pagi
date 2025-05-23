@@ -63,7 +63,7 @@ struct OnboardingScreen: View {
             }
             .frame(height: 64)
             
-            Text("»Pagi« /paɡi/ is Indonesian and means »morning«.")
+            Text("»Pagi« /paɡi/ means »morning« in Indonesian.")
                 .font(.custom(font, size: captionFontSize))
                 .foregroundStyle(colors.foregroundLight)
                 .opacity(isDescriptionVisible ? 1 : 0)
