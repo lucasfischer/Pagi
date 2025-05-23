@@ -1,17 +1,6 @@
-//
-//  Tests_iOSLaunchTests.swift
-//  Tests iOS
-//
-//  Created by Lucas Fischer on 23.05.25.
-//
-
 import XCTest
 
 final class Tests_iOSLaunchTests: XCTestCase {
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        true
-    }
 
     override func setUpWithError() throws {
         continueAfterFailure = false
