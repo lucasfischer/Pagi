@@ -243,7 +243,7 @@ extension OnboardingScreen {
         var text: LocalizedStringResource
         
         static let all: [Block] = [
-            .init(title: "1. Write freely for \(Configuration.defaultWordTarget) words", text: "Let your thoughts flow onto the page without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."),
+            .init(title: "1. Write freely for \(Configuration.defaultWordTarget) words", text: "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."),
             .init(title: "2. Don't stop writing", text: "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment."),
             .init(title: "3. Make it a daily habit", text: "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection."),
             .init(title: "4. This is just for you", text: "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus.")
