@@ -2,6 +2,7 @@ import SwiftUI
 import StoreKit
 
 struct PaywallScreen: View {
+    @Environment(\.requestReview) var requestReview
     @Environment(\.dismiss) private var dismiss
     @StateObject var preferences = Preferences.shared
     @ObservedObject var store: Store
@@ -212,6 +213,11 @@ struct PaywallScreen: View {
         }
         .tint(colors.accent)
         .errorAlert(error: $error)
+        .onChange(of: store.isUnlocked) {
+            if (store.isUnlocked) {
+                requestReview()
+            }
+        }
         .task {
             await fetchProducts()
             await store.refreshPurchasedProducts()
