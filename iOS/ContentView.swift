@@ -5,7 +5,6 @@ struct ContentView: View {
     @ObservedObject var store: Store
     @Bindable var viewModel: ViewModel
     
-    @State private var isPresented: Bool = true
     var body: some View {
         Group {
             if preferences.isOnboardingPresented {
