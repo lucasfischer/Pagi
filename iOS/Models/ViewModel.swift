@@ -10,7 +10,7 @@ final class ViewModel {
     private var loadTask: Task<Void, Never>?
     
     public var isPaywallPresented = false
-    public var files: [File] = []
+    public var files: Loadable<[File]> = .notRequested
     public var error: Error?
     public var editorViewModel: EditorView.ViewModel?
     
@@ -32,10 +32,13 @@ final class ViewModel {
     }
     
     private func startLoadFilesTask() async {
+        files = .isLoading(last: nil)
         do {
-            self.files = try await listFileManager.loadFiles()
+            let files = try await listFileManager.loadFiles()
+            self.files = .loaded(files)
         } catch {
             self.error = error
+            self.files = .failed(error)
         }
     }
     
@@ -50,8 +53,9 @@ final class ViewModel {
     public func remove(file: File) async {
         do {
             try await listFileManager.remove(file: file)
-            if let index = files.firstIndex(of: file) {
+            if var files = files.value, let index = files.firstIndex(of: file) {
                 files.remove(at: index)
+                self.files = .loaded(files)
             }
         } catch {
             self.error = error

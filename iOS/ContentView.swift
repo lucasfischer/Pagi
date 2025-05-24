@@ -26,7 +26,7 @@ struct ContentView: View {
             viewModel.startObserver()
             await store.refreshPurchasedProducts()
             await viewModel.loadFiles()
-            if viewModel.files.isEmpty {
+            if let files = viewModel.files.value, files.isEmpty {
                 await viewModel.newFile()
             }
         }

@@ -11,10 +11,10 @@ struct ListScreen: View {
     
     @Environment(\.scenePhase) var scenePhase: ScenePhase
     
-    private var dates: [(key: Date, value: [File])] {
+    private func getDates(files: [File]) -> [(key: Date, value: [File])] {
         let calendar = Calendar.current
         return Dictionary(
-            grouping: viewModel.files,
+            grouping: files,
             by: {
                 var date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: $0.date ?? .now)!
                 date = calendar.date(bySetting: .day, value: 1, of: date)!
@@ -25,24 +25,24 @@ struct ListScreen: View {
     }
     
     private var shouldShowPaywall: Bool {
-        viewModel.files.count >= Configuration.freeDays && !store.isEntitled
+        if let files = viewModel.files.value {
+            files.count >= Configuration.freeDays && !store.isEntitled
+        } else {
+            false
+        }
     }
     
     private func showPaywall() {
         viewModel.isPaywallPresented = true
     }
     
-    func removeRows(at offsets: IndexSet) {
+    func removeRows(files: [File], at offsets: IndexSet) {
         for offset in offsets {
-            let file = viewModel.files[offset]
+            let file = files[offset]
             Task {
-                await remove(file: file)
+                await viewModel.remove(file: file)
             }
         }
-    }
-    
-    func remove(file: File) async {
-        await viewModel.remove(file: file)
     }
     
     @ToolbarContentBuilder
@@ -118,7 +118,7 @@ struct ListScreen: View {
         Button("Delete", systemImage: "trash", role: .destructive) {
             Haptics.buttonTap()
             Task {
-                await remove(file: file)
+                await viewModel.remove(file: file)
             }
         }
     }
@@ -139,40 +139,69 @@ struct ListScreen: View {
         .font(.custom(preferences.font.fileName, size: 16))
     }
     
+    @ViewBuilder
+    func FilesList(files: [File]) -> some View {
+        List {
+            ForEach(getDates(files: files), id: \.key) { (date, files) in
+                Section {
+                    ForEach(files, id: \.self) { file in
+                        Button {
+                            Haptics.buttonTap()
+                            Task {
+                                await viewModel.open(file: file)
+                            }
+                        } label: {
+                            Text(file.displayName)
+                                .foregroundStyle(Preferences.shared.theme.colors.foregroundLight)
+                        }
+                        .contextMenu {
+                            ContextMenu(for: file)
+                                .tint(preferences.theme.colors.accent)
+                        }
+                    }
+                    .onDelete { offsets in
+                        removeRows(files: files, at: offsets)
+                    }
+                } header: {
+                    Text(date.formatted(.dateTime.year().month()))
+                        .foregroundStyle(preferences.theme.colors.foreground)
+                }
+                .listRowBackground(Color.clear)
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(dates, id: \.key) { (date, files) in
-                    Section {
-                        ForEach(files, id: \.self) { file in
-                            Button {
-                                Haptics.buttonTap()
-                                Task {
-                                    await viewModel.open(file: file)
+            Group {
+                switch viewModel.files {
+                    case .notRequested:
+                        ProgressView()
+                    case .isLoading(let files):
+                        if let files {
+                            FilesList(files: files)
+                                .overlay {
+                                    if files.isEmpty {
+                                        EmptyView()
+                                            .transition(.opacity)
+                                    }
                                 }
-                            } label: {
-                                Text(file.displayName)
-                                    .foregroundStyle(Preferences.shared.theme.colors.foregroundLight)
-                            }
-                            .contextMenu {
-                                ContextMenu(for: file)
-                                    .tint(preferences.theme.colors.accent)
-                            }
+                        } else {
+                            ProgressView()
                         }
-                        .onDelete(perform: removeRows)
-                    } header: {
-                        Text(date.formatted(.dateTime.year().month()))
-                            .foregroundStyle(preferences.theme.colors.foreground)
-                    }
-                    .listRowBackground(Color.clear)
+                    case .loaded(let files):
+                        FilesList(files: files)
+                            .overlay {
+                                if files.isEmpty {
+                                    EmptyView()
+                                        .transition(.opacity)
+                                }
+                            }
+                    case .failed(_):
+                        EmptyView()
                 }
             }
-            .overlay {
-                if viewModel.files.isEmpty {
-                    EmptyView()
-                        .transition(.opacity)
-                }
-            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .listStyle(.plain)
             .background(preferences.theme.colors.background.ignoresSafeArea())
             .scrollContentBackground(.hidden)
