@@ -40,7 +40,7 @@ struct ContentView: View {
             } else {
                 isTrialActive = true
             }
-            if !store.isEntitled && !isTrialActive {
+            if !store.isUnlocked && !isTrialActive {
                 isPaywallPresented = true
             }
             

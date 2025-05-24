@@ -130,7 +130,7 @@ struct PaywallScreen: View {
                 Header()
                     .padding(.bottom, 40)
                 
-                if store.isEntitled {
+                if store.isUnlocked {
                     ThankYou()
                 } else if let product {
                     VStack(alignment: .leading, spacing: 40) {

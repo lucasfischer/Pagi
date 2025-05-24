@@ -26,7 +26,7 @@ struct ListScreen: View {
     
     private var shouldShowPaywall: Bool {
         if let files = viewModel.files.value {
-            files.count >= Configuration.freeDays && !store.isEntitled
+            files.count >= Configuration.freeDays && !store.isUnlocked
         } else {
             false
         }
@@ -63,7 +63,7 @@ struct ListScreen: View {
                     .preferredColorScheme(preferences.theme.colorScheme)
             }
             
-            if !store.isEntitled {
+            if !store.isUnlocked {
                 Button {
                     Haptics.buttonTap()
                     showPaywall()
