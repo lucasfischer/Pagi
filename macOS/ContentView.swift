@@ -32,7 +32,6 @@ struct ContentView: View {
             let isTrialActive: Bool
             if let onBoardingCompletedAt = preferences.onBoardingCompletedAt {
                 let date = Date(timeIntervalSinceReferenceDate: onBoardingCompletedAt)
-                print(date.formatted())
                 if Calendar.current.date(byAdding: .day, value: Configuration.freeDays, to: date)! > .now {
                     isTrialActive = true
                 } else {
