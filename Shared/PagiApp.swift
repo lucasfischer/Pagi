@@ -9,9 +9,7 @@ import SwiftUI
 
 @main
 struct PagiApp: App {
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.openURL) var openURL
-    @Environment(\.scenePhase) private var phase
     
     @StateObject private var preferences = Preferences.shared
     @StateObject private var store = Store()
