@@ -5,26 +5,38 @@ struct OnboardingScreen: View {
     
     @StateObject private var preferences = Preferences.shared
     
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     @State private var displayedText = ""
     @State private var isAnimating = false
     @State private var isAnimationDone = false
     @State private var isDescriptionVisible = false
     
-    @State private var scrollPosition: Int? = 0
+    @State private var scrollPosition: Int? = 1
     
-    @Environment(\.dismiss) private var dismiss
-    
-    let font: String = iAFont.quattro.fileName
     var colors: Theme.Colors { preferences.theme.colors }
+    
+    var font: String {
+        preferences.font.fileName
+    }
     
     let words = ["Pagi", " is ", "where ", "\ndays ", "begin."]
     
     @ScaledMetric(relativeTo: .largeTitle) private var titleFontSize = 34
+    @ScaledMetric(relativeTo: .title) private var headerFontSize = 28
     @ScaledMetric(relativeTo: .body) private var bodyFontSize = 17
+    @ScaledMetric(relativeTo: .subheadline) private var subheadlineFontSize = 15
+    @ScaledMetric(relativeTo: .footnote) private var footnoteFontSize = 13
     @ScaledMetric(relativeTo: .caption) private var captionFontSize = 12
+    
+    private func dismiss() {
+        isPresented.toggle()
+    }
     
     @ViewBuilder
     private func Slide1() -> some View {
+        let horizontalSpacing: Double = horizontalSizeClass == .compact ? 32 : 80
+        
         VStack(alignment: .leading, spacing: 32) {
             Spacer()
             Text(displayedText)
@@ -42,8 +54,7 @@ struct OnboardingScreen: View {
                 if isAnimationDone {
                     Button {
                         Haptics.buttonTap()
-                        dismiss()
-                        isPresented.toggle()
+                        scrollPosition = 2
                     } label: {
                         HStack {
                             Image(systemName: "arrow.right")
@@ -56,7 +67,9 @@ struct OnboardingScreen: View {
                             RoundedRectangle(cornerRadius: 24)
                                 .stroke(colors.accent, lineWidth: 3)
                         }
+                        .contentShape(.rect)
                     }
+                    .foregroundStyle(colors.accent)
                     .tint(colors.accent)
                     .transition(.move(edge: .leading))
                 }
@@ -68,25 +81,94 @@ struct OnboardingScreen: View {
                 .foregroundStyle(colors.foregroundLight)
                 .opacity(isDescriptionVisible ? 1 : 0)
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, horizontalSpacing)
         .padding(.vertical, 64)
         .frame(maxWidth: .infinity, alignment: .leading)
         .animation(.snappy, value: isAnimationDone)
         .animation(.smooth, value: isDescriptionVisible)
-        .containerRelativeFrame(.horizontal, count: 1, spacing: 32)
-        .contentMargins(.horizontal, 32, for: .scrollContent)
+        .containerRelativeFrame(.horizontal, count: 1, spacing: horizontalSpacing)
+    }
+    
+    @ViewBuilder
+    private func Slide2() -> some View {
+        let horizontalSpacing: Double = 32
+        
+        ScrollView {
+            VStack(alignment: horizontalSizeClass == .compact ? .leading : .center, spacing: 32) {
+                Text("Get Started")
+                    .font(.custom(font, size: titleFontSize).weight(.semibold))
+                    .padding(.bottom, 16)
+                
+                if horizontalSizeClass == .compact {
+                    ForEach(Block.all) { block in
+                        VStack(alignment: .leading) {
+                            Text(block.title)
+                                .font(.custom(font, size: subheadlineFontSize))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .fontWeight(.semibold)
+                            Text(block.text)
+                                .font(.custom(font, size: footnoteFontSize))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .foregroundStyle(colors.foregroundLight)
+                        }
+                    }
+                } else {
+                    LazyVGrid(columns: Array(repeating: .init(.fixed(360), spacing: 40, alignment: .topLeading), count: 2), alignment: .center, spacing: 40) {
+                        ForEach(Block.all) { block in
+                            VStack(alignment: .leading) {
+                                Text(block.title)
+                                    .font(.custom(font, size: subheadlineFontSize))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .fontWeight(.semibold)
+                                Text(block.text)
+                                    .font(.custom(font, size: footnoteFontSize))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .foregroundStyle(colors.foregroundLight)
+                            }
+                        }
+                    }
+                }
+                
+                Button {
+                    Haptics.buttonTap()
+                    dismiss()
+                } label: {
+                    HStack {
+                        Text("Start Writing")
+                    }
+                    .font(.custom(font, size: bodyFontSize).weight(.semibold))
+                    .foregroundStyle(colors.accent)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(colors.accent, lineWidth: 3)
+                    }
+                    .contentShape(.rect)
+                }
+                .font(.custom(font, size: headerFontSize).weight(.bold))
+                .foregroundStyle(colors.accent)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 24)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.horizontal, horizontalSpacing)
+            .font(.custom(font, size: bodyFontSize))
+            .foregroundStyle(colors.foreground)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .defaultScrollAnchor(horizontalSizeClass == .compact ? .top : .center)
+        .contentMargins(.vertical, 40, for: .scrollContent)
+        .containerRelativeFrame(.horizontal, count: 1, spacing: horizontalSpacing)
     }
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 0) {
                 Slide1()
-                    .id(0)
-                
-                Text("Slide 2")
-                    .containerRelativeFrame(.horizontal, count: 1, spacing: 32)
-                    .contentMargins(.horizontal, 32, for: .scrollContent)
                     .id(1)
+                
+                Slide2()
+                    .id(2)
             }
             .scrollTargetLayout()
         }
@@ -138,6 +220,23 @@ struct OnboardingScreen: View {
         }
         addNextWord()
     }
+}
+
+extension OnboardingScreen {
+    
+    struct Block: Identifiable, Equatable {
+        var id: String { title.localizedStringResource.key }
+        var title: LocalizedStringResource
+        var text: LocalizedStringResource
+        
+        static let all: [Block] = [
+            .init(title: "1. Write freely for \(Configuration.defaultWordTarget) words", text: "Let your thoughts flow onto the page without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."),
+            .init(title: "2. Don't stop writing", text: "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment."),
+            .init(title: "3. Make it a daily habit", text: "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection."),
+            .init(title: "4. This is just for you", text: "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus.")
+        ]
+    }
+    
 }
 
 #Preview {

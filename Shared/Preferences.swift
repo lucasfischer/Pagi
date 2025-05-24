@@ -15,7 +15,7 @@ class Preferences: ObservableObject {
     @AppStorage("isOnboardingPresented") var isOnboardingPresented = true
     
     @AppStorage("exportType") var exportType: FileType = .text
-    @AppStorage("wordTarget") var wordTarget = 750
+    @AppStorage("wordTarget") var wordTarget = Configuration.defaultWordTarget
     @AppStorage("wordCount") var wordCount = true
     @AppStorage("progressBar") var progressBar = true
     @AppStorage("isSpellCheckingEnabled") var isSpellCheckingEnabled = false

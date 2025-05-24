@@ -2,6 +2,7 @@ import Foundation
 
 enum Configuration {
     public static let freeDays = 3
+    public static let defaultWordTarget = 750
     public static let reviewURL = URL(string: "itms-apps://apps.apple.com/app/id1586446074?action=write-review")!
     public static let supportEmailAddressURL = URL(string: "mailto:xoxo@lucas.love?subject=Pagi")!
     public static let webURL = URL(string: "https://pagi.lucas.love/")!
