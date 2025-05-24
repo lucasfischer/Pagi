@@ -13,6 +13,7 @@ class Preferences: ObservableObject {
     static let shared = Preferences()
     
     @AppStorage("isOnboardingPresented") var isOnboardingPresented = true
+    @AppStorage("onBoardingCompletedAt") var onBoardingCompletedAt: TimeInterval?
     
     @AppStorage("exportType") var exportType: FileType = .text
     @AppStorage("wordTarget") var wordTarget = Configuration.defaultWordTarget

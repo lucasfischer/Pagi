@@ -51,6 +51,7 @@ struct PaywallScreen: View {
             }
             .tint(colors.foreground)
         }
+        .buttonStyle(.plain)
     }
     
     @ViewBuilder
@@ -61,6 +62,7 @@ struct PaywallScreen: View {
                 .foregroundColor(colors.foreground)
             
             Text("Your contribution helps me to continue improving Pagi for you. If you enjoy using Pagi, I would appreciate it if you can leave a review on the App Store.")
+                .fixedSize(horizontal: false, vertical: true)
                 .font(.custom(font, size: bodyFontSize))
                 .foregroundColor(colors.foregroundLight)
             
@@ -78,6 +80,9 @@ struct PaywallScreen: View {
                 .contentShape(.rect)
             }
             .padding(.top)
+            .foregroundStyle(colors.accent)
+            .buttonStyle(.plain)
+            
             Spacer()
         }
     }
@@ -108,12 +113,17 @@ struct PaywallScreen: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Gradient(colors: [
-                    colors.background.mix(with: .white, by: 0.15),
-                    colors.background
-                ]))
-                .ignoresSafeArea()
+            if #available(iOS 18.0, macOS 15.0, *) {
+                Rectangle()
+                    .fill(Gradient(colors: [
+                        colors.background.mix(with: .white, by: 0.15),
+                        colors.background
+                    ]))
+                    .ignoresSafeArea()
+            } else {
+                colors.background
+                    .ignoresSafeArea()
+            }
             
             VStack(alignment: .leading, spacing: 0) {
                 Header()
@@ -171,13 +181,19 @@ struct PaywallScreen: View {
                             }
                             .contentShape(.rect)
                         }
+                        .foregroundStyle(colors.accent)
+                        .buttonStyle(.plain)
                     }
                 } else {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 
+#if os(macOS)
+                Spacer(minLength: 40)
+#else
                 Spacer(minLength: 0)
+#endif
                 
                 Text("Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last.")
                     .fixedSize(horizontal: false, vertical: true)

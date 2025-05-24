@@ -27,7 +27,7 @@ struct PagiApp: App {
         #if os(macOS)
         
         DocumentGroup(newDocument: PagiDocument()) { file in
-            ContentView(document: file.$document)
+            ContentView(document: file.$document, store: store)
                 .preferredColorScheme(preferences.theme.colorScheme)
         }
         .commands {

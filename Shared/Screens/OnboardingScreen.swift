@@ -35,6 +35,7 @@ struct OnboardingScreen: View {
 #if os(macOS)
         dismissWindow()
 #endif
+        preferences.onBoardingCompletedAt = Date.now.timeIntervalSinceReferenceDate
     }
     
     @ViewBuilder
