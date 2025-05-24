@@ -72,6 +72,14 @@ struct PagiApp: App {
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowResizability(.contentSize)
         
+        Window("Onboarding", id: "onboarding") {
+            OnboardingScreen(isPresented: $preferences.isOnboardingPresented)
+                .frame(width: 1024, height: 600)
+                .preferredColorScheme(preferences.theme.colorScheme)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
+        
         #elseif os(iOS)
         
         WindowGroup {

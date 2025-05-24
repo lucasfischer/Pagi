@@ -6,6 +6,7 @@ struct OnboardingScreen: View {
     @StateObject private var preferences = Preferences.shared
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.dismissWindow) private var dismissWindow
     
     @State private var displayedText = ""
     @State private var isAnimating = false
@@ -30,7 +31,10 @@ struct OnboardingScreen: View {
     @ScaledMetric(relativeTo: .caption) private var captionFontSize = 12
     
     private func dismiss() {
-        isPresented.toggle()
+        isPresented = false
+#if os(macOS)
+        dismissWindow()
+#endif
     }
     
     @ViewBuilder
@@ -157,7 +161,9 @@ struct OnboardingScreen: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .defaultScrollAnchor(horizontalSizeClass == .compact ? .top : .center)
-        .contentMargins(.vertical, 40, for: .scrollContent)
+#if !os(macOS)
+        .contentMargins(.vertical, horizontalSizeClass == .compact ? 40 : 8, for: .scrollContent)
+#endif
         .containerRelativeFrame(.horizontal, count: 1, spacing: horizontalSpacing)
     }
     
@@ -179,13 +185,19 @@ struct OnboardingScreen: View {
         .scrollPosition(id: $scrollPosition)
         .scrollContentBackground(.hidden)
         .animation(.smooth, value: scrollPosition)
+        .buttonStyle(.plain)
         .background {
-            Rectangle()
-                .fill(Gradient(colors: [
-                    colors.background.mix(with: .white, by: 0.15),
-                    colors.background
-                ]))
-                .ignoresSafeArea()
+            if #available(iOS 18.0, macOS 15.0, *) {
+                Rectangle()
+                    .fill(Gradient(colors: [
+                        colors.background.mix(with: .white, by: 0.15),
+                        colors.background
+                    ]))
+                    .ignoresSafeArea()
+            } else {
+                colors.background
+                    .ignoresSafeArea()
+            }
         }
     }
     
