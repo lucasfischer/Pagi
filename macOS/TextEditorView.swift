@@ -11,10 +11,10 @@ struct TextEditorView: NSViewControllerRepresentable {
     var isSpellCheckingEnabled: Bool = false
     @Binding var focusMode: Bool
     var focusType: FocusType
-    var shouldHideToolbar: Binding<Bool> = .constant(false)
+    var shouldHideToolbar: Binding<Bool>
     
     func makeNSViewController(context: Context) -> NSViewController {
-        let vc = TextEditorController()
+        let vc = TextEditorController(shouldHideToolbar: shouldHideToolbar)
         vc.textView.delegate = context.coordinator
         return vc
     }
@@ -120,8 +120,21 @@ extension TextEditorView {
 fileprivate final class TextEditorController: NSViewController {
     var isSpellCheckingEnabled: Bool = false
     var focusMode: Bool = false
-    let textView = CustomTextView()
+    @Binding var shouldHideToolbar: Bool
+    let textView: CustomTextView
     let scrollView = NSScrollView()
+    let focusScrollObserver: FocusScrollObserver
+    
+    init(shouldHideToolbar: Binding<Bool>) {
+        self._shouldHideToolbar = shouldHideToolbar
+        self.textView = CustomTextView()
+        self.focusScrollObserver = FocusScrollObserver(textView: textView)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var textContainerInset: NSSize {
         let frameWidth = self.view.frame.size.width
@@ -144,6 +157,14 @@ fileprivate final class TextEditorController: NSViewController {
         scrollView.autohidesScrollers = true
         scrollView.drawsBackground = false
         scrollView.lineScroll *= 2
+        
+        // Add scroll observer
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onStartedScrolling),
+            name: NSScrollView.willStartLiveScrollNotification,
+            object: scrollView
+        )
         
         // - TextView
         textView.drawsBackground = false
@@ -170,6 +191,11 @@ fileprivate final class TextEditorController: NSViewController {
         self.view.window?.makeFirstResponder(self.view)
     }
     
+    @objc
+    func onStartedScrolling(_ notification: Notification) {
+        shouldHideToolbar = !scrollView.isFindBarVisible
+    }
+    
     func resetFocusMode() {
         let origin = textView.textContainerOrigin
         textView.textContainerInset = textContainerInset
@@ -181,7 +207,7 @@ fileprivate final class TextEditorController: NSViewController {
         scrollView.scroll(to: point, animationDuration: 0)
         
         // Remove Observer
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(focusScrollObserver)
     }
     
     func enableFocusMode() {
@@ -192,16 +218,11 @@ fileprivate final class TextEditorController: NSViewController {
         // Add Observers
         // Start Scrolling
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onStartedScrolling),
+            focusScrollObserver,
+            selector: #selector(focusScrollObserver.willStartLiveScrollNotification),
             name: NSScrollView.willStartLiveScrollNotification,
             object: scrollView
         )
-    }
-    
-    @objc
-    func onStartedScrolling(_ notification: Notification) {
-        textView.resetHighlight()
     }
     
     class CustomTextView: NSTextView {
@@ -346,6 +367,26 @@ fileprivate final class TextEditorController: NSViewController {
             
             super.mouseDown(with: event)
         }
+    }
+    
+}
+
+extension TextEditorController {
+    
+    @MainActor
+    class FocusScrollObserver {
+        
+        let textView: CustomTextView
+        
+        init(textView: CustomTextView) {
+            self.textView = textView
+        }
+        
+        @objc
+        func willStartLiveScrollNotification(_ notification: Notification) {
+            textView.resetHighlight()
+        }
+        
     }
     
 }

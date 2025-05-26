@@ -11,10 +11,29 @@ struct ContentView: View {
     
     @Environment(\.openWindow) private var openWindow
     
-    var body: some View {
+    @ViewBuilder private func ToolbarWrapper(content: () -> some View) -> some View {
         ZStack {
-            Color.background.ignoresSafeArea()
-            
+            if #available(macOS 15.0, *) {
+                content()
+                    .toolbarVisibility(viewModel.shouldHideToolbar ? .hidden : .visible, for: .windowToolbar)
+                    .onContinuousHover { phase in
+                        switch phase {
+                            case .active(let location):
+                                if location.y <= 40 {
+                                    viewModel.shouldHideToolbar = false
+                                }
+                            case .ended:
+                                break
+                        }
+                    }
+            } else {
+                content()
+            }
+        }
+    }
+    
+    var body: some View {
+        ToolbarWrapper {
             Editor(text: $document.text, viewModel: viewModel) {
                 TextEditorView(
                     text: $document.text,
@@ -28,6 +47,8 @@ struct ContentView: View {
                 )
                 .id("\(preferences.font.rawValue)\(preferences.fontSize)")
             }
+            .ignoresSafeArea()
+            .background(Color.background)
         }
         .sheet(isPresented: $isPaywallPresented) {
             PaywallScreen(store: store)
