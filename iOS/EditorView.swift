@@ -6,6 +6,8 @@ struct EditorView: View {
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var editorViewModel: EditorViewModel // To update View on EditorViewModel changes
     
+    @ObservedObject var preferences = Preferences.shared
+    
     @Environment(\.dismiss) private var dismiss
     
     let storageURL: URL?
@@ -190,13 +192,26 @@ struct EditorView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            Editor(text: $viewModel.text, viewModel: viewModel.editorViewModel)
-                .ignoresSafeArea(.container, edges: .vertical)
-                .safeAreaInset(edge: .bottom) {
-                    if !viewModel.isiPad {
-                        iPhoneFooter(geometry)
-                    }
+            Editor(text: $viewModel.text, viewModel: viewModel.editorViewModel) {
+                TextEditorView(
+                    text: $viewModel.text,
+                    colors: preferences.theme.colors,
+                    font: preferences.font,
+                    size: preferences.fontSize,
+                    isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
+                    isAutocorrectionEnabled: preferences.isAutocorrectionEnabled,
+                    focusMode: $preferences.isFocusModeEnabled,
+                    focusType: preferences.focusType,
+                    shouldHideToolbar: $editorViewModel.shouldHideToolbar
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .ignoresSafeArea(.container, edges: .vertical)
+            .safeAreaInset(edge: .bottom) {
+                if !viewModel.isiPad {
+                    iPhoneFooter(geometry)
                 }
+            }
         }
         .toolbar {
             if viewModel.isiPad {
@@ -244,9 +259,3 @@ struct EditorView: View {
         }
     }
 }
-
-//struct EditorView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditorView(viewModel: EditorView.ViewModel())
-//    }
-//}

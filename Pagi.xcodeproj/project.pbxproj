@@ -57,7 +57,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				Editor.swift,
 				"Fonts/iA Writer Duo/Variable/iAWriterDuoV.ttf",
 				"Fonts/iA Writer Mono/Variable/iAWriterMonoV.ttf",
 				"Fonts/iA Writer Quattro/Variable/iAWriterQuattroV.ttf",
@@ -70,7 +69,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				Editor.swift,
 				"Fonts/iA Writer Duo/Variable/iAWriterDuoV.ttf",
 				"Fonts/iA Writer Mono/Variable/iAWriterMonoV.ttf",
 				"Fonts/iA Writer Quattro/Variable/iAWriterQuattroV.ttf",

@@ -15,7 +15,19 @@ struct ContentView: View {
         ZStack {
             Color.background.ignoresSafeArea()
             
-            Editor(text: $document.text, viewModel: viewModel)
+            Editor(text: $document.text, viewModel: viewModel) {
+                TextEditorView(
+                    text: $document.text,
+                    colors: preferences.theme.colors,
+                    font: preferences.font,
+                    size: preferences.fontSize,
+                    isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
+                    focusMode: $preferences.isFocusModeEnabled,
+                    focusType: preferences.focusType,
+                    shouldHideToolbar: $viewModel.shouldHideToolbar
+                )
+                .id("\(preferences.font.rawValue)\(preferences.fontSize)")
+            }
         }
         .sheet(isPresented: $isPaywallPresented) {
             PaywallScreen(store: store)

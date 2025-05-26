@@ -1,44 +1,18 @@
 import SwiftUI
-import PagiKit
 
-struct Editor: View {
+public struct Editor<Content: View>: View {
     @Binding var text: String
     @ObservedObject var viewModel: EditorViewModel
+    @ViewBuilder var editor: () -> Content
+    
     @StateObject var preferences = Preferences.shared
     
     private let progressBarHeight: CGFloat = 24
     
-#if os(iOS)
-    @ViewBuilder
-    func iOSEditor() -> some View {
-        TextEditorView(
-            text: $text,
-            colors: preferences.theme.colors,
-            font: preferences.font,
-            size: preferences.fontSize,
-            isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
-            isAutocorrectionEnabled: preferences.isAutocorrectionEnabled,
-            focusMode: $preferences.isFocusModeEnabled,
-            focusType: preferences.focusType,
-            shouldHideToolbar: $viewModel.shouldHideToolbar
-        )
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-#endif
-    
-    @ViewBuilder
-    func macEditor() -> some View {
-        TextEditorView(
-            text: $text,
-            colors: preferences.theme.colors,
-            font: preferences.font,
-            size: preferences.fontSize,
-            isSpellCheckingEnabled: preferences.isSpellCheckingEnabled,
-            focusMode: $preferences.isFocusModeEnabled,
-            focusType: preferences.focusType,
-            shouldHideToolbar: $viewModel.shouldHideToolbar
-        )
-        .id("\(preferences.font.rawValue)\(preferences.fontSize)")
+    public init(text: Binding<String>, viewModel: EditorViewModel, editor: @escaping () -> Content) {
+        self._text = text
+        self.viewModel = viewModel
+        self.editor = editor
     }
     
     @ViewBuilder
@@ -94,13 +68,9 @@ struct Editor: View {
         }
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
-#if os(macOS)
-            macEditor()
-#else
-            iOSEditor()
-#endif
+            editor()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(preferences.theme.colors.background)
@@ -122,11 +92,5 @@ struct Editor: View {
         .onChange(of: text) {
             viewModel.calculateWordCount(text, typing: true)
         }
-    }
-}
-
-struct Editor_Previews: PreviewProvider {
-    static var previews: some View {
-        Editor(text: .constant("This is a test."), viewModel: EditorViewModel())
     }
 }
