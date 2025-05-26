@@ -110,7 +110,7 @@ public struct OnboardingScreen: View {
                 
                 if horizontalSizeClass == .compact {
                     ForEach(Block.all) { block in
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text(block.title)
                                 .font(.custom(font, size: subheadlineFontSize))
                                 .fixedSize(horizontal: false, vertical: true)
@@ -124,7 +124,7 @@ public struct OnboardingScreen: View {
                 } else {
                     LazyVGrid(columns: Array(repeating: .init(.fixed(360), spacing: 40, alignment: .topLeading), count: 2), alignment: .center, spacing: 40) {
                         ForEach(Block.all) { block in
-                            VStack(alignment: .leading) {
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text(block.title)
                                     .font(.custom(font, size: subheadlineFontSize))
                                     .fixedSize(horizontal: false, vertical: true)
