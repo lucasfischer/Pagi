@@ -13,15 +13,13 @@ struct TextEditorView: NSViewControllerRepresentable {
     var focusType: FocusType
     var shouldHideToolbar: Binding<Bool>
     
-    func makeNSViewController(context: Context) -> NSViewController {
+    func makeNSViewController(context: Context) -> TextEditorController {
         let vc = TextEditorController(shouldHideToolbar: shouldHideToolbar)
         vc.textView.delegate = context.coordinator
         return vc
     }
     
-    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
-        guard let vc = nsViewController as? TextEditorController else { return }
-        
+    func updateNSViewController(_ vc: TextEditorController, context: Context) {
         if text != vc.textView.string {
             vc.textView.string = text
         }
@@ -93,10 +91,11 @@ extension TextEditorView {
         }
         
         func textDidChange(_ notification: Notification) {
-            guard let textView = notification.object as? NSTextView else { return }
+            guard let textView = notification.object as? TextEditorController.CustomTextView else { return }
             
             self.parent.text = textView.string
             self.selectedRanges = textView.selectedRanges
+            self.parent.shouldHideToolbar.wrappedValue = textView.scrollView?.isFindBarVisible == false
         }
         
         func textViewDidChangeSelection(_ notification: Notification) {
@@ -117,17 +116,19 @@ extension TextEditorView {
 }
 
 // MARK: - Controller
-fileprivate final class TextEditorController: NSViewController {
+final class TextEditorController: NSViewController {
     var isSpellCheckingEnabled: Bool = false
     var focusMode: Bool = false
     @Binding var shouldHideToolbar: Bool
     let textView: CustomTextView
-    let scrollView = NSScrollView()
+    let scrollView: NSScrollView
     let focusScrollObserver: FocusScrollObserver
     
     init(shouldHideToolbar: Binding<Bool>) {
         self._shouldHideToolbar = shouldHideToolbar
+        self.scrollView = NSScrollView()
         self.textView = CustomTextView()
+        self.textView.scrollView = scrollView
         self.focusScrollObserver = FocusScrollObserver(textView: textView)
         super.init(nibName: nil, bundle: nil)
     }
@@ -229,6 +230,7 @@ fileprivate final class TextEditorController: NSViewController {
         var focusMode = false
         var focusType: FocusType = .sentence
         var colors = Theme.system.colors
+        var scrollView: NSScrollView?
         
         private var caretSize: CGFloat = 3
         private var mouseWasDown = false
