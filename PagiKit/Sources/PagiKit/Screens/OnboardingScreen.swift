@@ -34,6 +34,19 @@ public struct OnboardingScreen: View {
     @ScaledMetric(relativeTo: .footnote) private var footnoteFontSize = 13
     @ScaledMetric(relativeTo: .caption) private var captionFontSize = 12
     
+    private func onDisappear() {
+        displayedText = ""
+        isAnimating = false
+        isAnimationDone = false
+        isDescriptionVisible = false
+    }
+    
+    private func onAppear() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            animateText()
+        }
+    }
+    
     private func dismiss() {
         isPresented = false
 #if os(macOS)
@@ -55,12 +68,8 @@ public struct OnboardingScreen: View {
                 .foregroundColor(colors.foreground)
                 .multilineTextAlignment(.leading)
                 .lineLimit(2, reservesSpace: true)
-                .onAppear {
-                    displayedText = ""
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                        animateText()
-                    }
-                }
+                .onAppear(perform: onAppear)
+                .onDisappear(perform: onDisappear)
             
             VStack {
                 if isAnimationDone {
@@ -83,7 +92,7 @@ public struct OnboardingScreen: View {
                     }
                     .foregroundStyle(colors.accent)
                     .tint(colors.accent)
-                    .transition(.move(edge: .leading))
+                    .transition(.asymmetric(insertion: .move(edge: .leading), removal: .identity))
                 }
             }
             .frame(height: 64)
