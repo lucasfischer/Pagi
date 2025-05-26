@@ -39,7 +39,9 @@ public struct OnboardingScreen: View {
 #if os(macOS)
         dismissWindow()
 #endif
-        preferences.onBoardingCompletedAt = Date.now.timeIntervalSinceReferenceDate
+        if preferences.onBoardingCompletedAt == nil {
+            preferences.onBoardingCompletedAt = Date.now.timeIntervalSinceReferenceDate
+        }
     }
     
     @ViewBuilder
@@ -54,6 +56,7 @@ public struct OnboardingScreen: View {
                 .multilineTextAlignment(.leading)
                 .lineLimit(2, reservesSpace: true)
                 .onAppear {
+                    displayedText = ""
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         animateText()
                     }

@@ -69,6 +69,7 @@ struct PagiApp: App {
                 .frame(width: 1024, height: 600)
                 .preferredColorScheme(preferences.theme.colorScheme)
         }
+        .commandsRemoved()
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
         
