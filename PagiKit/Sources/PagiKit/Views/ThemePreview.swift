@@ -10,13 +10,13 @@ public struct ThemePreview: View {
     public var body: some View {
         VStack {
             VStack {
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ")
+                Text(verbatim: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ")
                     .foregroundColor(theme.colors.foregroundFaded)
-                + Text("Fusce nec lobortis elit. ")
+                + Text(verbatim: "Fusce nec lobortis elit. ")
                     .foregroundColor(theme.colors.foreground)
-                + Text("Morbi nec leo ut est sollicitudin volutpat ac id orci.")
+                + Text(verbatim: "Morbi nec leo ut est sollicitudin volutpat ac id orci.")
                     .foregroundColor(theme.colors.foregroundFaded)
-                + Text("|")
+                + Text(verbatim: "|")
                     .foregroundColor(theme.colors.accent)
             }
             .font(.custom(font.fileName, fixedSize: 6))

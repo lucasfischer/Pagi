@@ -10,31 +10,39 @@ public struct FontCommands: Commands {
     }
     
     public var body: some Commands {
-        CommandMenu("Font") {
-            Picker("Font", selection: $font) {
+        CommandMenu(Text("Font", bundle: .module)) {
+            Picker(selection: $font) {
                 ForEach(iAFont.allCases, id: \.self) { font in
                     Text(verbatim: font.rawValue)
                 }
+            } label: {
+                Text("Font", bundle: .module)
             }
             
             Divider()
             
-            Button("Increase Size") {
+            Button {
                 if fontSize < 40 {
                     fontSize += 1
                 }
+            } label: {
+                Text("Increase Size", bundle: .module)
             }
             .keyboardShortcut("+", modifiers: .command)
             
-            Button("Default Size") {
+            Button {
                 fontSize = 18
+            } label: {
+                Text("Default Size", bundle: .module)
             }
             .keyboardShortcut("0", modifiers: .command)
             
-            Button("Decrease Size") {
+            Button {
                 if fontSize > 10 {
                     fontSize -= 1
                 }
+            } label: {
+                Text("Decrease Size", bundle: .module)
             }
             .keyboardShortcut("-", modifiers: .command)
         }

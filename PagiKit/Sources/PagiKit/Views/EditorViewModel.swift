@@ -34,11 +34,11 @@ public class EditorViewModel: ObservableObject {
         Float(self.words) / Float(preferences.wordTarget)
     }
     
-    public var successText: LocalizedStringKey {
+    public var successText: LocalizedStringResource {
         if let endDuration = timer.endDuration {
-            return "\(words) words in \(endDuration)"
+            LocalizedStringResource("\(words) words in \(endDuration)", bundle: .atURL(Bundle.module.bundleURL))
         } else {
-            return "Word Target Reached"
+            LocalizedStringResource("Word Target Reached", bundle: .atURL(Bundle.module.bundleURL))
         }
     }
     

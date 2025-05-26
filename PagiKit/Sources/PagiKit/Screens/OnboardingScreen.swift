@@ -68,7 +68,7 @@ public struct OnboardingScreen: View {
                         HStack {
                             Image(systemName: "arrow.right")
                                 .fontWeight(.semibold)
-                            Text("Try for free")
+                            Text("Try for free", bundle: .module)
                         }
                         .font(.custom(font, size: bodyFontSize).weight(.semibold))
                         .padding()
@@ -85,7 +85,7 @@ public struct OnboardingScreen: View {
             }
             .frame(height: 64)
             
-            Text("»Pagi« /paɡi/ means »morning« in Indonesian.")
+            Text("»Pagi« /paɡi/ means »morning« in Indonesian.", bundle: .module)
                 .font(.custom(font, size: captionFontSize))
                 .foregroundStyle(colors.foregroundLight)
                 .opacity(isDescriptionVisible ? 1 : 0)
@@ -104,7 +104,7 @@ public struct OnboardingScreen: View {
         
         ScrollView {
             VStack(alignment: horizontalSizeClass == .compact ? .leading : .center, spacing: 32) {
-                Text("Get Started")
+                Text("Get Started", bundle: .module)
                     .font(.custom(font, size: titleFontSize).weight(.semibold))
                     .padding(.bottom, 16)
                 
@@ -143,7 +143,7 @@ public struct OnboardingScreen: View {
                     dismiss()
                 } label: {
                     HStack {
-                        Text("Start Writing")
+                        Text("Start Writing", bundle: .module)
                     }
                     .font(.custom(font, size: bodyFontSize).weight(.semibold))
                     .foregroundStyle(colors.accent)
@@ -246,10 +246,22 @@ extension OnboardingScreen {
         var title: LocalizedStringResource
         var text: LocalizedStringResource
         
+        init(title: LocalizedStringResource, text: String) {
+            self.title = title
+            self.text = LocalizedStringResource(String.LocalizationValue(text), bundle: .atURL(Bundle.module.bundleURL))
+        }
+        
+        init(title: String, text: String) {
+            self.title = LocalizedStringResource(String.LocalizationValue(title), bundle: .atURL(Bundle.module.bundleURL))
+            self.text = LocalizedStringResource(String.LocalizationValue(text), bundle: .atURL(Bundle.module.bundleURL))
+        }
+        
         static let all: [Block] = [
-            .init(title: "1. Write freely for \(Configuration.defaultWordTarget) words", text: "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."),
+            .init(
+                title: LocalizedStringResource("1. Write freely for \(Configuration.defaultWordTarget) words", bundle: .atURL(Bundle.module.bundleURL)),
+                text: "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."),
             .init(title: "2. Don't stop writing", text: "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment."),
-            .init(title: "3. Make it a daily habit", text: "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection."),
+            .init(title: "3. Make it a daily habit", text: "Try to do this first thing when you wake up, before checking social media or starting your day. Consistency matters more than perfection."),
             .init(title: "4. This is just for you", text: "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus.")
         ]
     }

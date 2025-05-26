@@ -48,11 +48,13 @@ public struct PaywallScreen: View {
             }
             Spacer()
             
-            Button("Restore") {
+            Button {
                 Haptics.buttonTap()
                 Task {
                     await store.refreshPurchasedProducts()
                 }
+            } label: {
+                Text("Restore", bundle: .module)
             }
             .tint(colors.foreground)
         }
@@ -62,18 +64,18 @@ public struct PaywallScreen: View {
     @ViewBuilder
     private func ThankYou() -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Thank You!")
+            Text("Thank You!", bundle: .module)
                 .font(.custom(font, size: headerFontSize).weight(.semibold))
                 .foregroundColor(colors.foreground)
             
-            Text("Your contribution helps me to continue improving Pagi for you. If you enjoy using Pagi, I would appreciate it if you can leave a review on the App Store.")
+            Text("Your contribution helps me to continue improving Pagi for you. If you enjoy using Pagi, I would appreciate it if you can leave a review on the App Store.", bundle: .module)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.custom(font, size: bodyFontSize))
                 .foregroundColor(colors.foregroundLight)
             
             Link(destination: Configuration.reviewURL) {
                 HStack {
-                    Text("Rate Pagi")
+                    Text("Rate Pagi", bundle: .module)
                         .fontWeight(.semibold)
                 }
                 .padding(.horizontal, 20)
@@ -97,19 +99,27 @@ public struct PaywallScreen: View {
         let circleColor = colors.foregroundFaded
         
         HStack(spacing: 8) {
-            Link("Terms", destination: Configuration.termsOfService)
+            Link(destination: Configuration.termsOfService) {
+                Text("Terms", bundle: .module)
+            }
             Circle()
                 .fill(circleColor)
                 .frame(width: 2, height: 2)
-            Link("Privacy", destination: Configuration.privacyPolicy)
+            Link(destination: Configuration.privacyPolicy) {
+                Text("Privacy", bundle: .module)
+            }
             Circle()
                 .fill(circleColor)
                 .frame(width: 2, height: 2)
-            Link("Help", destination: Configuration.supportEmailAddressURL)
+            Link(destination: Configuration.supportEmailAddressURL) {
+                Text("Help", bundle: .module)
+            }
             Circle()
                 .fill(circleColor)
                 .frame(width: 2, height: 2)
-            Link("What's Included", destination: Configuration.webURL)
+            Link(destination: Configuration.webURL) {
+                Text("What's Included", bundle: .module)
+            }
         }
         .foregroundStyle(colors.foregroundLight)
         .font(.custom(font, size: caption2FontSize))
@@ -140,11 +150,11 @@ public struct PaywallScreen: View {
                     VStack(alignment: .leading, spacing: 40) {
                         HStack {
                             VStack(alignment: .leading, spacing: 16) {
-                                Text("Purchase Pagi")
+                                Text("Purchase Pagi", bundle: .module)
                                     .font(.custom(font, size: headerFontSize).weight(.semibold))
                                     .foregroundColor(colors.foreground)
                                 
-                                Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.")
+                                Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.", bundle: .module)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.custom(font, size: subheadlineFontSize))
                                     .lineLimit(nil)
@@ -158,7 +168,7 @@ public struct PaywallScreen: View {
                             Text(product.displayPrice)
                                 .foregroundStyle(colors.accent)
                                 .font(.custom(font, size: largeTitleFontSize).weight(.bold))
-                            Text("One time payment. \(Text("Valid for life.").fontWeight(.bold))")
+                            Text("One time payment. \(Text("Valid for life.", bundle: .module).fontWeight(.bold))", bundle: .module)
                                 .foregroundStyle(colors.foreground)
                                 .font(.custom(font, size: subheadlineFontSize))
                         }
@@ -175,7 +185,7 @@ public struct PaywallScreen: View {
                             }
                         } label: {
                             HStack {
-                                Text("Purchase")
+                                Text("Purchase", bundle: .module)
                                     .fontWeight(.semibold)
                             }
                             .padding(.horizontal, 20)
@@ -200,7 +210,7 @@ public struct PaywallScreen: View {
                 Spacer(minLength: 0)
 #endif
                 
-                Text("Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last.")
+                Text("Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last.", bundle: .module)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
                     .lineSpacing(2)

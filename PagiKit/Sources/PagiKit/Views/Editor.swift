@@ -21,7 +21,7 @@ public struct Editor<Content: View>: View {
             Spacer()
             
             if preferences.wordCount {
-                Text("\(viewModel.words)W")
+                Text("\(viewModel.words)W", bundle: .module)
                     .font(
                         .custom(preferences.font.fileName, size: 12)
                         .monospacedDigit()
@@ -52,8 +52,11 @@ public struct Editor<Content: View>: View {
                 .overlay (
                     VStack {
                         if viewModel.isProgressBarExpanded {
-                            Label(viewModel.successText, systemImage: "checkmark")
-                                .transition(.offset(x: 0, y: progressBarHeight))
+                            HStack {
+                                Image(systemName: "checkmark")
+                                Text(viewModel.successText)
+                            }
+                            .transition(.offset(x: 0, y: progressBarHeight))
                         }
                     }
                         .textSelectionEnabled()

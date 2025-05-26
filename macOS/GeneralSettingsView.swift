@@ -36,8 +36,10 @@ struct GeneralSettingsView: View {
                 
                 Picker("Focus:", selection: $preferences.focusType) {
                     ForEach(FocusType.allCases, id: \.self) { type in
-                        Button(type.title) {
+                        Button {
                             preferences.focusType = type
+                        } label: {
+                            Text(type.title)
                         }
                     }
                 }

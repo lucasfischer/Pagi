@@ -57,8 +57,10 @@ struct SettingsView: View {
                         Toggle("Focus Mode", isOn: $preferences.isFocusModeEnabled)
                         Picker("Focus", selection: $preferences.focusType) {
                             ForEach(FocusType.allCases, id: \.self) { type in
-                                Button(type.title) {
+                                Button {
                                     preferences.focusType = type
+                                } label: {
+                                    Text(type.title)
                                 }
                             }
                         }

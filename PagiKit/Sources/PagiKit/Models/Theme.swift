@@ -15,11 +15,11 @@ public enum Theme: String, CaseIterable {
     var text: Text {
         switch self {
             case .system:
-                Text("System")
+                Text("System", bundle: .module)
             case .light:
-                Text("Light")
+                Text("Light", bundle: .module)
             case .dark:
-                Text("Dark")
+                Text("Dark", bundle: .module)
             case .blackWhite:
                 Text(verbatim: "B/W")
             case .futureland:
@@ -31,7 +31,7 @@ public enum Theme: String, CaseIterable {
             case .pastel:
                 Text(verbatim: "Pastel")
             case .custom:
-                Text("Custom")
+                Text("Custom", bundle: .module)
         }
     }
     

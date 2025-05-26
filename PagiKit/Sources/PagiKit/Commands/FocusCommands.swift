@@ -11,18 +11,24 @@ public struct FocusCommands: Commands {
     }
     
     public var body: some Commands {
-        CommandMenu("Focus") {
-            Toggle(focusMode ? "Disable Focus Mode" : "Enable Focus Mode", isOn: $focusMode)
-                .keyboardShortcut("d", modifiers: .command)
+        CommandMenu(Text("Focus", bundle: .module)) {
+            Toggle(isOn: $focusMode) {
+                Text(focusMode ? "Disable Focus Mode" : "Enable Focus Mode", bundle: .module)
+            }
+            .keyboardShortcut("d", modifiers: .command)
             
-            Picker("Mode", selection: $focusType) {
+            Picker(selection: $focusType) {
                 ForEach(FocusType.allCases, id: \.self) { type in
-                    Button(type.title) {
+                    Button {
                         focusType = type
+                    } label: {
+                        Text(type.title)
                     }
                 }
-            }.pickerStyle(.inline)
-            
+            } label: {
+                Text("Mode", bundle: .module)
+            }
+            .pickerStyle(.inline)
         }
     }
 }
