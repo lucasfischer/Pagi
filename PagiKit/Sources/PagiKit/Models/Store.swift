@@ -5,7 +5,6 @@ extension Product {
 }
 
 fileprivate let productIds = [Product.lifetimeId]
-fileprivate let lifetimeAppVersions = ["1.0", "1.1", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.2", "1.2.1", "1.2.2", "1.2.3"]
 
 @MainActor
 public final class Store: ObservableObject {
@@ -111,7 +110,7 @@ public final class Store: ObservableObject {
         do {
             let shared = try await AppTransaction.shared
             if case .verified(let appTransaction) = shared {
-                if lifetimeAppVersions.contains(appTransaction.originalAppVersion) {
+                if Store.didUserPurchaseLegacyLifetime(originalAppVersion: appTransaction.originalAppVersion) {
                     isEntitled = true
                     return
                 }
@@ -137,6 +136,18 @@ public final class Store: ObservableObject {
         self.isEntitled = isEntitled
         self.entitledTransaction = entitledTransaction
         self.hasCheckedForEntitlements = true
+    }
+    
+}
+
+extension Store {
+    
+    static func didUserPurchaseLegacyLifetime(originalAppVersion: String) -> Bool {
+        let newBusinessModelMajorVersion = "2"
+        let versionComponents = originalAppVersion.split(separator: ".")
+        let originalMajorVersion = versionComponents[0]
+        
+        return originalMajorVersion < newBusinessModelMajorVersion
     }
     
 }
