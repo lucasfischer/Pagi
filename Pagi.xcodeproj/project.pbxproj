@@ -6,6 +6,11 @@
 	objectVersion = 71;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A0A9174B2DE2A6BA0007FF0B /* PagiKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0A9174A2DE2A6BA0007FF0B /* PagiKit */; };
+		A0A9174D2DE2A6BF0007FF0B /* PagiKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0A9174C2DE2A6BF0007FF0B /* PagiKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A04114812DE006F600821C1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A00E8B172DE1C1520055E471 /* PagiKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PagiKit; sourceTree = "<group>"; };
 		A041147B2DE006F600821C1C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A041148A2DE0070200821C1C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0EE19E026044F2200586065 /* Pagi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,43 +57,12 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				CloudStorage.swift,
-				Color.swift,
-				Commands/FocusCommands.swift,
-				Commands/FontCommands.swift,
-				Configuration.swift,
-				Extensions/Date.swift,
-				Extensions/FileManager.swift,
-				Extensions/Identifiable.swift,
-				Extensions/UTType.swift,
-				Extensions/View.swift,
-				"Extensions/View+Alert.swift",
-				FileType.swift,
-				FocusType.swift,
-				Font.swift,
+				Editor.swift,
 				"Fonts/iA Writer Duo/Variable/iAWriterDuoV.ttf",
 				"Fonts/iA Writer Mono/Variable/iAWriterMonoV.ttf",
 				"Fonts/iA Writer Quattro/Variable/iAWriterQuattroV.ttf",
-				Haptics.swift,
-				Loadable.swift,
 				Pagi.storekit,
 				PagiApp.swift,
-				PagiDocument.swift,
-				Preferences.swift,
-				Screens/OnboardingScreen.swift,
-				Screens/PaywallScreen.swift,
-				StorageLocationProvider.swift,
-				Store.swift,
-				"Task+sleep.swift",
-				Theme.swift,
-				Timer.swift,
-				Views/Editor.swift,
-				Views/EditorViewModel.swift,
-				Views/FloatingButton.swift,
-				Views/FloatingPlusButton.swift,
-				Views/ProgressBar.swift,
-				Views/ThemePicker.swift,
-				Views/ThemePreview.swift,
 			);
 			target = A0EE19DF26044F2200586065 /* Pagi (iOS) */;
 		};
@@ -95,42 +70,11 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				CloudStorage.swift,
-				Color.swift,
-				Commands/FocusCommands.swift,
-				Commands/FontCommands.swift,
-				Configuration.swift,
-				Extensions/Date.swift,
-				Extensions/FileManager.swift,
-				Extensions/Identifiable.swift,
-				Extensions/UTType.swift,
-				Extensions/View.swift,
-				"Extensions/View+Alert.swift",
-				FileType.swift,
-				FocusType.swift,
-				Font.swift,
+				Editor.swift,
 				"Fonts/iA Writer Duo/Variable/iAWriterDuoV.ttf",
 				"Fonts/iA Writer Mono/Variable/iAWriterMonoV.ttf",
 				"Fonts/iA Writer Quattro/Variable/iAWriterQuattroV.ttf",
-				Haptics.swift,
-				Loadable.swift,
 				PagiApp.swift,
-				PagiDocument.swift,
-				Preferences.swift,
-				Screens/OnboardingScreen.swift,
-				Screens/PaywallScreen.swift,
-				StorageLocationProvider.swift,
-				Store.swift,
-				"Task+sleep.swift",
-				Theme.swift,
-				Timer.swift,
-				Views/Editor.swift,
-				Views/EditorViewModel.swift,
-				Views/FloatingButton.swift,
-				Views/FloatingPlusButton.swift,
-				Views/ProgressBar.swift,
-				Views/ThemePicker.swift,
-				Views/ThemePreview.swift,
 			);
 			target = A0EE19E726044F2200586065 /* Pagi (macOS) */;
 		};
@@ -163,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A9174B2DE2A6BA0007FF0B /* PagiKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A9174D2DE2A6BF0007FF0B /* PagiKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +137,7 @@
 				A04114A32DE007D900821C1C /* macOS */,
 				A041147C2DE006F600821C1C /* Tests macOS */,
 				A041148B2DE0070200821C1C /* Tests iOS */,
+				A00E8B172DE1C1520055E471 /* PagiKit */,
 				A0EE19E126044F2200586065 /* Products */,
 				A0226A912658A742001C2DC5 /* Frameworks */,
 			);
@@ -273,6 +220,7 @@
 			);
 			name = "Pagi (iOS)";
 			packageProductDependencies = (
+				A0A9174A2DE2A6BA0007FF0B /* PagiKit */,
 			);
 			productName = "Morning Pages (iOS)";
 			productReference = A0EE19E026044F2200586065 /* Pagi.app */;
@@ -295,6 +243,7 @@
 			);
 			name = "Pagi (macOS)";
 			packageProductDependencies = (
+				A0A9174C2DE2A6BF0007FF0B /* PagiKit */,
 			);
 			productName = "Morning Pages (macOS)";
 			productReference = A0EE19E826044F2200586065 /* Pagi.app */;
@@ -791,6 +740,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0A9174A2DE2A6BA0007FF0B /* PagiKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PagiKit;
+		};
+		A0A9174C2DE2A6BF0007FF0B /* PagiKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PagiKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A0EE19D426044F2000586065 /* Project object */;
 }

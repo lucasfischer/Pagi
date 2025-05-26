@@ -1,4 +1,5 @@
 import SwiftUI
+import PagiKit
 
 extension EditorView {
     

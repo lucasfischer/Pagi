@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "»Pagi« /paɡi/ means »morning« in Indonesian." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -78,6 +79,7 @@
       }
     },
     "%lld words in %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -230,6 +232,7 @@
       }
     },
     "|" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -251,7 +254,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : ""
           }
         },
@@ -301,6 +304,314 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "|"
+          }
+        }
+      }
+    },
+    "1. Write freely for %lld words" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Schreibe frei für %lld Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Write freely for %lld words"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Escribe libremente para %lld palabras"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Écris librement pour les mots %lld"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Menulis dengan bebas untuk kata-kata %lld"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Scrivi liberamente per %lld parole"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1.%lld語を自由に書く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. %lld 단어에 대해 자유롭게 쓰기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Escreva livremente para %lld palavras"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Свободно пиши по %lld слов"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. %lld kelimeleri için serbestçe yazın"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1.自由书写 %lld 词"
+          }
+        }
+      }
+    },
+    "2. Don't stop writing" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Hör nicht auf zu schreiben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Don't stop writing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. No dejes de escribir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. N'arrête pas d'écrire"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Jangan berhenti menulis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Non smettere di scrivere"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2.書くことを止めない"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. 글쓰기를 멈추지 마세요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Não pare de escrever"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Не прекращай писать"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Yazmayı bırakmayın"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2.不要停止写作"
+          }
+        }
+      }
+    },
+    "3. Make it a daily habit" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Mach es zu einer täglichen Gewohnheit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Make it a daily habit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Conviértelo en un hábito diario"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Fais-en une habitude quotidienne"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Jadikan ini sebagai kebiasaan sehari-hari"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Diventa un'abitudine quotidiana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3.毎日の習慣にする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. 매일 습관으로 만들기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Faça disso um hábito diário"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Сделай это ежедневной привычкой"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Günlük bir alışkanlık haline getirin"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3.养成日常习惯"
+          }
+        }
+      }
+    },
+    "4. This is just for you" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Das ist nur für dich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. This is just for you"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Esto es sólo para ti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Ceci est juste pour toi"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Ini hanya untuk Anda"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Questo è solo per te"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4.これはあなたのためだけのものだ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. 이것은 당신만을 위한 것입니다"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Isso é só para você"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Это только для тебя"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. Bu sadece senin için"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4.这是为你准备的"
           }
         }
       }
@@ -1066,6 +1377,7 @@
       }
     },
     "Custom" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1142,6 +1454,7 @@
       }
     },
     "Dark" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1218,6 +1531,7 @@
       }
     },
     "Decrease Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1370,6 +1684,7 @@
       }
     },
     "Default Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1598,6 +1913,7 @@
       }
     },
     "Disable Focus Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1750,6 +2066,7 @@
       }
     },
     "Enable Focus Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1826,6 +2143,7 @@
       }
     },
     "Error" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2358,6 +2676,7 @@
       }
     },
     "Fusce nec lobortis elit. " : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2505,6 +2824,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "通用"
+          }
+        }
+      }
+    },
+    "Get Started" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los gehts"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inizia"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "さあ、始めよう"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작하기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Começar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приступить"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlat"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在开始"
           }
         }
       }
@@ -2814,6 +3210,7 @@
       }
     },
     "Increase Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2889,7 +3286,162 @@
         }
       }
     },
+    "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe weiter, auch wenn du nicht weißt, worüber du schreiben sollst. Schreib darüber, dass du feststeckst, was du um dich herum siehst oder wie du dich gerade fühlst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue escribiendo aunque no estés seguro de sobre qué escribir. Escribe sobre estar atascado, sobre lo que ves a tu alrededor o sobre cómo te sientes en ese momento."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue à taper même si tu ne sais pas trop sur quoi écrire. Écris sur le fait d'être bloqué, sur ce que tu vois autour de toi ou sur ce que tu ressens en ce moment."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teruslah mengetik meskipun Anda tidak yakin apa yang harus ditulis. Tulislah tentang kebuntuan, apa yang Anda lihat di sekitar Anda, atau bagaimana perasaan Anda saat itu."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continua a scrivere anche se non sei sicuro di cosa scrivere. Scrivi di essere bloccato, di quello che vedi intorno a te o di come ti senti in quel momento."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "何を書けばいいのかわからなくても、タイピングを続ける。行き詰ったこと、周りで見たこと、今感じていることを書いてみよう。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "무슨 글을 써야 할지 모르겠더라도 계속 타이핑하세요. 막막한 상황, 주변에서 본 것 또는 그 순간의 기분에 대해 글을 써보세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue digitando, mesmo que você não tenha certeza sobre o que escrever. Escreva sobre estar preso, o que você vê ao seu redor ou como está se sentindo no momento."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжай печатать, даже если ты не уверен, о чем писать. Пиши о том, что застрял, о том, что видишь вокруг, или о том, что чувствуешь в данный момент."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne hakkında yazacağınızdan emin olmasanız bile yazmaya devam edin. Sıkışmışlık, etrafınızda gördükleriniz veya o anda nasıl hissettiğiniz hakkında yazın."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使不确定写什么，也要继续打字。写你的困惑，写你看到的周围事物，或者写你此刻的感受。"
+          }
+        }
+      }
+    },
+    "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass deinen Gedanken freien Lauf, ohne dir Gedanken über Grammatik, Rechtschreibung oder Sinn zu machen. Es gibt keinen richtigen oder falschen Weg, dies zu tun."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deja que tus pensamientos fluyan sin preocuparte de la gramática, la ortografía o de que tengan sentido. No hay una forma correcta o incorrecta de hacerlo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laisse couler tes pensées sans te soucier de la grammaire, de l'orthographe ou du sens. Il n'y a pas de bonne ou de mauvaise façon de procéder."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biarkan pikiran Anda mengalir tanpa mengkhawatirkan tata bahasa, ejaan, atau masuk akal. Tidak ada cara yang benar atau salah untuk melakukan hal ini."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lascia fluire i tuoi pensieri senza preoccuparti della grammatica, dell'ortografia o del senso. Non c'è un modo giusto o sbagliato per farlo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文法やスペル、意味を理解することを気にすることなく、自分の考えを流そう。このやり方に正しいも間違いもない。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문법, 철자법, 의미에 대한 걱정 없이 생각을 자유롭게 표현하세요. 이 작업에는 옳고 그른 방법이 없습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deixe seus pensamentos fluírem sem se preocupar com gramática, ortografia ou sentido. Não há uma maneira certa ou errada de fazer isso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позволь своим мыслям течь, не заботясь о грамматике, орфографии и смысле. Не существует правильного или неправильного способа сделать это."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dilbilgisi, imla veya mantıklı olma konusunda endişelenmeden düşüncelerinizin akmasına izin verin. Bunu yapmanın doğru ya da yanlış bir yolu yoktur."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "让你的思绪畅通无阻，不必担心语法、拼写或是否合理。这样做没有对错之分。"
+          }
+        }
+      }
+    },
     "Light" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2966,6 +3518,7 @@
       }
     },
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3042,6 +3595,7 @@
       }
     },
     "Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3118,6 +3672,7 @@
       }
     },
     "Morbi nec leo ut est sollicitudin volutpat ac id orci." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3194,6 +3749,7 @@
       }
     },
     "OK" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3270,6 +3826,7 @@
       }
     },
     "One time payment. %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3498,6 +4055,7 @@
       }
     },
     "Pagi is a paid app, but you can try out the full experience for %lld days.\nThere is no free version with less features, just one paid version." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3574,6 +4132,7 @@
       }
     },
     "Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3650,6 +4209,7 @@
       }
     },
     "Paragraph" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3726,6 +4286,7 @@
       }
     },
     "Privacy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3878,6 +4439,7 @@
       }
     },
     "Purchase" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4106,6 +4668,7 @@
       }
     },
     "Restore" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4486,6 +5049,7 @@
       }
     },
     "Sentence" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5245,82 +5809,6 @@
         }
       }
     },
-    "Slide 2" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slide 2"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slide 2"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diapositiva 2"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diapositive 2"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slide 2"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diapositiva 2"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スライド2"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "슬라이드 2"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slide 2"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Слайд 2"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slayt 2"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "幻灯片 2"
-          }
-        }
-      }
-    },
     "Spell Checker" : {
       "localizations" : {
         "de" : {
@@ -5473,7 +5961,85 @@
         }
       }
     },
+    "Start Writing" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schreiben beginnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Writing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empieza a escribir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commence à écrire"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Menulis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inizia a scrivere"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書き始める"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쓰기 시작"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comece a escrever"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начни писать"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yazmaya Başlayın"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开始写作"
+          }
+        }
+      }
+    },
     "System" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5550,6 +6116,7 @@
       }
     },
     "Terms" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5702,6 +6269,7 @@
       }
     },
     "Thank You!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5778,6 +6346,7 @@
       }
     },
     "Try for free" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5853,7 +6422,85 @@
         }
       }
     },
+    "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versuche, dies als erstes zu tun, wenn du aufwachst, bevor du auf dein Handy schaust oder deinen Tag beginnst. Beständigkeit ist wichtiger als Perfektion."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intenta hacerlo lo primero que hagas al levantarte, antes de mirar el teléfono o empezar el día. La constancia importa más que la perfección."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essaie de faire cela dès ton réveil, avant de consulter ton téléphone ou de commencer ta journée. La constance compte plus que la perfection."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cobalah untuk melakukan hal ini pertama kali ketika Anda bangun tidur, sebelum memeriksa ponsel atau memulai hari Anda. Konsistensi lebih penting daripada kesempurnaan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerca di farlo come prima cosa al risveglio, prima di controllare il telefono o di iniziare la giornata. La costanza conta più della perfezione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "朝起きたら、携帯電話をチェックする前や1日を始める前に、まずこれをするようにしよう。完璧さよりも一貫性が重要なのだ。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아침에 일어나서 휴대폰을 확인하거나 하루를 시작하기 전에 가장 먼저 이 작업을 수행하세요. 완벽함보다 일관성이 더 중요합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tente fazer isso logo que você acordar, antes de verificar o telefone ou começar o dia. A consistência é mais importante do que a perfeição."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Постарайся сделать это первым делом, когда проснешься, перед тем как проверить телефон или начать свой день. Последовательность имеет большее значение, чем совершенство."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyandığınızda, telefonunuzu kontrol etmeden veya güne başlamadan önce ilk iş olarak bunu yapmaya çalışın. Tutarlılık mükemmellikten daha önemlidir."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尽量在起床后的第一件事，即查看手机或开始一天的工作之前做这件事。坚持比完美更重要。"
+          }
+        }
+      }
+    },
     "Typewriter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5930,6 +6577,7 @@
       }
     },
     "Valid for life." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6158,6 +6806,7 @@
       }
     },
     "What's Included" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6386,6 +7035,7 @@
       }
     },
     "Word Target Reached" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6462,6 +7112,7 @@
       }
     },
     "Your contribution helps me to continue improving Pagi for you. If you enjoy using Pagi, I would appreciate it if you can leave a review on the App Store." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6609,6 +7260,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "您的晨间书写将在这里显示。"
+          }
+        }
+      }
+    },
+    "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Schreiben ist privat und soll deinen Kopf frei machen, nicht etwas Schönes schaffen. Betrachte es als mentales Aufwärmen, um deinen Tag mit Klarheit und Konzentration zu beginnen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu escritura es privada y está pensada para despejar tu mente, no para crear algo bello. Piensa en ello como un calentamiento mental para empezar el día con claridad y concentración."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton écriture est privée et destinée à te vider l'esprit, pas à créer quelque chose de beau. Considère-la comme un échauffement mental pour commencer ta journée avec clarté et concentration."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulisan Anda bersifat pribadi dan dimaksudkan untuk menjernihkan pikiran Anda, bukan untuk menciptakan sesuatu yang indah. Anggap saja sebagai pemanasan mental untuk memulai hari Anda dengan kejernihan dan fokus."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La scrittura è privata e serve a schiarirti le idee, non a creare qualcosa di bello. Considerala come un riscaldamento mentale per iniziare la giornata con chiarezza e concentrazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書くことはプライベートなことであり、心をすっきりさせるためのものであって、美しいものを創造するためのものではない。明晰さと集中力をもって一日をスタートさせるための、心のウォーミングアップだと思ってほしい。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글쓰기는 사적인 일이며 마음을 정리하기 위한 것이지 아름다운 무언가를 창조하기 위한 것이 아닙니다. 명확하고 집중력 있게 하루를 시작하기 위한 정신적 워밍업이라고 생각하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sua escrita é particular e destina-se a limpar sua mente, não a criar algo bonito. Pense nisso como um aquecimento mental para que você comece o dia com clareza e foco."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твои записи носят личный характер и призваны очистить твой разум, а не создать что-то прекрасное. Думай об этом как о ментальной разминке, чтобы начать свой день с ясности и сосредоточенности."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yazdıklarınız özeldir ve zihninizi boşaltmak içindir, güzel bir şey yaratmak için değil. Bunu güne netlik ve odaklanma ile başlamak için zihinsel bir ısınma olarak düşünün."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的写作是私事，目的是理清思绪，而不是创造美好的事物。把它当作精神热身，以清晰和专注开始新的一天。"
           }
         }
       }

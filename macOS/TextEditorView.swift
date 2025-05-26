@@ -1,12 +1,6 @@
-//
-//  TextEditorView.swift
-//  Pagi
-//
-//  Created by Lucas Fischer on 05.06.21.
-//
-
 import SwiftUI
 import NaturalLanguage
+import PagiKit
 
 // MARK: - View
 struct TextEditorView: NSViewControllerRepresentable {

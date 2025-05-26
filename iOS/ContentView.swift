@@ -1,4 +1,5 @@
 import SwiftUI
+import PagiKit
 
 struct ContentView: View {
     @ObservedObject var preferences = Preferences.shared

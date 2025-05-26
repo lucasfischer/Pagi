@@ -1,11 +1,5 @@
-//
-//  TextEditorView.swift
-//  TextEditorView
-//
-//  Created by Lucas Fischer on 11.09.21.
-//
-
 import SwiftUI
+import PagiKit
 import NaturalLanguage
 
 struct TextEditorView: UIViewControllerRepresentable {

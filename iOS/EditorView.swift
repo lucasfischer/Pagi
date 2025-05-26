@@ -1,12 +1,6 @@
-//
-//  ContentView.swift
-//  Shared
-//
-//  Created by Lucas Fischer on 19.03.21.
-//
-
 import SwiftUI
 import UIKit
+import PagiKit
 
 struct EditorView: View {
     @ObservedObject var viewModel: ViewModel
@@ -16,7 +10,7 @@ struct EditorView: View {
     
     let storageURL: URL?
     
-    init(viewModel: ViewModel, storageURL: URL?) {
+    public init(viewModel: ViewModel, storageURL: URL?) {
         self.viewModel = viewModel
         self._editorViewModel = ObservedObject(initialValue: viewModel.editorViewModel)
         self.storageURL = storageURL

@@ -1,11 +1,5 @@
-//
-//  GeneralSettingsView.swift
-//  Pagi
-//
-//  Created by Lucas Fischer on 05.06.21.
-//
-
 import SwiftUI
+import PagiKit
 
 struct GeneralSettingsView: View {
     @StateObject private var preferences = Preferences.shared

@@ -1,11 +1,5 @@
-//
-//  AppearanceSettingsView.swift
-//  AppearanceSettingsView
-//
-//  Created by Lucas Fischer on 27.08.21.
-//
-
 import SwiftUI
+import PagiKit
 
 struct AppearanceSettingsView: View {
     @StateObject private var preferences = Preferences.shared

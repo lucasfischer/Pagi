@@ -1,0 +1,223 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "»Pagi« /paɡi/ means »morning« in Indonesian." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "»Pagi« /paɡi/ means »morning« in Indonesian."
+          }
+        }
+      }
+    },
+    "%lld words in %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld words in %2$@"
+          }
+        }
+      }
+    },
+    "|" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "|"
+          }
+        }
+      }
+    },
+    "1. Write freely for %lld words" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Write freely for %lld words"
+          }
+        }
+      }
+    },
+    "2. Don't stop writing" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Don't stop writing"
+          }
+        }
+      }
+    },
+    "3. Make it a daily habit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Make it a daily habit"
+          }
+        }
+      }
+    },
+    "4. This is just for you" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4. This is just for you"
+          }
+        }
+      }
+    },
+    "Custom" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        }
+      }
+    },
+    "Decrease Size" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decrease Size"
+          }
+        }
+      }
+    },
+    "Default Size" : {
+
+    },
+    "Disable Focus Mode" : {
+
+    },
+    "Enable Focus Mode" : {
+
+    },
+    "Error" : {
+
+    },
+    "Focus" : {
+
+    },
+    "Font" : {
+
+    },
+    "Fusce nec lobortis elit. " : {
+
+    },
+    "Get Started" : {
+
+    },
+    "Help" : {
+
+    },
+    "Increase Size" : {
+
+    },
+    "Keep typing even if you're not sure what to write about. Write about being stuck, what you see around you, or how you're feeling in the moment." : {
+
+    },
+    "Let your thoughts flow without worrying about grammar, spelling, or making sense. There's no right or wrong way to do this." : {
+
+    },
+    "Light" : {
+
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " : {
+
+    },
+    "Mode" : {
+
+    },
+    "Morbi nec leo ut est sollicitudin volutpat ac id orci." : {
+
+    },
+    "OK" : {
+
+    },
+    "One time payment. %@" : {
+
+    },
+    "Pagi is a paid app, but you can try out the full experience for %lld days.\nThere is no free version with less features, just one paid version." : {
+
+    },
+    "Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last." : {
+
+    },
+    "Paragraph" : {
+
+    },
+    "Privacy" : {
+
+    },
+    "Purchase" : {
+
+    },
+    "Purchase Pagi" : {
+
+    },
+    "Rate Pagi" : {
+
+    },
+    "Restore" : {
+
+    },
+    "Sentence" : {
+
+    },
+    "Start Writing" : {
+
+    },
+    "System" : {
+
+    },
+    "Terms" : {
+
+    },
+    "Thank You!" : {
+
+    },
+    "Try for free" : {
+
+    },
+    "Try to do this first thing when you wake up, before checking your phone or starting your day. Consistency matters more than perfection." : {
+
+    },
+    "Typewriter" : {
+
+    },
+    "Valid for life." : {
+
+    },
+    "What's Included" : {
+
+    },
+    "Word Target Reached" : {
+
+    },
+    "Your contribution helps me to continue improving Pagi for you. If you enjoy using Pagi, I would appreciate it if you can leave a review on the App Store." : {
+
+    },
+    "Your writing is private and meant to clear your mind, not create something beautiful. Think of it as a mental warm-up to start your day with clarity and focus." : {
+
+    }
+  },
+  "version" : "1.0"
+}

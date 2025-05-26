@@ -1,11 +1,5 @@
-//
-//  ContentView.swift
-//  Shared
-//
-//  Created by Lucas Fischer on 19.03.21.
-//
-
 import SwiftUI
+import PagiKit
 
 struct ContentView: View {
     @Binding var document: PagiDocument

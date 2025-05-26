@@ -1,4 +1,5 @@
 import SwiftUI
+import PagiKit
 
 @MainActor @Observable
 final class ViewModel {

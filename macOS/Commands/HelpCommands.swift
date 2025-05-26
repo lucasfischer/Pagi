@@ -1,12 +1,6 @@
-//
-//  HelpCommands.swift
-//  Pagi
-//
-//  Created by Lucas Fischer on 23.02.23.
-//
-
 import SwiftUI
 import AppKit
+import PagiKit
 
 struct HelpCommands: Commands {
     var body: some Commands {

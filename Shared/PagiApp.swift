@@ -1,11 +1,5 @@
-//
-//  PagiApp.swift
-//  Shared
-//
-//  Created by Lucas Fischer on 19.03.21.
-//
-
 import SwiftUI
+import PagiKit
 
 @main
 struct PagiApp: App {
@@ -14,15 +8,15 @@ struct PagiApp: App {
     @StateObject private var preferences = Preferences.shared
     @StateObject private var store = Store()
     
-    #if os(iOS)
+#if os(iOS)
     @State private var viewModel = ViewModel(
         storageLocationProvider: RealStorageLocationProvider(),
         listFileManager: RealListFileManager(storageLocationProvider: RealStorageLocationProvider())
     )
-    #endif
+#endif
     
     var body: some Scene {
-        #if os(macOS)
+#if os(macOS)
         
         DocumentGroup(newDocument: PagiDocument()) { file in
             ContentView(document: file.$document, store: store)
@@ -78,7 +72,7 @@ struct PagiApp: App {
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
         
-        #elseif os(iOS)
+#elseif os(iOS)
         
         WindowGroup {
             ContentView(store: store, viewModel: viewModel)
@@ -95,6 +89,6 @@ struct PagiApp: App {
             ViewCommands(viewModel: viewModel, wordCount: $preferences.wordCount, progressBar: $preferences.progressBar)
         }
         
-        #endif
+#endif
     }
 }

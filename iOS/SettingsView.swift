@@ -1,11 +1,5 @@
-//
-//  SettingsView.swift
-//  SettingsView
-//
-//  Created by Lucas Fischer on 11.09.21.
-//
-
 import SwiftUI
+import PagiKit
 
 struct SettingsView: View {
     

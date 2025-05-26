@@ -1,10 +1,4 @@
-//
-//  AboutView.swift
-//  Pagi (iOS)
-//
-//  Created by Lucas Fischer on 23.02.23.
-//
-
+import PagiKit
 import SwiftUI
 
 struct AboutView: View {
