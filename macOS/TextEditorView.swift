@@ -270,8 +270,13 @@ fileprivate final class TextEditorController: NSViewController {
         }
         
         open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+            let radius = caretSize / 2
             var rect = rect
             rect.size.width = caretSize
+            
+            let path = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
+            path.setClip()
+            
             super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
         }
         
