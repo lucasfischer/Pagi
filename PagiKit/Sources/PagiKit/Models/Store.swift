@@ -110,6 +110,10 @@ public final class Store: ObservableObject {
         do {
             let shared = try await AppTransaction.shared
             if case .verified(let appTransaction) = shared {
+                if appTransaction.originalPurchaseDate <= Date(timeIntervalSince1970: 1375340400) {
+                    // Check is required for the sandbox testing environment because `appTransaction.originalAppVersion` is always 1
+                    return
+                }
                 if Store.didUserPurchaseLegacyLifetime(originalAppVersion: appTransaction.originalAppVersion) {
                     isEntitled = true
                     return
