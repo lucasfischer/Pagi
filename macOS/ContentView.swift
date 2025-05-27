@@ -8,8 +8,34 @@ struct ContentView: View {
     @ObservedObject var preferences = Preferences.shared
     @StateObject var viewModel = EditorViewModel()
     @State private var isPaywallPresented = false
+    @State private var didAppear = false
     
     @Environment(\.openWindow) private var openWindow
+    
+    private func onAppear() async {
+        await store.refreshPurchasedProducts()
+        
+        let isTrialActive: Bool
+        if let onBoardingCompletedAt = preferences.onBoardingCompletedAt {
+            let date = Date(timeIntervalSinceReferenceDate: onBoardingCompletedAt)
+            if Calendar.current.date(byAdding: .day, value: Configuration.freeDays, to: date)! > .now {
+                isTrialActive = true
+            } else {
+                isTrialActive = false
+            }
+        } else {
+            isTrialActive = true
+        }
+        if !store.isUnlocked && !isTrialActive {
+            isPaywallPresented = true
+        }
+        
+        if preferences.isOnboardingPresented {
+            openWindow(id: "onboarding")
+        }
+        
+        didAppear = true
+    }
     
     @ViewBuilder private func ToolbarWrapper(content: () -> some View) -> some View {
         ZStack {
@@ -50,36 +76,22 @@ struct ContentView: View {
             .ignoresSafeArea()
             .background(Color.background)
         }
+        .toolbar {
+            if !store.isUnlocked && didAppear {
+                Button("Purchase Pagi") {
+                    Haptics.buttonTap()
+                    isPaywallPresented.toggle()
+                }
+            }
+        }
         .sheet(isPresented: $isPaywallPresented) {
             PaywallScreen(store: store)
         }
-        .task {
-            await store.refreshPurchasedProducts()
-            
-            let isTrialActive: Bool
-            if let onBoardingCompletedAt = preferences.onBoardingCompletedAt {
-                let date = Date(timeIntervalSinceReferenceDate: onBoardingCompletedAt)
-                if Calendar.current.date(byAdding: .day, value: Configuration.freeDays, to: date)! > .now {
-                    isTrialActive = true
-                } else {
-                    isTrialActive = false
-                }
-            } else {
-                isTrialActive = true
-            }
-            if !store.isUnlocked && !isTrialActive {
-                isPaywallPresented = true
-            }
-            
-            if preferences.isOnboardingPresented {
-                openWindow(id: "onboarding")
-            }
-        }
+        .id(store.isUnlocked)
+        .task(onAppear)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(document: .constant(PagiDocument()), store: Store())
-    }
+#Preview {
+    ContentView(document: .constant(PagiDocument()), store: Store())
 }

@@ -22,6 +22,7 @@ struct PagiApp: App {
             ContentView(document: file.$document, store: store)
                 .preferredColorScheme(preferences.theme.colorScheme)
         }
+        .windowToolbarStyle(.unifiedCompact)
         .commands {
             FindCommands()
             FontCommands(font: $preferences.font, fontSize: $preferences.fontSize)
