@@ -134,6 +134,8 @@ struct SettingsView: View {
                     }
                 }
             }
+            .listStyle(.grouped)
+            .formStyle(.grouped)
             .tint(preferences.theme.colors.accent)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

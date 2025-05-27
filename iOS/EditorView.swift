@@ -65,15 +65,14 @@ struct EditorView: View {
                     .labelStyle(.iconOnly)
                     .font(.title2)
             }
-            .popover(isPresented: $viewModel.showSettings) {
-                SettingsView(storageURL: storageURL)
-                    .frame(
-                        minWidth: 320,
-                        idealWidth: 400,
-                        idealHeight: 700,
-                        alignment: .top
-                    )
-                    .preferredColorScheme(viewModel.theme.colorScheme)
+            .modify { content in
+                if #available(iOS 18.0, *) {
+                    content
+                        .sheet(isPresented: $viewModel.showSettings) {
+                            SettingsView(storageURL: storageURL)
+                                .preferredColorScheme(viewModel.theme.colorScheme)
+                        }
+                }
             }
             
             Spacer()
@@ -146,15 +145,20 @@ struct EditorView: View {
                     .labelStyle(.iconOnly)
                     .font(.title2)
             }
-            .popover(isPresented: $viewModel.showSettings) {
-                SettingsView(storageURL: storageURL)
-                    .frame(
-                        minWidth: 320,
-                        idealWidth: 400,
-                        idealHeight: 700,
-                        alignment: .top
-                    )
-                    .preferredColorScheme(viewModel.theme.colorScheme)
+            .modify { content in
+                if #available(iOS 18.0, *) {
+                    content
+                        .popover(isPresented: $viewModel.showSettings) {
+                            SettingsView(storageURL: storageURL)
+                                .frame(
+                                    minWidth: 320,
+                                    idealWidth: 400,
+                                    idealHeight: 700,
+                                    alignment: .top
+                                )
+                                .preferredColorScheme(viewModel.theme.colorScheme)
+                        }
+                }
             }
         }
         
@@ -218,8 +222,19 @@ struct EditorView: View {
                 iPadToolbar()
             }
         }
-        .toolbarVisibility(viewModel.editorViewModel.shouldHideToolbar || !viewModel.isiPad ? .hidden : .automatic, for: .navigationBar)
-        .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+        .modify { content in
+            let isToolbarVisible = !viewModel.editorViewModel.shouldHideToolbar && viewModel.isiPad
+            
+            if #available(iOS 18.0, *) {
+                content
+                    .toolbarVisibility(isToolbarVisible ? .automatic : .hidden, for: .navigationBar)
+                    .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+            } else {
+                content
+                    .toolbar(isToolbarVisible ? .automatic : .hidden, for: .navigationBar)
+                    .toolbarBackground(.visible, for: .navigationBar)
+            }
+        }
         .toolbarBackground(Material.ultraThin, for: .navigationBar)
         .animation(.smooth, value: viewModel.editorViewModel.shouldHideToolbar)
         .overlay(alignment: .top) {
@@ -248,6 +263,15 @@ struct EditorView: View {
             defaultFilename: viewModel.currentDateString,
             onCompletion: viewModel.onFileExported
         )
+        .modify { content in
+            if #unavailable(iOS 18.0) {
+                content
+                    .sheet(isPresented: $viewModel.showSettings) {
+                        SettingsView(storageURL: storageURL)
+                            .preferredColorScheme(viewModel.theme.colorScheme)
+                    }
+            }
+        }
         .onChange(of: viewModel.text) {
             viewModel.onTextUpdate(viewModel.text)
         }

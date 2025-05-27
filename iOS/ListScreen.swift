@@ -53,15 +53,21 @@ struct ListScreen: View {
                 Haptics.buttonTap()
                 isSettingsPresented.toggle()
             }
-            .popover(isPresented: $isSettingsPresented) {
-                SettingsView(storageURL: viewModel.storageURL)
-                    .frame(
-                        minWidth: 320,
-                        idealWidth: 400,
-                        idealHeight: 700,
-                        alignment: .top
-                    )
-                    .preferredColorScheme(preferences.theme.colorScheme)
+            .modify { content in
+                if #available(iOS 18.0, *) {
+                    content
+                        .popover(isPresented: $isSettingsPresented) {
+                            SettingsView(storageURL: viewModel.storageURL)
+                                .frame(
+                                    minWidth: 320,
+                                    idealWidth: 400,
+                                    idealHeight: 700,
+                                    alignment: .top
+                                )
+                                .preferredColorScheme(preferences.theme.colorScheme)
+                        }
+                }
+                
             }
             
             if !store.isUnlocked {
@@ -238,6 +244,15 @@ struct ListScreen: View {
         }
         .onOpenURL { url in
             Task { await viewModel.open(url) }
+        }
+        .modify { content in
+            if #unavailable(iOS 18.0) {
+                content
+                    .sheet(isPresented: $isSettingsPresented) {
+                        SettingsView(storageURL: viewModel.storageURL)
+                            .preferredColorScheme(preferences.theme.colorScheme)
+                    }
+            }
         }
     }
 }

@@ -203,6 +203,7 @@ public struct OnboardingScreen: View {
         .scrollContentBackground(.hidden)
         .animation(.smooth, value: scrollPosition)
         .buttonStyle(.plain)
+        .ignoresSafeArea(edges: .bottom)
         .background {
             if #available(iOS 18.0, macOS 15.0, *) {
                 Rectangle()
