@@ -9,6 +9,7 @@ struct ContentView: View {
     @StateObject var viewModel = EditorViewModel()
     @State private var isPaywallPresented = false
     @State private var didAppear = false
+    @State private var isPointerHovering = false
     
     @Environment(\.openWindow) private var openWindow
     
@@ -41,15 +42,18 @@ struct ContentView: View {
         ZStack {
             if #available(macOS 15.0, *) {
                 content()
-                    .toolbarVisibility(viewModel.shouldHideToolbar ? .hidden : .visible, for: .windowToolbar)
+                    .toolbarVisibility(viewModel.shouldHideToolbar && !isPointerHovering ? .hidden : .visible, for: .windowToolbar)
                     .onContinuousHover { phase in
                         switch phase {
                             case .active(let location):
-                                if location.y <= 40 {
+                                if location.y <= 16 && location.y >= 0 {
+                                    isPointerHovering = true
                                     viewModel.shouldHideToolbar = false
+                                } else {
+                                    isPointerHovering = false
                                 }
                             case .ended:
-                                break
+                                isPointerHovering = false
                         }
                     }
             } else {
