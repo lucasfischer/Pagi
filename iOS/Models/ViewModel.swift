@@ -79,6 +79,13 @@ final class ViewModel {
     
     public func open(_ url: URL) async {
         do {
+            if let scheme = url.scheme, scheme == "pagi" {
+                if url.lastPathComponent == "onboarding" {
+                    Preferences.shared.isOnboardingPresented = true
+                }
+                return
+            }
+            
             let _ = url.startAccessingSecurityScopedResource()
             let text = try await CloudStorage.shared.read(from: url)
             url.stopAccessingSecurityScopedResource()
