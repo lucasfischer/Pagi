@@ -1,5 +1,4 @@
 import Foundation
-import SwiftUI
 
 public protocol FileStorage {
     func save(_: URL, withContent: String) async throws
