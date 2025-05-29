@@ -18,6 +18,12 @@ struct EditorView: View {
         self.storageURL = storageURL
     }
     
+    func close() async {
+        await viewModel.save()
+        await viewModel.closeDocument()
+        dismiss()
+    }
+    
     @ViewBuilder
     func ShareSheetWrapper(_ item: ShareItem) -> some View {
         switch item {
@@ -51,8 +57,7 @@ struct EditorView: View {
             Button("Back", systemImage: "chevron.left") {
                 viewModel.onButtonTap()
                 Task {
-                    await viewModel.save(delay: 0)
-                    dismiss()
+                    await close()
                 }
             }
             .font(.title2)
@@ -135,8 +140,7 @@ struct EditorView: View {
             Button("Back", systemImage: "chevron.left") {
                 viewModel.onButtonTap()
                 Task {
-                    await viewModel.save(delay: 0)
-                    dismiss()
+                    await close()
                 }
             }
             
@@ -281,5 +285,6 @@ struct EditorView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)) { data in
             viewModel.isKeyboardVisible = false
         }
+        .task(viewModel.onAppear)
     }
 }

@@ -6,18 +6,27 @@ extension EditorView {
     @MainActor
     class ViewModel: NSObject, ObservableObject {
         let url: URL
+        private let document: TextDocument
         
         init(url: URL, text: String) {
+            let _ = url.startAccessingSecurityScopedResource()
+            
             self.url = url
+            self.document = TextDocument(fileURL: url)
             self.text = text
             super.init()
-            let _ = url.startAccessingSecurityScopedResource()
-            NSFileCoordinator.addFilePresenter(self)
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(documentStateChanged),
+                name: UIDocument.stateChangedNotification,
+                object: document
+            )
         }
         
         deinit {
-            NSFileCoordinator.removeFilePresenter(self)
             url.stopAccessingSecurityScopedResource()
+            NotificationCenter.default.removeObserver(self)
         }
         
         private var saveTask: Task<Void, Error>?
@@ -50,29 +59,17 @@ extension EditorView {
             url.deletingPathExtension().lastPathComponent
         }
         
-        func reload() async {
-            do {
-                self.text = try await CloudStorage.shared.read(from: url)
-            } catch {
-                print(error)
+        func onAppear() async {
+            if (try? document.fileURL.checkResourceIsReachable()) == true {
+                await document.open()
+            } else {
+                await document.save(to: document.fileURL, for: .forCreating)
             }
         }
         
         func getToolbarOffset(_ geometry: GeometryProxy) -> CGSize {
             let height = editorViewModel.shouldHideToolbar || isKeyboardVisible ? toolbarHeight + geometry.safeAreaInsets.bottom : 0
             return CGSize(width: 0, height: height)
-        }
-        
-        func save(delay: TimeInterval = 3) async {
-            self.saveTask?.cancel()
-            self.saveTask = Task {
-                try await Task.sleep(seconds: delay)
-                try await CloudStorage.shared.save(url, withContent: text)
-            }
-        }
-        
-        func onTextUpdate(_ text: String) {
-            Task { await save() }
         }
         
         func onButtonTap() {
@@ -131,20 +128,44 @@ extension EditorView {
     }
 }
 
-extension EditorView.ViewModel: NSFilePresenter {
+// MARK: Document Functions
+extension EditorView.ViewModel {
     
-    nonisolated var presentedItemURL: URL? {
-        url
-    }
-    
-    nonisolated var presentedItemOperationQueue: OperationQueue {
-        .main
-    }
-    
-    nonisolated func presentedItemDidChange() {
-        Task {
-            await reload()
+    @objc private func documentStateChanged() {
+        switch document.documentState {
+            case .normal:
+                text = document.text
+            case .savingError:
+                break
+            case .inConflict:
+                handleConflict()
+            default:
+                break
         }
+    }
+    
+    private func handleConflict() {
+        do {
+            try NSFileVersion.removeOtherVersionsOfItem(at: document.fileURL)
+        } catch {
+            print("Error removing conflict versions: \(error)")
+        }
+    }
+    
+    func onTextUpdate(_ text: String) {
+        document.updateText(text)
+    }
+    
+    func save() async {
+        if FileManager.default.fileExists(atPath: document.fileURL.path()) {
+            await document.save(to: url, for: .forOverwriting)
+        } else {
+            await document.save(to: url, for: .forCreating)
+        }
+    }
+    
+    func closeDocument() async {
+        await document.close()
     }
     
 }
