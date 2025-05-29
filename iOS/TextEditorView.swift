@@ -302,6 +302,13 @@ extension TextEditorView {
         var highlightState: HighlightState = .full
         var colors = Theme.system.colors
         
+        override func scrollRectToVisible(_ rect: CGRect, animated: Bool) {
+            // Only call this when not in focus mode to prevent scroll glitches
+            if !focusMode {
+                super.scrollRectToVisible(rect, animated: animated)
+            }
+        }
+        
         var defaultTypingAttributes: [NSAttributedString.Key : Any] {
             selectedFont.attributes(forSize: size, color: colors.foreground)
         }
