@@ -145,6 +145,33 @@ extension EditorView.ViewModel {
     }
     
     private func handleConflict() {
+        guard let versions = NSFileVersion.unresolvedConflictVersionsOfItem(at: document.fileURL) else {
+            return
+        }
+        
+        var latestVersion: NSFileVersion?
+        for version in versions {
+            if let modificationDate = version.modificationDate {
+                if latestVersion == nil {
+                    latestVersion = version
+                } else if let latestVersionModificationDate = latestVersion?.modificationDate, latestVersionModificationDate < modificationDate {
+                    latestVersion = version
+                } else {
+                    try? version.remove()
+                }
+            }
+        }
+        
+        if let latestVersion,
+           let versionModificationDate = latestVersion.modificationDate,
+           let documentModificationDate = document.fileModificationDate,
+           versionModificationDate > documentModificationDate {
+            if let text = try? String(contentsOf: latestVersion.url, encoding: .utf8) {
+                latestVersion.isResolved = true
+                self.text = text
+            }
+        }
+        
         do {
             try NSFileVersion.removeOtherVersionsOfItem(at: document.fileURL)
         } catch {
