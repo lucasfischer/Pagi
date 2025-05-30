@@ -21,7 +21,6 @@ public struct PaywallScreen: View {
     @ScaledMetric(relativeTo: .body) private var bodyFontSize = 17
     @ScaledMetric(relativeTo: .subheadline) private var subheadlineFontSize = 15
     @ScaledMetric(relativeTo: .caption) private var captionFontSize = 12
-    @ScaledMetric(relativeTo: .caption2) private var caption2FontSize = 11
     
     var colors: Theme.Colors { preferences.theme.colors }
     
@@ -103,50 +102,82 @@ public struct PaywallScreen: View {
     }
     
     @ViewBuilder
-    private func Footer() -> some View {
-        let circleColor = colors.foregroundFaded
-        
-        HStack(spacing: 8) {
-            Link(destination: Configuration.termsOfService) {
-                Text("Terms", bundle: .module)
+    private func PurchaseView(product: Product) -> some View {
+        VStack(alignment: .leading, spacing: 40) {
+            HStack {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Purchase Pagi", bundle: .module)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.custom(font, size: headerFontSize).weight(.semibold))
+                        .foregroundColor(colors.foreground)
+                    
+                    Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.", bundle: .module)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.custom(font, size: subheadlineFontSize))
+                        .lineLimit(nil)
+                        .lineSpacing(2)
+                        .foregroundColor(colors.foregroundLight)
+                }
+                Spacer()
             }
-            Circle()
-                .fill(circleColor)
-                .frame(width: 2, height: 2)
-            Link(destination: Configuration.privacyPolicy) {
-                Text("Privacy", bundle: .module)
+            
+            VStack(alignment: .leading) {
+                Text(product.displayPrice)
+                    .foregroundStyle(colors.accent)
+                    .font(.custom(font, size: largeTitleFontSize).weight(.bold))
+                Text("One time payment. \(Text("Valid for life.", bundle: .module).fontWeight(.bold))", bundle: .module)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundStyle(colors.foreground)
+                    .font(.custom(font, size: subheadlineFontSize))
             }
-            Circle()
-                .fill(circleColor)
-                .frame(width: 2, height: 2)
-            Link(destination: Configuration.supportEmailAddressURL) {
-                Text("Help", bundle: .module)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Button {
+                Haptics.buttonTap()
+                Task {
+                    do {
+                        try await store.purchase(product: product)
+                    } catch {
+                        self.error = error
+                    }
+                }
+            } label: {
+                HStack {
+                    Text("Purchase", bundle: .module)
+                        .fontWeight(.semibold)
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 12)
+                .background {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(preferences.theme.colors.accent, lineWidth: 2.5)
+                }
+                .contentShape(.rect)
             }
-            Circle()
-                .fill(circleColor)
-                .frame(width: 2, height: 2)
-            Link(destination: Configuration.webURL) {
-                Text("What's Included", bundle: .module)
-            }
+            .foregroundStyle(colors.accent)
+            .buttonStyle(.plain)
         }
-        .foregroundStyle(colors.foregroundLight)
-        .font(.custom(font, size: caption2FontSize))
-        .frame(maxWidth: .infinity)
     }
     
-    public var body: some View {
+    @ViewBuilder
+    private func Background() -> some View {
+        if #available(iOS 18.0, macOS 15.0, *) {
+            Rectangle()
+                .fill(Gradient(colors: [
+                    colors.background.mix(with: .white, by: 0.15),
+                    colors.background
+                ]))
+                .ignoresSafeArea()
+        } else {
+            colors.background
+                .ignoresSafeArea()
+        }
+    }
+    
+    @ViewBuilder
+    private func Content() -> some View {
         ZStack {
-            if #available(iOS 18.0, macOS 15.0, *) {
-                Rectangle()
-                    .fill(Gradient(colors: [
-                        colors.background.mix(with: .white, by: 0.15),
-                        colors.background
-                    ]))
-                    .ignoresSafeArea()
-            } else {
-                colors.background
-                    .ignoresSafeArea()
-            }
+            Background()
             
             VStack(alignment: .leading, spacing: 0) {
                 Header()
@@ -155,68 +186,13 @@ public struct PaywallScreen: View {
                 if store.isUnlocked {
                     ThankYou()
                 } else if let product {
-                    VStack(alignment: .leading, spacing: 40) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Purchase Pagi", bundle: .module)
-                                    .font(.custom(font, size: headerFontSize).weight(.semibold))
-                                    .foregroundColor(colors.foreground)
-                                
-                                Text("Pagi is a paid app, but you can try out the full experience for \(Configuration.freeDays) days.\nThere is no free version with less features, just one paid version.", bundle: .module)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .font(.custom(font, size: subheadlineFontSize))
-                                    .lineLimit(nil)
-                                    .lineSpacing(2)
-                                    .foregroundColor(colors.foregroundLight)
-                            }
-                            Spacer()
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(product.displayPrice)
-                                .foregroundStyle(colors.accent)
-                                .font(.custom(font, size: largeTitleFontSize).weight(.bold))
-                            Text("One time payment. \(Text("Valid for life.", bundle: .module).fontWeight(.bold))", bundle: .module)
-                                .foregroundStyle(colors.foreground)
-                                .font(.custom(font, size: subheadlineFontSize))
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Button {
-                            Haptics.buttonTap()
-                            Task {
-                                do {
-                                    try await store.purchase(product: product)
-                                } catch {
-                                    self.error = error
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text("Purchase", bundle: .module)
-                                    .fontWeight(.semibold)
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 12)
-                            .background {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(preferences.theme.colors.accent, lineWidth: 2.5)
-                            }
-                            .contentShape(.rect)
-                        }
-                        .foregroundStyle(colors.accent)
-                        .buttonStyle(.plain)
-                    }
+                    PurchaseView(product: product)
                 } else {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 
-#if os(macOS)
                 Spacer(minLength: 40)
-#else
-                Spacer(minLength: 0)
-#endif
                 
                 Text("Pagi is developed by Lucas, as an independent project. It's crafted with longevity in mind: working completely offline with no user tracking or third-party dependencies. Updates to Pagi are sporadic, but you can be sure each version has been built to last.", bundle: .module)
                     .fixedSize(horizontal: false, vertical: true)
@@ -245,6 +221,82 @@ public struct PaywallScreen: View {
             await fetchProducts()
         }
     }
+    
+    public var body: some View {
+        ZStack {
+            Background()
+            
+#if os(iOS)
+            ViewThatFits(in: .vertical) {
+                Content()
+                
+                ScrollView {
+                    Content()
+                }
+            }
+#else
+            Content()
+#endif
+        }
+    }
+}
+
+extension PaywallScreen {
+    
+    private struct Footer: View {
+        
+        @ObservedObject var preferences = Preferences.shared
+        
+        @ScaledMetric(relativeTo: .caption2) private var circleSize = 2
+        @ScaledMetric(relativeTo: .caption2) private var caption2FontSize = 11
+        
+        private let font: String = iAFont.duo.fileName
+        
+        private var circleColor: Color {
+            preferences.theme.colors.foregroundFaded
+        }
+        
+        @ViewBuilder
+        private func SeparatorCircle() -> some View {
+            Circle()
+                .fill(circleColor)
+                .frame(width: circleSize, height: circleSize)
+        }
+        
+        @ViewBuilder
+        private func Content() -> some View {
+            Link(destination: Configuration.termsOfService) {
+                Text("Terms", bundle: .module)
+            }
+            SeparatorCircle()
+            Link(destination: Configuration.privacyPolicy) {
+                Text("Privacy", bundle: .module)
+            }
+            SeparatorCircle()
+            Link(destination: Configuration.supportEmailAddressURL) {
+                Text("Help", bundle: .module)
+            }
+            SeparatorCircle()
+            Link(destination: Configuration.webURL) {
+                Text("What's Included", bundle: .module)
+            }
+        }
+        
+        var body: some View {
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 8) {
+                    Content()
+                }
+                VStack(spacing: 8) {
+                    Content()
+                }
+            }
+            .foregroundStyle(preferences.theme.colors.foregroundLight)
+            .font(.custom(font, size: caption2FontSize))
+            .frame(maxWidth: .infinity)
+        }
+    }
+    
 }
 
 #Preview {
