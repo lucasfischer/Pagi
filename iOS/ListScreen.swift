@@ -70,7 +70,7 @@ struct ListScreen: View {
                 
             }
             
-            if !store.isUnlocked {
+            if !store.isUnlocked && store.hasCheckedForEntitlements {
                 Button {
                     Haptics.buttonTap()
                     showPaywall()
