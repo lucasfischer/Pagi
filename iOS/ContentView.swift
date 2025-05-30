@@ -6,6 +6,8 @@ struct ContentView: View {
     @ObservedObject var store: Store
     @Bindable var viewModel: ViewModel
     
+    @State private var error: Error?
+    
     var body: some View {
         Group {
             if preferences.isOnboardingPresented {
@@ -21,11 +23,15 @@ struct ContentView: View {
             }
         }
         .errorAlert(error: $viewModel.error)
-        .errorAlert(error: $store.error)
+        .errorAlert(error: $error)
         .animation(.smooth, value: preferences.isOnboardingPresented)
         .task {
             viewModel.startObserver()
-            await store.refreshPurchasedProducts()
+            do {
+                try await store.refreshPurchasedProducts()
+            } catch {
+                self.error = error
+            }
             await viewModel.loadFiles()
             if let files = viewModel.files.value, files.isEmpty {
                 await viewModel.newFile()

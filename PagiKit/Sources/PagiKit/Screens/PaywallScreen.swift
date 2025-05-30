@@ -34,6 +34,14 @@ public struct PaywallScreen: View {
         }
     }
     
+    func restore() async {
+        do {
+            try await store.refreshPurchasedProducts()
+        } catch {
+            self.error = error
+        }
+    }
+    
     @ViewBuilder
     private func Header() -> some View {
         HStack {
@@ -51,7 +59,7 @@ public struct PaywallScreen: View {
             Button {
                 Haptics.buttonTap()
                 Task {
-                    await store.refreshPurchasedProducts()
+                    await restore()
                 }
             } label: {
                 Text("Restore", bundle: .module)
@@ -233,8 +241,8 @@ public struct PaywallScreen: View {
             }
         }
         .task {
+            await restore()
             await fetchProducts()
-            await store.refreshPurchasedProducts()
         }
     }
 }

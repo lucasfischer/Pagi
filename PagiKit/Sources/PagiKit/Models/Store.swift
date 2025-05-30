@@ -17,8 +17,6 @@ public final class Store: ObservableObject {
     @Published public var entitledTransaction: Transaction?
     @Published public var hasCheckedForEntitlements = false
     
-    @Published public var error: Error?
-    
     public init() {
         updates = newTransactionListenerTask()
     }
@@ -108,10 +106,12 @@ public final class Store: ObservableObject {
         await transaction.finish()
     }
     
-    public func refreshPurchasedProducts() async {
-        do {
-            let shared = try await AppTransaction.shared
-            if case .verified(let appTransaction) = shared {
+    public func refreshPurchasedProducts() async throws {
+        let shared = try await AppTransaction.shared
+        switch shared {
+            case .unverified(_, let verificationError):
+                throw verificationError
+            case .verified(let appTransaction):
                 let isSandbox = [AppStore.Environment.sandbox, .xcode].contains(appTransaction.environment)
                 let didUserPurchaseLegacyLifetime = Store.didUserPurchaseLegacyLifetime(originalAppVersion: appTransaction.originalAppVersion)
                 
@@ -119,9 +119,6 @@ public final class Store: ObservableObject {
                     isEntitled = true
                     return
                 }
-            }
-        } catch {
-            self.error = error
         }
         
         var isEntitled = false
@@ -133,7 +130,7 @@ public final class Store: ObservableObject {
                     isEntitled = true
                     entitledTransaction = transaction
                 case .unverified(_, let verificationError):
-                    print(verificationError)
+                    throw verificationError
             }
         }
         

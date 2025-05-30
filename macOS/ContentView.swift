@@ -8,13 +8,17 @@ struct ContentView: View {
     @ObservedObject var preferences = Preferences.shared
     @StateObject var viewModel = EditorViewModel()
     @State private var isPaywallPresented = false
-    @State private var didAppear = false
     @State private var isPointerHovering = false
+    @State private var error: Error?
     
     @Environment(\.openWindow) private var openWindow
     
     private func onAppear() async {
-        await store.refreshPurchasedProducts()
+        do {
+            try await store.refreshPurchasedProducts()
+        } catch {
+            self.error = error
+        }
         
         let isTrialActive: Bool
         if let onBoardingCompletedAt = preferences.onBoardingCompletedAt {
@@ -34,8 +38,6 @@ struct ContentView: View {
         if preferences.isOnboardingPresented {
             openWindow(id: "onboarding")
         }
-        
-        didAppear = true
     }
     
     @ViewBuilder private func ToolbarWrapper(content: () -> some View) -> some View {
@@ -81,13 +83,14 @@ struct ContentView: View {
             .background(Color.background)
         }
         .toolbar {
-            if !store.isUnlocked && didAppear {
+            if !store.isUnlocked && store.hasCheckedForEntitlements {
                 Button("Purchase Pagi") {
                     Haptics.buttonTap()
                     isPaywallPresented.toggle()
                 }
             }
         }
+        .errorAlert(error: $error)
         .sheet(isPresented: $isPaywallPresented) {
             PaywallScreen(store: store)
         }
