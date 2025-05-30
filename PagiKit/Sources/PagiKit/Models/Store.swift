@@ -112,10 +112,12 @@ public final class Store: ObservableObject {
             case .unverified(_, let verificationError):
                 throw verificationError
             case .verified(let appTransaction):
-                let isSandbox = [AppStore.Environment.sandbox, .xcode].contains(appTransaction.environment)
-                let didUserPurchaseLegacyLifetime = Store.didUserPurchaseLegacyLifetime(originalAppVersion: appTransaction.originalAppVersion)
+                let didUserPurchaseLegacyLifetime = Store.didUserPurchaseLegacyLifetime(
+                    originalAppVersion: appTransaction.originalAppVersion,
+                    environment: appTransaction.environment
+                )
                 
-                if !isSandbox && didUserPurchaseLegacyLifetime {
+                if didUserPurchaseLegacyLifetime {
                     isEntitled = true
                     return
                 }
@@ -143,12 +145,15 @@ public final class Store: ObservableObject {
 
 extension Store {
     
-    static func didUserPurchaseLegacyLifetime(originalAppVersion: String) -> Bool {
+    static func didUserPurchaseLegacyLifetime(originalAppVersion: String, environment: AppStore.Environment) -> Bool {
         let newBusinessModelMajorVersion = "2"
         let versionComponents = originalAppVersion.split(separator: ".")
         let originalMajorVersion = versionComponents[0]
         
-        return originalMajorVersion < newBusinessModelMajorVersion
+        let didUserPurchaseLegacyLifetime = originalMajorVersion < newBusinessModelMajorVersion
+        let isSandbox = [AppStore.Environment.sandbox, .xcode].contains(environment)
+        
+        return !isSandbox && didUserPurchaseLegacyLifetime
     }
     
 }
