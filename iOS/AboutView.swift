@@ -9,6 +9,12 @@ struct AboutView: View {
     @State private var appTransaction: AppTransaction?
     @State private var error: Error?
     
+    @ObservedObject var preferences = Preferences.shared
+    
+    private var colors: Theme.Colors {
+        preferences.theme.colors
+    }
+    
     private func onAppear() async {
         do {
             let shared = try await AppTransaction.shared
@@ -16,7 +22,7 @@ struct AboutView: View {
                 case .verified(let transaction):
                     self.appTransaction = transaction
                 case .unverified(let transaction, let error):
-                    print(error)
+                    self.error = error
                     self.appTransaction = transaction
             }
         } catch {
@@ -49,25 +55,29 @@ struct AboutView: View {
             Section {
                 VStack(spacing: 16) {
                     if let appVersion = appVersion, let appBundle = appBundle {
-                        Text("Version \(appVersion) \(Text(verbatim: "(\(appBundle))").fontWeight(.regular))")
+                        VStack(spacing: 0) {
+                            Text(verbatim: "Current Version")
+                                .foregroundStyle(colors.foregroundLight)
+                            Text(verbatim: "\(appVersion) (\(appBundle))")
+                        }
                     }
                     
                     if let appTransaction {
                         VStack(spacing: 0) {
                             Text(verbatim: "Original Version")
-                                .opacity(0.5)
+                                .foregroundStyle(colors.foregroundLight)
                             Text(appTransaction.originalAppVersion)
                         }
                         
                         VStack(spacing: 0) {
                             Text(verbatim: "Original Purchase Date")
-                                .opacity(0.5)
+                                .foregroundStyle(colors.foregroundLight)
                             Text(appTransaction.originalPurchaseDate.formatted())
                         }
                     }
                     
                     Text("Copyright © \(Date(), format: Date.FormatStyle().year()) Lucas Fischer")
-                        .opacity(0.5)
+                        .foregroundStyle(colors.foregroundLight)
                 }
                 .font(.system(size: 12))
                 .frame(maxWidth: .infinity, alignment: .center)
