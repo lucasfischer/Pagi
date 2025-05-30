@@ -21,6 +21,7 @@ struct ContentView: View {
             }
         }
         .errorAlert(error: $viewModel.error)
+        .errorAlert(error: $store.error)
         .animation(.smooth, value: preferences.isOnboardingPresented)
         .task {
             viewModel.startObserver()

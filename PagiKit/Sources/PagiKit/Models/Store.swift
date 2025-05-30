@@ -17,6 +17,8 @@ public final class Store: ObservableObject {
     @Published public var entitledTransaction: Transaction?
     @Published public var hasCheckedForEntitlements = false
     
+    @Published public var error: Error?
+    
     public init() {
         updates = newTransactionListenerTask()
     }
@@ -118,9 +120,8 @@ public final class Store: ObservableObject {
                     return
                 }
             }
-        }
-        catch {
-            print(error)
+        } catch {
+            self.error = error
         }
         
         var isEntitled = false
