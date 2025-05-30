@@ -67,7 +67,7 @@ final class ViewModel {
     public func newFile() async {
         let urlForToday = storageURL?
             .appendingPathComponent(
-                Date.now.formatted(.iso8601.year().month().day()),
+                Date.now.formatted(Date.dateFormatStyle),
                 conformingTo: Preferences.shared.exportType.type
             )
         
