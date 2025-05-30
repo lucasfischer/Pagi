@@ -1,9 +1,28 @@
 import PagiKit
 import SwiftUI
+import StoreKit
 
 struct AboutView: View {
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     private let appBundle = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    
+    @State private var appTransaction: AppTransaction?
+    @State private var error: Error?
+    
+    private func onAppear() async {
+        do {
+            let shared = try await AppTransaction.shared
+            switch shared {
+                case .verified(let transaction):
+                    self.appTransaction = transaction
+                case .unverified(let transaction, let error):
+                    print(error)
+                    self.appTransaction = transaction
+            }
+        } catch {
+            self.error = error
+        }
+    }
     
     var body: some View {
         Form {
@@ -28,9 +47,23 @@ struct AboutView: View {
             
             // MARK: App Version
             Section {
-                VStack(spacing: 4) {
+                VStack(spacing: 16) {
                     if let appVersion = appVersion, let appBundle = appBundle {
                         Text("Version \(appVersion) \(Text(verbatim: "(\(appBundle))").fontWeight(.regular))")
+                    }
+                    
+                    if let appTransaction {
+                        VStack(spacing: 0) {
+                            Text(verbatim: "Original Version")
+                                .opacity(0.5)
+                            Text(appTransaction.originalAppVersion)
+                        }
+                        
+                        VStack(spacing: 0) {
+                            Text(verbatim: "Original Purchase Date")
+                                .opacity(0.5)
+                            Text(appTransaction.originalPurchaseDate.formatted())
+                        }
                     }
                     
                     Text("Copyright © \(Date(), format: Date.FormatStyle().year()) Lucas Fischer")
@@ -43,6 +76,8 @@ struct AboutView: View {
             
         }
         .navigationTitle("About")
+        .errorAlert(error: $error)
+        .task(onAppear)
     }
 }
 
