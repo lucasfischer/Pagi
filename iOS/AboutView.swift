@@ -72,7 +72,7 @@ struct AboutView: View {
                         VStack(spacing: 0) {
                             Text(verbatim: "Original Purchase Date")
                                 .foregroundStyle(colors.foregroundLight)
-                            Text(appTransaction.originalPurchaseDate.formatted())
+                            Text(appTransaction.originalPurchaseDate.formatted(Date.FormatStyle(date: .numeric, time: .shortened).timeZone()))
                         }
                     }
                     
