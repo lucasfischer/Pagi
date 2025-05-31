@@ -113,7 +113,7 @@ public final class Store: ObservableObject {
                 throw verificationError
             case .verified(let appTransaction):
                 let didUserPurchaseLegacyLifetime = Store.didUserPurchaseLegacyLifetime(
-                    originalAppVersion: appTransaction.originalAppVersion,
+                    originalPurchaseDate: appTransaction.originalPurchaseDate,
                     environment: appTransaction.environment
                 )
                 
@@ -143,17 +143,14 @@ public final class Store: ObservableObject {
     
 }
 
+fileprivate let dateOfBusinessModelChange = Date(timeIntervalSince1970: 1748523600) // Thu May 29 2025 13:00:00 GMT+0000
+
 extension Store {
     
-    static func didUserPurchaseLegacyLifetime(originalAppVersion: String, environment: AppStore.Environment) -> Bool {
-        let newBusinessModelMajorVersion = "2"
-        let versionComponents = originalAppVersion.split(separator: ".")
-        let originalMajorVersion = versionComponents[0]
-        
-        let didUserPurchaseLegacyLifetime = originalMajorVersion < newBusinessModelMajorVersion
+    static func didUserPurchaseLegacyLifetime(originalPurchaseDate: Date, environment: AppStore.Environment) -> Bool {
+        let didPurchaseBeforeBusinessModelChange = originalPurchaseDate < dateOfBusinessModelChange
         let isSandbox = [AppStore.Environment.sandbox, .xcode].contains(environment)
-        
-        return !isSandbox && didUserPurchaseLegacyLifetime
+        return !isSandbox && didPurchaseBeforeBusinessModelChange
     }
     
 }
