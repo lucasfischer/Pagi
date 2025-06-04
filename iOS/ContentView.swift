@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             if preferences.isOnboardingPresented {
-                OnboardingScreen(isPresented: $preferences.isOnboardingPresented)
+                OnboardingScreen(store: store, isPresented: $preferences.isOnboardingPresented)
                     .transition(.opacity)
             } else {
                 ListScreen(viewModel: viewModel, store: store)

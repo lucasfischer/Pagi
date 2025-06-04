@@ -1,6 +1,7 @@
 import SwiftUI
 
 public struct OnboardingScreen: View {
+    @ObservedObject var store: Store
     @Binding var isPresented: Bool
     
     @StateObject private var preferences = Preferences.shared
@@ -12,10 +13,12 @@ public struct OnboardingScreen: View {
     @State private var isAnimating = false
     @State private var isAnimationDone = false
     @State private var isDescriptionVisible = false
+    @State private var isPaywallPresented = false
     
     @State private var scrollPosition: Int? = 1
     
-    public init(isPresented: Binding<Bool>) {
+    public init(store: Store, isPresented: Binding<Bool>) {
+        self.store = store
         self._isPresented = isPresented
     }
     
@@ -153,7 +156,11 @@ public struct OnboardingScreen: View {
                     
                     Button {
                         Haptics.buttonTap()
-                        dismiss()
+                        if !store.isUnlocked && store.hasCheckedForEntitlements {
+                            isPaywallPresented = true
+                        } else {
+                            dismiss()
+                        }
                     } label: {
                         HStack {
                             Text("Start Writing", bundle: .module)
@@ -192,6 +199,14 @@ public struct OnboardingScreen: View {
         .contentMargins(.vertical, horizontalSizeClass == .compact ? 40 : 8, for: .scrollContent)
 #endif
         .containerRelativeFrame(.horizontal, count: 1, spacing: horizontalSpacing)
+        .sheet(isPresented: $isPaywallPresented) {
+            Task {
+                try await Task.sleep(for: .seconds(0.5))
+                dismiss()
+            }
+        } content: {
+            PaywallScreen(store: store)
+        }
     }
     
     public var body: some View {
@@ -292,5 +307,5 @@ extension OnboardingScreen {
 }
 
 #Preview {
-    OnboardingScreen(isPresented: .constant(true))
+    OnboardingScreen(store: Store(), isPresented: .constant(true))
 }
