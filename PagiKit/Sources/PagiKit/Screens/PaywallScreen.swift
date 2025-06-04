@@ -226,7 +226,6 @@ public struct PaywallScreen: View {
         ZStack {
             Background()
             
-#if os(iOS)
             ViewThatFits(in: .vertical) {
                 Content()
                 
@@ -234,10 +233,10 @@ public struct PaywallScreen: View {
                     Content()
                 }
             }
-#else
-            Content()
-#endif
         }
+#if os(macOS)
+        .frame(width: 560, height: 640)
+#endif
     }
 }
 
