@@ -114,27 +114,14 @@ public struct OnboardingScreen: View {
     private func Slide2() -> some View {
         let horizontalSpacing: Double = 32
         
-        ScrollView {
-            VStack(alignment: horizontalSizeClass == .compact ? .leading : .center, spacing: 32) {
-                Text("Get Started", bundle: .module)
-                    .font(.custom(font, size: titleFontSize).weight(.semibold))
-                    .padding(.bottom, 16)
-                
-                if horizontalSizeClass == .compact {
-                    ForEach(Block.all) { block in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(block.title)
-                                .font(.custom(font, size: subheadlineFontSize))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .fontWeight(.semibold)
-                            Text(block.text)
-                                .font(.custom(font, size: footnoteFontSize))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .foregroundStyle(colors.foregroundLight)
-                        }
-                    }
-                } else {
-                    LazyVGrid(columns: Array(repeating: .init(.fixed(360), spacing: 40, alignment: .topLeading), count: 2), alignment: .center, spacing: 40) {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: horizontalSizeClass == .compact ? .leading : .center, spacing: 32) {
+                    Text("Get Started", bundle: .module)
+                        .font(.custom(font, size: titleFontSize).weight(.semibold))
+                        .padding(.bottom, 16)
+                    
+                    if horizontalSizeClass == .compact {
                         ForEach(Block.all) { block in
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(block.title)
@@ -147,37 +134,60 @@ public struct OnboardingScreen: View {
                                     .foregroundStyle(colors.foregroundLight)
                             }
                         }
+                    } else {
+                        LazyVGrid(columns: Array(repeating: .init(.fixed(360), spacing: 40, alignment: .topLeading), count: 2), alignment: .center, spacing: 40) {
+                            ForEach(Block.all) { block in
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(block.title)
+                                        .font(.custom(font, size: subheadlineFontSize))
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .fontWeight(.semibold)
+                                    Text(block.text)
+                                        .font(.custom(font, size: footnoteFontSize))
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .foregroundStyle(colors.foregroundLight)
+                                }
+                            }
+                        }
                     }
-                }
-                
-                Button {
-                    Haptics.buttonTap()
-                    dismiss()
-                } label: {
-                    HStack {
-                        Text("Start Writing", bundle: .module)
+                    
+                    Button {
+                        Haptics.buttonTap()
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Text("Start Writing", bundle: .module)
+                        }
+                        .font(.custom(font, size: bodyFontSize).weight(.semibold))
+                        .foregroundStyle(colors.accent)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(colors.accent, lineWidth: 3)
+                        }
+                        .contentShape(.rect)
                     }
-                    .font(.custom(font, size: bodyFontSize).weight(.semibold))
+                    .font(.custom(font, size: headerFontSize).weight(.bold))
                     .foregroundStyle(colors.accent)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(colors.accent, lineWidth: 3)
-                    }
-                    .contentShape(.rect)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.top, 24)
                 }
-                .font(.custom(font, size: headerFontSize).weight(.bold))
-                .foregroundStyle(colors.accent)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 24)
+                .padding(.horizontal, horizontalSpacing)
+                .font(.custom(font, size: bodyFontSize))
+                .foregroundStyle(colors.foreground)
+                .id("stack")
             }
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.horizontal, horizontalSpacing)
-            .font(.custom(font, size: bodyFontSize))
-            .foregroundStyle(colors.foreground)
+            .scrollBounceBehavior(.basedOnSize)
+            .defaultScrollAnchor(horizontalSizeClass == .compact ? .top : .center)
+            .onChange(of: scrollPosition) {
+                if #unavailable(iOS 18.0, macOS 15.0) {
+                    Task {
+                        proxy.scrollTo("stack", anchor: .center)
+                    }
+                }
+            }
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .defaultScrollAnchor(horizontalSizeClass == .compact ? .top : .center)
 #if !os(macOS)
         .contentMargins(.vertical, horizontalSizeClass == .compact ? 40 : 8, for: .scrollContent)
 #endif
@@ -186,7 +196,7 @@ public struct OnboardingScreen: View {
     
     public var body: some View {
         ScrollView(.horizontal) {
-            LazyHStack(spacing: 0) {
+            HStack(spacing: 0) {
                 Slide1()
                     .id(1)
                 
