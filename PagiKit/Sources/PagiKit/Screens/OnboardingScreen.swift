@@ -80,7 +80,7 @@ public struct OnboardingScreen: View {
                         HStack {
                             Image(systemName: "arrow.right")
                                 .fontWeight(.semibold)
-                            Text("Try for free", bundle: .module)
+                            Text("Continue", bundle: .module)
                         }
                         .font(.custom(font, size: bodyFontSize).weight(.semibold))
                         .padding()
