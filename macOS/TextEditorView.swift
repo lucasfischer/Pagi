@@ -349,7 +349,7 @@ final class TextEditorController: NSViewController {
                 if mouseWasDown {
                     focusTask = Task {
                         do {
-                            try await Task.sleep(seconds: 0.15)
+                            try await Task.sleep(for: .seconds(0.15))
                             focusSelection(animate: true)
                             mouseWasDown = false
                         }
