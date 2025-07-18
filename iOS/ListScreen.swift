@@ -17,9 +17,9 @@ struct ListScreen: View {
         return Dictionary(
             grouping: files,
             by: {
-                var date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: $0.date ?? .now)!
-                date = calendar.date(bySetting: .day, value: 1, of: date)!
-                return date
+                let date = calendar.date(bySettingHour: 1, minute: 1, second: 1, of: $0.date ?? .now)!
+                let interval = calendar.dateInterval(of: .month, for: date)
+                return interval?.start ?? date
             }
         )
         .sorted(by: { a, b in a.key > b.key })
